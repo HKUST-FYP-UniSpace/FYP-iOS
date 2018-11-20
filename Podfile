@@ -6,8 +6,9 @@ target 'UniSpace' do
   use_frameworks!
 
   # Pods for UniSpace
-  pod 'Alamofire', '~> 4.7.3'
-  pod 'AlamofireObjectMapper', '~> 5.1.0'
+#  pod 'Alamofire', '~> 4.7.3'
+#  pod 'AlamofireObjectMapper', '~> 5.2.0'
+  pod 'SwiftyBeaver', '~> 1.6.1'
 
   target 'UniSpaceTests' do
     inherit! :search_paths

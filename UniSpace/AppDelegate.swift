@@ -14,11 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        enableLogging()
+        addUserCredential()
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: MainTabBarController())
-        window?.makeKeyAndVisible()
-        
+        window?.tintColor = Color.theme
+        onlineModeChecker(false)
         return true
     }
 

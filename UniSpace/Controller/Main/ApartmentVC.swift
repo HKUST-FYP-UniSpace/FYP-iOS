@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  ApartmentVC.swift
 //  UniSpace
 //
 //  Created by KiKan Ng on 17/11/2018.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class ApartmentVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        view.backgroundColor = Color.Login.background
     }
 
 
