@@ -10,8 +10,8 @@
 		0B62B4BE6C59A494F8C27CF6 /* Pods_UniSpaceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4FFD128587ACDC440252E2 /* Pods_UniSpaceUITests.framework */; };
 		43FB6611209E6385EE7C8615 /* Pods_UniSpaceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A906E0D0716C95F31A424A17 /* Pods_UniSpaceTests.framework */; };
 		6DC9DDAF219FEE9C00A4B5DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9DDAE219FEE9C00A4B5DD /* AppDelegate.swift */; };
-		6DC9DDB1219FEE9C00A4B5DD /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9DDB0219FEE9C00A4B5DD /* FirstViewController.swift */; };
-		6DC9DDB3219FEE9C00A4B5DD /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9DDB2219FEE9C00A4B5DD /* SecondViewController.swift */; };
+		6DC9DDB1219FEE9C00A4B5DD /* ApartmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9DDB0219FEE9C00A4B5DD /* ApartmentVC.swift */; };
+		6DC9DDB3219FEE9C00A4B5DD /* TradeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9DDB2219FEE9C00A4B5DD /* TradeVC.swift */; };
 		6DC9DDB8219FEE9E00A4B5DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DC9DDB7219FEE9E00A4B5DD /* Assets.xcassets */; };
 		6DC9DDBB219FEE9E00A4B5DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DC9DDB9219FEE9E00A4B5DD /* LaunchScreen.storyboard */; };
 		6DC9DDC6219FEE9E00A4B5DD /* UniSpaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9DDC5219FEE9E00A4B5DD /* UniSpaceTests.swift */; };
@@ -19,6 +19,22 @@
 		6DD2038E21A00835009D1F07 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6DD2038B21A00835009D1F07 /* README.md */; };
 		6DD2039021A00835009D1F07 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6DD2038D21A00835009D1F07 /* LICENSE */; };
 		6DD2039221A12C3B009D1F07 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD2039121A12C3B009D1F07 /* MainTabBarController.swift */; };
+		6DE5561721A3B65100B23398 /* AppDelegateExten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5561621A3B65100B23398 /* AppDelegateExten.swift */; };
+		6DE5561921A3B7FC00B23398 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5561821A3B7FC00B23398 /* Color.swift */; };
+		6DE5561B21A3B9A100B23398 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5561A21A3B9A100B23398 /* LoginVC.swift */; };
+		6DE5561F21A3BC3100B23398 /* LoginLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5561E21A3BC3100B23398 /* LoginLabel.swift */; };
+		6DE5562321A3BC9A00B23398 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5562221A3BC9A00B23398 /* LoginTextField.swift */; };
+		6DE5562521A3BCA400B23398 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5562421A3BCA400B23398 /* LoginButton.swift */; };
+		6DE5562721A3D98500B23398 /* UITextField+BottomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5562621A3D98500B23398 /* UITextField+BottomBorder.swift */; };
+		6DE5562921A3E81B00B23398 /* BlogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5562821A3E81B00B23398 /* BlogVC.swift */; };
+		6DE5562B21A3E82B00B23398 /* MessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5562A21A3E82B00B23398 /* MessageVC.swift */; };
+		6DE5562D21A3E83600B23398 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5562C21A3E83600B23398 /* SettingsVC.swift */; };
+		6DE5562F21A3F0AB00B23398 /* StringExten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5562E21A3F0AB00B23398 /* StringExten.swift */; };
+		6DE5563421A3F44500B23398 /* RegisterLandingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5563321A3F44500B23398 /* RegisterLandingVC.swift */; };
+		6DE5563621A3F7FA00B23398 /* RegisterChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5563521A3F7FA00B23398 /* RegisterChoiceButton.swift */; };
+		6DE5563821A4052D00B23398 /* RegisterDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5563721A4052D00B23398 /* RegisterDetailVC.swift */; };
+		6DE5563A21A40B5E00B23398 /* LoginMasterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5563921A40B5E00B23398 /* LoginMasterVC.swift */; };
+		6DE5563C21A4166100B23398 /* VerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5563B21A4166100B23398 /* VerificationVC.swift */; };
 		B11DE1D56DED5120FC54DDA8 /* Pods_UniSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF3EE884EB625F551874B2A4 /* Pods_UniSpace.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,8 +60,8 @@
 		6A84D09087258E489DCD88EA /* Pods-UniSpaceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniSpaceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniSpaceTests/Pods-UniSpaceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6DC9DDAB219FEE9C00A4B5DD /* UniSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DC9DDAE219FEE9C00A4B5DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6DC9DDB0219FEE9C00A4B5DD /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		6DC9DDB2219FEE9C00A4B5DD /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		6DC9DDB0219FEE9C00A4B5DD /* ApartmentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentVC.swift; sourceTree = "<group>"; };
+		6DC9DDB2219FEE9C00A4B5DD /* TradeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeVC.swift; sourceTree = "<group>"; };
 		6DC9DDB7219FEE9E00A4B5DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6DC9DDBA219FEE9E00A4B5DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6DC9DDBC219FEE9E00A4B5DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,6 +74,22 @@
 		6DD2038B21A00835009D1F07 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		6DD2038D21A00835009D1F07 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		6DD2039121A12C3B009D1F07 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		6DE5561621A3B65100B23398 /* AppDelegateExten.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateExten.swift; sourceTree = "<group>"; };
+		6DE5561821A3B7FC00B23398 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		6DE5561A21A3B9A100B23398 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		6DE5561E21A3BC3100B23398 /* LoginLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginLabel.swift; sourceTree = "<group>"; };
+		6DE5562221A3BC9A00B23398 /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
+		6DE5562421A3BCA400B23398 /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		6DE5562621A3D98500B23398 /* UITextField+BottomBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+BottomBorder.swift"; sourceTree = "<group>"; };
+		6DE5562821A3E81B00B23398 /* BlogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogVC.swift; sourceTree = "<group>"; };
+		6DE5562A21A3E82B00B23398 /* MessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageVC.swift; sourceTree = "<group>"; };
+		6DE5562C21A3E83600B23398 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		6DE5562E21A3F0AB00B23398 /* StringExten.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExten.swift; sourceTree = "<group>"; };
+		6DE5563321A3F44500B23398 /* RegisterLandingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterLandingVC.swift; sourceTree = "<group>"; };
+		6DE5563521A3F7FA00B23398 /* RegisterChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterChoiceButton.swift; sourceTree = "<group>"; };
+		6DE5563721A4052D00B23398 /* RegisterDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailVC.swift; sourceTree = "<group>"; };
+		6DE5563921A40B5E00B23398 /* LoginMasterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMasterVC.swift; sourceTree = "<group>"; };
+		6DE5563B21A4166100B23398 /* VerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationVC.swift; sourceTree = "<group>"; };
 		79FF517C0BD513CA5B8A9385 /* Pods-UniSpace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniSpace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniSpace/Pods-UniSpace.debug.xcconfig"; sourceTree = "<group>"; };
 		7BEEF90143DC5F19D8315615 /* Pods-UniSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniSpace/Pods-UniSpace.release.xcconfig"; sourceTree = "<group>"; };
 		8D647634F5983AFF4C73BC4E /* Pods-UniSpaceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniSpaceUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniSpaceUITests/Pods-UniSpaceUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -133,11 +165,11 @@
 		6DC9DDAD219FEE9C00A4B5DD /* UniSpace */ = {
 			isa = PBXGroup;
 			children = (
-				6DD2039121A12C3B009D1F07 /* MainTabBarController.swift */,
-				6DC9DDB0219FEE9C00A4B5DD /* FirstViewController.swift */,
-				6DC9DDB2219FEE9C00A4B5DD /* SecondViewController.swift */,
-				6DC9DDB7219FEE9E00A4B5DD /* Assets.xcassets */,
+				6DE5561C21A3B9F600B23398 /* View */,
+				6DE5561421A3B3BC00B23398 /* Controller */,
+				6DE5561521A3B60B00B23398 /* Util */,
 				6DC9DDAE219FEE9C00A4B5DD /* AppDelegate.swift */,
+				6DC9DDB7219FEE9E00A4B5DD /* Assets.xcassets */,
 				6DC9DDBC219FEE9E00A4B5DD /* Info.plist */,
 				6DD2038B21A00835009D1F07 /* README.md */,
 				6DD2038D21A00835009D1F07 /* LICENSE */,
@@ -162,6 +194,78 @@
 				6DC9DDD2219FEE9E00A4B5DD /* Info.plist */,
 			);
 			path = UniSpaceUITests;
+			sourceTree = "<group>";
+		};
+		6DE5561421A3B3BC00B23398 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6DE5563121A3F3DA00B23398 /* Main */,
+				6DE5563021A3F3CF00B23398 /* Login */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6DE5561521A3B60B00B23398 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				6DE5561621A3B65100B23398 /* AppDelegateExten.swift */,
+				6DE5562E21A3F0AB00B23398 /* StringExten.swift */,
+				6DE5561821A3B7FC00B23398 /* Color.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		6DE5561C21A3B9F600B23398 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6DE5561D21A3BA0700B23398 /* Item */,
+				6DE5563221A3F3F000B23398 /* Util */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6DE5561D21A3BA0700B23398 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				6DE5561E21A3BC3100B23398 /* LoginLabel.swift */,
+				6DE5562221A3BC9A00B23398 /* LoginTextField.swift */,
+				6DE5562421A3BCA400B23398 /* LoginButton.swift */,
+				6DE5563521A3F7FA00B23398 /* RegisterChoiceButton.swift */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
+		6DE5563021A3F3CF00B23398 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				6DE5563921A40B5E00B23398 /* LoginMasterVC.swift */,
+				6DE5561A21A3B9A100B23398 /* LoginVC.swift */,
+				6DE5563321A3F44500B23398 /* RegisterLandingVC.swift */,
+				6DE5563721A4052D00B23398 /* RegisterDetailVC.swift */,
+				6DE5563B21A4166100B23398 /* VerificationVC.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		6DE5563121A3F3DA00B23398 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				6DD2039121A12C3B009D1F07 /* MainTabBarController.swift */,
+				6DC9DDB0219FEE9C00A4B5DD /* ApartmentVC.swift */,
+				6DC9DDB2219FEE9C00A4B5DD /* TradeVC.swift */,
+				6DE5562821A3E81B00B23398 /* BlogVC.swift */,
+				6DE5562A21A3E82B00B23398 /* MessageVC.swift */,
+				6DE5562C21A3E83600B23398 /* SettingsVC.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		6DE5563221A3F3F000B23398 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				6DE5562621A3D98500B23398 /* UITextField+BottomBorder.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		886D35393708B9BE20315E0B /* Frameworks */ = {
@@ -313,15 +417,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-UniSpace/Pods-UniSpace-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -389,10 +489,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DC9DDB3219FEE9C00A4B5DD /* SecondViewController.swift in Sources */,
+				6DE5563C21A4166100B23398 /* VerificationVC.swift in Sources */,
+				6DE5563621A3F7FA00B23398 /* RegisterChoiceButton.swift in Sources */,
+				6DE5562F21A3F0AB00B23398 /* StringExten.swift in Sources */,
+				6DE5562521A3BCA400B23398 /* LoginButton.swift in Sources */,
+				6DC9DDB3219FEE9C00A4B5DD /* TradeVC.swift in Sources */,
+				6DE5562721A3D98500B23398 /* UITextField+BottomBorder.swift in Sources */,
+				6DE5561721A3B65100B23398 /* AppDelegateExten.swift in Sources */,
+				6DE5563821A4052D00B23398 /* RegisterDetailVC.swift in Sources */,
+				6DE5562B21A3E82B00B23398 /* MessageVC.swift in Sources */,
+				6DE5562921A3E81B00B23398 /* BlogVC.swift in Sources */,
+				6DE5561B21A3B9A100B23398 /* LoginVC.swift in Sources */,
+				6DE5561F21A3BC3100B23398 /* LoginLabel.swift in Sources */,
 				6DC9DDAF219FEE9C00A4B5DD /* AppDelegate.swift in Sources */,
+				6DE5563A21A40B5E00B23398 /* LoginMasterVC.swift in Sources */,
 				6DD2039221A12C3B009D1F07 /* MainTabBarController.swift in Sources */,
-				6DC9DDB1219FEE9C00A4B5DD /* FirstViewController.swift in Sources */,
+				6DC9DDB1219FEE9C00A4B5DD /* ApartmentVC.swift in Sources */,
+				6DE5561921A3B7FC00B23398 /* Color.swift in Sources */,
+				6DE5563421A3F44500B23398 /* RegisterLandingVC.swift in Sources */,
+				6DE5562321A3BC9A00B23398 /* LoginTextField.swift in Sources */,
+				6DE5562D21A3E83600B23398 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

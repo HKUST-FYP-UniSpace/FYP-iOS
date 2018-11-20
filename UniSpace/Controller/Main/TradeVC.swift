@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  TradeVC.swift
 //  UniSpace
 //
 //  Created by KiKan Ng on 17/11/2018.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class TradeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        view.backgroundColor = Color.Login.background
     }
 
 

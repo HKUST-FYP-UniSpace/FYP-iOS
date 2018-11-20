@@ -19,7 +19,7 @@ CocoaPods is built with Ruby and it will be installable with the default Ruby av
 
 Using the default Ruby install will require you to use `sudo` when installing gems. (This is only an issue for the duration of the gem installation, though.)
 
-```
+```shell
 $ sudo gem install cocoapods
 ```
 
@@ -29,13 +29,13 @@ If you encounter any problems during installation, please visit [this](https://g
 
 > To update CocoaPods you simply install the gem again
 
-```
+```shell
 $ [sudo] gem install cocoapods
 ```
 
 > Or for a pre-release version
 
-```
+```shell
 $ [sudo] gem install cocoapods --pre
 ```
 
