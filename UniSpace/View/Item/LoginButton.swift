@@ -10,6 +10,20 @@ import UIKit
 
 class LoginButton: UIButton {
     
+    private var inverseColor = false
+    
+    override open var isHighlighted: Bool {
+        didSet {
+            UIView.animate(withDuration: 0.5) {
+                if self.inverseColor {
+                    self.backgroundColor = self.isHighlighted ? Color.InverseButton.hightlighted : Color.InverseButton.background
+                } else {
+                    self.backgroundColor = self.isHighlighted ? Color.Button.hightlighted : Color.Button.background
+                }
+            }
+        }
+    }
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         self.setup("")
@@ -17,19 +31,19 @@ class LoginButton: UIButton {
     
     init(buttonText: String?, inverseColor: Bool = false) {
         super.init(frame: CGRect(x: 0, y: 0, width: 80, height: 32))
-        self.setup(buttonText, inverseColor)
+        self.inverseColor = inverseColor
+        isHighlighted = false
+        self.setup(buttonText)
     }
     
-    private func setup(_ buttonText: String?, _ inverseColor: Bool = false) {
+    private func setup(_ buttonText: String?) {
         let textColor = inverseColor ? Color.InverseButton.text : Color.Button.text
-        let backgroundColor = inverseColor ? Color.InverseButton.background : Color.Button.background
         
         self.setTitle(buttonText, for: .normal)
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         self.setTitleColor(textColor, for: .normal)
         self.layer.cornerRadius = 15
         self.clipsToBounds = true
-        self.backgroundColor = backgroundColor
         self.adjustsImageWhenHighlighted = true
         self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalToConstant: 36).isActive = true

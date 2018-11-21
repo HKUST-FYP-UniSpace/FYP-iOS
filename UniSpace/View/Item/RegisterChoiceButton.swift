@@ -13,6 +13,14 @@ class RegisterChoiceButton: UIButton {
     lazy private var textLabel = LoginLabel(labelText: nil, isTitle: true)
     lazy private var iconImage = UIImageView(image: nil)
     
+    override open var isHighlighted: Bool {
+        didSet {
+            UIView.animate(withDuration: 0.5) {
+                self.backgroundColor = self.isHighlighted ? Color.Option.hightlighted : Color.Option.background
+            }
+        }
+    }
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         self.setup("", nil)
@@ -20,15 +28,13 @@ class RegisterChoiceButton: UIButton {
     
     init(buttonText: String?, buttonImage: UIImage?) {
         super.init(frame: CGRect(x: 0, y: 0, width: 80, height: 32))
+        isHighlighted = false
         self.setup(buttonText, buttonImage)
     }
     
     private func setup(_ buttonText: String?, _ buttonImage: UIImage?) {
-        let backgroundColor = Color.Login.optionBackground
-        
         self.layer.cornerRadius = 15
         self.clipsToBounds = true
-        self.backgroundColor = backgroundColor
         self.adjustsImageWhenHighlighted = true
         self.translatesAutoresizingMaskIntoConstraints = false
         
