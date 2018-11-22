@@ -14,13 +14,13 @@ class LoginButton: UIButton {
     
     override open var isHighlighted: Bool {
         didSet {
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
                 if self.inverseColor {
                     self.backgroundColor = self.isHighlighted ? Color.InverseButton.hightlighted : Color.InverseButton.background
                 } else {
                     self.backgroundColor = self.isHighlighted ? Color.Button.hightlighted : Color.Button.background
                 }
-            }
+            }, completion: nil)
         }
     }
     

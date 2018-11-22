@@ -15,9 +15,9 @@ class RegisterChoiceButton: UIButton {
     
     override open var isHighlighted: Bool {
         didSet {
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseInOut,. allowUserInteraction], animations: {
                 self.backgroundColor = self.isHighlighted ? Color.Option.hightlighted : Color.Option.background
-            }
+            }, completion: nil)
         }
     }
     
