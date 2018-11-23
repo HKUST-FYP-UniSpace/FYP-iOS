@@ -12,8 +12,8 @@ class RegisterLandingVC: LoginMasterVC {
     
     lazy private var titleLabel = LoginLabel(labelText: "Register", isTitle: true)
     lazy private var detailLabel = LoginLabel(labelText: "Choose your experience", isTitle: false)
-    lazy private var tenant = RegisterChoiceButton(buttonText: "Student Tenant", buttonImage: UIImage(named: "Student_tenant"))
-    lazy private var owner = RegisterChoiceButton(buttonText: "House Owner", buttonImage: UIImage(named: "House_owner"))
+    lazy private var tenant = RegisterChoiceButton(buttonText: UserType.Tenant.rawValue, buttonImage: UIImage(named: "Student_tenant"))
+    lazy private var owner = RegisterChoiceButton(buttonText: UserType.Owner.rawValue, buttonImage: UIImage(named: "House_owner"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
