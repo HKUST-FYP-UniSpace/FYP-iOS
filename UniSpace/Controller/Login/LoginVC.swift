@@ -39,8 +39,11 @@ class LoginVC: LoginMasterVC {
     }
 
     @objc func handleLogin() {
-        guard let username = usernameTextField.text, let password = passwordTextField.text else { return }
-        login(username: username, password: password)
+        guard let username = usernameTextField.text, let password = passwordTextField.text else {
+            showAlert(title: "Please input your username and password")
+            return
+        }
+        login(username: username, password: password, completion: loginCompletion)
     }
     
     @objc func handleRegister() {

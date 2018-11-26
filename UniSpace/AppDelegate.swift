@@ -17,10 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         enableLogging()
         addUserCredential()
         Connectivity.shared.startNetworkReachabilityObserver()
-
+        tryToLogin()
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.tintColor = Color.theme
-        directing(isLoginPage: false)
         return true
     }
 

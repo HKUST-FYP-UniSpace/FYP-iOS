@@ -57,10 +57,13 @@ class RegisterDetailVC: LoginMasterVC {
             let email = emailTextField.text,
             let password = passwordTextField.text,
             let confirmPassword = confirmPasswordTextField.text
-            else { return }
+            else {
+                showAlert(title: "Please input all fields")
+                return
+        }
         
         guard email.areEmail() else {
-            log.warning("Invalid email", context: "The email is not legal")
+            showAlert(title: "The email is not legal")
             return
         }
         

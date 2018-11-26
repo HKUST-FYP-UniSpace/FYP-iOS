@@ -37,16 +37,21 @@ class VerificationVC: LoginMasterVC {
     
     @objc func handleVerify() {
         guard let id = DataStore.shared.user?.id, let code = codeTextField.text else {
+            showAlert(title: "Please input the id")
             return
         }
         
         guard code.count == 6, code.areNumbers() else {
+            showAlert(title: "The code has to be a 6 digits number")
             return
         }
         
         DataStore.shared.verify(userId: id, code: code) { (user, error) in
-            guard user != nil else { return }
-            self.login(username: self.username, password: self.password)
+            guard user != nil else {
+                self.showAlert(title: "Wrong code")
+                return
+            }
+            self.login(username: self.username, password: self.password, completion: self.loginCompletion)
         }
     }
     

@@ -19,27 +19,41 @@ class LoginMasterVC: UIViewController, UIGestureRecognizerDelegate {
         setupGestureRecognizer()
     }
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
     }
     
-    func login(username: String, password: String) {
+    func login(username: String, password: String, completion: @escaping (UserModel?, Error?) -> ()) {
         log.verbose("VC", context: "Attempt to login")
         
         UserDefaultsManager.savePref("username", value: username)
         UserDefaultsManager.savePref("password", value: password)
         
-        // check with server
-        directing(isLoginPage: true, authorized: true)
+        DataStore.shared.authorize { (user, error) in
+            guard user != nil else {
+                completion(user, error)
+                return
+            }
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.directing(authorized: true)
+        }
     }
     
-    private func directing(isLoginPage: Bool, authorized: Bool = false) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.directing(isLoginPage: true, authorized: true)
+    func showAlert(title: String?, msg: String? = nil) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    func loginCompletion(user: UserModel?, error: Error?) {
+        if user == nil {
+            showAlert(title: "Wrong username or password")
+        }
     }
     
     func setupTheme(theme: UIColor, background: UIColor) {
@@ -53,6 +67,10 @@ class LoginMasterVC: UIViewController, UIGestureRecognizerDelegate {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
     }
+    
+}
+
+extension LoginMasterVC {
     
     private func setupGestureRecognizer() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))

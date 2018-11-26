@@ -13,23 +13,13 @@ let log = SwiftyBeaver.self
 
 extension AppDelegate {
     
-    func directing(isLoginPage: Bool, authorized: Bool = false) {
-        let authenticatedUser = authorized
+    func directing(authorized: Bool) {
+        let rootController: UIViewController = authorized ?
+            MainTabBarController() :
+            UINavigationController(rootViewController: LoginVC())
         
-        if authenticatedUser == false && isLoginPage {
-            return
-        }
-        
-        let rootController: UIViewController?
-        
-        if authenticatedUser {
-            rootController = MainTabBarController()
-        } else {
-            rootController = UINavigationController(rootViewController: LoginVC())
-        }
-        
-        self.window?.rootViewController?.loadViewIfNeeded()
-        self.window?.rootViewController = rootController
+        window?.rootViewController?.loadViewIfNeeded()
+        window?.rootViewController = rootController
         window?.makeKeyAndVisible()
     }
     
@@ -42,9 +32,15 @@ extension AppDelegate {
     
     func addUserCredential() {
         let defaults = UserDefaults.standard
-        defaults.set("123@abc.com", forKey: "email")
+        defaults.set("123@abc.com", forKey: "username")
         defaults.set("12345678", forKey: "password")
 //        log.debug("Home Dir", context: NSHomeDirectory())
+    }
+    
+    func tryToLogin() {
+        DataStore.shared.authorize { (user, error) in
+            if user != nil { self.directing(authorized: true) }
+        }
     }
     
 }

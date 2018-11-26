@@ -86,7 +86,7 @@ extension AlamofireService {
     
     private func handleResponse(at route: ApiRoute, response: DataRequest) {
         response.responseJSON { (response) in
-            log.info("HTTP \(String(describing: response.response?.statusCode ?? 0))", context: String(format: "Request: %@", route.url()))
+            log.info("HTTP \(response.response?.statusCode ?? 0)", context: String(format: "Request: %@", route.url()))
             self.serverResponse(response)
         }
     }
@@ -100,7 +100,7 @@ extension AlamofireService {
     private func serverResponse(_ response:DataResponse<Any>) {
         guard let data = response.data else { return }
         let response = try? JSONDecoder().decode(ServerMessage.self, from: data)
-        log.info("Server Response \(response?.code)", context: response?.message)
+        log.info("Server Response \(response?.code ?? 0)", context: response?.message)
     }
     
 }
