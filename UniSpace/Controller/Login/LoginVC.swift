@@ -11,7 +11,7 @@ import UIKit
 class LoginVC: LoginMasterVC {
     
     lazy private var iconImage = UIImageView(image: UIImage(named: "Fake_icon"))
-    lazy private var titleLabel = LoginLabel(labelText: "Welcome to USpace", isTitle: true)
+    lazy private var titleLabel = LoginLabel(labelText: "Welcome to UniSpace", isTitle: true)
     lazy private var detailLabel = LoginLabel(labelText: "Find roomies that fit you the most", isTitle: false)
     lazy private var usernameTextField = LoginTextField(text: "Username")
     lazy private var passwordTextField = LoginTextField(text: "Password")
@@ -39,8 +39,8 @@ class LoginVC: LoginMasterVC {
     }
 
     @objc func handleLogin() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.onlineModeChecker(true, authorized: true)
+        guard let username = usernameTextField.text, let password = passwordTextField.text else { return }
+        login(username: username, password: password)
     }
     
     @objc func handleRegister() {

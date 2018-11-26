@@ -27,6 +27,21 @@ class LoginMasterVC: UIViewController, UIGestureRecognizerDelegate {
         navigationController?.navigationBar.isHidden = true
     }
     
+    func login(username: String, password: String) {
+        log.verbose("VC", context: "Attempt to login")
+        
+        UserDefaultsManager.savePref("username", value: username)
+        UserDefaultsManager.savePref("password", value: password)
+        
+        // check with server
+        directing(isLoginPage: true, authorized: true)
+    }
+    
+    private func directing(isLoginPage: Bool, authorized: Bool = false) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.directing(isLoginPage: true, authorized: true)
+    }
+    
     func setupTheme(theme: UIColor, background: UIColor) {
         view.backgroundColor = background
         UIApplication.shared.statusBarView?.backgroundColor = background

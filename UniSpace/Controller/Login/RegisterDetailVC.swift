@@ -51,7 +51,31 @@ class RegisterDetailVC: LoginMasterVC {
     }
     
     @objc func handleNext() {
-        navigationController?.pushViewController(VerificationVC(), animated: true)
+        let type: UserType = isTenant ? .Tenant : .Owner
+        guard let username = usernameTextField.text,
+            let name = nameTextField.text,
+            let email = emailTextField.text,
+            let password = passwordTextField.text,
+            let confirmPassword = confirmPasswordTextField.text
+            else { return }
+        
+        guard email.areEmail() else {
+            log.warning("Invalid email", context: "The email is not legal")
+            return
+        }
+        
+        guard password != confirmPassword else {
+            return
+        }
+        
+        DataStore.shared.register(userType: type, username: username, name: name, email: email, password: password) { (user, error) in
+            guard user != nil else { return }
+            
+            let vc = VerificationVC()
+            vc.username = username
+            vc.password = password
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }

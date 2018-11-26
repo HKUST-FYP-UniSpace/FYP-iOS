@@ -10,6 +10,9 @@ import UIKit
 
 class VerificationVC: LoginMasterVC {
     
+    var username: String = ""
+    var password: String = ""
+    
     lazy private var titleLabel = LoginLabel(labelText: "Verification", isTitle: true, inverseColor: true)
     lazy private var detailLabel = LoginLabel(labelText: "Please enter the 6 digits verification code sent to your email address", isTitle: false, inverseColor: true)
     lazy private var codeTextField = LoginTextField(text: "e.g. 000000", inverseColor: true)
@@ -33,7 +36,18 @@ class VerificationVC: LoginMasterVC {
     }
     
     @objc func handleVerify() {
-//        navigationController?.pushViewController(VerificationVC(), animated: true)
+        guard let id = DataStore.shared.user?.id, let code = codeTextField.text else {
+            return
+        }
+        
+        guard code.count == 6, code.areNumbers() else {
+            return
+        }
+        
+        DataStore.shared.verify(userId: id, code: code) { (user, error) in
+            guard user != nil else { return }
+            self.login(username: self.username, password: self.password)
+        }
     }
     
 }
