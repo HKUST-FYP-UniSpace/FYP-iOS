@@ -13,7 +13,7 @@ let log = SwiftyBeaver.self
 
 extension AppDelegate {
     
-    func onlineModeChecker(_ isLoginPage: Bool, authorized: Bool = false) {
+    func directing(isLoginPage: Bool, authorized: Bool = false) {
         let authenticatedUser = authorized
         
         if authenticatedUser == false && isLoginPage {

@@ -20,6 +20,6 @@ class DataStore: NSObject {
         return true ? TestService.shared : AlamofireService.shared
     }
     
-    var userInfo: User?
+    var user: UserModel?
     
 }

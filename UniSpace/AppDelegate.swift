@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.tintColor = Color.theme
-        onlineModeChecker(false)
+        directing(isLoginPage: false)
         return true
     }
 

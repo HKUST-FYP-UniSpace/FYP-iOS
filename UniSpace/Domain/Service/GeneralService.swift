@@ -10,5 +10,6 @@ import Foundation
 
 protocol GeneralService: class {
     
-    func getUserProfile(userId: Int, completion: @escaping (_ user: UserProfile?, _ error: Error?) -> ())
+    func getUserProfile(userId: Int, completion: @escaping (_ user: UserProfileModel?, _ error: Error?) -> ())
+    
 }

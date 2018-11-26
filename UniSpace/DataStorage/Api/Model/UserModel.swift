@@ -6,9 +6,7 @@
 //  Copyright © 2018 KiKan Ng. All rights reserved.
 //
 
-import ObjectMapper
-
-class UserModel: Mappable, User {
+class UserModel: Decodable, User {
 
     var id: Int = 0
     var email: String = ""
@@ -20,20 +18,5 @@ class UserModel: Mappable, User {
     var verified: Bool = false
     
     init() {}
-    
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
-    func mapping(map: Map) {
-        self.id <- map["id"]
-        self.email <- map["email"]
-        self.username <- map["username"]
-        self.name <- map["name"]
-        self.role <- map["role"]
-        self.isActive <- map["isActive"]
-        self.createTime <- map["createTime"]
-        self.verified <- map["verified"]
-    }
 
 }

@@ -7,31 +7,33 @@
 //
 
 import Alamofire
-import AlamofireObjectMapper
 
 extension AlamofireService: AuthService {
     
-    func authorize(completion: @escaping (User?, Error?) -> ()) {
-        post(at: .authorize, params: getCredentials()).responseObject {
-            (res: DataResponse<UserModel>) in
-            completion(res.result.value, res.result.error)
+    func authorize(completion: @escaping (UserModel?, Error?) -> ()) {
+        post(at: .authorize, params: getCredentials()).responseJSON { (res: DataResponse<Any>) in
+            var result: UserModel? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }
+            completion(result, res.result.error)
         }
     }
     
-    func register(userType: UserType, username: String, name: String, email: String, password: String, completion: @escaping (User?, Error?) -> ()) {
+    func register(userType: UserType, username: String, name: String, email: String, password: String, completion: @escaping (UserModel?, Error?) -> ()) {
         let params = convertRegisterInfoToParams(userType: userType, username: username, name: name, email: email, password: password)
-        post(at: .register, params: params).responseObject {
-            (res: DataResponse<UserModel>) in
-            completion(res.result.value, res.result.error)
+        post(at: .register, params: params).responseJSON { (res: DataResponse<Any>) in
+            var result: UserModel? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }
+            completion(result, res.result.error)
         }
     }
     
-    func verify(userId: Int, code: String, completion: @escaping (User?, Error?) -> ()) {
+    func verify(userId: Int, code: String, completion: @escaping (UserModel?, Error?) -> ()) {
         var params = Parameters()
         params["code"] = code
-        post(at: .verify(userId: userId), params: params).responseObject {
-            (res: DataResponse<UserModel>) in
-            completion(res.result.value, res.result.error)
+        post(at: .verify(userId: userId), params: params).responseJSON { (res: DataResponse<Any>) in
+            var result: UserModel? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }
+            completion(result, res.result.error)
         }
     }
     

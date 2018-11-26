@@ -7,8 +7,8 @@ target 'UniSpace' do
 
   # Pods for UniSpace
   pod 'Alamofire', '~> 4.7.3'
-  pod 'AlamofireObjectMapper', '~> 5.2.0'
-  pod 'ObjectMapper', '~> 3.4.1'
+  pod 'KeychainAccess', '~> 3.1.2'
+  pod 'Kingfisher', '~> 4.10.1'
   pod 'SwiftyBeaver', '~> 1.6.1'
 
   target 'UniSpaceTests' do

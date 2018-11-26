@@ -7,14 +7,14 @@
 //
 
 import Alamofire
-import AlamofireObjectMapper
 
 extension AlamofireService: GeneralService {
     
-    func getUserProfile(userId: Int, completion: @escaping (UserProfile?, Error?) -> ()) {
-        get(at: .getUserProfile(userId: userId)).responseObject {
-            (res: DataResponse<UserProfileModel>) in
-            completion(res.result.value, res.result.error)
+    func getUserProfile(userId: Int, completion: @escaping (UserProfileModel?, Error?) -> ()) {
+        get(at: .getUserProfile(userId: userId)).responseJSON { (res: DataResponse<Any>) in
+            var result: UserProfileModel? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(UserProfileModel.self, from: data) }
+            completion(result, res.result.error)
         }
     }
     

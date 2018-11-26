@@ -1,30 +1,28 @@
 PODS:
   - Alamofire (4.7.3)
-  - AlamofireObjectMapper (5.2.0):
-    - Alamofire (~> 4.7)
-    - ObjectMapper (~> 3.4)
-  - ObjectMapper (3.4.1)
+  - KeychainAccess (3.1.2)
+  - Kingfisher (4.10.1)
   - SwiftyBeaver (1.6.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7.3)
-  - AlamofireObjectMapper (~> 5.2.0)
-  - ObjectMapper (~> 3.4.1)
+  - KeychainAccess (~> 3.1.2)
+  - Kingfisher (~> 4.10.1)
   - SwiftyBeaver (~> 1.6.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - AlamofireObjectMapper
-    - ObjectMapper
+    - KeychainAccess
+    - Kingfisher
     - SwiftyBeaver
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
-  ObjectMapper: 5311bd50ca732930959e7ca1a2de43ab823a5ced
+  KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
 
-PODFILE CHECKSUM: 1993e9fe0007706726620a37f9f85add30cba6dd
+PODFILE CHECKSUM: b7692d5b9f64e7880ae868aafe1788a60c64815e
 
 COCOAPODS: 1.5.3

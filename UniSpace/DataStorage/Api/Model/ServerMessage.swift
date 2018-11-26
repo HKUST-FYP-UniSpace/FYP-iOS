@@ -6,20 +6,15 @@
 //  Copyright © 2018 KiKan Ng. All rights reserved.
 //
 
-import ObjectMapper
 
-class ServerMessage: Mappable{
-    var message: String?
-    var code: Int?
-    var resource: String?
+class ServerMessage: Decodable {
     
-    required init?(map: Map) {
-    }
+    var message: String = ""
+    var code: Int = 0
+    var resource: String = ""
     
-    func mapping(map: Map) {
-        self.message <- map["message"]
-        self.code <- map["code"]
-        self.resource <- map["resource"]
+    init() {
+        
     }
 }
 

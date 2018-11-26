@@ -13,6 +13,14 @@ extension String {
         return self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
     }
     
+    func areNumbers() -> Bool {
+        return self.matches(regex: "^[^@]+@[^@]+\\.[^@]+$")
+    }
+    
+    func areEmail() -> Bool {
+        return self.matches(regex: "^[0-9.-]+$")
+    }
+    
     subscript (i: Int) -> Character {
         return self[index(startIndex, offsetBy: i)]
     }

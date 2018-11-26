@@ -10,7 +10,7 @@ import Foundation
 
 extension TestService: GeneralService {
     
-    func getUserProfile(userId: Int, completion: @escaping (UserProfile?, Error?) -> ()) {
+    func getUserProfile(userId: Int, completion: @escaping (UserProfileModel?, Error?) -> ()) {
         
     }
     

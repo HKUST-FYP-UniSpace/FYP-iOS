@@ -19,17 +19,29 @@ class TestUserModel: User {
     var createTime: String
     var verified: Bool
     
-    required init(id: Int, email: String, username: String, name: String, role: UserType) {
+    required init(email: String, username: String, name: String, role: UserType) {
+        id = Int.random(in: 0 ..< 1000)
         createTime = DateManager.shared.getCurrentDateAndTime()
         isActive = true
         verified = false
         
-        self.init()
-        self.id = id
         self.email = email
         self.username = username
         self.name = name
         self.role = role.hashValue
+    }
+    
+    func toUserModel() -> UserModel {
+        let user = UserModel()
+        id = user.id
+        email = user.email
+        username = user.username
+        name = user.name
+        role = user.role
+        isActive = user.isActive
+        createTime = user.createTime
+        verified = user.verified
+        return user
     }
     
 }

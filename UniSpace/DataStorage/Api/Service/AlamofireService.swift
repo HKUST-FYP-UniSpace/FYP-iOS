@@ -52,13 +52,15 @@ class AlamofireService: NSObject {
     
     func easyUpload(at route: ApiRoute, dataFormation: @escaping (_ multipartFormData: MultipartFormData) -> (), completion: @escaping (_ serverMessage: ServerMessage?, _ error: Error?) -> ()) {
         upload(at: route, dataFormation: dataFormation) { (dataRequest, error) in
-            if let dataRequest = dataRequest {
-                dataRequest.responseObject {
-                    (res: DataResponse<ServerMessage>) in
-                    completion(res.result.value, res.result.error)
-                }
-            } else {
+            guard let dataRequest = dataRequest else {
                 completion(nil, error)
+                return
+            }
+            
+            dataRequest.responseJSON { (res: DataResponse<Any>) in
+                var result: ServerMessage? = nil
+                if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
+                completion(result, res.result.error)
             }
         }
     }
@@ -90,41 +92,15 @@ extension AlamofireService {
     }
     
     private func logProgress(_ response: UploadRequest) {
-        if #available(iOS 11.0, *) {
-            response.uploadProgress { (progress) in
-                log.info("Upload Progress", context: "\(progress.estimatedTimeRemaining ?? 0)s left")
-            }
+        response.uploadProgress { (progress) in
+            log.info("Upload Progress", context: "\(progress.estimatedTimeRemaining ?? 0)s left")
         }
     }
     
     private func serverResponse(_ response:DataResponse<Any>) {
         guard let data = response.data else { return }
-        let json = String(data: data, encoding: .utf8)
-        
-        if let rawData = json?.data(using: .utf8) {
-            do {
-                let msg = try JSONSerialization.jsonObject(with: rawData, options: []) as? [String: Any]
-                let result = ServerMessage(JSON: msg!)
-                if let code = result?.code {
-                    log.info("Server Response \(code)", context: result?.message)
-                }
-            } catch {
-                // I should probably do sth here
-            }
-        }
-    }
-    
-    func transformToDicts(from: Any?) -> [Dictionary<String, Any>] {
-        let lists = from as? Dictionary<String, Any>
-        var result: [Dictionary<String, Any>]?
-        
-        if let lists = lists {
-            for list in lists {
-                result = list.value as? [Dictionary<String, Any>]
-            }
-        }
-        
-        return result ?? []
+        let response = try? JSONDecoder().decode(ServerMessage.self, from: data)
+        log.info("Server Response \(response?.code)", context: response?.message)
     }
     
 }
