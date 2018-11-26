@@ -36,7 +36,7 @@ class LoginMasterVC: UIViewController, UIGestureRecognizerDelegate {
             }
             
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.directing(authorized: true)
+            appDelegate.redirecting(authorized: true)
         }
     }
     

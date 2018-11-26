@@ -13,7 +13,7 @@ let log = SwiftyBeaver.self
 
 extension AppDelegate {
     
-    func directing(authorized: Bool) {
+    func redirecting(authorized: Bool) {
         let rootController: UIViewController = authorized ?
             MainTabBarController() :
             UINavigationController(rootViewController: LoginVC())
@@ -39,7 +39,7 @@ extension AppDelegate {
     
     func tryToLogin() {
         DataStore.shared.authorize { (user, error) in
-            if user != nil { self.directing(authorized: true) }
+            if user != nil { self.redirecting(authorized: true) }
         }
     }
     
