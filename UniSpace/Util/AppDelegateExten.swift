@@ -39,7 +39,7 @@ extension AppDelegate {
     
     func tryToLogin() {
         DataStore.shared.authorize { (user, error) in
-            if user != nil { self.redirecting(authorized: true) }
+            self.redirecting(authorized: user != nil)
         }
     }
     
