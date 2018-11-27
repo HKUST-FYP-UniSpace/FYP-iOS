@@ -31,9 +31,8 @@ extension AppDelegate {
     }
     
     func addUserCredential() {
-        let defaults = UserDefaults.standard
-        defaults.set("123@abc.com", forKey: "username")
-        defaults.set("12345678", forKey: "password")
+        DataStore.shared.savePref("username", value: "abcdef")
+        DataStore.shared.savePref("password", value: "12345678")
 //        log.debug("Home Dir", context: NSHomeDirectory())
     }
     

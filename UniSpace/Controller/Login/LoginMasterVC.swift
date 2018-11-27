@@ -26,8 +26,8 @@ class LoginMasterVC: UIViewController, UIGestureRecognizerDelegate {
     func login(username: String, password: String, completion: @escaping (UserModel?, Error?) -> ()) {
         log.verbose("VC", context: "Attempt to login")
         
-        UserDefaultsManager.savePref("username", value: username)
-        UserDefaultsManager.savePref("password", value: password)
+        DataStore.shared.savePref("username", value: username)
+        DataStore.shared.savePref("password", value: password)
         
         DataStore.shared.authorize { (user, error) in
             guard user != nil else {
