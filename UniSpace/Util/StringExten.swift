@@ -13,11 +13,11 @@ extension String {
         return self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
     }
     
-    func areNumbers() -> Bool {
+    func areEmail() -> Bool {
         return self.matches(regex: "^[^@]+@[^@]+\\.[^@]+$")
     }
     
-    func areEmail() -> Bool {
+    func areNumbers() -> Bool {
         return self.matches(regex: "^[0-9.-]+$")
     }
     

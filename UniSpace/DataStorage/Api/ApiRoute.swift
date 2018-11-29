@@ -29,8 +29,8 @@ enum ApiRoute { case
         case .getUserProfile(let userId):
             return "users/profile/\(userId)"
             
-        default:
-            return ""
+//        default:
+//            return ""
         }
         
     }

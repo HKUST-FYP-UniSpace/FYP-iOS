@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B62B4BE6C59A494F8C27CF6 /* Pods_UniSpaceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4FFD128587ACDC440252E2 /* Pods_UniSpaceUITests.framework */; };
 		43FB6611209E6385EE7C8615 /* Pods_UniSpaceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A906E0D0716C95F31A424A17 /* Pods_UniSpaceTests.framework */; };
+		6D5BECF821AFD1880085F3FF /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5BECF721AFD1880085F3FF /* ColorTests.swift */; };
 		6D68F6D221A7F17C00D31472 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D68F6D121A7F17C00D31472 /* User.swift */; };
 		6D68F6D421A7F22200D31472 /* GeneralService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D68F6D321A7F22200D31472 /* GeneralService.swift */; };
 		6D68F6D621A7F25900D31472 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D68F6D521A7F25900D31472 /* AuthService.swift */; };
@@ -31,6 +32,7 @@
 		6D68F6FD21A8059D00D31472 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D68F6FC21A8059D00D31472 /* DateManager.swift */; };
 		6D68F6FF21A805BA00D31472 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D68F6FE21A805BA00D31472 /* Connectivity.swift */; };
 		6D68F70121A8085800D31472 /* DataStore-remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D68F70021A8085800D31472 /* DataStore-remote.swift */; };
+		6D751A3F21AFB49700F1D8EE /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D751A3E21AFB49700F1D8EE /* StringTests.swift */; };
 		6D98246321AD272000BAF80D /* DataStore-local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D98246221AD272000BAF80D /* DataStore-local.swift */; };
 		6D98246521AD274800BAF80D /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D98246421AD274800BAF80D /* KeychainManager.swift */; };
 		6DC9DDAF219FEE9C00A4B5DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9DDAE219FEE9C00A4B5DD /* AppDelegate.swift */; };
@@ -82,6 +84,7 @@
 /* Begin PBXFileReference section */
 		26935826BAA54CD3A0D85929 /* Pods-UniSpaceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniSpaceUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniSpaceUITests/Pods-UniSpaceUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A84D09087258E489DCD88EA /* Pods-UniSpaceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniSpaceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniSpaceTests/Pods-UniSpaceTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6D5BECF721AFD1880085F3FF /* ColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
 		6D68F6D121A7F17C00D31472 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6D68F6D321A7F22200D31472 /* GeneralService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralService.swift; sourceTree = "<group>"; };
 		6D68F6D521A7F25900D31472 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -104,6 +107,7 @@
 		6D68F6FC21A8059D00D31472 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		6D68F6FE21A805BA00D31472 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		6D68F70021A8085800D31472 /* DataStore-remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataStore-remote.swift"; sourceTree = "<group>"; };
+		6D751A3E21AFB49700F1D8EE /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		6D98246221AD272000BAF80D /* DataStore-local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataStore-local.swift"; sourceTree = "<group>"; };
 		6D98246421AD274800BAF80D /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		6DC9DDAB219FEE9C00A4B5DD /* UniSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -349,6 +353,8 @@
 		6DC9DDC4219FEE9E00A4B5DD /* UniSpaceTests */ = {
 			isa = PBXGroup;
 			children = (
+				6D5BECF721AFD1880085F3FF /* ColorTests.swift */,
+				6D751A3E21AFB49700F1D8EE /* StringTests.swift */,
 				6DC9DDC5219FEE9E00A4B5DD /* UniSpaceTests.swift */,
 				6DC9DDC7219FEE9E00A4B5DD /* Info.plist */,
 			);
@@ -714,6 +720,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D751A3F21AFB49700F1D8EE /* StringTests.swift in Sources */,
+				6D5BECF821AFD1880085F3FF /* ColorTests.swift in Sources */,
 				6DC9DDC6219FEE9E00A4B5DD /* UniSpaceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

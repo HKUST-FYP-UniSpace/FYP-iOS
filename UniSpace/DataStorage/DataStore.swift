@@ -17,7 +17,8 @@ class DataStore: NSObject {
     }
     
     func Service() -> AuthService & GeneralService {
-        return true ? TestService.shared : AlamofireService.shared
+        return TestService.shared
+//        return true ? TestService.shared : AlamofireService.shared
     }
     
     var user: UserModel?
