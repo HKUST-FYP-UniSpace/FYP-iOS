@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginVC: LoginMasterVC {
+class LoginVC: MasterLoginVC {
     
     lazy private var iconImage = UIImageView(image: UIImage(named: "Fake_icon"))
     lazy private var titleLabel = LoginLabel(labelText: "Welcome to UniSpace", isTitle: true)

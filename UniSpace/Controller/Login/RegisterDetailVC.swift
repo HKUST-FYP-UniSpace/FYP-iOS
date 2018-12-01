@@ -9,7 +9,7 @@
 // 170
 import UIKit
 
-class RegisterDetailVC: LoginMasterVC {
+class RegisterDetailVC: MasterLoginVC {
     
     lazy private var usernameTextField = LoginTextField(text: "Username")
     lazy private var nameTextField = LoginTextField(text: "Name")

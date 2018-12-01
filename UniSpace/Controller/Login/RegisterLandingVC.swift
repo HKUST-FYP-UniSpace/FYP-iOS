@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterLandingVC: LoginMasterVC {
+class RegisterLandingVC: MasterLoginVC {
     
     lazy private var titleLabel = LoginLabel(labelText: "Register", isTitle: true)
     lazy private var detailLabel = LoginLabel(labelText: "Choose your experience", isTitle: false)

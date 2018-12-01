@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VerificationVC: LoginMasterVC {
+class VerificationVC: MasterLoginVC {
     
     var username: String = ""
     var password: String = ""
