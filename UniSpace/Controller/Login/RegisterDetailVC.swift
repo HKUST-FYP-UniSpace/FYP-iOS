@@ -62,7 +62,7 @@ class RegisterDetailVC: LoginMasterVC {
                 return
         }
         
-        guard email.areEmail() else {
+        guard email.isEmail() else {
             showAlert(title: "The email is not legal")
             return
         }

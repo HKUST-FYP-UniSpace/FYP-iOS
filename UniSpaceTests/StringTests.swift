@@ -12,16 +12,16 @@ import XCTest
 class StringTests: XCTestCase {
 
     func testAreEmail() {
-        XCTAssertTrue("123@example.com".areEmail())
-        XCTAssertFalse("123456789".areEmail())
-        XCTAssertFalse("123@abc".areEmail())
+        XCTAssertTrue("123@example.com".isEmail())
+        XCTAssertFalse("123456789".isEmail())
+        XCTAssertFalse("123@abc".isEmail())
     }
     
     func testAreNumbers() {
-        XCTAssertTrue("123".areNumbers())
-        XCTAssertTrue("-123".areNumbers())
-        XCTAssertTrue("0.5".areNumbers())
-        XCTAssertFalse("-4a.5".areNumbers())
+        XCTAssertTrue("123".isNumber())
+        XCTAssertTrue("-123".isNumber())
+        XCTAssertTrue("0.5".isNumber())
+        XCTAssertFalse("-4a.5".isNumber())
     }
     
     func testSubscript() {
@@ -43,8 +43,8 @@ class StringTests: XCTestCase {
     }
     
     func testContainsEmoji() {
-        XCTAssertTrue("abc😂😏🙈".containsEmoji)
-        XCTAssertFalse("abc".containsEmoji)
+        XCTAssertTrue("abc😂😏🙈".containEmoji)
+        XCTAssertFalse("abc".containEmoji)
     }
     
     func testRemoveEmoji() {

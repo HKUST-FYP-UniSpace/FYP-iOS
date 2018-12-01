@@ -13,11 +13,11 @@ extension String {
         return self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
     }
     
-    func areEmail() -> Bool {
+    func isEmail() -> Bool {
         return self.matches(regex: "^[^@]+@[^@]+\\.[^@]+$")
     }
     
-    func areNumbers() -> Bool {
+    func isNumber() -> Bool {
         return self.matches(regex: "^[0-9.-]+$")
     }
     
@@ -33,7 +33,7 @@ extension String {
         self = self.capitalizingFirstLetter()
     }
     
-    var containsEmoji: Bool {
+    var containEmoji: Bool {
         for scalar in unicodeScalars {
             switch scalar.value {
             case 0x1F600...0x1F64F, // Emoticons
