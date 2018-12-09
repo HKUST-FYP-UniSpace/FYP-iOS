@@ -100,7 +100,9 @@ extension AlamofireService {
     private func serverResponse(_ response:DataResponse<Any>) {
         guard let data = response.data else { return }
         let response = try? JSONDecoder().decode(ServerMessage.self, from: data)
-        log.info("Server Response \(response?.code ?? 0)", context: response?.message)
+        if let code = response?.code {
+            log.info("Server Response \(code)", context: response?.message)
+        }
     }
     
 }
