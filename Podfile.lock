@@ -1,28 +1,32 @@
 PODS:
   - Alamofire (4.7.3)
+  - Eureka (4.3.1)
+  - IGListKit (3.4.0):
+    - IGListKit/Default (= 3.4.0)
+  - IGListKit/Default (3.4.0):
+    - IGListKit/Diffing
+  - IGListKit/Diffing (3.4.0)
   - KeychainAccess (3.1.2)
-  - Kingfisher (4.10.1)
-  - SwiftyBeaver (1.6.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7.3)
+  - Eureka (~> 4.3.1)
+  - IGListKit (~> 3.4.0)
   - KeychainAccess (~> 3.1.2)
-  - Kingfisher (~> 4.10.1)
-  - SwiftyBeaver (~> 1.6.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Eureka
+    - IGListKit
     - KeychainAccess
-    - Kingfisher
-    - SwiftyBeaver
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Eureka: 28ea296f06710f6745266b71f17862048941a32d
+  IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
-  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
-  SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
 
-PODFILE CHECKSUM: 0a57211809a8b10b4f10e5d77eb074405e82cbcb
+PODFILE CHECKSUM: 1dc02d03b4020c24bf5bd4de79e05fdec1219159
 
 COCOAPODS: 1.5.3

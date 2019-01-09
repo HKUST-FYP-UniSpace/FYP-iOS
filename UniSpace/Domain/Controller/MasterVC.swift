@@ -15,7 +15,7 @@ class MasterVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.isHidden = true
+//        navigationController?.navigationBar.isHidden = true
     }
     
     func login(username: String, password: String, completion: @escaping (UserModel?, Error?) -> ()) {

@@ -7,9 +7,9 @@ target 'UniSpace' do
 
   # Pods for UniSpace
   pod 'Alamofire', '~> 4.7.3'
+  pod 'Eureka', '~> 4.3.1'
+  pod 'IGListKit', '~> 3.4.0'
   pod 'KeychainAccess', '~> 3.1.2'
-  pod 'Kingfisher', '~> 4.10.1'
-  pod 'SwiftyBeaver', '~> 1.6.1'
 
   target 'UniSpaceTests' do
     inherit! :search_paths

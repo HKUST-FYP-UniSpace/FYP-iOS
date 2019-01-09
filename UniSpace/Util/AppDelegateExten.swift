@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import SwiftyBeaver
 
-let log = SwiftyBeaver.self
+let log = Logger(canLocalLog: true, canServerLog: false)
 
 extension AppDelegate {
     
@@ -23,17 +22,9 @@ extension AppDelegate {
         window?.makeKeyAndVisible()
     }
     
-    func enableLogging() {
-        let console = ConsoleDestination()
-        let format = "$DHH:mm:ss$d $C$L$c | $M | $X"
-        console.format = format
-        log.addDestination(console)
-    }
-    
     func addUserCredential() {
         DataStore.shared.savePref("username", value: "abcdef")
         DataStore.shared.savePref("password", value: "12345678")
-//        log.debug("Home Dir", context: NSHomeDirectory())
     }
     
     func tryToLogin() {

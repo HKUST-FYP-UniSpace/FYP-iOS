@@ -6,4 +6,16 @@
 //  Copyright © 2018 KiKan Ng. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class MasterLandingPageVC: MasterVC {
+
+    lazy var searchBar = UISearchBar()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        searchBar.placeholder = "what are you looking for"
+        searchBar.sizeToFit()
+        navigationItem.titleView = searchBar
+    }
+}

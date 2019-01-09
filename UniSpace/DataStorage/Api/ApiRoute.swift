@@ -13,7 +13,8 @@ enum ApiRoute { case
     authorize,
     register,
     verify(userId: Int),
-    getUserProfile(userId: Int)
+    getUserProfile(userId: Int),
+    sendLogs()
     
     var path: String {
         switch self {
@@ -29,8 +30,8 @@ enum ApiRoute { case
         case .getUserProfile(let userId):
             return "users/profile/\(userId)"
             
-//        default:
-//            return ""
+        default:
+            return ""
         }
         
     }

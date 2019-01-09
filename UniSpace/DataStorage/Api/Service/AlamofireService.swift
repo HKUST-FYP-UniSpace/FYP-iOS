@@ -8,130 +8,176 @@
 
 import Alamofire
 
+typealias DownloadProgress = (_ fractionCompleted: String) -> Void
+typealias SendRequestResult = (String?, Error?) -> Void
+
 class AlamofireService: NSObject {
-    
-    public static let shared: AlamofireService = AlamofireService()
+
+    public static let shared:AlamofireService = AlamofireService()
     private var manager: SessionManager!
-    
-    static func clearCookies() {
-        let storage = HTTPCookieStorage.shared
-        for cookie in storage.cookies! {
-            storage.deleteCookie(cookie)
-        }
-    }
-    
+
     var headers: [String: String] = [
         "Content-Type": "application/json",
         "Accept": "application/json"
     ]
-    
+
     public override init() {
         super.init()
         let manager = SessionManager.default
         manager.retrier = ApiRequestRetrier()
         self.manager = manager
     }
-    
+
     func get(at route: ApiRoute, params: Parameters? = nil) -> DataRequest {
         return request(at: route, method: .get, params: params, encoding: URLEncoding.default)
     }
-    
+
     func post(at route: ApiRoute, params: Parameters? = nil) -> DataRequest {
         return request(at: route, method: .post, params: params, encoding: JSONEncoding.default)
     }
-    
+
     func put(at route: ApiRoute, params: Parameters? = nil) -> DataRequest {
         return request(at: route, method: .put, params: params, encoding: JSONEncoding.default)
     }
-    
-    func request(at route: ApiRoute, method: HTTPMethod, params: Parameters?, encoding: ParameterEncoding) -> DataRequest {
+
+    func delete(at route: ApiRoute, params: Parameters? = nil) -> DataRequest {
+        return request(at: route, method: .delete, params: params, encoding: JSONEncoding.default)
+    }
+
+    private func request(at route: ApiRoute, method: HTTPMethod, params: Parameters?, encoding: ParameterEncoding) -> DataRequest {
         let response = manager.request(route.url(), method: method, parameters: params, encoding: encoding, headers: headers).validate()
-        handleResponse(at: route, response: response)
+        handleResponse(at: route, response: response, method: method)
         return response
     }
-    
-    func easyUpload(at route: ApiRoute, dataFormation: @escaping (_ multipartFormData: MultipartFormData) -> (), completion: @escaping (_ serverMessage: ServerMessage?, _ error: Error?) -> ()) {
+
+    func easyUpload(at route: ApiRoute, dataFormation: @escaping (_ multipartFormData: MultipartFormData) -> (), completion: @escaping (_ serverMessage: ServerMessage?, _ error: Error?) -> Void) {
         upload(at: route, dataFormation: dataFormation) { (dataRequest, error) in
-            guard let dataRequest = dataRequest else {
+            if let dataRequest = dataRequest {
+                dataRequest.responseJSON(completionHandler: { (res) in
+                    var result: ServerMessage? = nil
+                    if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
+                    completion(result, res.result.error)
+                })
+            } else {
                 completion(nil, error)
-                return
-            }
-            
-            dataRequest.responseJSON { (res: DataResponse<Any>) in
-                var result: ServerMessage? = nil
-                if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
-                completion(result, res.result.error)
             }
         }
     }
-    
-    func upload(at route: ApiRoute, dataFormation: @escaping (_ multipartFormData: MultipartFormData) -> (), completion: @escaping (_ dataRequest: DataRequest?, _ error: Error?) -> ()) {
+
+    private func upload(at route: ApiRoute, dataFormation: @escaping (_ multipartFormData: MultipartFormData) -> (), completion: @escaping (_ dataRequest: DataRequest?, _ error: Error?) -> Void) {
         manager.upload(multipartFormData: dataFormation, to: route.url()) { (encodingResult) in
             switch encodingResult {
             case .success(let upload, _, _):
                 let response = upload.validate()
-                self.handleResponse(at: route, response: response)
-                self.logProgress(response)
+                self.handleResponse(at: route, response: response, method: nil)
+                //                self.logProgress(response)
                 completion(response, nil)
-                
+
             case .failure(let encodingError):
                 completion(nil, encodingError)
             }
         }
     }
-    
+
+    func download(at url: String, filename: String, downloadProgress: DownloadProgress?, completion: @escaping (_ url: String?, _ error: Error?) -> Void) {
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            let fileURL = DocumentHandler.shared.createUrlForPDF(filename)
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        manager.download(url, to: destination).downloadProgress(closure: { (progress) in
+            downloadProgress?(self.roundUpTo2dpWithPrecent(progress.fractionCompleted))
+        }).responseData { (response) in
+            log.verbose("DOWNLOAD \(response.response?.statusCode ?? 0)", context: "Request: \(url)")
+            completion(response.destinationURL?.path, response.result.error)
+        }
+    }
+
+    func downloadImageData(at url: String, downloadProgress: DownloadProgress?, completion: @escaping (_ data: Data?, _ error: Error?) -> Void) {
+        manager.request(url, method: .get).downloadProgress(closure: { (progress) in
+            downloadProgress?(self.roundUpTo2dpWithPrecent(progress.fractionCompleted))
+        }).response { (response) in
+            log.verbose("DOWNLOAD \(response.response?.statusCode ?? 0)", context: "Request: \(url)")
+            completion(response.data, response.error)
+        }
+    }
+
+    private func roundUpTo2dpWithPrecent(_ x: Double) -> String {
+        return "\(Double(round(1000 * x) / 10))%"
+    }
+
 }
 
 extension AlamofireService {
-    
-    private func handleResponse(at route: ApiRoute, response: DataRequest) {
+
+    private func handleResponse(at route: ApiRoute, response: DataRequest, method: HTTPMethod?) {
         response.responseJSON { (response) in
-            log.info("HTTP \(response.response?.statusCode ?? 0)", context: String(format: "Request: %@", route.url()))
+            let method = method?.rawValue ?? "UPLOAD"
+            log.verbose("\(method) \(response.response?.statusCode ?? 0)", context: "Request: \(route.url())")
             self.serverResponse(response)
         }
     }
-    
+
     private func logProgress(_ response: UploadRequest) {
-        response.uploadProgress { (progress) in
-            log.info("Upload Progress", context: "\(progress.estimatedTimeRemaining ?? 0)s left")
+        if #available(iOS 11.0, *) {
+            response.uploadProgress { (progress) in
+                if let estimatedTimeRemaining = progress.estimatedTimeRemaining {
+                    log.verbose("Upload Progress", context: "\(estimatedTimeRemaining)s left")
+                }
+            }
         }
     }
-    
+
     private func serverResponse(_ response:DataResponse<Any>) {
+        //        guard response.result.error == nil else {
+        //            alamofireErrorResponse(response.result.error!)
+        //            return
+        //        }
+
         guard let data = response.data else { return }
         let response = try? JSONDecoder().decode(ServerMessage.self, from: data)
         if let code = response?.code {
-            log.info("Server Response \(code)", context: response?.message)
+            log.warning("Server Response \(code)", context: response?.message)
         }
     }
-    
+
+    private func alamofireErrorResponse(_ alamofireError: Error) {
+        if let error = alamofireError as NSError? {
+            // error.code 4:
+            // Response could not be serialized, input data was nil or zero length.
+            // since server might not response anything, this error is ignored
+            if error.code != 4 {
+                log.error("HTTP Error", context: error.localizedDescription)
+            }
+        }
+    }
+
+    func transformToDicts(from: Any?) -> [Dictionary<String, Any>] {
+        let lists = from as? Dictionary<String, Any>
+        var result: [Dictionary<String, Any>]?
+
+        if let lists = lists {
+            for list in lists {
+                result = list.value as? [Dictionary<String, Any>]
+            }
+        }
+
+        return result ?? []
+    }
+
+    func sendLogs(_ urls: [URL], completion: SendRequestResult?) {
+        easyUpload(at: .sendLogs(), dataFormation: { (multipartFormData) in
+            for url in urls {
+                let filename = url.lastPathComponent
+                if let log = try? Data(contentsOf: url) {
+                    let name = url.deletingPathExtension().lastPathComponent
+                    multipartFormData.append(log, withName: name, fileName: filename, mimeType: "text/plain")
+                } else {
+                    log.error("File read error", context: filename)
+                }
+            }
+        }) { (message, error) in
+            completion?(message?.message, error)
+        }
+    }
+
 }
-
-
-// might come in handy later
-//extension AlamofireService {
-//
-//    func uploadImage(at route: ApiRoute, image: UIImage, fileName: String?) -> DataRequest {
-//        let imageData = UIImagePNGRepresentation(image)!
-//        let headers: [String: String]? = getImageHeader(fileName)
-//        return self.upload(at: route, data: imageData, method: .post, headers: headers)
-//    }
-//
-//    func upload(at route: ApiRoute, data: Data, method: HTTPMethod, headers: HTTPHeaders?) -> DataRequest {
-//        let response = manager.upload(data, to: route.url(), method: method, headers: headers).validate()
-//        handleResponse(at: route, response: response)
-//        return response.uploadProgress { (progress) in
-//            if #available(iOS 11.0, *) {
-//                log.info("Upload Progress", context: "\(progress.estimatedTimeRemaining ?? 0)s left")
-//            }
-//        }
-//    }
-//
-//    private func getImageHeader(_ name: String?) -> HTTPHeaders? {
-//        guard let name = name else { return nil }
-//        return [
-//            "name": "\(name)"
-//        ]
-//    }
-//
-//}

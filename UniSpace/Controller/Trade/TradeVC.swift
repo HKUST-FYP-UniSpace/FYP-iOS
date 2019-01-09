@@ -1,5 +1,5 @@
 //
-//  ApartmentVC.swift
+//  TradeVC.swift
 //  UniSpace
 //
 //  Created by KiKan Ng on 17/11/2018.
@@ -9,7 +9,7 @@
 import IGListKit
 import UIKit
 
-final class ApartmentVC: MasterLandingPageVC, ListAdapterDataSource {
+final class TradeVC: MasterVC, ListAdapterDataSource {
 
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 1)
@@ -17,11 +17,11 @@ final class ApartmentVC: MasterLandingPageVC, ListAdapterDataSource {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
-    let data = [24, 12]
+    let data = [128, 256, 64]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         view.addSubview(collectionView)
         adapter.collectionView = collectionView
         adapter.dataSource = self
@@ -41,9 +41,11 @@ final class ApartmentVC: MasterLandingPageVC, ListAdapterDataSource {
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         // note that each child section controller is designed to handle an Int (or no data)
         let sectionController = ListStackedSectionController(sectionControllers: [
-            SuggestionSectionController()
+            WorkingRangeSectionController(),
+            DisplaySectionController(),
+            HorizontalSectionController()
             ])
-        sectionController.inset = UIEdgeInsets(top: 60, left: 0, bottom: 20, right: 0)
+        sectionController.inset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         return sectionController
     }
 
