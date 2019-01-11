@@ -1,28 +1,28 @@
 //
-//  HouseSuggestionCell.swift
+//  TradeSellingItemsCell.swift
 //  UniSpace
 //
-//  Created by KiKan Ng on 5/1/2019.
+//  Created by KiKan Ng on 11/1/2019.
 //  Copyright © 2019 KiKan Ng. All rights reserved.
 //
 
 import UIKit
 
-final class HouseSuggestionCell: UICollectionViewCell {
+final class TradeSellingItemsCell: UICollectionViewCell {
 
-    fileprivate let imageView = StandardImageView(cornerRadius: 20)
-    fileprivate let activityView = StandardActivityView(cornerRadius: 20)
-    let titleLabel = StandardLabel(color: Color.theme, size: 18, isBold: true)
-    let subTitleLabel = StandardLabel(color: .gray, size: 16, isBold: false)
-    let durationLabel = StandardLabel(color: .lightGray, size: 18, isBold: false, align: .right)
+    fileprivate let imageView = StandardImageView()
+    fileprivate let activityView = StandardActivityView()
+    let titleLabel = StandardLabel(color: .darkGray, size: 12, isBold: true)
+    let priceLabel = StandardLabel(color: .gray, size: 10, isBold: false)
+    let viewsLabel = StandardLabel(color: Color.theme, size: 10, isBold: true, align: .right)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(imageView)
         contentView.addSubview(activityView)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(subTitleLabel)
-        contentView.addSubview(durationLabel)
+        contentView.addSubview(priceLabel)
+        contentView.addSubview(viewsLabel)
 
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
@@ -35,23 +35,23 @@ final class HouseSuggestionCell: UICollectionViewCell {
         activityView.topAnchor.constraint(equalTo: imageView.topAnchor).isActive = true
         activityView.heightAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
 
-        titleLabel.topAnchor.constraint(equalTo: activityView.bottomAnchor, constant: 10).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: activityView.bottomAnchor, constant: 5).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
-        durationLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor).isActive = true
-        durationLabel.leadingAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        durationLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
+        priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        priceLabel.trailingAnchor.constraint(equalTo: centerXAnchor).isActive = true
 
-        subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
-        subTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        subTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        viewsLabel.topAnchor.constraint(equalTo: priceLabel.topAnchor).isActive = true
+        viewsLabel.leadingAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        viewsLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
         imageView.sizeToFit()
         activityView.sizeToFit()
         titleLabel.sizeToFit()
-        durationLabel.sizeToFit()
-        subTitleLabel.sizeToFit()
+        priceLabel.sizeToFit()
+        viewsLabel.sizeToFit()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -61,13 +61,6 @@ final class HouseSuggestionCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         sizeToFit()
-    }
-
-    func addShadow() {
-        layer.shadowColor = UIColor.gray.cgColor
-        layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
-        layer.shadowRadius = 6.0
-        layer.shadowOpacity = 0.7
     }
 
     func setImage(image: UIImage?) {

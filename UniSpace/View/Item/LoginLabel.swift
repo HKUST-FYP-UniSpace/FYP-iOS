@@ -11,8 +11,7 @@ import UIKit
 class LoginLabel: UILabel {
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        self.setup("", false, false)
+        fatalError("init(coder:) has not been implemented")
     }
     
     init(labelText: String?, isTitle: Bool, inverseColor: Bool = false) {

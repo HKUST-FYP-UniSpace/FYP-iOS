@@ -13,23 +13,8 @@ final class TitleCell: UICollectionViewCell {
 
     fileprivate static let titleLabelInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
     fileprivate static let subTitleLabelInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
-
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .clear
-        label.numberOfLines = 0
-        label.font = .boldSystemFont(ofSize: 34)
-        return label
-    }()
-
-    let subTitleLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .clear
-        label.numberOfLines = 0
-        label.font = .boldSystemFont(ofSize: 20)
-        label.textColor = .gray
-        return label
-    }()
+    let titleLabel = StandardLabel(color: .black, size: 34, isBold: true)
+    let subTitleLabel = StandardLabel(color: .gray, size: 20, isBold: true)
 
     override init(frame: CGRect) {
         super.init(frame: frame)

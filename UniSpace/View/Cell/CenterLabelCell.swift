@@ -32,13 +32,6 @@ final class CenterLabelCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         label.frame = contentView.bounds
-        layer.cornerRadius = 20.0
-        
-        // Shadow
-//        layer.shadowColor = UIColor.gray.cgColor
-//        layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-//        layer.shadowRadius = 14.0
-//        layer.shadowOpacity = 0.7
     }
 
 }

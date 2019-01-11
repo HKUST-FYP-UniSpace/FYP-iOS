@@ -22,8 +22,7 @@ class RegisterChoiceButton: UIButton {
     }
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        self.setup("", nil)
+        fatalError("init(coder:) has not been implemented")
     }
     
     init(buttonText: String?, buttonImage: UIImage?) {

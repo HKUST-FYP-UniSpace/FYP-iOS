@@ -11,8 +11,7 @@ import UIKit
 class LoginTextField: UITextField {
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        self.setup("", true)
+        fatalError("init(coder:) has not been implemented")
     }
     
     init(text: String?, inverseColor: Bool = false) {

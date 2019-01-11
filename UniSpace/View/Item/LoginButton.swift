@@ -25,12 +25,11 @@ class LoginButton: UIButton {
     }
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        self.setup("")
+        fatalError("init(coder:) has not been implemented")
     }
     
     init(buttonText: String?, inverseColor: Bool = false) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 80, height: 32))
+        super.init(frame: CGRect.zero)
         self.inverseColor = inverseColor
         isHighlighted = false
         self.setup(buttonText)

@@ -79,13 +79,8 @@ extension Logger {
     }
 
     private func enableLocalLogging(_ type: LogType, _ header: CustomStringConvertible, _ context: CustomStringConvertible?, _ file: String, _ function: String) {
-        switch type {
-        case .Error, .Info, .Verbose, .Warning:
-            let log = getLocalLog(type, header, context, file, function)
-            print(log)
-        default:
-            return
-        }
+        let log = getLocalLog(type, header, context, file, function)
+        print(log)
     }
 
     private func enableServerLogging(_ type: LogType, _ header: CustomStringConvertible, _ context: CustomStringConvertible?, _ file: String, _ function: String) {

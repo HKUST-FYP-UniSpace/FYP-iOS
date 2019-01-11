@@ -9,7 +9,7 @@
 import IGListKit
 import UIKit
 
-final class TradeVC: MasterVC, ListAdapterDataSource {
+final class TradeVC: MasterLandingPageVC, ListAdapterDataSource {
 
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 1)
@@ -17,11 +17,11 @@ final class TradeVC: MasterVC, ListAdapterDataSource {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
-    let data = [128, 256, 64]
+    let data = [24]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        collectionView.backgroundColor = .white
         view.addSubview(collectionView)
         adapter.collectionView = collectionView
         adapter.dataSource = self
@@ -39,13 +39,12 @@ final class TradeVC: MasterVC, ListAdapterDataSource {
     }
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        // note that each child section controller is designed to handle an Int (or no data)
         let sectionController = ListStackedSectionController(sectionControllers: [
-            WorkingRangeSectionController(),
-            DisplaySectionController(),
-            HorizontalSectionController()
+            TradeFeaturedSectionController(),
+            TradeSellingItemsSectionController(),
+            TradeSavedSectionController()
             ])
-        sectionController.inset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        sectionController.inset = UIEdgeInsets(top: 40, left: 0, bottom: 40, right: 0)
         return sectionController
     }
 

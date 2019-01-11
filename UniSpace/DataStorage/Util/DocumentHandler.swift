@@ -8,13 +8,14 @@
 
 import UIKit
 
-class DocumentHandler: NSObject{
+class DocumentHandler: NSObject {
 
     static let shared = DocumentHandler()
+    private let homeDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
 
     func saveImageAsPNG(_ image: UIImage, filename: String) -> URL? {
         guard let data = image.pngData() else { return nil }
-        let filename = getDocumentsDirectory().appendingPathComponent("\(filename).png")
+        let filename = homeDir.appendingPathComponent("\(filename).png")
         do {
             try data.write(to: filename)
             return filename
@@ -25,7 +26,7 @@ class DocumentHandler: NSObject{
 
     func saveImageAsJPEG(_ image: UIImage, filename: String) -> URL? {
         guard let data = image.jpegData(compressionQuality: 1.0) else { return nil }
-        let filename = getDocumentsDirectory().appendingPathComponent("\(filename).jpeg")
+        let filename = homeDir.appendingPathComponent("\(filename).jpeg")
         do {
             try data.write(to: filename)
             return filename
@@ -35,11 +36,19 @@ class DocumentHandler: NSObject{
     }
 
     func createUrlForPDF(_ filename: String) -> URL {
-        return getDocumentsDirectory().appendingPathComponent("\(filename).pdf")
+        return homeDir.appendingPathComponent("\(filename).pdf")
     }
 
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
+    func removeJpegs() {
+        removeFiles(suffix: ".jpeg")
+    }
+
+    private func removeFiles(suffix: String) {
+        let enumerator = FileManager.default.enumerator(at: homeDir, includingPropertiesForKeys: nil)
+        while let element = enumerator?.nextObject() as? URL {
+            let filename = element.lastPathComponent
+            if !filename.hasSuffix(suffix) { continue }
+            try? FileManager.default.removeItem(at: element)
+        }
     }
 }

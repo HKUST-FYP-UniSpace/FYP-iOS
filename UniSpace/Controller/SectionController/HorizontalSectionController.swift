@@ -21,7 +21,7 @@ final class HorizontalSectionController: ListSectionController, ListAdapterDataS
     }()
 
     override func sizeForItem(at index: Int) -> CGSize {
-        return CGSize(width: collectionContext!.containerSize.width, height: 100)
+        return CGSize(width: collectionContext!.containerSize.width, height: collectionContext!.containerSize.height)
     }
 
     override func cellForItem(at index: Int) -> UICollectionViewCell {
@@ -46,7 +46,7 @@ final class HorizontalSectionController: ListSectionController, ListAdapterDataS
     }
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        return EmbeddedSectionController()
+        return EmbeddedSectionController(.Demo)
     }
 
     func emptyView(for listAdapter: ListAdapter) -> UIView? {

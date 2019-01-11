@@ -12,8 +12,8 @@ import UIKit
 final class SuggestionSectionController: ListSectionController, ListAdapterDataSource {
 
     var contentOffset: CGFloat = 0
-    var cellSpacing: CGFloat = 10
     private var number: Int?
+    private var cellSpacing: CGFloat = 10
 
     lazy var adapter: ListAdapter = {
         let adapter = ListAdapter(updater: ListAdapterUpdater(),
@@ -28,11 +28,14 @@ final class SuggestionSectionController: ListSectionController, ListAdapterDataS
     }
 
     override func sizeForItem(at index: Int) -> CGSize {
-        if index == 0 {
+        switch index {
+        case 0:
             return CGSize(width: collectionContext!.containerSize.width, height: 80)
+        case 1:
+            return CGSize(width: collectionContext!.containerSize.width, height: 400)
+        default:
+            return CGSize.zero
         }
-
-        return CGSize(width: collectionContext!.containerSize.width, height: 300)
     }
 
     override func cellForItem(at index: Int) -> UICollectionViewCell {
@@ -67,7 +70,7 @@ final class SuggestionSectionController: ListSectionController, ListAdapterDataS
     }
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        let sectionController = EmbeddedSectionController()
+        let sectionController = EmbeddedSectionController(.HouseSuggestion)
         sectionController.cellSpacing = cellSpacing
         return sectionController
     }
@@ -83,27 +86,5 @@ extension SuggestionSectionController: UIScrollViewDelegate {
         guard let collectionView = scrollView as? UICollectionView else { return }
         collectionView.snapToCell(velocity: velocity, targetOffset: targetContentOffset, spacing: cellSpacing)
         contentOffset = targetContentOffset.pointee.x
-    }
-}
-
-
-extension UICollectionView {
-
-    func snapToCell(velocity: CGPoint, targetOffset: UnsafeMutablePointer<CGPoint>, contentInset: CGFloat = 0, spacing: CGFloat = 0) {
-        // No snap needed as we're at the end of the scrollview
-        guard (contentOffset.x + frame.size.width) < contentSize.width else { return }
-        guard let indexPath = indexPathForItem(at: targetOffset.pointee) else { return }
-        guard let cellLayout = layoutAttributesForItem(at: indexPath) else { return }
-
-        var offset = targetOffset.pointee
-
-        if velocity.x < 0 {
-            offset.x = cellLayout.frame.minX - max(contentInset, spacing)
-        } else {
-            offset.x = cellLayout.frame.maxX - contentInset + min(contentInset, spacing)
-        }
-
-        offset.x -= spacing
-        targetOffset.pointee = offset
     }
 }
