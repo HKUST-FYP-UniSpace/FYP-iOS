@@ -62,6 +62,8 @@
 		6D7EE8E421E8E7EA008D882F /* CollectionView+SnapToCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7EE8E321E8E7EA008D882F /* CollectionView+SnapToCell.swift */; };
 		6D7EE8E621E8EA5A008D882F /* TradeFeaturedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7EE8E521E8EA5A008D882F /* TradeFeaturedCell.swift */; };
 		6D7EE8EC21E8F4E3008D882F /* TradeSellingItemsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7EE8EB21E8F4E3008D882F /* TradeSellingItemsCell.swift */; };
+		6D7EE8F021E904D5008D882F /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7EE8EF21E904D5008D882F /* LabelCell.swift */; };
+		6D7EE8F421E90642008D882F /* TradeCategorySectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7EE8F321E90642008D882F /* TradeCategorySectionController.swift */; };
 		6D98246321AD272000BAF80D /* DataStore-local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D98246221AD272000BAF80D /* DataStore-local.swift */; };
 		6D98246521AD274800BAF80D /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D98246421AD274800BAF80D /* KeychainManager.swift */; };
 		6DC9DDAF219FEE9C00A4B5DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9DDAE219FEE9C00A4B5DD /* AppDelegate.swift */; };
@@ -167,6 +169,8 @@
 		6D7EE8E321E8E7EA008D882F /* CollectionView+SnapToCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+SnapToCell.swift"; sourceTree = "<group>"; };
 		6D7EE8E521E8EA5A008D882F /* TradeFeaturedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeFeaturedCell.swift; sourceTree = "<group>"; };
 		6D7EE8EB21E8F4E3008D882F /* TradeSellingItemsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeSellingItemsCell.swift; sourceTree = "<group>"; };
+		6D7EE8EF21E904D5008D882F /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
+		6D7EE8F321E90642008D882F /* TradeCategorySectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeCategorySectionController.swift; sourceTree = "<group>"; };
 		6D98246221AD272000BAF80D /* DataStore-local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataStore-local.swift"; sourceTree = "<group>"; };
 		6D98246421AD274800BAF80D /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		6DC9DDAB219FEE9C00A4B5DD /* UniSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				6D563B7021E089A500E2E10D /* TitleCell.swift */,
+				6D7EE8EF21E904D5008D882F /* LabelCell.swift */,
 				6D7EE8DB21E8D7C2008D882F /* ButtonCell.swift */,
 				6D563B7521E0AD9900E2E10D /* HouseSuggestionCell.swift */,
 				6D7EE8CD21E8AEAA008D882F /* HouseSavedCell.swift */,
@@ -427,6 +432,7 @@
 				6D7EE8DD21E8E61A008D882F /* TradeFeaturedSectionController.swift */,
 				6D7EE8DF21E8E6C7008D882F /* TradeSellingItemsSectionController.swift */,
 				6D7EE8E121E8E6D8008D882F /* TradeSavedSectionController.swift */,
+				6D7EE8F321E90642008D882F /* TradeCategorySectionController.swift */,
 			);
 			path = Trade;
 			sourceTree = "<group>";
@@ -806,6 +812,7 @@
 				6D7EE8E221E8E6D8008D882F /* TradeSavedSectionController.swift in Sources */,
 				6D7EE8E021E8E6C7008D882F /* TradeSellingItemsSectionController.swift in Sources */,
 				6DC9DDB3219FEE9C00A4B5DD /* TradeVC.swift in Sources */,
+				6D7EE8F421E90642008D882F /* TradeCategorySectionController.swift in Sources */,
 				6D563B7121E089A500E2E10D /* TitleCell.swift in Sources */,
 				6D68F6EC21A7FA0700D31472 /* AlamofireService+Auth.swift in Sources */,
 				6D68F6F621A7FFE300D31472 /* ApiRequestRetrier.swift in Sources */,
@@ -819,6 +826,7 @@
 				6DE5562B21A3E82B00B23398 /* MessageVC.swift in Sources */,
 				6D7EE8E621E8EA5A008D882F /* TradeFeaturedCell.swift in Sources */,
 				6DE5562921A3E81B00B23398 /* BlogVC.swift in Sources */,
+				6D7EE8F021E904D5008D882F /* LabelCell.swift in Sources */,
 				6D7EE8D821E8C685008D882F /* StandardActivityView.swift in Sources */,
 				6D68F6DE21A7F65500D31472 /* DataStore.swift in Sources */,
 				6DF1B98121E5EF0C002814AE /* DocumentHandler.swift in Sources */,

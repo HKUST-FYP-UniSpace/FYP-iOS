@@ -64,7 +64,6 @@ final class TradeSellingItemsSectionController: ListSectionController, ListAdapt
     // MARK: ListAdapterDataSource
 
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        guard let number = number else { return [] }
         return (0..<2).map { $0 as ListDiffable }
     }
 

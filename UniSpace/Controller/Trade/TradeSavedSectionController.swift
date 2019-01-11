@@ -33,7 +33,7 @@ final class TradeSavedSectionController: ListSectionController, ListAdapterDataS
         case 1:
             return CGSize(width: collectionContext!.containerSize.width, height: 420)
         case 2:
-            return CGSize(width: collectionContext!.containerSize.width, height: 40)
+            return CGSize(width: collectionContext!.containerSize.width, height: 80)
         default:
             return CGSize.zero
         }

@@ -42,7 +42,8 @@ final class TradeVC: MasterLandingPageVC, ListAdapterDataSource {
         let sectionController = ListStackedSectionController(sectionControllers: [
             TradeFeaturedSectionController(),
             TradeSellingItemsSectionController(),
-            TradeSavedSectionController()
+            TradeSavedSectionController(),
+            TradeCategorySectionController()
             ])
         sectionController.inset = UIEdgeInsets(top: 40, left: 0, bottom: 40, right: 0)
         return sectionController
