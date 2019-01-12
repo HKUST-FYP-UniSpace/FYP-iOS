@@ -33,12 +33,10 @@ final class HouseSavedCell: UICollectionViewCell {
         imageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.75).isActive = true
 
-        activityView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor).isActive = true
-        activityView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor).isActive = true
-        activityView.topAnchor.constraint(equalTo: imageView.topAnchor).isActive = true
-        activityView.heightAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
+        activityView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
+        activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
 
-        titleLabel.topAnchor.constraint(equalTo: activityView.bottomAnchor, constant: verticalSpacing).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: verticalSpacing).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
@@ -80,7 +78,7 @@ final class HouseSavedCell: UICollectionViewCell {
     func setStarRating(rating: Int) {
         let stars = [star1ImageView, star2ImageView, star3ImageView, star4ImageView, star5ImageView]
         for (index, star) in stars.enumerated() {
-            star.image = index < rating ? UIImage(named: "Star") : UIImage(named: "Star_grey")
+            star.image = index < rating ? UIImage(named: "Star") : UIImage(named: "Star_gray")
         }
     }
 

@@ -18,11 +18,8 @@ final class TradeSellingItemsCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(imageView)
-        contentView.addSubview(activityView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(priceLabel)
-        contentView.addSubview(viewsLabel)
+        let views = [imageView, activityView, titleLabel, priceLabel, viewsLabel]
+        for view in views { contentView.addSubview(view) }
 
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
@@ -30,12 +27,10 @@ final class TradeSellingItemsCell: UICollectionViewCell {
         imageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.75).isActive = true
 
-        activityView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor).isActive = true
-        activityView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor).isActive = true
-        activityView.topAnchor.constraint(equalTo: imageView.topAnchor).isActive = true
-        activityView.heightAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
+        activityView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
+        activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
 
-        titleLabel.topAnchor.constraint(equalTo: activityView.bottomAnchor, constant: 5).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
@@ -47,11 +42,7 @@ final class TradeSellingItemsCell: UICollectionViewCell {
         viewsLabel.leadingAnchor.constraint(equalTo: centerXAnchor).isActive = true
         viewsLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
-        imageView.sizeToFit()
-        activityView.sizeToFit()
-        titleLabel.sizeToFit()
-        priceLabel.sizeToFit()
-        viewsLabel.sizeToFit()
+        for view in views { view.sizeToFit() }
     }
 
     required init?(coder aDecoder: NSCoder) {

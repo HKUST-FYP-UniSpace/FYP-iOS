@@ -13,6 +13,7 @@ enum GridType {
     case HouseSaved
     case TradeFeatured
     case TradeSaved
+    case Blog
 }
 
 final class GridSectionController: ListSectionController {
@@ -24,7 +25,14 @@ final class GridSectionController: ListSectionController {
 
     init(_ type: GridType) {
         self.type = type
-        itemCount = type == .TradeSaved ? 3 : 4
+        switch type {
+        case .HouseSaved, .TradeFeatured:
+            itemCount = 4
+        case .TradeSaved:
+            itemCount = 3
+        case .Blog:
+            itemCount = 1
+        }
         super.init()
 
         self.minimumInteritemSpacing = 20
@@ -35,6 +43,9 @@ final class GridSectionController: ListSectionController {
 
     override func sizeForItem(at index: Int) -> CGSize {
         let containerWidth = collectionContext?.containerSize.width ?? 0
+        if type == .Blog {
+            return CGSize(width: containerWidth - cellSpacing * 2, height: 420)
+        }
         let width = containerWidth / 2 - cellSpacing * 2
         let height = type == .HouseSaved ? width : width + cellSpacing
         return CGSize(width: width, height: height)
@@ -67,6 +78,15 @@ final class GridSectionController: ListSectionController {
             cell.statusLabel.text = ["NEW", ""].randomElement()
             cell.detailLabel.text = "Designed by Marcel Breuer, it is an iconic Bauhaus style chair"
             return cell
+
+        case .Blog:
+            guard let cell = collectionContext?.dequeueReusableCell(of: BlogCell.self, for: self, at: index) as? BlogCell else {
+                fatalError()
+            }
+            cell.setImage(image: nil)
+            cell.titleLabel.text = "Get Started".uppercased()
+            cell.subTitleLabel.text = ["How to Find the Perfect Apartment", "How to Survive Apocalpse"].randomElement()
+            return cell
         }
     }
 
@@ -86,6 +106,8 @@ extension GridSectionController: ListWorkingRangeDelegate {
                 if let cell = self.collectionContext?.cellForItem(at: index, sectionController: self) as? HouseSavedCell {
                     cell.setImage(image: UIImage(data: data))
                 } else if let cell = self.collectionContext?.cellForItem(at: index, sectionController: self) as? TradeFeaturedCell {
+                    cell.setImage(image: UIImage(data: data))
+                } else if let cell = self.collectionContext?.cellForItem(at: index, sectionController: self) as? BlogCell {
                     cell.setImage(image: UIImage(data: data))
                 }
             }

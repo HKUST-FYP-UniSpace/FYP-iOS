@@ -11,8 +11,8 @@ import UIKit
 fileprivate struct ColorConstant {
     static let primary = UIColor(r: 25, g: 133, b: 132)
     static let hightlightedPrimary = UIColor(r: 24, g: 167, b: 169)
-    static let titleBarGrey = UIColor(r: 240, g: 240, b: 246)
-    static let hightlightedGrey = UIColor(r: 143, g: 143, b: 147)
+    static let titleBarGray = UIColor(r: 240, g: 240, b: 246)
+    static let hightlightedGray = UIColor(r: 143, g: 143, b: 147)
 }
 
 struct Color {
@@ -26,13 +26,13 @@ struct Color {
     
     struct InverseButton {
         static let text = ColorConstant.primary
-        static let background = ColorConstant.titleBarGrey
-        static let hightlighted = ColorConstant.hightlightedGrey
+        static let background = ColorConstant.titleBarGray
+        static let hightlighted = ColorConstant.hightlightedGray
     }
     
     struct Option {
-        static let background = ColorConstant.titleBarGrey
-        static let hightlighted = ColorConstant.hightlightedGrey
+        static let background = ColorConstant.titleBarGray
+        static let hightlighted = ColorConstant.hightlightedGray
     }
     
     struct Login {

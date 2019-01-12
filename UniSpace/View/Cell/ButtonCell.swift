@@ -30,6 +30,7 @@ final class ButtonCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        button.layer.cornerRadius = 5
     }
 
     override var isHighlighted: Bool {

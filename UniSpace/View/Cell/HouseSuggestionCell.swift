@@ -27,12 +27,10 @@ final class HouseSuggestionCell: UICollectionViewCell {
         imageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.75).isActive = true
 
-        activityView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor).isActive = true
-        activityView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor).isActive = true
-        activityView.topAnchor.constraint(equalTo: imageView.topAnchor).isActive = true
-        activityView.heightAnchor.constraint(equalTo: imageView.heightAnchor).isActive = true
+        activityView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
+        activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
 
-        titleLabel.topAnchor.constraint(equalTo: activityView.bottomAnchor, constant: 10).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: centerXAnchor).isActive = true
 
