@@ -51,10 +51,10 @@ final class GridSectionController: ListSectionController {
                 fatalError()
             }
             cell.setImage(image: nil)
-            cell.setStarRating(rating: 4)
+            cell.setStarRating(rating: Int.random(in: 0..<6))
             cell.titleLabel.text = "Clear Water Bay Deluxe"
-            cell.priceLabel.text = "$12,000 pcm"
-            cell.sizeLabel.text = "689 sq. ft."
+            cell.priceLabel.text = "$\((Int.random(in: 50..<200) * 100).addComma()!) pcm"
+            cell.sizeLabel.text = "\(Int.random(in: 500..<1500).addComma()!) sq. ft."
             return cell
 
         case .TradeFeatured, .TradeSaved:
@@ -63,7 +63,7 @@ final class GridSectionController: ListSectionController {
             }
             cell.setImage(image: nil)
             cell.titleLabel.text = "Wassily Chair"
-            cell.priceLabel.text = "$3,000"
+            cell.priceLabel.text = "$\((Int.random(in: 20..<100) * 100).addComma()!)"
             cell.statusLabel.text = "NEW"
             cell.detailLabel.text = "Designed by Marcel Breuer, it is an iconic Bauhaus style chair"
             return cell

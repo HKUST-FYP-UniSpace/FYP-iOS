@@ -94,8 +94,8 @@ extension EmbeddedSectionController {
             fatalError()
         }
         cell.titleLabel.text = "Barcelona Chair"
-        cell.priceLabel.text = "$2500"
-        cell.viewsLabel.text = "\(305) views"
+        cell.priceLabel.text = "$\((Int.random(in: 20..<100) * 100).addComma()!)"
+        cell.viewsLabel.text = "\((Int.random(in: 0..<1000)).addComma()!) views"
         return cell
     }
 
@@ -106,7 +106,7 @@ extension EmbeddedSectionController {
         cell.setImage(image: nil)
         cell.titleLabel.text = "Team Awesome"
         cell.subTitleLabel.text = "Boys / Pet-free / Casual drinker"
-        cell.durationLabel.text = "3 months"
+        cell.durationLabel.text = ["3 months", "6 months", "1 year", "2 years"].randomElement()
         return cell
     }
 }

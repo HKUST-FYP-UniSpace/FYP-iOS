@@ -73,3 +73,11 @@ extension String {
         return NSLocalizedString(self, tableName: tableName, value: "**\(self)**", comment: "")
     }
 }
+
+extension Int {
+    func addComma() -> String? {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        return numberFormatter.string(from: NSNumber(value: self))
+    }
+}
