@@ -39,8 +39,8 @@ extension AlamofireService: AuthService {
     
     fileprivate func getCredentials() -> Dictionary<String,String> {
         return [
-            "username": DataStore.shared.getPref("username") ?? "",
-            "password": DataStore.shared.getPref("password") ?? ""
+            "username": DataStore.shared.getPref(.username) ?? "",
+            "password": DataStore.shared.getPref(.password) ?? ""
         ]
     }
     

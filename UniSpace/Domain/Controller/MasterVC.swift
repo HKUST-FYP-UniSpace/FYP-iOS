@@ -23,8 +23,8 @@ class MasterVC: UIViewController {
     func login(username: String, password: String, completion: @escaping (UserModel?, Error?) -> ()) {
         log.verbose("VC", context: "Attempt to login")
         
-        DataStore.shared.savePref("username", value: username)
-        DataStore.shared.savePref("password", value: password)
+        DataStore.shared.savePref(.username, value: username)
+        DataStore.shared.savePref(.password, value: password)
         
         DataStore.shared.authorize { (user, error) in
             guard user != nil else {

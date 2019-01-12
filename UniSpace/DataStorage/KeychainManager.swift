@@ -9,22 +9,26 @@
 import KeychainAccess
 
 class KeychainManager {
-    
+
     public static let shared: KeychainManager = KeychainManager()
-    
-    private let keychain = Keychain(service: "com.hkust.unispace-token")
-    
-    func savePref(_ key: String, value: String) {
-        keychain[key] = value
+
+    private let keychain = Keychain(service: "com.aritaone.pentagon-token")
+
+    func savePref(_ key: KeychainKeys, value: String) {
+        keychain[key.rawValue] = value
     }
-    
-    func getPref(_ key: String) -> String? {
-        return keychain[key]
+
+    func getPref(_ key: KeychainKeys) -> String? {
+        return keychain[key.rawValue]
     }
-    
-    func removePref(_ key: String) {
-        keychain[key] = nil
-        try? keychain.remove(key)
+
+    func removePref(_ key: KeychainKeys) {
+        keychain[key.rawValue] = nil
+        do {
+            try keychain.remove(key.rawValue)
+        } catch {
+            log.warning("Keychain", context: "Could not remove key: \(key.rawValue)")
+        }
     }
-    
+
 }

@@ -23,8 +23,8 @@ extension AppDelegate {
     }
     
     func addUserCredential() {
-        DataStore.shared.savePref("username", value: "abcdef")
-        DataStore.shared.savePref("password", value: "12345678")
+        DataStore.shared.savePref(.username, value: "abcdef")
+        DataStore.shared.savePref(.password, value: "12345678")
     }
     
     func tryToLogin() {
