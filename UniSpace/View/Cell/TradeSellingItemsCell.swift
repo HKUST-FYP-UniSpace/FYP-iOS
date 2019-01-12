@@ -13,7 +13,7 @@ final class TradeSellingItemsCell: UICollectionViewCell {
     fileprivate let imageView = StandardImageView()
     fileprivate let activityView = StandardActivityView()
     let titleLabel = StandardLabel(color: .darkGray, size: 12, isBold: true)
-    let priceLabel = StandardLabel(color: .gray, size: 10, isBold: false)
+    let priceLabel = StandardLabel(color: .gray, size: 10, isBold: true)
     let viewsLabel = StandardLabel(color: Color.theme, size: 10, isBold: true, align: .right)
 
     override init(frame: CGRect) {

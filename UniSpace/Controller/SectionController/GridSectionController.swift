@@ -19,11 +19,12 @@ final class GridSectionController: ListSectionController {
 
     private var number: Int?
     private var type: GridType
+    private var itemCount: Int
     private var cellSpacing: CGFloat = 20
-    private var itemCount: Int = 4
 
     init(_ type: GridType) {
         self.type = type
+        itemCount = type == .TradeSaved ? 3 : 4
         super.init()
 
         self.minimumInteritemSpacing = 20

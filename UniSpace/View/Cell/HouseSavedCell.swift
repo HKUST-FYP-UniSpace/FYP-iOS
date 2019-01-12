@@ -13,8 +13,8 @@ final class HouseSavedCell: UICollectionViewCell {
     fileprivate let imageView = StandardImageView()
     fileprivate let activityView = StandardActivityView()
     let titleLabel = StandardLabel(color: .darkGray, size: 12, isBold: true)
-    let priceLabel = StandardLabel(color: .gray, size: 10, isBold: false)
-    let sizeLabel = StandardLabel(color: .gray, size: 10, isBold: false, align: .right)
+    let priceLabel = StandardLabel(color: .gray, size: 10, isBold: true)
+    let sizeLabel = StandardLabel(color: .gray, size: 10, isBold: true, align: .right)
 
     override init(frame: CGRect) {
         super.init(frame: frame)

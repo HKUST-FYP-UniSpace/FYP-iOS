@@ -13,9 +13,9 @@ final class TradeFeaturedCell: UICollectionViewCell {
     fileprivate let imageView = StandardImageView()
     fileprivate let activityView = StandardActivityView()
     let titleLabel = StandardLabel(color: .darkGray, size: 12, isBold: true)
-    let priceLabel = StandardLabel(color: .gray, size: 10, isBold: false)
+    let priceLabel = StandardLabel(color: .gray, size: 10, isBold: true)
     let statusLabel = StandardLabel(color: Color.theme, size: 10, isBold: true, align: .right)
-    let detailLabel = StandardLabel(color: .gray, size: 10, isBold: false, numberOfLines: 2)
+    let detailLabel = StandardLabel(color: .gray, size: 10, isBold: true, numberOfLines: 2)
 
     override init(frame: CGRect) {
         super.init(frame: frame)

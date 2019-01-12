@@ -10,8 +10,8 @@ import UIKit
 
 final class HouseSuggestionCell: UICollectionViewCell {
 
-    fileprivate let imageView = StandardImageView(cornerRadius: 20)
-    fileprivate let activityView = StandardActivityView(cornerRadius: 20)
+    fileprivate let imageView = StandardImageView(cornerRadius: 5)
+    fileprivate let activityView = StandardActivityView(cornerRadius: 5)
     let titleLabel = StandardLabel(color: Color.theme, size: 18, isBold: true)
     let subTitleLabel = StandardLabel(color: .gray, size: 16, isBold: false)
     let durationLabel = StandardLabel(color: .lightGray, size: 18, isBold: false, align: .right)

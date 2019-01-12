@@ -19,7 +19,6 @@ final class TradeSellingItemsSectionController: ListSectionController, ListAdapt
         let adapter = ListAdapter(updater: ListAdapterUpdater(),
                                   viewController: self.viewController)
         adapter.dataSource = self
-        adapter.scrollViewDelegate = self
         return adapter
     }()
 
@@ -77,12 +76,4 @@ final class TradeSellingItemsSectionController: ListSectionController, ListAdapt
         return nil
     }
 
-}
-
-extension TradeSellingItemsSectionController: UIScrollViewDelegate {
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        guard let collectionView = scrollView as? UICollectionView else { return }
-        collectionView.snapToCell(velocity: velocity, targetOffset: targetContentOffset, spacing: cellSpacing)
-        contentOffset = targetContentOffset.pointee.x
-    }
 }
