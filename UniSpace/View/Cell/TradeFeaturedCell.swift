@@ -10,7 +10,7 @@ import UIKit
 
 final class TradeFeaturedCell: UICollectionViewCell {
 
-    fileprivate let imageView = StandardImageView()
+    fileprivate let imageView = StandardImageView(cornerRadius: 5, hasBackground: true)
     fileprivate let activityView = StandardActivityView()
     let titleLabel = StandardLabel(color: .darkGray, size: 12, isBold: true)
     let priceLabel = StandardLabel(color: .gray, size: 10, isBold: true)
@@ -19,12 +19,8 @@ final class TradeFeaturedCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(imageView)
-        contentView.addSubview(activityView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(priceLabel)
-        contentView.addSubview(statusLabel)
-        contentView.addSubview(detailLabel)
+        let views = [imageView, activityView, titleLabel, priceLabel, statusLabel, detailLabel]
+        for view in views { contentView.addSubview(view) }
 
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
@@ -53,12 +49,7 @@ final class TradeFeaturedCell: UICollectionViewCell {
         detailLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         detailLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
-        imageView.sizeToFit()
-        activityView.sizeToFit()
-        titleLabel.sizeToFit()
-        priceLabel.sizeToFit()
-        statusLabel.sizeToFit()
-        detailLabel.sizeToFit()
+        for view in views { view.sizeToFit() }
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -13,7 +13,7 @@ final class HouseSavedCell: UICollectionViewCell {
     let titleLabel = StandardLabel(color: .darkGray, size: 12, isBold: true)
     let priceLabel = StandardLabel(color: .gray, size: 10, isBold: true)
     let sizeLabel = StandardLabel(color: .gray, size: 10, isBold: true, align: .right)
-    fileprivate let imageView = StandardImageView()
+    fileprivate let imageView = StandardImageView(cornerRadius: 5, hasBackground: true)
     fileprivate let activityView = StandardActivityView()
     fileprivate let star1ImageView = StandardImageView()
     fileprivate let star2ImageView = StandardImageView()

@@ -10,7 +10,7 @@ import UIKit
 
 final class HouseSuggestionCell: UICollectionViewCell {
 
-    fileprivate let imageView = StandardImageView(cornerRadius: 5)
+    fileprivate let imageView = StandardImageView(cornerRadius: 5, hasBackground: true)
     fileprivate let activityView = StandardActivityView(cornerRadius: 5)
     let titleLabel = StandardLabel(color: Color.theme, size: 18, isBold: true)
     let subTitleLabel = StandardLabel(color: .gray, size: 16, isBold: false)
@@ -18,11 +18,8 @@ final class HouseSuggestionCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(imageView)
-        contentView.addSubview(activityView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(subTitleLabel)
-        contentView.addSubview(durationLabel)
+        let views = [imageView, activityView, titleLabel, subTitleLabel, durationLabel]
+        for view in views { contentView.addSubview(view) }
 
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
@@ -47,11 +44,7 @@ final class HouseSuggestionCell: UICollectionViewCell {
         subTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         subTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
-        imageView.sizeToFit()
-        activityView.sizeToFit()
-        titleLabel.sizeToFit()
-        durationLabel.sizeToFit()
-        subTitleLabel.sizeToFit()
+        for view in views { view.sizeToFit() }
     }
 
     required init?(coder aDecoder: NSCoder) {

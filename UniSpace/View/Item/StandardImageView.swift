@@ -14,11 +14,11 @@ class StandardImageView: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(cornerRadius: CGFloat = 5, hasShadow: Bool = false) {
+    init(cornerRadius: CGFloat = 0, hasBackground: Bool = false, hasShadow: Bool = false) {
         super.init(frame: CGRect.zero)
         self.contentMode = .scaleAspectFill
         self.clipsToBounds = true
-        self.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        self.backgroundColor = hasBackground ? UIColor(white: 0.95, alpha: 1) : .clear
         self.layer.cornerRadius = cornerRadius
         self.translatesAutoresizingMaskIntoConstraints = false
     }

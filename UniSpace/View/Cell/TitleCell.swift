@@ -13,25 +13,32 @@ final class TitleCell: UICollectionViewCell {
 
     fileprivate static let titleLabelInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
     fileprivate static let subTitleLabelInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+    fileprivate let imageView = StandardImageView()
     let titleLabel = StandardLabel(color: .black, size: 34, isBold: true)
     let subTitleLabel = StandardLabel(color: .gray, size: 20, isBold: true)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(subTitleLabel)
+        contentView.addSubview(imageView)
+
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
         titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        titleLabel.sizeToFit()
 
-        contentView.addSubview(subTitleLabel)
-        subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
         subTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
         subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
-        subTitleLabel.sizeToFit()
 
+        imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
+
+        titleLabel.sizeToFit()
+        subTitleLabel.sizeToFit()
+        imageView.sizeToFit()
         contentView.backgroundColor = .white
     }
 
@@ -49,6 +56,11 @@ final class TitleCell: UICollectionViewCell {
         didSet {
             contentView.backgroundColor = UIColor(white: isHighlighted ? 0.9 : 1, alpha: 1)
         }
+    }
+
+    func setImage(image: UIImage?) {
+        imageView.image = image
+        imageView.backgroundColor = .clear
     }
 
 }

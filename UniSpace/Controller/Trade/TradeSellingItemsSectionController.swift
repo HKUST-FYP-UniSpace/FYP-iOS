@@ -42,6 +42,7 @@ final class TradeSellingItemsSectionController: ListSectionController, ListAdapt
             let cell = collectionContext?.dequeueReusableCell(of: TitleCell.self, for: self, at: index)
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Your Selling Items"
+                cell.setImage(image: UIImage(named: "Add"))
                 return cell
             }
             fatalError()
