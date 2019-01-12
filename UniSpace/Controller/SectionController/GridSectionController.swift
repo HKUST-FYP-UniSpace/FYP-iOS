@@ -62,9 +62,9 @@ final class GridSectionController: ListSectionController {
                 fatalError()
             }
             cell.setImage(image: nil)
-            cell.titleLabel.text = "Wassily Chair"
+            cell.titleLabel.text = ["Barcelona Chair", "Wassily Chair", "Brno Chair"].randomElement()
             cell.priceLabel.text = "$\((Int.random(in: 20..<100) * 100).addComma()!)"
-            cell.statusLabel.text = "NEW"
+            cell.statusLabel.text = ["NEW", ""].randomElement()
             cell.detailLabel.text = "Designed by Marcel Breuer, it is an iconic Bauhaus style chair"
             return cell
         }

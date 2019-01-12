@@ -93,7 +93,7 @@ extension EmbeddedSectionController {
         guard let cell = collectionContext?.dequeueReusableCell(of: TradeSellingItemsCell.self, for: self, at: index) as? TradeSellingItemsCell else {
             fatalError()
         }
-        cell.titleLabel.text = "Barcelona Chair"
+        cell.titleLabel.text = ["Barcelona Chair", "Wassily Chair", "Brno Chair"].randomElement()
         cell.priceLabel.text = "$\((Int.random(in: 20..<100) * 100).addComma()!)"
         cell.viewsLabel.text = "\((Int.random(in: 0..<1000)).addComma()!) views"
         return cell
