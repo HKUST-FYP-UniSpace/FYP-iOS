@@ -51,6 +51,7 @@ final class GridSectionController: ListSectionController {
                 fatalError()
             }
             cell.setImage(image: nil)
+            cell.setStarRating(rating: 4)
             cell.titleLabel.text = "Clear Water Bay Deluxe"
             cell.priceLabel.text = "$12,000 pcm"
             cell.sizeLabel.text = "689 sq. ft."

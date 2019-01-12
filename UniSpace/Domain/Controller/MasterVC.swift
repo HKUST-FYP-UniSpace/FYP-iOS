@@ -12,6 +12,8 @@ class MasterVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        setupGestureRecognizer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,5 +63,24 @@ class MasterVC: UIViewController {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
     }
-    
+
+}
+
+extension MasterVC: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+
+    private func setupGestureRecognizer() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        let swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        swipe.direction = .up
+        view.addGestureRecognizer(tap)
+        view.addGestureRecognizer(swipe)
+    }
+
+    @objc func dismissKeyboard() {
+        navigationController?.navigationBar.endEditing(true)
+        view.endEditing(true)
+    }
 }

@@ -31,7 +31,7 @@ final class SavedSectionController: ListSectionController, ListAdapterDataSource
         case 0:
             return CGSize(width: collectionContext!.containerSize.width, height: 60)
         case 1:
-            return CGSize(width: collectionContext!.containerSize.width, height: 380)
+            return CGSize(width: collectionContext!.containerSize.width, height: 420)
         case 2:
             return CGSize(width: collectionContext!.containerSize.width, height: 40)
         default:

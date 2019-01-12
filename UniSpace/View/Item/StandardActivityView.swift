@@ -17,7 +17,7 @@ class StandardActivityView: UIActivityIndicatorView {
     init(cornerRadius: CGFloat = 5) {
         super.init(style: .gray)
         self.startAnimating()
-        self.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        self.backgroundColor = .clear
         self.layer.cornerRadius = 20
         self.translatesAutoresizingMaskIntoConstraints = false
     }

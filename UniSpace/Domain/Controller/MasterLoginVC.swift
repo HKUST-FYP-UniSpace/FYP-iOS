@@ -8,23 +8,17 @@
 
 import UIKit
 
-class MasterLoginVC: MasterVC, UIGestureRecognizerDelegate {
+class MasterLoginVC: MasterVC {
     
     let sideMaxBound: CGFloat = 20
     let sideSuggestBound: CGFloat = 60
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
-        setupGestureRecognizer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
     }
     
     override func setupTheme(theme: UIColor, background: UIColor) {
@@ -36,14 +30,6 @@ class MasterLoginVC: MasterVC, UIGestureRecognizerDelegate {
 
 extension MasterLoginVC {
     
-    private func setupGestureRecognizer() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        let swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        swipe.direction = .up
-        view.addGestureRecognizer(tap)
-        view.addGestureRecognizer(swipe)
-    }
-    
     private func setupBackButtom(color: UIColor) {
         let backItem = UIBarButtonItem(image: UIImage(named: "Back"), style: .plain, target: self, action: #selector(back))
         backItem.tintColor = color
@@ -54,10 +40,6 @@ extension MasterLoginVC {
     
     @objc func back(sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
     
 }
