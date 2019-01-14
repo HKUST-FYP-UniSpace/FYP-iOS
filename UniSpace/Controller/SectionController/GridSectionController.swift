@@ -42,13 +42,8 @@ final class GridSectionController: ListSectionController {
     }
 
     override func sizeForItem(at index: Int) -> CGSize {
-        let containerWidth = collectionContext?.containerSize.width ?? 0
-        if type == .Blog {
-            return CGSize(width: containerWidth - cellSpacing * 2, height: 420)
-        }
-        let width = containerWidth / 2 - cellSpacing * 2
-        let height = type == .HouseSaved ? width : width + cellSpacing
-        return CGSize(width: width, height: height)
+        let size = getSize()
+        return CGSize(width: size.0, height: size.1)
     }
 
     override func numberOfItems() -> Int {
@@ -85,7 +80,7 @@ final class GridSectionController: ListSectionController {
             }
             cell.setImage(image: nil)
             cell.titleLabel.text = "Get Started".uppercased()
-            cell.subTitleLabel.text = ["How to Find the Perfect Apartment", "How to Survive Apocalpse"].randomElement()
+            cell.subTitleLabel.text = ["How to Find the Perfect Apartment", "How to Survive the Apocalypse"].randomElement()
             return cell
         }
     }
@@ -93,21 +88,30 @@ final class GridSectionController: ListSectionController {
     override func didUpdate(to object: Any) {
         number = object as? Int
     }
+
+    private func getSize() -> (CGFloat, CGFloat) {
+        let containerWidth = collectionContext?.containerSize.width ?? 0
+        switch type {
+        case .Blog:
+            let width = containerWidth - cellSpacing * 2
+            return (width, 420)
+        case .HouseSaved, .TradeFeatured, .TradeSaved:
+            let width = containerWidth / 2 - cellSpacing * 2
+            let height = type == .HouseSaved ? width : width + cellSpacing
+            return (width, height)
+        }
+    }
 }
 
 extension GridSectionController: ListWorkingRangeDelegate {
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerWillEnterWorkingRange sectionController: ListSectionController) {
-        guard let width = collectionContext?.containerSize.width else { return }
+        let size = getSize()
         let indexes = (0..<itemCount).map { $0 }
         for index in indexes {
-            let url = Constants.dummyPhotoURL(width)
+            let url = Constants.dummyPhotoURL(size.0)
             AlamofireService.shared.downloadImageData(at: url, downloadProgress: nil) { (data, error) in
                 guard let data = data else { return }
-                if let cell = self.collectionContext?.cellForItem(at: index, sectionController: self) as? HouseSavedCell {
-                    cell.setImage(image: UIImage(data: data))
-                } else if let cell = self.collectionContext?.cellForItem(at: index, sectionController: self) as? TradeFeaturedCell {
-                    cell.setImage(image: UIImage(data: data))
-                } else if let cell = self.collectionContext?.cellForItem(at: index, sectionController: self) as? BlogCell {
+                if let cell = self.collectionContext?.cellForItem(at: index, sectionController: self) as? ImageSettable {
                     cell.setImage(image: UIImage(data: data))
                 }
             }

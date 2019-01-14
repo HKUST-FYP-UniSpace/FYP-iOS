@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class BlogCell: UICollectionViewCell {
+final class BlogCell: UICollectionViewCell, ImageSettable {
 
     fileprivate let imageView = StandardImageView()
     fileprivate let activityView = StandardActivityView()
@@ -38,6 +38,11 @@ final class BlogCell: UICollectionViewCell {
         activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
 
         for view in views { view.sizeToFit() }
+        self.clipsToBounds = true
+        self.layer.masksToBounds = false
+        self.layer.cornerRadius = 10
+        self.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        addShadow()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -47,9 +52,6 @@ final class BlogCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         sizeToFit()
-        self.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        self.layer.cornerRadius = 10
-        addShadow()
     }
 
     func addShadow() {

@@ -22,7 +22,7 @@ class StandardButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(buttonText: String?) {
+    init(buttonText: String? = nil) {
         super.init(frame: CGRect.zero)
         isHighlighted = false
         self.setup(buttonText)

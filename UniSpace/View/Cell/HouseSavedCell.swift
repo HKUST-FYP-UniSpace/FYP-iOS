@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HouseSavedCell: UICollectionViewCell {
+final class HouseSavedCell: UICollectionViewCell, ImageSettable {
 
     let titleLabel = StandardLabel(color: .darkGray, size: 12, isBold: true)
     let priceLabel = StandardLabel(color: .gray, size: 10, isBold: true)

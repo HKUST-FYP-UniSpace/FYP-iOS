@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TradeFeaturedCell: UICollectionViewCell {
+final class TradeFeaturedCell: UICollectionViewCell, ImageSettable {
 
     fileprivate let imageView = StandardImageView(cornerRadius: 5, hasBackground: true)
     fileprivate let activityView = StandardActivityView()

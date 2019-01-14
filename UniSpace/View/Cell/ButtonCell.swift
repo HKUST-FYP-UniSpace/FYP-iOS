@@ -11,7 +11,7 @@ import UIKit
 
 final class ButtonCell: UICollectionViewCell {
 
-    let button = StandardButton(buttonText: "")
+    let button = StandardButton()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

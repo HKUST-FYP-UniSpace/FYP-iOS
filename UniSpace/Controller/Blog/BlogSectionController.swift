@@ -15,11 +15,19 @@ final class BlogSectionController: ListSectionController, ListAdapterDataSource 
     private var number: Int?
     private var cellSpacing: CGFloat = 10
 
-    lazy var adapter: ListAdapter = {
-        let adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self.viewController, workingRangeSize: 4)
-        adapter.dataSource = self
-        return adapter
-    }()
+    var adapters: [ListAdapter] = []
+
+    override init() {
+        super.init()
+        for _ in (0..<4) {
+            let adapter: ListAdapter = {
+                let adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self.viewController, workingRangeSize: 4)
+                adapter.dataSource = self
+                return adapter
+            }()
+            adapters.append(adapter)
+        }
+    }
 
     override func numberOfItems() -> Int {
         return 5
@@ -52,7 +60,7 @@ final class BlogSectionController: ListSectionController, ListAdapterDataSource 
                                                                     at: index) as? VerticalExpandCollectionViewCell else {
                                                                         fatalError()
             }
-            adapter.collectionView = cell.collectionView
+            adapters[index - 1].collectionView = cell.collectionView
             return cell
 
         default:

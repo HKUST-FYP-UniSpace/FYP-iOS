@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HouseSuggestionCell: UICollectionViewCell {
+final class HouseSuggestionCell: UICollectionViewCell, ImageSettable {
 
     fileprivate let imageView = StandardImageView(cornerRadius: 5, hasBackground: true)
     fileprivate let activityView = StandardActivityView(cornerRadius: 5)

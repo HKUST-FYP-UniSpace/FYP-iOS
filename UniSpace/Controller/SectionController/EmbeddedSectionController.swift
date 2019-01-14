@@ -29,20 +29,8 @@ final class EmbeddedSectionController: ListSectionController {
     }
 
     override func sizeForItem(at index: Int) -> CGSize {
-        var width: CGFloat = 0
-        var height: CGFloat = 0
-        switch type {
-        case .Demo:
-            width = 100
-            height = 100
-        case .HouseSuggestion:
-            width = Constants.screenWidth - cellSpacing * 6
-            height = collectionContext?.containerSize.height ?? 0
-        case .TradeSellingItems:
-            width = Constants.screenWidth / 2 - 40
-            height = width
-        }
-        return CGSize(width: width, height: height)
+        let size = getSize()
+        return CGSize(width: size.0, height: size.1)
     }
 
     override func cellForItem(at index: Int) -> UICollectionViewCell {
@@ -59,17 +47,29 @@ final class EmbeddedSectionController: ListSectionController {
     override func didUpdate(to object: Any) {
         number = object as? Int
     }
+
+    private func getSize() -> (CGFloat, CGFloat) {
+        switch type {
+        case .Demo:
+            return (100, 100)
+        case .HouseSuggestion:
+            let width = Constants.screenWidth - cellSpacing * 6
+            let height = collectionContext?.containerSize.height ?? 0
+            return (width, height)
+        case .TradeSellingItems:
+            let width = Constants.screenWidth / 2 - 40
+            return (width, width)
+        }
+    }
 }
 
 extension EmbeddedSectionController: ListWorkingRangeDelegate {
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerWillEnterWorkingRange sectionController: ListSectionController) {
-        guard let width = collectionContext?.containerSize.width else { return }
-        let url = Constants.dummyPhotoURL(width)
+        let size = getSize()
+        let url = Constants.dummyPhotoURL(size.0)
         AlamofireService.shared.downloadImageData(at: url, downloadProgress: nil) { (data, error) in
             guard let data = data else { return }
-            if let cell = self.collectionContext?.cellForItem(at: 0, sectionController: self) as? HouseSuggestionCell {
-                cell.setImage(image: UIImage(data: data))
-            } else if let cell = self.collectionContext?.cellForItem(at: 0, sectionController: self) as? TradeSellingItemsCell {
+            if let cell = self.collectionContext?.cellForItem(at: 0, sectionController: self) as? ImageSettable {
                 cell.setImage(image: UIImage(data: data))
             }
         }
