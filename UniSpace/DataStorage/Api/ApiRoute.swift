@@ -14,6 +14,7 @@ enum ApiRoute { case
     register,
     verify(userId: Int),
     getUserProfile(userId: Int),
+    getMessageSummaries(userId: Int),
     sendLogs()
     
     var path: String {

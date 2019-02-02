@@ -16,7 +16,7 @@ protocol User {
     var name: String { get set }
     var role: Int { get set }
     var isActive: Bool { get set }
-    var createTime: String { get set }
+    var createTime: Double { get set }
     var verified: Bool { get set }
     
 }

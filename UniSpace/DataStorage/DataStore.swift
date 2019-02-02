@@ -16,11 +16,26 @@ class DataStore: NSObject {
         super.init()
     }
     
-    func Service() -> AuthService & GeneralService {
+    func Service() -> AuthService & GeneralService & HouseService & TradeService {
         return TestService.shared
 //        return true ? TestService.shared : AlamofireService.shared
     }
     
     var user: UserModel?
     
+}
+
+extension DataStore {
+
+    func randomString(length: Int) -> String {
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return String((0...length - 1).map{ _ in letters.randomElement()! })
+    }
+
+    func randomInt(length: Int) -> Int {
+        let letters = "0123456789"
+        let string = String((0...length - 1).map{ _ in letters.randomElement()! })
+        return Int(string)!
+    }
+
 }

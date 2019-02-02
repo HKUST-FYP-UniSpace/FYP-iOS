@@ -12,6 +12,6 @@ protocol UserProfile {
     
     var id: Int { get set }
     var username: String { get set }
-    var pictureUrl: String { get set }
+    var photoURL: String { get set }
     
 }

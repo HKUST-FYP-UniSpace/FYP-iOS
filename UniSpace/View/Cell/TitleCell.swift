@@ -9,7 +9,7 @@
 import IGListKit
 import UIKit
 
-final class TitleCell: UICollectionViewCell {
+final class TitleCell: UICollectionViewCell, ImageSettable {
 
     fileprivate static let titleLabelInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
     fileprivate static let subTitleLabelInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)

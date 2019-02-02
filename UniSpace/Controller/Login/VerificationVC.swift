@@ -32,6 +32,7 @@ class VerificationVC: MasterLoginVC {
         setupDetailLabel()
         setupTitleLabel()
         setupCodeTextField()
+        codeTextField.keyboardType = .numberPad
         setupVerifyButton()
     }
     

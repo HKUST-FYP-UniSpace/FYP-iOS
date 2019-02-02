@@ -12,12 +12,12 @@ class TestUserProfileModel: UserProfile {
     
     var id: Int
     var username: String
-    var pictureUrl: String
+    var photoURL: String
     
-    required init(id: Int, username: String, pictureUrl: URL?) {
+    required init(id: Int, username: String, photoURL: URL?) {
         self.id = id
         self.username = username
-        self.pictureUrl = pictureUrl?.absoluteString ?? ""
+        self.photoURL = photoURL?.absoluteString ?? ""
     }
     
 }

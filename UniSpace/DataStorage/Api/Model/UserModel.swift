@@ -14,7 +14,7 @@ class UserModel: Decodable, User {
     var name: String = ""
     var role: Int = 0
     var isActive: Bool = false
-    var createTime: String = ""
+    var createTime: Double = 0
     var verified: Bool = false
     
     init() {}

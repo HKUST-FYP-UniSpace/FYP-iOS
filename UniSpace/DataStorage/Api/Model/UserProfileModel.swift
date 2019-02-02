@@ -11,7 +11,7 @@ class UserProfileModel: Decodable, UserProfile {
     
     var id: Int = 0
     var username: String = ""
-    var pictureUrl: String = ""
+    var photoURL: String = ""
     
     init() {}
     

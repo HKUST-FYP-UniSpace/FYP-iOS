@@ -17,5 +17,17 @@ extension AlamofireService: GeneralService {
             completion(result, res.result.error)
         }
     }
+
+    func getMessageSummaries(userId: Int, completion: @escaping ([MessageSummaryModel]?, Error?) -> ()) {
+        get(at: .getMessageSummaries(userId: userId)).responseJSON { (res: DataResponse<Any>) in
+            var result: [MessageSummaryModel]? = nil
+            if let data = res.data { result = try? JSONDecoder().decode([MessageSummaryModel].self, from: data) }
+            completion(result, res.result.error)
+        }
+    }
+
+    func getBlogSummaries(completion: @escaping ([BlogSummaryModel]?, Error?) -> ()) {
+        completion(nil, nil)
+    }
     
 }

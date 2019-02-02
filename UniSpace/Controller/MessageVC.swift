@@ -8,12 +8,4 @@
 
 import UIKit
 
-class MessageVC: UIViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = Color.Login.background
-    }
-    
-    
-}
+typealias MessageVC = SingleSectionViewController

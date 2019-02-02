@@ -16,12 +16,12 @@ class TestUserModel: User {
     var name: String
     var role: Int
     var isActive: Bool
-    var createTime: String
+    var createTime: Double
     var verified: Bool
     
     required init(email: String, username: String, name: String, role: UserType) {
         id = Int.random(in: 0 ..< 1000)
-        createTime = DateManager.shared.getCurrentDateAndTime()
+        createTime = DateManager.shared.getCurrentDate().timeIntervalSince1970
         isActive = true
         verified = false
         

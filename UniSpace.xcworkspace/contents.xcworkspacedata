@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/Kan_Ng/Desktop/FYP/FYP-iOS/UniSpace/DataStorage/Api/Service/AlamofireService+Trade.swift">
+   </FileRef>
+   <FileRef
       location = "group:UniSpace.xcodeproj">
    </FileRef>
    <FileRef

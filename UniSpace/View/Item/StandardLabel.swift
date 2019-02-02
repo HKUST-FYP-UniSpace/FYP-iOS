@@ -10,11 +10,14 @@ import UIKit
 
 class StandardLabel: UILabel {
 
+    private let fontSize: CGFloat
+
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     init(color: UIColor, size: CGFloat, isBold: Bool, text: String? = nil, align: NSTextAlignment = .left, numberOfLines: Int = 1) {
+        fontSize = size
         super.init(frame: CGRect.zero)
 
         self.text = text
@@ -25,6 +28,10 @@ class StandardLabel: UILabel {
         self.font = isBold ? .boldSystemFont(ofSize: size) : .systemFont(ofSize: size)
         self.textColor = color
         self.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    func bold(_ isBold: Bool) {
+        self.font = isBold ? .boldSystemFont(ofSize: fontSize) : .systemFont(ofSize: fontSize)
     }
 
 }
