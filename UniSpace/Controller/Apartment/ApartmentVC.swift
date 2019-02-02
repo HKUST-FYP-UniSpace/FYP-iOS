@@ -17,7 +17,7 @@ final class ApartmentVC: MasterLandingPageVC, ListAdapterDataSource {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
-    let data = [24]
+    let data: [HouseHomepageModel] = [HouseHomepageModel()]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +27,37 @@ final class ApartmentVC: MasterLandingPageVC, ListAdapterDataSource {
         adapter.dataSource = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
+    }
+
+    private func loadData() {
+        var suggestions: [HouseSuggestionModel] = []
+        var saved: [HouseSavedModel] = []
+
+        let group = DispatchGroup()
+        group.enter()
+        DataStore.shared.getHouseSuggestions { (models, error) in
+            suggestions = models ?? []
+            group.leave()
+        }
+
+        group.enter()
+        DataStore.shared.getHouseSaved { (models, error) in
+            saved = models ?? []
+            group.leave()
+        }
+
+        group.notify(queue: .main) {
+            self.data[0].suggestions = suggestions
+            self.data[0].saved = saved
+            self.adapter.reloadData(completion: nil)
+        }
     }
 
     // MARK: ListAdapterDataSource

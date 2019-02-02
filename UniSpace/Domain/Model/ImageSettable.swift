@@ -11,3 +11,7 @@ import UIKit
 protocol ImageSettable {
     func setImage(image: UIImage?)
 }
+
+protocol PhotoShowable {
+    var photoURL: String { get set }
+}

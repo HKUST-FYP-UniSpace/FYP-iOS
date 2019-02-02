@@ -36,27 +36,27 @@ extension DataStore {
         Service().getBlogSummaries(completion: completion)
     }
 
-    func getHouseSuggestions(userId: Int, completion: @escaping (_ summaries: [HouseSuggestionModel]?, _ error: Error?) -> ()) {
+    func getHouseSuggestions(completion: @escaping (_ summaries: [HouseSuggestionModel]?, _ error: Error?) -> ()) {
         let userId = DataStore.shared.user?.id ?? -1
         Service().getHouseSuggestions(userId: userId, completion: completion)
     }
 
-    func getHouseSaved(userId: Int, completion: @escaping (_ summaries: [HouseSavedModel]?, _ error: Error?) -> ()) {
+    func getHouseSaved(completion: @escaping (_ summaries: [HouseSavedModel]?, _ error: Error?) -> ()) {
         let userId = DataStore.shared.user?.id ?? -1
         Service().getHouseSaved(userId: userId, completion: completion)
     }
 
-    func getTradeFeatured(userId: Int, completion: @escaping (_ summaries: [TradeFeaturedModel]?, _ error: Error?) -> ()) {
+    func getTradeFeatured(completion: @escaping (_ summaries: [TradeFeaturedModel]?, _ error: Error?) -> ()) {
         let userId = DataStore.shared.user?.id ?? -1
         Service().getTradeFeatured(userId: userId, completion: completion)
     }
 
-    func getTradeSellingItems(userId: Int, completion: @escaping (_ summaries: [TradeSellingItemModel]?, _ error: Error?) -> ()) {
+    func getTradeSellingItems(completion: @escaping (_ summaries: [TradeSellingItemModel]?, _ error: Error?) -> ()) {
         let userId = DataStore.shared.user?.id ?? -1
         Service().getTradeSellingItems(userId: userId, completion: completion)
     }
 
-    func getTradeSaved(userId: Int, completion: @escaping (_ summaries: [TradeFeaturedModel]?, _ error: Error?) -> ()) {
+    func getTradeSaved(completion: @escaping (_ summaries: [TradeFeaturedModel]?, _ error: Error?) -> ()) {
         let userId = DataStore.shared.user?.id ?? -1
         Service().getTradeSaved(userId: userId, completion: completion)
     }

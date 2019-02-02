@@ -31,7 +31,7 @@ class MessageCell: UICollectionViewCell, ImageSettable {
         timeLabel = StandardLabel(color: .gray, size: 14, isBold: false, align: .right)
         messagesCountLabel = MessageTypeButton(isNumber: true)
         typeLabel = MessageTypeButton(isNumber: false)
-        imageView = StandardImageView(cornerRadius: imageHeight / 2)
+        imageView = StandardImageView(cornerRadius: imageHeight / 2, hasBackground: true)
 
         super.init(frame: frame)
         setupImageView()
@@ -45,10 +45,8 @@ class MessageCell: UICollectionViewCell, ImageSettable {
         if newMessagesCount > 0 {
             messagesCountLabel.isHidden = false
             messagesCountLabel.setType(title: "\(newMessagesCount)", color: messageType.getColor())
-            timeLabel.textColor = messageType.getColor()
         } else {
             messagesCountLabel.isHidden = true
-            timeLabel.textColor = .gray
         }
     }
 

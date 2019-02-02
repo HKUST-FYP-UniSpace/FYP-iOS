@@ -12,9 +12,8 @@ import UIKit
 final class TradeCategorySectionController: ListSectionController {
 
     var contentOffset: CGFloat = 0
-    private var number: Int?
     private var cellSpacing: CGFloat = 10
-    private let cats = ["Electronics and Gadgets", "Furnitures", "Kitchenwares"]
+    private var cats: [String] = []
 
     lazy var adapter: ListAdapter = {
         let adapter = ListAdapter(updater: ListAdapterUpdater(),
@@ -23,17 +22,15 @@ final class TradeCategorySectionController: ListSectionController {
     }()
 
     override func numberOfItems() -> Int {
-        return 4
+        return cats.count + 1
     }
 
     override func sizeForItem(at index: Int) -> CGSize {
         switch index {
         case 0:
             return CGSize(width: collectionContext!.containerSize.width, height: 60)
-        case 1, 2, 3:
-            return CGSize(width: collectionContext!.containerSize.width, height: 60)
         default:
-            return CGSize.zero
+            return CGSize(width: collectionContext!.containerSize.width, height: 60)
         }
     }
 
@@ -43,11 +40,12 @@ final class TradeCategorySectionController: ListSectionController {
             let cell = collectionContext?.dequeueReusableCell(of: TitleCell.self, for: self, at: index)
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Category"
+                cell.setImage(image: nil)
                 return cell
             }
             fatalError()
 
-        case 1, 2, 3:
+        default:
             let cell = collectionContext?.dequeueReusableCell(of: LabelCell.self, for: self, at: index)
             if let cell = cell as? LabelCell {
                 cell.label.text = cats[index - 1]
@@ -55,13 +53,11 @@ final class TradeCategorySectionController: ListSectionController {
                 return cell
             }
             fatalError()
-
-        default:
-            fatalError()
         }
     }
 
     override func didUpdate(to object: Any) {
-        number = object as? Int
+        let model = object as? TradeHomepageModel
+        cats = model?.categories.map { $0.title } ?? []
     }
 }

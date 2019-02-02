@@ -23,7 +23,7 @@ class TestTradeFeaturedModel: TradeFeatured {
         price = Int.random(in: 20..<100) * 100
         status = ["NEW", ""].randomElement()!
         detail = "Designed by Marcel Breuer, it is an iconic Bauhaus style chair"
-        photoURL = Constants.dummyPhotoURL(60, ratio: 1)
+        photoURL = Constants.dummyPhotoURL(100, ratio: 0.75)
     }
 
     func toModel() -> TradeFeaturedModel {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HouseSaved {
+protocol HouseSaved: PhotoShowable {
 
     var id: Int { get set }
     var title: String { get set }

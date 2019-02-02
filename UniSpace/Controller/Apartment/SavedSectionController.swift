@@ -12,7 +12,7 @@ import UIKit
 final class SavedSectionController: ListSectionController, ListAdapterDataSource {
 
     var contentOffset: CGFloat = 0
-    private var number: Int?
+    private var model: HouseHomepageModel?
     private var cellSpacing: CGFloat = 10
 
     lazy var adapter: ListAdapter = {
@@ -29,7 +29,7 @@ final class SavedSectionController: ListSectionController, ListAdapterDataSource
     override func sizeForItem(at index: Int) -> CGSize {
         switch index {
         case 0:
-            return CGSize(width: collectionContext!.containerSize.width, height: 60)
+            return CGSize(width: collectionContext!.containerSize.width, height: 80)
         case 1:
             return CGSize(width: collectionContext!.containerSize.width, height: 400)
         case 2:
@@ -45,6 +45,7 @@ final class SavedSectionController: ListSectionController, ListAdapterDataSource
             let cell = collectionContext?.dequeueReusableCell(of: TitleCell.self, for: self, at: index)
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Saved"
+                cell.setImage(image: nil)
                 return cell
             }
             fatalError()
@@ -71,13 +72,14 @@ final class SavedSectionController: ListSectionController, ListAdapterDataSource
     }
 
     override func didUpdate(to object: Any) {
-        number = object as? Int
+        model = object as? HouseHomepageModel
+        log.debug("SavedSectionController", context: "\(model?.saved.count ?? 0) saved")
     }
 
     // MARK: ListAdapterDataSource
 
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return [0 as ListDiffable]
+        return model == nil ? [] : [model!]
     }
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {

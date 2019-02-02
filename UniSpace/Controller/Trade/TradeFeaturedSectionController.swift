@@ -12,7 +12,7 @@ import UIKit
 final class TradeFeaturedSectionController: ListSectionController, ListAdapterDataSource {
 
     var contentOffset: CGFloat = 0
-    private var number: Int?
+    private var model: TradeHomepageModel?
     private var cellSpacing: CGFloat = 10
 
     lazy var adapter: ListAdapter = {
@@ -45,6 +45,7 @@ final class TradeFeaturedSectionController: ListSectionController, ListAdapterDa
             let cell = collectionContext?.dequeueReusableCell(of: TitleCell.self, for: self, at: index)
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Featured"
+                cell.setImage(image: nil)
                 return cell
             }
             fatalError()
@@ -71,13 +72,13 @@ final class TradeFeaturedSectionController: ListSectionController, ListAdapterDa
     }
 
     override func didUpdate(to object: Any) {
-        number = object as? Int
+        model = object as? TradeHomepageModel
     }
 
     // MARK: ListAdapterDataSource
 
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return [0 as ListDiffable]
+        return model == nil ? [] : [model!]
     }
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {

@@ -18,7 +18,7 @@ enum EmbeddedSectionType {
 final class EmbeddedSectionController: ListSectionController {
 
     var cellSpacing: CGFloat = 10
-    private var number: Int?
+    private var data: ListDiffable?
     private var type: EmbeddedSectionType
 
     init(_ type: EmbeddedSectionType) {
@@ -45,7 +45,14 @@ final class EmbeddedSectionController: ListSectionController {
     }
 
     override func didUpdate(to object: Any) {
-        number = object as? Int
+        switch type {
+        case .Demo:
+            data = object as? ListDiffable
+        case .HouseSuggestion:
+            data = object as? HouseSuggestionModel
+        case .TradeSellingItems:
+            data = object as? TradeSellingItemModel
+        }
     }
 
     private func getSize() -> (CGFloat, CGFloat) {
@@ -65,8 +72,9 @@ final class EmbeddedSectionController: ListSectionController {
 
 extension EmbeddedSectionController: ListWorkingRangeDelegate {
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerWillEnterWorkingRange sectionController: ListSectionController) {
-        let size = getSize()
-        let url = Constants.dummyPhotoURL(size.0)
+        guard let data = data else { return }
+        guard let photo = data as? PhotoShowable else { return }
+        let url = photo.photoURL
         AlamofireService.shared.downloadImageData(at: url, downloadProgress: nil) { (data, error) in
             guard let data = data else { return }
             if let cell = self.collectionContext?.cellForItem(at: 0, sectionController: self) as? ImageSettable {
@@ -80,33 +88,33 @@ extension EmbeddedSectionController: ListWorkingRangeDelegate {
 
 extension EmbeddedSectionController {
     private func getDemoCell(at index: Int) -> UICollectionViewCell {
-        guard let cell = collectionContext?.dequeueReusableCell(of: CenterLabelCell.self, for: self, at: index) as? CenterLabelCell else {
+        guard let cell = collectionContext?.dequeueReusableCell(of: CenterLabelCell.self, for: self, at: index) as? CenterLabelCell, let data = data, let cellData = data as? Int else {
             fatalError()
         }
-        let value = number ?? 0
+        let value = cellData
         cell.text = "\(value + 1)"
         cell.backgroundColor = Color.theme
         return cell
     }
 
     private func getTradeSellingItemsCell(at index: Int) -> UICollectionViewCell {
-        guard let cell = collectionContext?.dequeueReusableCell(of: TradeSellingItemsCell.self, for: self, at: index) as? TradeSellingItemsCell else {
+        guard let cell = collectionContext?.dequeueReusableCell(of: TradeSellingItemsCell.self, for: self, at: index) as? TradeSellingItemsCell, let data = data, let cellData = data as? TradeSellingItemModel else {
             fatalError()
         }
-        cell.titleLabel.text = ["Barcelona Chair", "Wassily Chair", "Brno Chair"].randomElement()
-        cell.priceLabel.text = "$\((Int.random(in: 20..<100) * 100).addComma()!)"
-        cell.viewsLabel.text = "\((Int.random(in: 0..<1000)).addComma()!) views"
+        cell.titleLabel.text = cellData.title
+        cell.priceLabel.text = "$\(cellData.price.addComma()!)"
+        cell.viewsLabel.text = "\(cellData.views.addComma()!) views"
         return cell
     }
 
     private func getHouseSuggestionCell(at index: Int) -> UICollectionViewCell {
-        guard let cell = collectionContext?.dequeueReusableCell(of: HouseSuggestionCell.self, for: self, at: index) as? HouseSuggestionCell else {
+        guard let cell = collectionContext?.dequeueReusableCell(of: HouseSuggestionCell.self, for: self, at: index) as? HouseSuggestionCell, let data = data, let cellData = data as? HouseSuggestionModel else {
             fatalError()
         }
         cell.setImage(image: nil)
-        cell.titleLabel.text = "Team Awesome"
-        cell.subTitleLabel.text = "Boys / Pet-free / Casual drinker"
-        cell.durationLabel.text = ["3 months", "6 months", "1 year", "2 years"].randomElement()
+        cell.titleLabel.text = cellData.title
+        cell.subTitleLabel.text = cellData.subTitle
+        cell.durationLabel.text = cellData.duration
         return cell
     }
 }

@@ -1,5 +1,5 @@
 //
-//  MessageVC.swift
+//  BlogVC.swift
 //  UniSpace
 //
 //  Created by KiKan Ng on 20/11/2018.
@@ -9,50 +9,30 @@
 import IGListKit
 import UIKit
 
-final class MessageVC: SingleSectionViewController {
-
-    let options = UISegmentedControl(items: ["Chat", "Calendar", "Notification"])
+final class BlogVC: SingleSectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Message"
+        self.title = "Blog"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.hidesBarsOnSwipe = true
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.view.backgroundColor = .white
-        setupSegControl()
     }
 
     override func loadData() {
         super.loadData()
-        DataStore.shared.getMessageSummaries { (models, error) in
+        DataStore.shared.getBlogSummaries { (models, error) in
             self.data = models
             self.adapter.reloadData(completion: nil)
         }
     }
 
-    private func setupSegControl() {
-        let font = UIFont.boldSystemFont(ofSize: 14)
-        options.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
-        options.tintColor = Color.theme
-        options.selectedSegmentIndex = 0
-//        options.addTarget(self, action: #selector(handleScopeChange), for: .valueChanged)
-        view.addSubview(options)
-//        tableView.tableHeaderView = options
-
-        options.translatesAutoresizingMaskIntoConstraints = false
-        options.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        options.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        options.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-        options.heightAnchor.constraint(equalToConstant: 36).isActive = true
-    }
-
     override func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         let configureBlock = { (item: Any, cell: UICollectionViewCell) in
-            guard let cell = cell as? MessageCell, let object = object as? MessageSummaryModel else { return }
-            cell.setup(messageType: object.messageType, newMessagesCount: object.unreadMessagesCount)
-            cell.titleLabel.text = object.title
+            guard let cell = cell as? BlogCell, let object = object as? BlogSummaryModel else { return }
+            cell.titleLabel.text = object.title.uppercased()
             cell.subTitleLabel.text = object.subTitle
-            cell.timeLabel.text = object.readableTime()
 
             AlamofireService.shared.downloadImageData(at: object.photoURL, downloadProgress: nil) { (data, error) in
                 guard let data = data else { return }
@@ -61,11 +41,13 @@ final class MessageVC: SingleSectionViewController {
         }
         let sizeBlock = { (item: Any, context: ListCollectionContext?) -> CGSize in
             guard let context = context else { return .zero }
-            return CGSize(width: context.containerSize.width, height: 80)
+            let cellSpacing: CGFloat = 20
+            return CGSize(width: context.containerSize.width - cellSpacing * 2, height: 420)
         }
 
-        let sectionController = ListSingleSectionController(cellClass: MessageCell.self, configureBlock: configureBlock, sizeBlock: sizeBlock)
+        let sectionController = ListSingleSectionController(cellClass: BlogCell.self, configureBlock: configureBlock, sizeBlock: sizeBlock)
         sectionController.selectionDelegate = self
+        sectionController.inset = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)
         return sectionController
     }
 

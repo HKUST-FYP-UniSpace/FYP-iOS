@@ -12,7 +12,7 @@ import UIKit
 final class SuggestionSectionController: ListSectionController, ListAdapterDataSource {
 
     var contentOffset: CGFloat = 0
-    private var number: Int?
+    private var suggestions: [HouseSuggestionModel] = []
     private var cellSpacing: CGFloat = 10
 
     lazy var adapter: ListAdapter = {
@@ -44,6 +44,7 @@ final class SuggestionSectionController: ListSectionController, ListAdapterDataS
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Suggestions"
                 cell.subTitleLabel.text = "Teams that fit you the most"
+                cell.setImage(image: nil)
                 return cell
             }
             fatalError()
@@ -59,14 +60,15 @@ final class SuggestionSectionController: ListSectionController, ListAdapterDataS
     }
 
     override func didUpdate(to object: Any) {
-        number = object as? Int
+        let model = object as? HouseHomepageModel
+        suggestions = model?.suggestions ?? []
+        log.debug("SuggestionSectionController", context: "\(suggestions.count) suggestions")
     }
 
     // MARK: ListAdapterDataSource
 
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        guard let number = number else { return [] }
-        return (0..<number).map { $0 as ListDiffable }
+        return suggestions
     }
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {

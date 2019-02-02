@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HouseSuggestion {
+protocol HouseSuggestion: PhotoShowable {
 
     var id: Int { get set }
     var title: String { get set }

@@ -12,7 +12,7 @@ import UIKit
 final class TradeSellingItemsSectionController: ListSectionController, ListAdapterDataSource {
 
     var contentOffset: CGFloat = 0
-    private var number: Int?
+    private var sellingItems: [TradeSellingItemModel] = []
     private var cellSpacing: CGFloat = 10
 
     lazy var adapter: ListAdapter = {
@@ -58,13 +58,14 @@ final class TradeSellingItemsSectionController: ListSectionController, ListAdapt
     }
 
     override func didUpdate(to object: Any) {
-        number = object as? Int
+        let model = object as? TradeHomepageModel
+        sellingItems = model?.sellingItems ?? []
     }
 
     // MARK: ListAdapterDataSource
 
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return (0..<2).map { $0 as ListDiffable }
+        return sellingItems
     }
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {

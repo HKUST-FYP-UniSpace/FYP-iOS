@@ -17,7 +17,7 @@ final class TradeVC: MasterLandingPageVC, ListAdapterDataSource {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
-    let data = [24]
+    let data: [TradeHomepageModel] = [TradeHomepageModel()]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +27,53 @@ final class TradeVC: MasterLandingPageVC, ListAdapterDataSource {
         adapter.dataSource = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
+    }
+
+    private func loadData() {
+        var featured: [TradeFeaturedModel] = []
+        var sellingItems: [TradeSellingItemModel] = []
+        var saved: [TradeFeaturedModel] = []
+        var categories: [TradeCategoryModel] = []
+
+        let group = DispatchGroup()
+        group.enter()
+        DataStore.shared.getTradeFeatured { (models, error) in
+            featured = models ?? []
+            group.leave()
+        }
+
+        group.enter()
+        DataStore.shared.getTradeSellingItems { (models, error) in
+            sellingItems = models ?? []
+            group.leave()
+        }
+
+        group.enter()
+        DataStore.shared.getTradeSaved { (models, error) in
+            saved = models ?? []
+            group.leave()
+        }
+
+        group.enter()
+        DataStore.shared.getTradeCategories { (models, error) in
+            categories = models ?? []
+            group.leave()
+        }
+
+        group.notify(queue: .main) {
+            self.data[0].featured = featured
+            self.data[0].sellingItems = sellingItems
+            self.data[0].saved = saved
+            self.data[0].categories = categories
+            self.adapter.reloadData(completion: nil)
+        }
     }
 
     // MARK: ListAdapterDataSource

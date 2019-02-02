@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol UserProfile {
+protocol UserProfile: PhotoShowable {
     
     var id: Int { get set }
     var username: String { get set }

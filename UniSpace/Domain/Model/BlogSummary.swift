@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol BlogSummary {
+protocol BlogSummary: PhotoShowable {
 
     var id: Int { get set }
     var title: String { get set }
