@@ -23,7 +23,7 @@ class BlogSummaryModel: Decodable, ListDiffable, BlogSummary {
     }
 
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        guard let object = object as? MessageSummaryModel else { return false }
+        guard let object = object as? BlogSummaryModel else { return false }
         return self.id == object.id
     }
 

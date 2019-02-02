@@ -45,9 +45,9 @@ class MessageTypeButton: UIButton {
         setup(width: width)
     }
 
-    func setType(_ type: MessageType, title: String? = nil) {
-        self.setTitle(title ?? type.getName(), for: .normal)
-        self.backgroundColor = type.getColor()
+    func setType(title: String, color: UIColor) {
+        self.setTitle(title, for: .normal)
+        self.backgroundColor = color
     }
 
     private func setup(width: CGFloat) {

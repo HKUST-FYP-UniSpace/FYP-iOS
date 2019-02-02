@@ -39,12 +39,12 @@ class MessageCell: UICollectionViewCell, ImageSettable {
     }
 
     func setup(messageType: MessageType, newMessagesCount: Int = 0) {
-        typeLabel.setType(messageType)
+        typeLabel.setType(title: messageType.getName(), color: messageType.getColor())
         imageView.layer.borderColor = messageType.getColor().cgColor
 
         if newMessagesCount > 0 {
             messagesCountLabel.isHidden = false
-            messagesCountLabel.setType(messageType, title: "\(newMessagesCount)")
+            messagesCountLabel.setType(title: "\(newMessagesCount)", color: messageType.getColor())
             timeLabel.textColor = messageType.getColor()
         } else {
             messagesCountLabel.isHidden = true

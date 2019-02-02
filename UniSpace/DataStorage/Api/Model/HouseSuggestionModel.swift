@@ -24,7 +24,7 @@ class HouseSuggestionModel: Decodable, ListDiffable, HouseSuggestion {
     }
 
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        guard let object = object as? MessageSummaryModel else { return false }
+        guard let object = object as? HouseSuggestionModel else { return false }
         return self.id == object.id
     }
 

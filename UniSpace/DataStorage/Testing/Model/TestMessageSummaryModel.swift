@@ -21,7 +21,7 @@ class TestMessageSummaryModel: MessageSummary {
     required init() {
         id = DataStore.shared.randomInt(length: 8)
         let type = MessageType.allCases
-        let randomNumber = Int.random(in: (0..<30))
+        let randomNumber = Int.random(in: (0..<10))
         messageType = type.randomElement()!
         unreadMessagesCount = randomNumber % 2 == 0 ? 0 : randomNumber
         title = ["Derek K.", "Earth Mightiest Heros", "Jessi J.", "T'challa"].randomElement()!

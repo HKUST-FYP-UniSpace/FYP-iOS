@@ -1,5 +1,5 @@
 //
-//  TradeCategoryModel.swift
+//  HouseHomepageModel.swift
 //  UniSpace
 //
 //  Created by KiKan Ng on 2/2/2019.
@@ -9,20 +9,22 @@
 import Foundation
 import IGListKit
 
-class TradeCategoryModel: Decodable, ListDiffable, TradeCategory {
+class HouseHomepageModel: ListDiffable {
 
-    var id: Int = 0
-    var title: String = ""
-    var pathExtention: String = ""
+    var id: Int
+    var suggestions: [HouseSuggestionModel] = []
+    var saved: [HouseSavedModel] = []
 
-    init() {}
+    init() {
+        id = DataStore.shared.randomInt(length: 8)
+    }
 
     func diffIdentifier() -> NSObjectProtocol {
         return "\(id)" as NSString
     }
 
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        guard let object = object as? TradeCategoryModel else { return false }
+        guard let object = object as? HouseHomepageModel else { return false }
         return self.id == object.id
     }
 

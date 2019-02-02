@@ -24,7 +24,7 @@ class TradeSellingItemModel: Decodable, ListDiffable, TradeSellingItem {
     }
 
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        guard let object = object as? MessageSummaryModel else { return false }
+        guard let object = object as? TradeSellingItemModel else { return false }
         return self.id == object.id
     }
 
