@@ -83,12 +83,12 @@ final class TradeVC: MasterLandingPageVC, ListAdapterDataSource {
     }
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        let sectionController = ListStackedSectionController(sectionControllers: [
-            TradeFeaturedSectionController(),
-            TradeSellingItemsSectionController(),
-            TradeSavedSectionController(),
-            TradeCategorySectionController()
-            ])
+        var sectionControllers: [ListSectionController] = []
+        if data[0].featured.count != 0 { sectionControllers.append(TradeFeaturedSectionController()) }
+        if data[0].sellingItems.count != 0 { sectionControllers.append(TradeSellingItemsSectionController()) }
+        if data[0].saved.count != 0 { sectionControllers.append(TradeSavedSectionController()) }
+        if data[0].categories.count != 0 { sectionControllers.append(TradeCategorySectionController()) }
+        let sectionController = ListStackedSectionController(sectionControllers: sectionControllers)
         sectionController.inset = UIEdgeInsets(top: 40, left: 0, bottom: 40, right: 0)
         return sectionController
     }

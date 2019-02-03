@@ -67,10 +67,10 @@ final class ApartmentVC: MasterLandingPageVC, ListAdapterDataSource {
     }
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        let sectionController = ListStackedSectionController(sectionControllers: [
-            SuggestionSectionController(),
-            SavedSectionController()
-            ])
+        var sectionControllers: [ListSectionController] = []
+        if data[0].suggestions.count != 0 { sectionControllers.append(SuggestionSectionController()) }
+        if data[0].saved.count != 0 { sectionControllers.append(SavedSectionController()) }
+        let sectionController = ListStackedSectionController(sectionControllers: sectionControllers)
         sectionController.inset = UIEdgeInsets(top: 40, left: 0, bottom: 40, right: 0)
         return sectionController
     }

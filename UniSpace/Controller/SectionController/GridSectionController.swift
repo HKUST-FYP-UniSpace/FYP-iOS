@@ -37,7 +37,8 @@ final class GridSectionController: ListSectionController {
     }
 
     override func numberOfItems() -> Int {
-        return data?.count ?? 0
+        let count = data?.count ?? 0
+        return count > 4 ? 4 : count
     }
 
     override func cellForItem(at index: Int) -> UICollectionViewCell {
