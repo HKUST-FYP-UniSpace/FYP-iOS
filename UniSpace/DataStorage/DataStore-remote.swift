@@ -32,6 +32,11 @@ extension DataStore {
         Service().getMessageSummaries(userId: userId, completion: completion)
     }
 
+    func getNotificationSummaries(completion: @escaping ([NotificationSummaryModel]?, Error?) -> Void) {
+        let userId = DataStore.shared.user?.id ?? -1
+        Service().getNotificationSummaries(userId: userId, completion: completion)
+    }
+
     func getBlogSummaries(completion: @escaping (_ summaries: [BlogSummaryModel]?, _ error: Error?) -> ()) {
         Service().getBlogSummaries(completion: completion)
     }

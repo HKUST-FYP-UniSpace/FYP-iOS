@@ -129,6 +129,18 @@
 		6DE5563A21A40B5E00B23398 /* MasterLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5563921A40B5E00B23398 /* MasterLoginVC.swift */; };
 		6DE5563C21A4166100B23398 /* VerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE5563B21A4166100B23398 /* VerificationVC.swift */; };
 		6DF1B98121E5EF0C002814AE /* DocumentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF1B98021E5EF0C002814AE /* DocumentHandler.swift */; };
+		6DFE1D7F2206EDB10012E8A2 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1D7E2206EDB10012E8A2 /* CalendarVC.swift */; };
+		6DFE1D812206EDC80012E8A2 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1D802206EDC80012E8A2 /* NotificationVC.swift */; };
+		6DFE1D832206EE510012E8A2 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1D822206EE510012E8A2 /* Month.swift */; };
+		6DFE1D852206EF9A0012E8A2 /* MonthSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1D842206EF9A0012E8A2 /* MonthSectionController.swift */; };
+		6DFE1D872206EFF20012E8A2 /* MonthTitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1D862206EFF20012E8A2 /* MonthTitleViewModel.swift */; };
+		6DFE1D892206F00B0012E8A2 /* DayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1D882206F00B0012E8A2 /* DayViewModel.swift */; };
+		6DFE1D8C2206F0790012E8A2 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1D8B2206F0790012E8A2 /* CalendarDayCell.swift */; };
+		6DFE1D8E2206F0A40012E8A2 /* MonthTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1D8D2206F0A40012E8A2 /* MonthTitleCell.swift */; };
+		6DFE1D902206F6E30012E8A2 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1D8F2206F6E30012E8A2 /* NotificationCell.swift */; };
+		6DFE1D922206F8CA0012E8A2 /* NotificationSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1D912206F8CA0012E8A2 /* NotificationSummary.swift */; };
+		6DFE1D942206F90F0012E8A2 /* TestNotificationSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1D932206F90F0012E8A2 /* TestNotificationSummaryModel.swift */; };
+		6DFE1D962206F9A00012E8A2 /* NotificationSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1D952206F9A00012E8A2 /* NotificationSummaryModel.swift */; };
 		B11DE1D56DED5120FC54DDA8 /* Pods_UniSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF3EE884EB625F551874B2A4 /* Pods_UniSpace.framework */; };
 /* End PBXBuildFile section */
 
@@ -278,6 +290,18 @@
 		6DE5563921A40B5E00B23398 /* MasterLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterLoginVC.swift; sourceTree = "<group>"; };
 		6DE5563B21A4166100B23398 /* VerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationVC.swift; sourceTree = "<group>"; };
 		6DF1B98021E5EF0C002814AE /* DocumentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentHandler.swift; sourceTree = "<group>"; };
+		6DFE1D7E2206EDB10012E8A2 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
+		6DFE1D802206EDC80012E8A2 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
+		6DFE1D822206EE510012E8A2 /* Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
+		6DFE1D842206EF9A0012E8A2 /* MonthSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthSectionController.swift; sourceTree = "<group>"; };
+		6DFE1D862206EFF20012E8A2 /* MonthTitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthTitleViewModel.swift; sourceTree = "<group>"; };
+		6DFE1D882206F00B0012E8A2 /* DayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewModel.swift; sourceTree = "<group>"; };
+		6DFE1D8B2206F0790012E8A2 /* CalendarDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
+		6DFE1D8D2206F0A40012E8A2 /* MonthTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthTitleCell.swift; sourceTree = "<group>"; };
+		6DFE1D8F2206F6E30012E8A2 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		6DFE1D912206F8CA0012E8A2 /* NotificationSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSummary.swift; sourceTree = "<group>"; };
+		6DFE1D932206F90F0012E8A2 /* TestNotificationSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNotificationSummaryModel.swift; sourceTree = "<group>"; };
+		6DFE1D952206F9A00012E8A2 /* NotificationSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSummaryModel.swift; sourceTree = "<group>"; };
 		79FF517C0BD513CA5B8A9385 /* Pods-UniSpace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniSpace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniSpace/Pods-UniSpace.debug.xcconfig"; sourceTree = "<group>"; };
 		7BEEF90143DC5F19D8315615 /* Pods-UniSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniSpace/Pods-UniSpace.release.xcconfig"; sourceTree = "<group>"; };
 		8D647634F5983AFF4C73BC4E /* Pods-UniSpaceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniSpaceUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniSpaceUITests/Pods-UniSpaceUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -346,6 +370,7 @@
 			children = (
 				6D52818621EF13E6007A4508 /* CustomCell.swift */,
 				6D52818421EF1368007A4508 /* MessageCell.swift */,
+				6DFE1D8F2206F6E30012E8A2 /* NotificationCell.swift */,
 				6D563B7021E089A500E2E10D /* TitleCell.swift */,
 				6D7EE8EF21E904D5008D882F /* LabelCell.swift */,
 				6D7EE8DB21E8D7C2008D882F /* ButtonCell.swift */,
@@ -400,6 +425,7 @@
 				6DAAC20721EC36120052748D /* ImageSettable.swift */,
 				6D68F6E121A7F95A00D31472 /* UserProfile.swift */,
 				6DA9D46022043DCC009464B6 /* MessageSummary.swift */,
+				6DFE1D912206F8CA0012E8A2 /* NotificationSummary.swift */,
 				6DA9D46222043E51009464B6 /* BlogSummary.swift */,
 				6DA9D46422043ECE009464B6 /* HouseSuggestion.swift */,
 				6DA9D46622043F21009464B6 /* HouseSaved.swift */,
@@ -458,6 +484,7 @@
 				6D68F6D921A7F34800D31472 /* TestUserModel.swift */,
 				6D68F6F921A8040700D31472 /* TestUserProfileModel.swift */,
 				6DA9D46E22044289009464B6 /* TestMessageSummaryModel.swift */,
+				6DFE1D932206F90F0012E8A2 /* TestNotificationSummaryModel.swift */,
 				6DA9D4722204680A009464B6 /* TestBlogSummaryModel.swift */,
 				6DA9D47622046A63009464B6 /* TestHouseSuggestionModel.swift */,
 				6DA9D47A22057822009464B6 /* TestHouseSavedModel.swift */,
@@ -498,6 +525,7 @@
 				6D68F6E721A7F9E600D31472 /* UserModel.swift */,
 				6D68F6E921A7F9F400D31472 /* UserProfileModel.swift */,
 				6DA9D470220444C1009464B6 /* MessageSummaryModel.swift */,
+				6DFE1D952206F9A00012E8A2 /* NotificationSummaryModel.swift */,
 				6DA9D474220469C0009464B6 /* BlogSummaryModel.swift */,
 				6DA9D49622058793009464B6 /* HouseHomepageModel.swift */,
 				6DA9D4782205757F009464B6 /* HouseSuggestionModel.swift */,
@@ -608,11 +636,12 @@
 			isa = PBXGroup;
 			children = (
 				6D563B6F21E0878A00E2E10D /* SectionController */,
+				6DFE1D8A2206F03B0012E8A2 /* Calendar */,
 				6DE5563021A3F3CF00B23398 /* Login */,
 				6D7EE8E921E8F263008D882F /* Apartment */,
 				6D7EE8EA21E8F276008D882F /* Trade */,
 				6DE5562821A3E81B00B23398 /* BlogVC.swift */,
-				6DE5562A21A3E82B00B23398 /* MessageVC.swift */,
+				6DFE1D7D2206ED930012E8A2 /* Message */,
 				6DE5562C21A3E83600B23398 /* SettingsVC.swift */,
 			);
 			path = Controller;
@@ -676,6 +705,29 @@
 				6DE5562621A3D98500B23398 /* UITextField+BottomBorder.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		6DFE1D7D2206ED930012E8A2 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				6DE5562A21A3E82B00B23398 /* MessageVC.swift */,
+				6DFE1D802206EDC80012E8A2 /* NotificationVC.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		6DFE1D8A2206F03B0012E8A2 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				6DFE1D822206EE510012E8A2 /* Month.swift */,
+				6DFE1D7E2206EDB10012E8A2 /* CalendarVC.swift */,
+				6DFE1D842206EF9A0012E8A2 /* MonthSectionController.swift */,
+				6DFE1D882206F00B0012E8A2 /* DayViewModel.swift */,
+				6DFE1D862206EFF20012E8A2 /* MonthTitleViewModel.swift */,
+				6DFE1D8B2206F0790012E8A2 /* CalendarDayCell.swift */,
+				6DFE1D8D2206F0A40012E8A2 /* MonthTitleCell.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		886D35393708B9BE20315E0B /* Frameworks */ = {
@@ -920,6 +972,7 @@
 				6D68F6D621A7F25900D31472 /* AuthService.swift in Sources */,
 				6DE5563621A3F7FA00B23398 /* RegisterChoiceButton.swift in Sources */,
 				6D68F6E421A7F9C600D31472 /* TestService+Auth.swift in Sources */,
+				6DFE1D832206EE510012E8A2 /* Month.swift in Sources */,
 				6DE5562F21A3F0AB00B23398 /* StringExten.swift in Sources */,
 				6DA9D49522057DB1009464B6 /* AlamofireService+Trade.swift in Sources */,
 				6D30716D21B27C7A008D0FA3 /* MasterVC.swift in Sources */,
@@ -929,6 +982,7 @@
 				6DA9D471220444C1009464B6 /* MessageSummaryModel.swift in Sources */,
 				6D7EE8E021E8E6C7008D882F /* TradeSellingItemsSectionController.swift in Sources */,
 				6DC9DDB3219FEE9C00A4B5DD /* TradeVC.swift in Sources */,
+				6DFE1D962206F9A00012E8A2 /* NotificationSummaryModel.swift in Sources */,
 				6DA9D47F22057946009464B6 /* TestTradeFeaturedModel.swift in Sources */,
 				6D7EE8F421E90642008D882F /* TradeCategorySectionController.swift in Sources */,
 				6DA9D48922057B67009464B6 /* TradeCategoryModel.swift in Sources */,
@@ -937,8 +991,10 @@
 				6D68F6EC21A7FA0700D31472 /* AlamofireService+Auth.swift in Sources */,
 				6D68F6F621A7FFE300D31472 /* ApiRequestRetrier.swift in Sources */,
 				6DAAC20821EC36120052748D /* ImageSettable.swift in Sources */,
+				6DFE1D8E2206F0A40012E8A2 /* MonthTitleCell.swift in Sources */,
 				6D563B6C21E0759F00E2E10D /* CenterLabelCell.swift in Sources */,
 				6DA9D481220579E8009464B6 /* TradeFeaturedModel.swift in Sources */,
+				6DFE1D902206F6E30012E8A2 /* NotificationCell.swift in Sources */,
 				6DA9D4732204680A009464B6 /* TestBlogSummaryModel.swift in Sources */,
 				6D68F6DC21A7F5FF00D31472 /* UserDefaultsManager.swift in Sources */,
 				6D68F6FF21A805BA00D31472 /* Connectivity.swift in Sources */,
@@ -950,6 +1006,7 @@
 				6D52818721EF13E6007A4508 /* CustomCell.swift in Sources */,
 				6DA9D48722057B23009464B6 /* TestTradeCategoryModel.swift in Sources */,
 				6DE5563821A4052D00B23398 /* RegisterDetailVC.swift in Sources */,
+				6DFE1D812206EDC80012E8A2 /* NotificationVC.swift in Sources */,
 				6DE5562B21A3E82B00B23398 /* MessageVC.swift in Sources */,
 				6DA9D47D220578E3009464B6 /* HouseSavedModel.swift in Sources */,
 				6D7EE8E621E8EA5A008D882F /* TradeFeaturedCell.swift in Sources */,
@@ -973,6 +1030,7 @@
 				6D563B6821E074E000E2E10D /* EmbeddedSectionController.swift in Sources */,
 				6DA9D48322057A4E009464B6 /* TestTradeSellingItemModel.swift in Sources */,
 				6D7EE8CA21E899AA008D882F /* SavedSectionController.swift in Sources */,
+				6DFE1D872206EFF20012E8A2 /* MonthTitleViewModel.swift in Sources */,
 				6DA9D48F22057D4B009464B6 /* TestService+House.swift in Sources */,
 				6DA9D46922043FC9009464B6 /* TradeFeatured.swift in Sources */,
 				6D7EE8CE21E8AEAA008D882F /* HouseSavedCell.swift in Sources */,
@@ -983,13 +1041,17 @@
 				6D3F0AD021E064CF00B2A289 /* Logger.swift in Sources */,
 				6D98246321AD272000BAF80D /* DataStore-local.swift in Sources */,
 				6D52818521EF1368007A4508 /* MessageCell.swift in Sources */,
+				6DFE1D892206F00B0012E8A2 /* DayViewModel.swift in Sources */,
 				6D7EE8CC21E89B56008D882F /* VerticalExpandCollectionViewCell.swift in Sources */,
 				6D68F6E221A7F95A00D31472 /* UserProfile.swift in Sources */,
 				6D3F0AD221E0652700B2A289 /* Collection+Safe.swift in Sources */,
 				6D7EE8DC21E8D7C2008D882F /* ButtonCell.swift in Sources */,
+				6DFE1D8C2206F0790012E8A2 /* CalendarDayCell.swift in Sources */,
+				6DFE1D852206EF9A0012E8A2 /* MonthSectionController.swift in Sources */,
 				6D68F6E621A7F9D500D31472 /* TestService+General.swift in Sources */,
 				6DC9DDAF219FEE9C00A4B5DD /* AppDelegate.swift in Sources */,
 				6DE5563A21A40B5E00B23398 /* MasterLoginVC.swift in Sources */,
+				6DFE1D922206F8CA0012E8A2 /* NotificationSummary.swift in Sources */,
 				6DD2039221A12C3B009D1F07 /* MainTabBarController.swift in Sources */,
 				6DC9DDB1219FEE9C00A4B5DD /* ApartmentVC.swift in Sources */,
 				6DE5561921A3B7FC00B23398 /* Color.swift in Sources */,
@@ -1013,12 +1075,14 @@
 				6DA9D4792205757F009464B6 /* HouseSuggestionModel.swift in Sources */,
 				6D68F6E821A7F9E600D31472 /* UserModel.swift in Sources */,
 				6D68F6F421A7FB0000D31472 /* ApiRoute.swift in Sources */,
+				6DFE1D7F2206EDB10012E8A2 /* CalendarVC.swift in Sources */,
 				6D68F6F821A8003700D31472 /* ServerMessage.swift in Sources */,
 				6D7EE8DE21E8E61A008D882F /* TradeFeaturedSectionController.swift in Sources */,
 				6D68F6D221A7F17C00D31472 /* User.swift in Sources */,
 				6DA9D48D22057C11009464B6 /* TradeService.swift in Sources */,
 				6D7EE8D221E8C433008D882F /* StandardLabel.swift in Sources */,
 				6D7EE8FA21EA089A008D882F /* BlogCell.swift in Sources */,
+				6DFE1D942206F90F0012E8A2 /* TestNotificationSummaryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

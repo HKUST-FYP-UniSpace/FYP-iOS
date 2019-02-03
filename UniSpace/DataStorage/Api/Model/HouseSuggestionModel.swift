@@ -20,7 +20,7 @@ class HouseSuggestionModel: Decodable, ListDiffable, HouseSuggestion {
     init() {}
 
     func diffIdentifier() -> NSObjectProtocol {
-        return "\(id)" as NSString
+        return id as NSObjectProtocol
     }
 
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {

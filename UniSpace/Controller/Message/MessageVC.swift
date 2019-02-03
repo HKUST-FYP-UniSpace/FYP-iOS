@@ -16,6 +16,7 @@ final class MessageVC: SingleSectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Message"
+        tabBarItem = UITabBarItem(title: "Message", image: UIImage(named: "Message"), tag: 3)
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.view.backgroundColor = .white
@@ -35,10 +36,21 @@ final class MessageVC: SingleSectionViewController {
         options.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         options.tintColor = Color.theme
         options.selectedSegmentIndex = 0
-//        options.addTarget(self, action: #selector(handleScopeChange), for: .valueChanged)
+        options.addTarget(self, action: #selector(handleScopeChange), for: .valueChanged)
         navigationItem.titleView = options
         options.translatesAutoresizingMaskIntoConstraints = false
         options.heightAnchor.constraint(equalToConstant: 36).isActive = true
+    }
+
+    @objc func handleScopeChange(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 1:
+            navigationController?.setViewControllers([CalendarVC()], animated: false)
+        case 2:
+            navigationController?.setViewControllers([NotificationVC()], animated: false)
+        default:
+            return
+        }
     }
 
     override func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
@@ -62,13 +74,5 @@ final class MessageVC: SingleSectionViewController {
         let sectionController = ListSingleSectionController(cellClass: MessageCell.self, configureBlock: configureBlock, sizeBlock: sizeBlock)
         sectionController.selectionDelegate = self
         return sectionController
-    }
-
-    override func didSelect(_ sectionController: ListSingleSectionController, with object: Any) {
-//        super.didSelect(sectionController, with: object)
-        let section = adapter.section(for: sectionController) + 1
-        let alert = UIAlertController(title: "Section \(section) was selected \u{1F389}", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
 }

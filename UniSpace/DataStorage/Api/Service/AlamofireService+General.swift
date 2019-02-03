@@ -26,6 +26,10 @@ extension AlamofireService: GeneralService {
         }
     }
 
+    func getNotificationSummaries(userId: Int, completion: @escaping ([NotificationSummaryModel]?, Error?) -> Void) {
+        completion(nil, nil)
+    }
+
     func getBlogSummaries(completion: @escaping ([BlogSummaryModel]?, Error?) -> Void) {
         completion(nil, nil)
     }

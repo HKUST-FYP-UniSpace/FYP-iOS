@@ -12,5 +12,6 @@ protocol GeneralService: class {
     
     func getUserProfile(userId: Int, completion: @escaping (_ user: UserProfileModel?, _ error: Error?) -> Void)
     func getMessageSummaries(userId: Int, completion: @escaping (_ summaries: [MessageSummaryModel]?, _ error: Error?) -> Void)
+    func getNotificationSummaries(userId: Int, completion: @escaping (_ summaries: [NotificationSummaryModel]?, _ error: Error?) -> Void)
     func getBlogSummaries(completion: @escaping (_ summaries: [BlogSummaryModel]?, _ error: Error?) -> Void)
 }
