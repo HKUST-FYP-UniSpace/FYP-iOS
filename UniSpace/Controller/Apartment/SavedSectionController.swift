@@ -29,7 +29,7 @@ final class SavedSectionController: ListSectionController, ListAdapterDataSource
     override func sizeForItem(at index: Int) -> CGSize {
         switch index {
         case 0:
-            return CGSize(width: collectionContext!.containerSize.width, height: 80)
+            return CGSize(width: collectionContext!.containerSize.width, height: 60)
         case 1:
             return CGSize(width: collectionContext!.containerSize.width, height: 400)
         case 2:
@@ -45,6 +45,7 @@ final class SavedSectionController: ListSectionController, ListAdapterDataSource
             let cell = collectionContext?.dequeueReusableCell(of: TitleCell.self, for: self, at: index)
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Saved"
+                cell.subTitleLabel.text = nil
                 cell.setImage(image: nil)
                 return cell
             }
@@ -73,7 +74,6 @@ final class SavedSectionController: ListSectionController, ListAdapterDataSource
 
     override func didUpdate(to object: Any) {
         model = object as? HouseHomepageModel
-        log.debug("SavedSectionController", context: "\(model?.saved.count ?? 0) saved")
     }
 
     // MARK: ListAdapterDataSource

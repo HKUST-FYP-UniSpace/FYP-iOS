@@ -62,7 +62,6 @@ final class SuggestionSectionController: ListSectionController, ListAdapterDataS
     override func didUpdate(to object: Any) {
         let model = object as? HouseHomepageModel
         suggestions = model?.suggestions ?? []
-        log.debug("SuggestionSectionController", context: "\(suggestions.count) suggestions")
     }
 
     // MARK: ListAdapterDataSource

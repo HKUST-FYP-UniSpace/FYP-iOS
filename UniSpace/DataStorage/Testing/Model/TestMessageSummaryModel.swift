@@ -27,7 +27,7 @@ class TestMessageSummaryModel: MessageSummary {
         title = ["Derek K.", "Earth Mightiest Heros", "Jessi J.", "T'challa"].randomElement()!
         subTitle = ["Hey bud, let's make a deal", "Wakanda Forever!", "Super long text that would need to be handled"].randomElement()!
         time = DateManager.shared.randomTime(30)
-        photoURL = Constants.dummyPhotoURL(60, ratio: 1)
+        photoURL = Constants.dummyPhotoURL(Constants.cardWidth_S, ratio: 1)
     }
 
     func toModel() -> MessageSummaryModel {

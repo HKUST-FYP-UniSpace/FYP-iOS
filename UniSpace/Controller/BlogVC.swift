@@ -52,7 +52,7 @@ final class BlogVC: SingleSectionViewController {
     }
 
     override func didSelect(_ sectionController: ListSingleSectionController, with object: Any) {
-        super.didSelect(sectionController, with: object)
+//        super.didSelect(sectionController, with: object)
         let section = adapter.section(for: sectionController) + 1
         let alert = UIAlertController(title: "Section \(section) was selected \u{1F389}", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))

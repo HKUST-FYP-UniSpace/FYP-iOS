@@ -7,6 +7,7 @@ target 'UniSpace' do
 
   # Pods for UniSpace
   pod 'Alamofire', '~> 4.7.3'
+  pod 'AlamofireImage', '~> 3.4.1'
   pod 'Eureka', '~> 4.3.1'
   pod 'IGListKit', '~> 3.4.0'
   pod 'KeychainAccess', '~> 3.1.2'

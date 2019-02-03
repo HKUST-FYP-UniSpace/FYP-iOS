@@ -10,11 +10,11 @@ import Foundation
 
 protocol AuthService: class {
     
-    func authorize(completion: @escaping (_ user: UserModel?, _ error: Error?) -> ())
+    func authorize(completion: @escaping (_ user: UserModel?, _ error: Error?) -> Void)
     
-    func register(userType: UserType, username: String, name: String, email: String, password: String, completion: @escaping (_ user: UserModel?, _ error: Error?) -> ())
+    func register(userType: UserType, username: String, name: String, email: String, password: String, completion: @escaping (_ user: UserModel?, _ error: Error?) -> Void)
     
     //  or no userId is needed bc of the token
-    func verify(userId: Int, code: String, completion: @escaping (_ user: UserModel?, _ error: Error?) -> ())
+    func verify(userId: Int, code: String, completion: @escaping (_ user: UserModel?, _ error: Error?) -> Void)
     
 }

@@ -19,7 +19,7 @@ class TestBlogSummaryModel: BlogSummary {
         id = DataStore.shared.randomInt(length: 8)
         title = "Get Started".uppercased()
         subTitle = ["How to Find the Perfect Apartment", "How to Survive the Apocalypse"].randomElement()!
-        photoURL = Constants.dummyPhotoURL(400, ratio: 0.75)
+        photoURL = Constants.dummyPhotoURL(Constants.cardWidth_L, ratio: 0.75)
     }
 
     func toModel() -> BlogSummaryModel {

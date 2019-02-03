@@ -23,7 +23,7 @@ class TestHouseSavedModel: HouseSaved {
         price = Int.random(in: 50..<200) * 100
         size = Int.random(in: 500..<1500)
         starRating = Int.random(in: 0..<6)
-        photoURL = Constants.dummyPhotoURL(100, ratio: 0.75)
+        photoURL = Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 0.75)
     }
 
     func toModel() -> HouseSavedModel {

@@ -10,18 +10,18 @@ import Foundation
 
 extension TestService: GeneralService {
     
-    func getUserProfile(userId: Int, completion: @escaping (UserProfileModel?, Error?) -> ()) {
+    func getUserProfile(userId: Int, completion: @escaping (UserProfileModel?, Error?) -> Void) {
         completion(nil, nil)
     }
 
-    func getMessageSummaries(userId: Int, completion: @escaping ([MessageSummaryModel]?, Error?) -> ()) {
+    func getMessageSummaries(userId: Int, completion: @escaping ([MessageSummaryModel]?, Error?) -> Void) {
         var summaries: [MessageSummaryModel]? = []
         for _ in 0..<30 { summaries?.append(TestMessageSummaryModel().toModel()) }
         summaries?.sort(by: { $0.time > $1.time })
         delay { completion(summaries, nil) }
     }
 
-    func getBlogSummaries(completion: @escaping ([BlogSummaryModel]?, Error?) -> ()) {
+    func getBlogSummaries(completion: @escaping ([BlogSummaryModel]?, Error?) -> Void) {
         var summaries: [BlogSummaryModel]? = []
         for _ in 0..<5 { summaries?.append(TestBlogSummaryModel().toModel()) }
         delay { completion(summaries, nil) }

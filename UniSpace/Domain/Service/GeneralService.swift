@@ -10,7 +10,7 @@ import Foundation
 
 protocol GeneralService: class {
     
-    func getUserProfile(userId: Int, completion: @escaping (_ user: UserProfileModel?, _ error: Error?) -> ())
-    func getMessageSummaries(userId: Int, completion: @escaping (_ summaries: [MessageSummaryModel]?, _ error: Error?) -> ())
-    func getBlogSummaries(completion: @escaping (_ summaries: [BlogSummaryModel]?, _ error: Error?) -> ())
+    func getUserProfile(userId: Int, completion: @escaping (_ user: UserProfileModel?, _ error: Error?) -> Void)
+    func getMessageSummaries(userId: Int, completion: @escaping (_ summaries: [MessageSummaryModel]?, _ error: Error?) -> Void)
+    func getBlogSummaries(completion: @escaping (_ summaries: [BlogSummaryModel]?, _ error: Error?) -> Void)
 }

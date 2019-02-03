@@ -38,7 +38,7 @@ class MessageSummaryModel: Decodable, ListDiffable, MessageSummary {
         let date = Date(timeIntervalSince1970: time)
         if DateManager.shared.isToday(date) { return DateManager.shared.convertToTimeFormat(date: date) }
         let daysBefore = DateManager.shared.daysBeforeNow(date)
-        return daysBefore < 2 ? "yesterday" : "\(daysBefore) d"
+        return daysBefore < 2 ? "yesterday" : "\(daysBefore)d"
     }
 
 }

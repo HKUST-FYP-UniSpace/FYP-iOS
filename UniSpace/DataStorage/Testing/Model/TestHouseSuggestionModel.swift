@@ -20,7 +20,7 @@ class TestHouseSuggestionModel: HouseSuggestion {
         id = DataStore.shared.randomInt(length: 8)
         title = "Team Awesome"
         subTitle = "Boys / Pet-free / Casual drinker"
-        photoURL = Constants.dummyPhotoURL(400, ratio: 0.75)
+        photoURL = Constants.dummyPhotoURL(Constants.cardWidth_L, ratio: 0.75)
         duration = ["3 months", "6 months", "1 year", "2 years"].randomElement()!
     }
 

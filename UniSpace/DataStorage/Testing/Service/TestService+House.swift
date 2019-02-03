@@ -10,13 +10,13 @@ import Foundation
 
 extension TestService: HouseService {
     
-    func getHouseSuggestions(userId: Int, completion: @escaping ([HouseSuggestionModel]?, Error?) -> ()) {
+    func getHouseSuggestions(userId: Int, completion: @escaping ([HouseSuggestionModel]?, Error?) -> Void) {
         var summaries: [HouseSuggestionModel]? = []
         for _ in 0..<20 { summaries?.append(TestHouseSuggestionModel().toModel()) }
         delay { completion(summaries, nil) }
     }
 
-    func getHouseSaved(userId: Int, completion: @escaping ([HouseSavedModel]?, Error?) -> ()) {
+    func getHouseSaved(userId: Int, completion: @escaping ([HouseSavedModel]?, Error?) -> Void) {
         var summaries: [HouseSavedModel]? = []
         for _ in 0..<4 { summaries?.append(TestHouseSavedModel().toModel()) }
         delay { completion(summaries, nil) }

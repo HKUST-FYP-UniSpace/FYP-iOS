@@ -36,13 +36,8 @@ final class MessageVC: SingleSectionViewController {
         options.tintColor = Color.theme
         options.selectedSegmentIndex = 0
 //        options.addTarget(self, action: #selector(handleScopeChange), for: .valueChanged)
-        view.addSubview(options)
-//        tableView.tableHeaderView = options
-
+        navigationItem.titleView = options
         options.translatesAutoresizingMaskIntoConstraints = false
-        options.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        options.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        options.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
         options.heightAnchor.constraint(equalToConstant: 36).isActive = true
     }
 
@@ -70,7 +65,7 @@ final class MessageVC: SingleSectionViewController {
     }
 
     override func didSelect(_ sectionController: ListSingleSectionController, with object: Any) {
-        super.didSelect(sectionController, with: object)
+//        super.didSelect(sectionController, with: object)
         let section = adapter.section(for: sectionController) + 1
         let alert = UIAlertController(title: "Section \(section) was selected \u{1F389}", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))

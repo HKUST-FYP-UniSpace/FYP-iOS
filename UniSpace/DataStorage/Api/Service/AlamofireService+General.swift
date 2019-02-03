@@ -10,7 +10,7 @@ import Alamofire
 
 extension AlamofireService: GeneralService {
     
-    func getUserProfile(userId: Int, completion: @escaping (UserProfileModel?, Error?) -> ()) {
+    func getUserProfile(userId: Int, completion: @escaping (UserProfileModel?, Error?) -> Void) {
         get(at: .getUserProfile(userId: userId)).responseJSON { (res: DataResponse<Any>) in
             var result: UserProfileModel? = nil
             if let data = res.data { result = try? JSONDecoder().decode(UserProfileModel.self, from: data) }
@@ -18,7 +18,7 @@ extension AlamofireService: GeneralService {
         }
     }
 
-    func getMessageSummaries(userId: Int, completion: @escaping ([MessageSummaryModel]?, Error?) -> ()) {
+    func getMessageSummaries(userId: Int, completion: @escaping ([MessageSummaryModel]?, Error?) -> Void) {
         get(at: .getMessageSummaries(userId: userId)).responseJSON { (res: DataResponse<Any>) in
             var result: [MessageSummaryModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([MessageSummaryModel].self, from: data) }
@@ -26,7 +26,7 @@ extension AlamofireService: GeneralService {
         }
     }
 
-    func getBlogSummaries(completion: @escaping ([BlogSummaryModel]?, Error?) -> ()) {
+    func getBlogSummaries(completion: @escaping ([BlogSummaryModel]?, Error?) -> Void) {
         completion(nil, nil)
     }
     

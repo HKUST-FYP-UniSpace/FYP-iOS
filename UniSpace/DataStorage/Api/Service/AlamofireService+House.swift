@@ -10,11 +10,11 @@ import Alamofire
 
 extension AlamofireService: HouseService {
 
-    func getHouseSuggestions(userId: Int, completion: @escaping ([HouseSuggestionModel]?, Error?) -> ()) {
+    func getHouseSuggestions(userId: Int, completion: @escaping ([HouseSuggestionModel]?, Error?) -> Void) {
         completion(nil, nil)
     }
 
-    func getHouseSaved(userId: Int, completion: @escaping ([HouseSavedModel]?, Error?) -> ()) {
+    func getHouseSaved(userId: Int, completion: @escaping ([HouseSavedModel]?, Error?) -> Void) {
         completion(nil, nil)
     }
 
