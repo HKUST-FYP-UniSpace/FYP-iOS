@@ -12,8 +12,8 @@ class MasterVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
-        setupGestureRecognizer()
+//        navigationController?.interactivePopGestureRecognizer?.delegate = self
+//        setupGestureRecognizer()
     }
     
     override func viewWillAppear(_ animated: Bool) {

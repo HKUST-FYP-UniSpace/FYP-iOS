@@ -19,7 +19,7 @@ class TestHouseSuggestionModel: HouseSuggestion {
     required init() {
         id = DataStore.shared.randomInt(length: 8)
         title = "Team Awesome"
-        subtitle = "Boys / Pet-free / Casual drinker"
+        subtitle = ["Boys / Pet-free / Casual drinker", "Girls / Pet-friendly / Talk to us"].randomElement()!
         photoURL = Constants.dummyPhotoURL(Constants.cardWidth_L, ratio: 0.75)
         duration = ["3 months", "6 months", "1 year", "2 years"].randomElement()!
     }

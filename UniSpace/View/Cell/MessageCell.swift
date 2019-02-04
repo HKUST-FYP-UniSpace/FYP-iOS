@@ -85,8 +85,6 @@ class MessageCell: UICollectionViewCell, ImageSettable {
 
         for view in views { view.sizeToFit() }
         messagesCountLabel.isHidden = true
-        titleLabel.lineBreakMode = .byTruncatingTail
-        subtitleLabel.lineBreakMode = .byTruncatingTail
     }
 
     override func layoutSubviews() {

@@ -44,6 +44,11 @@ final class EmbeddedSectionController: ListSectionController {
         }
     }
 
+    override func didSelectItem(at index: Int) {
+        guard let data = data as? TradeSellingItemModel else { return }
+        log.debug("Embedded Section Controller", context: data.title)
+    }
+
     override func didUpdate(to object: Any) {
         switch type {
         case .Demo:

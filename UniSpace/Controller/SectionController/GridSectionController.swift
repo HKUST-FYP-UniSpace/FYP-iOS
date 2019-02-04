@@ -68,6 +68,10 @@ final class GridSectionController: ListSectionController {
         }
     }
 
+    override func didSelectItem(at index: Int) {
+        log.debug("Grid Section Controller", context: "Selected index: \(index)")
+    }
+
     override func didUpdate(to object: Any) {
         switch type {
         case .HouseSaved:

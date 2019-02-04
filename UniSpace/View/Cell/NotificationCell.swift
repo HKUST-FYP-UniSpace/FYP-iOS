@@ -62,8 +62,6 @@ class NotificationCell: UICollectionViewCell, ImageSettable {
         subtitleLabel.rightAnchor.constraint(equalTo: timeLabel.leftAnchor, constant: -10).isActive = true
 
         for view in views { view.sizeToFit() }
-        titleLabel.lineBreakMode = .byTruncatingTail
-        subtitleLabel.lineBreakMode = .byTruncatingTail
     }
 
     override func layoutSubviews() {
