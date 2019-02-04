@@ -164,16 +164,14 @@ extension AlamofireService {
         return result ?? []
     }
 
-    func sendLogs(_ urls: [URL], completion: SendRequestResult?) {
+    func sendLogs(_ url: URL, completion: SendRequestResult?) {
         easyUpload(at: .sendLogs(), dataFormation: { (multipartFormData) in
-            for url in urls {
-                let filename = url.lastPathComponent
-                if let log = try? Data(contentsOf: url) {
-                    let name = url.deletingPathExtension().lastPathComponent
-                    multipartFormData.append(log, withName: name, fileName: filename, mimeType: "text/plain")
-                } else {
-                    log.error("File read error", context: filename)
-                }
+            let filename = url.lastPathComponent
+            if let log = try? Data(contentsOf: url) {
+                let name = url.deletingPathExtension().lastPathComponent
+                multipartFormData.append(log, withName: name, fileName: filename, mimeType: "text/plain")
+            } else {
+                log.error("File read error", context: filename)
             }
         }) { (message, error) in
             completion?(message?.message, error)

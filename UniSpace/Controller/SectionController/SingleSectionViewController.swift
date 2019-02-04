@@ -15,9 +15,7 @@ class SingleSectionViewController: MasterVC, ListAdapterDataSource, ListSingleSe
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
     lazy var adapter: ListAdapter = {
-        let adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self)
-        adapter.dataSource = self
-        return adapter
+        return ListAdapter(updater: ListAdapterUpdater(), viewController: self)
     }()
 
     override func viewDidLoad() {
@@ -55,6 +53,6 @@ class SingleSectionViewController: MasterVC, ListAdapterDataSource, ListSingleSe
     }
 
     // MARK: ListSingleSectionControllerDelegate
-    func didSelect(_ sectionController: ListSingleSectionController, with object: Any) { }
+    func didSelect(_ sectionController: ListSingleSectionController, with object: Any) {}
 
 }

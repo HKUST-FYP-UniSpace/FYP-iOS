@@ -77,9 +77,9 @@ class NotificationCell: UICollectionViewCell, ImageSettable {
 
 
     private func setupImageView() {
-        imageView.layer.borderWidth = 2
         imageView.layer.masksToBounds = true
-        imageView.layer.borderColor = Color.theme.cgColor
+//        imageView.layer.borderWidth = 2
+//        imageView.layer.borderColor = Color.theme.cgColor
     }
 
     func setImage(image: UIImage?) {

@@ -52,9 +52,10 @@ public struct Logger {
         removeLogs(daysBefore: 7)
     }
 
-    func sendLogs() {
+    func sendLogs(completion: @escaping ((_ success: Bool) -> Void)) {
         guard Connectivity.isConnectedToInternet else {
             warning("Logger cannot send log", context: "Device is not connected to the Internet")
+            completion(false)
             return
         }
 
@@ -66,7 +67,18 @@ public struct Logger {
             if !filename.hasSuffix(".log") { continue }
             logs.append(element)
         }
-        AlamofireService.shared.sendLogs(logs, completion: nil)
+        logs.sort(by: { $0.lastPathComponent < $1.lastPathComponent })
+
+        let logFileToServer = homeDir.appendingPathComponent("pentagon-mobile.log")
+        do {
+            try FileManager.default.merge(files: logs, to: logFileToServer)
+            AlamofireService.shared.sendLogs(logFileToServer) { (_, error) in
+                try? FileManager.default.removeItem(at: logFileToServer)
+                completion(error == nil)
+            }
+        } catch {
+            completion(false)
+        }
     }
 
 }
@@ -140,4 +152,21 @@ extension Logger {
         return dateFormatter.string(from: Date(timeInterval: -n * 86_400, since: Date()))
     }
 
+}
+
+extension FileManager {
+    func merge(files: [URL], to destination: URL, chunkSize: Int = 1000000) throws {
+        FileManager.default.createFile(atPath: destination.path, contents: nil, attributes: nil)
+        let writer = try FileHandle(forWritingTo: destination)
+        try files.forEach({ partLocation in
+            let reader = try FileHandle(forReadingFrom: partLocation)
+            var data = reader.readData(ofLength: chunkSize)
+            while data.count > 0 {
+                writer.write(data)
+                data = reader.readData(ofLength: chunkSize)
+            }
+            reader.closeFile()
+        })
+        writer.closeFile()
+    }
 }

@@ -13,11 +13,7 @@ final class BlogVC: SingleSectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Blog"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.hidesBarsOnSwipe = true
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.view.backgroundColor = .white
+        navigationController?.navigationBar.isHidden = true
     }
 
     override func loadData() {
