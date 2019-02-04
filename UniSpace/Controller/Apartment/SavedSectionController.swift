@@ -45,7 +45,7 @@ final class SavedSectionController: ListSectionController, ListAdapterDataSource
             let cell = collectionContext?.dequeueReusableCell(of: TitleCell.self, for: self, at: index)
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Saved"
-                cell.subTitleLabel.text = nil
+                cell.subtitleLabel.text = nil
                 cell.setImage(image: nil)
                 return cell
             }

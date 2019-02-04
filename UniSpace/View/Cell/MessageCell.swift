@@ -11,7 +11,7 @@ import UIKit
 class MessageCell: UICollectionViewCell, ImageSettable {
 
     var titleLabel: StandardLabel
-    var subTitleLabel: StandardLabel
+    var subtitleLabel: StandardLabel
     var timeLabel: StandardLabel
     var messagesCountLabel: MessageTypeButton
     var typeLabel: MessageTypeButton
@@ -27,7 +27,7 @@ class MessageCell: UICollectionViewCell, ImageSettable {
 
     override init(frame: CGRect) {
         titleLabel = StandardLabel(color: .darkGray, size: 18, isBold: true)
-        subTitleLabel = StandardLabel(color: .gray, size: 14, isBold: false)
+        subtitleLabel = StandardLabel(color: .gray, size: 14, isBold: false)
         timeLabel = StandardLabel(color: .gray, size: 14, isBold: false, align: .right)
         messagesCountLabel = MessageTypeButton(isNumber: true)
         typeLabel = MessageTypeButton(isNumber: false)
@@ -56,7 +56,7 @@ class MessageCell: UICollectionViewCell, ImageSettable {
 
     private func setupViews() {
         contentView.layer.addSublayer(separator)
-        let views = [titleLabel, subTitleLabel, timeLabel, messagesCountLabel, typeLabel, imageView]
+        let views = [titleLabel, subtitleLabel, timeLabel, messagesCountLabel, typeLabel, imageView]
         for view in views { contentView.addSubview(view) }
 
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -79,14 +79,14 @@ class MessageCell: UICollectionViewCell, ImageSettable {
         timeLabel.rightAnchor.constraint(equalTo: typeLabel.rightAnchor).isActive = true
         timeLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
 
-        subTitleLabel.bottomAnchor.constraint(equalTo: timeLabel.bottomAnchor).isActive = true
-        subTitleLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
-        subTitleLabel.rightAnchor.constraint(equalTo: timeLabel.leftAnchor, constant: -10).isActive = true
+        subtitleLabel.bottomAnchor.constraint(equalTo: timeLabel.bottomAnchor).isActive = true
+        subtitleLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
+        subtitleLabel.rightAnchor.constraint(equalTo: timeLabel.leftAnchor, constant: -10).isActive = true
 
         for view in views { view.sizeToFit() }
         messagesCountLabel.isHidden = true
         titleLabel.lineBreakMode = .byTruncatingTail
-        subTitleLabel.lineBreakMode = .byTruncatingTail
+        subtitleLabel.lineBreakMode = .byTruncatingTail
     }
 
     override func layoutSubviews() {

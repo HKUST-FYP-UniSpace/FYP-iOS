@@ -13,7 +13,7 @@ class HouseSuggestionModel: Decodable, ListDiffable, HouseSuggestion {
 
     var id: Int = 0
     var title: String = ""
-    var subTitle: String = ""
+    var subtitle: String = ""
     var photoURL: String = ""
     var duration: String = ""
 

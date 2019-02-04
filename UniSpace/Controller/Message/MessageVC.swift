@@ -58,7 +58,7 @@ final class MessageVC: SingleSectionViewController {
             guard let cell = cell as? MessageCell, let object = object as? MessageSummaryModel else { return }
             cell.setup(messageType: object.messageType, newMessagesCount: object.unreadMessagesCount)
             cell.titleLabel.text = object.title
-            cell.subTitleLabel.text = object.subTitle
+            cell.subtitleLabel.text = object.subtitle
             cell.timeLabel.text = object.readableTime()
 
             AlamofireService.shared.downloadImageData(at: object.photoURL, downloadProgress: nil) { (data, error) in

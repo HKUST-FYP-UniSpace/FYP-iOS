@@ -57,7 +57,7 @@ final class NotificationVC: SingleSectionViewController {
         let configureBlock = { (item: Any, cell: UICollectionViewCell) in
             guard let cell = cell as? NotificationCell, let object = object as? NotificationSummaryModel else { return }
             cell.titleLabel.text = object.title
-            cell.subTitleLabel.text = object.subTitle
+            cell.subtitleLabel.text = object.subtitle
             cell.timeLabel.text = object.readableTime()
 
             AlamofireService.shared.downloadImageData(at: object.photoURL, downloadProgress: nil) { (data, error) in

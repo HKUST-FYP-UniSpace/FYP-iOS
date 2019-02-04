@@ -13,24 +13,24 @@ final class BlogCell: UICollectionViewCell, ImageSettable {
     fileprivate let imageView = StandardImageView()
     fileprivate let activityView = StandardActivityView()
     let titleLabel = StandardLabel(color: .gray, size: 20, isBold: true)
-    let subTitleLabel = StandardLabel(color: .black, size: 34, isBold: true, numberOfLines: 2)
+    let subtitleLabel = StandardLabel(color: .black, size: 34, isBold: true, numberOfLines: 2)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let views = [imageView, activityView, titleLabel, subTitleLabel]
+        let views = [imageView, activityView, titleLabel, subtitleLabel]
         for view in views { contentView.addSubview(view) }
 
         titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 10).isActive = true
 
-        subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
-        subTitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
-        subTitleLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
+        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
+        subtitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
+        subtitleLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
 
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        imageView.topAnchor.constraint(equalTo: subTitleLabel.bottomAnchor, constant: 20).isActive = true
+        imageView.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 20).isActive = true
         imageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.75).isActive = true
 

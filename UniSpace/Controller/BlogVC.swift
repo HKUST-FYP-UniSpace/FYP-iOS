@@ -28,7 +28,7 @@ final class BlogVC: SingleSectionViewController {
         let configureBlock = { (item: Any, cell: UICollectionViewCell) in
             guard let cell = cell as? BlogCell, let object = object as? BlogSummaryModel else { return }
             cell.titleLabel.text = object.title.uppercased()
-            cell.subTitleLabel.text = object.subTitle
+            cell.subtitleLabel.text = object.subtitle
 
             AlamofireService.shared.downloadImageData(at: object.photoURL, downloadProgress: nil) { (data, error) in
                 guard let data = data else { return }

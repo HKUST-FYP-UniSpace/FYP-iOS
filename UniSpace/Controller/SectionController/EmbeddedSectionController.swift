@@ -113,7 +113,7 @@ extension EmbeddedSectionController {
         }
         cell.setImage(image: nil)
         cell.titleLabel.text = cellData.title
-        cell.subTitleLabel.text = cellData.subTitle
+        cell.subtitleLabel.text = cellData.subtitle
         cell.durationLabel.text = cellData.duration
         return cell
     }

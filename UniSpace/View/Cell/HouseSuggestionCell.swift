@@ -13,12 +13,12 @@ final class HouseSuggestionCell: UICollectionViewCell, ImageSettable {
     fileprivate let imageView = StandardImageView(cornerRadius: 5, hasBackground: true)
     fileprivate let activityView = StandardActivityView(cornerRadius: 5)
     let titleLabel = StandardLabel(color: Color.theme, size: 18, isBold: true)
-    let subTitleLabel = StandardLabel(color: .gray, size: 16, isBold: false)
+    let subtitleLabel = StandardLabel(color: .gray, size: 16, isBold: false)
     let durationLabel = StandardLabel(color: .lightGray, size: 18, isBold: false, align: .right)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let views = [imageView, activityView, titleLabel, subTitleLabel, durationLabel]
+        let views = [imageView, activityView, titleLabel, subtitleLabel, durationLabel]
         for view in views { contentView.addSubview(view) }
 
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -38,9 +38,9 @@ final class HouseSuggestionCell: UICollectionViewCell, ImageSettable {
         durationLabel.leadingAnchor.constraint(equalTo: centerXAnchor).isActive = true
         durationLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
-        subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
-        subTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        subTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
+        subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
         for view in views { view.sizeToFit() }
     }

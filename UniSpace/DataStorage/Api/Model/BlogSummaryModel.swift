@@ -13,7 +13,7 @@ class BlogSummaryModel: Decodable, ListDiffable, BlogSummary {
 
     var id: Int = 0
     var title: String = ""
-    var subTitle: String = ""
+    var subtitle: String = ""
     var photoURL: String = ""
 
     init() {}

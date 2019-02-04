@@ -13,7 +13,7 @@ class NotificationSummaryModel: Decodable, ListDiffable, NotificationSummary {
 
     var id: Int = 0
     var title: String = ""
-    var subTitle: String = ""
+    var subtitle: String = ""
     var time: Double = 0
     var photoURL: String = ""
 

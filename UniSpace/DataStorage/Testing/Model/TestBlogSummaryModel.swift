@@ -12,13 +12,13 @@ class TestBlogSummaryModel: BlogSummary {
 
     var id: Int
     var title: String
-    var subTitle: String
+    var subtitle: String
     var photoURL: String
 
     required init() {
         id = DataStore.shared.randomInt(length: 8)
         title = "Get Started".uppercased()
-        subTitle = ["How to Find the Perfect Apartment", "How to Survive the Apocalypse"].randomElement()!
+        subtitle = ["How to Find the Perfect Apartment", "How to Survive the Apocalypse"].randomElement()!
         photoURL = Constants.dummyPhotoURL(Constants.cardWidth_L, ratio: 0.75)
     }
 
@@ -26,7 +26,7 @@ class TestBlogSummaryModel: BlogSummary {
         let model = BlogSummaryModel()
         model.id = id
         model.title = title
-        model.subTitle = subTitle
+        model.subtitle = subtitle
         model.photoURL = photoURL
         return model
     }

@@ -43,7 +43,7 @@ final class SuggestionSectionController: ListSectionController, ListAdapterDataS
             let cell = collectionContext?.dequeueReusableCell(of: TitleCell.self, for: self, at: index)
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Suggestions"
-                cell.subTitleLabel.text = "Teams that fit you the most"
+                cell.subtitleLabel.text = "Teams that fit you the most"
                 cell.setImage(image: nil)
                 return cell
             }

@@ -12,7 +12,7 @@ class TestMessageSummaryModel: MessageSummary {
 
     var id: Int = 0
     var title: String = ""
-    var subTitle: String = ""
+    var subtitle: String = ""
     var time: Double = 0
     var unreadMessagesCount: Int = 0
     var photoURL: String = ""
@@ -25,7 +25,7 @@ class TestMessageSummaryModel: MessageSummary {
         messageType = type.randomElement()!
         unreadMessagesCount = randomNumber % 2 == 0 ? 0 : randomNumber
         title = ["Derek K.", "Earth Mightiest Heros", "Jessi J.", "T'challa"].randomElement()!
-        subTitle = ["Hey bud, let's make a deal", "Wakanda Forever!", "Super long text that would need to be handled"].randomElement()!
+        subtitle = ["Hey bud, let's make a deal", "Wakanda Forever!", "Super long text that would need to be handled"].randomElement()!
         time = DateManager.shared.randomTime(30)
         photoURL = Constants.dummyPhotoURL(Constants.cardWidth_S, ratio: 1)
     }
@@ -34,7 +34,7 @@ class TestMessageSummaryModel: MessageSummary {
         let model = MessageSummaryModel()
         model.id = id
         model.title = title
-        model.subTitle = subTitle
+        model.subtitle = subtitle
         model.time = time
         model.unreadMessagesCount = unreadMessagesCount
         model.photoURL = photoURL

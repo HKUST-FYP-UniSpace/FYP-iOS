@@ -12,24 +12,24 @@ import UIKit
 final class TitleCell: UICollectionViewCell, ImageSettable {
 
     fileprivate static let titleLabelInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
-    fileprivate static let subTitleLabelInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+    fileprivate static let subtitleLabelInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
     fileprivate let imageView = StandardImageView()
     let titleLabel = StandardLabel(color: .black, size: 34, isBold: true)
-    let subTitleLabel = StandardLabel(color: .gray, size: 20, isBold: true)
+    let subtitleLabel = StandardLabel(color: .gray, size: 20, isBold: true)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(subTitleLabel)
+        contentView.addSubview(subtitleLabel)
         contentView.addSubview(imageView)
 
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
         titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
 
-        subTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-        subTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
-        subTitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+        subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
 
         imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
@@ -37,7 +37,7 @@ final class TitleCell: UICollectionViewCell, ImageSettable {
         imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
 
         titleLabel.sizeToFit()
-        subTitleLabel.sizeToFit()
+        subtitleLabel.sizeToFit()
         imageView.sizeToFit()
         contentView.backgroundColor = .white
     }
@@ -49,7 +49,7 @@ final class TitleCell: UICollectionViewCell, ImageSettable {
     override func layoutSubviews() {
         super.layoutSubviews()
         titleLabel.frame.inset(by: TitleCell.titleLabelInsets)
-        subTitleLabel.frame.inset(by: TitleCell.subTitleLabelInsets)
+        subtitleLabel.frame.inset(by: TitleCell.subtitleLabelInsets)
     }
 
     override var isHighlighted: Bool {
