@@ -15,16 +15,12 @@ final class HouseSavedCell: UICollectionViewCell, ImageSettable {
     let sizeLabel = StandardLabel(color: .gray, size: 10, isBold: true, align: .right)
     fileprivate let imageView = StandardImageView(cornerRadius: 5, hasBackground: true)
     fileprivate let activityView = StandardActivityView()
-    fileprivate let star1ImageView = StandardImageView()
-    fileprivate let star2ImageView = StandardImageView()
-    fileprivate let star3ImageView = StandardImageView()
-    fileprivate let star4ImageView = StandardImageView()
-    fileprivate let star5ImageView = StandardImageView()
+    fileprivate let starRatings = StarRatings(height: 10)
     private let verticalSpacing: CGFloat = 5
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let views = [imageView, activityView, star1ImageView, star2ImageView, star3ImageView, star4ImageView, star5ImageView, titleLabel, priceLabel, sizeLabel]
+        let views = [imageView, activityView, starRatings, titleLabel, priceLabel, sizeLabel]
         for view in views { contentView.addSubview(view) }
 
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -40,13 +36,9 @@ final class HouseSavedCell: UICollectionViewCell, ImageSettable {
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
-        setStarAnchors(starView: star1ImageView, topView: titleLabel, leftView: nil)
-        setStarAnchors(starView: star2ImageView, topView: titleLabel, leftView: star1ImageView)
-        setStarAnchors(starView: star3ImageView, topView: titleLabel, leftView: star2ImageView)
-        setStarAnchors(starView: star4ImageView, topView: titleLabel, leftView: star3ImageView)
-        setStarAnchors(starView: star5ImageView, topView: titleLabel, leftView: star4ImageView)
+        starRatings.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: verticalSpacing).isActive = true
 
-        priceLabel.topAnchor.constraint(equalTo: star1ImageView.bottomAnchor, constant: verticalSpacing).isActive = true
+        priceLabel.topAnchor.constraint(equalTo: starRatings.bottomAnchor, constant: verticalSpacing).isActive = true
         priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         priceLabel.trailingAnchor.constraint(equalTo: centerXAnchor).isActive = true
 
@@ -76,21 +68,7 @@ final class HouseSavedCell: UICollectionViewCell, ImageSettable {
     }
 
     func setStarRating(rating: Int) {
-        let stars = [star1ImageView, star2ImageView, star3ImageView, star4ImageView, star5ImageView]
-        for (index, star) in stars.enumerated() {
-            star.image = index < rating ? UIImage(named: "Star") : UIImage(named: "Star_gray")
-        }
-    }
-
-    private func setStarAnchors(starView: UIView, topView: UIView, leftView: UIView?) {
-        if let leftView = leftView {
-            starView.leadingAnchor.constraint(equalTo: leftView.trailingAnchor, constant: 2).isActive = true
-        } else {
-            starView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        }
-        starView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: verticalSpacing).isActive = true
-        starView.widthAnchor.constraint(equalToConstant: 10).isActive = true
-        starView.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        starRatings.setStarRating(rating: rating)
     }
 
 }

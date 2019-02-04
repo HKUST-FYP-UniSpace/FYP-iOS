@@ -21,7 +21,7 @@ class StandardLabel: UILabel {
         super.init(frame: CGRect.zero)
 
         self.text = text
-        self.lineBreakMode = numberOfLines == 1 ? .byTruncatingTail : .byWordWrapping
+        self.lineBreakMode = .byTruncatingTail
         self.numberOfLines = numberOfLines
         self.textAlignment = align
         self.backgroundColor = .clear
