@@ -12,13 +12,14 @@ final class HouseSuggestionCell: UICollectionViewCell, ImageSettable {
 
     fileprivate let imageView = StandardImageView(cornerRadius: 5, hasBackground: true)
     fileprivate let activityView = StandardActivityView(cornerRadius: 5)
+    fileprivate let groupSize = GroupSizeView()
     let titleLabel = StandardLabel(color: Color.theme, size: 18, isBold: true)
     let subtitleLabel = StandardLabel(color: .gray, size: 16, isBold: false)
     let durationLabel = StandardLabel(color: .lightGray, size: 18, isBold: false, align: .right)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let views = [imageView, activityView, titleLabel, subtitleLabel, durationLabel]
+        let views = [imageView, activityView, groupSize, titleLabel, subtitleLabel, durationLabel]
         for view in views { contentView.addSubview(view) }
 
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -29,6 +30,9 @@ final class HouseSuggestionCell: UICollectionViewCell, ImageSettable {
 
         activityView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
         activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
+
+        groupSize.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 10).isActive = true
+        groupSize.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -10).isActive = true
 
         titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -68,6 +72,10 @@ final class HouseSuggestionCell: UICollectionViewCell, ImageSettable {
         } else {
             activityView.startAnimating()
         }
+    }
+
+    func createGroup(occupiedCount: Int, size: Int) {
+        groupSize.create(occupiedCount: occupiedCount, size: size)
     }
 
 }

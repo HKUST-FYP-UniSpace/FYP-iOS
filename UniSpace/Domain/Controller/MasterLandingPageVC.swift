@@ -20,6 +20,10 @@ class MasterLandingPageVC: MasterVC, UISearchBarDelegate {
         searchBar.delegate = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         let cancelSearchBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelBarButtonItemClicked))
         self.navigationItem.setRightBarButton(cancelSearchBarButtonItem, animated: true)

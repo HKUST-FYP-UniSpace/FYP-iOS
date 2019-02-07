@@ -18,4 +18,12 @@ extension AlamofireService: HouseService {
         completion(nil, nil)
     }
 
+    func getHouseList(userId: Int, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
+        completion(nil, nil)
+    }
+
+    func getHouseView(houseId: Int, completion: @escaping (HouseViewModel?, Error?) -> Void) {
+        completion(nil, nil)
+    }
+
 }

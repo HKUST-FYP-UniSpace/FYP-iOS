@@ -121,6 +121,7 @@ extension EmbeddedSectionController {
         cell.titleLabel.text = cellData.title
         cell.subtitleLabel.text = cellData.subtitle
         cell.durationLabel.text = cellData.duration
+        cell.createGroup(occupiedCount: cellData.occupiedCount, size: cellData.groupSize)
         return cell
     }
 }

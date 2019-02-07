@@ -13,6 +13,8 @@ class TestHouseSuggestionModel: HouseSuggestion {
     var id: Int
     var title: String
     var subtitle: String
+    var groupSize: Int
+    var occupiedCount: Int
     var photoURL: String
     var duration: String
 
@@ -20,6 +22,8 @@ class TestHouseSuggestionModel: HouseSuggestion {
         id = DataStore.shared.randomInt(length: 8)
         title = "Team Awesome"
         subtitle = ["Boys / Pet-free / Casual drinker", "Girls / Pet-friendly / Talk to us"].randomElement()!
+        groupSize = Int.random(in: 2..<6)
+        occupiedCount = Int.random(in: 1..<groupSize)
         photoURL = Constants.dummyPhotoURL(Constants.cardWidth_L, ratio: 0.75)
         duration = ["3 months", "6 months", "1 year", "2 years"].randomElement()!
     }
@@ -29,6 +33,8 @@ class TestHouseSuggestionModel: HouseSuggestion {
         model.id = id
         model.title = title
         model.subtitle = subtitle
+        model.groupSize = groupSize
+        model.occupiedCount = occupiedCount
         model.photoURL = photoURL
         model.duration = duration
         return model

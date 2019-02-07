@@ -1,15 +1,15 @@
 //
-//  ApartmentVC.swift
+//  ApartmentSummaryVC.swift
 //  UniSpace
 //
-//  Created by KiKan Ng on 17/11/2018.
-//  Copyright © 2018 KiKan Ng. All rights reserved.
+//  Created by KiKan Ng on 6/2/2019.
+//  Copyright © 2019 KiKan Ng. All rights reserved.
 //
 
 import IGListKit
 import UIKit
 
-final class ApartmentVC: MasterLandingPageVC, ListAdapterDataSource {
+final class ApartmentSummaryVC: MasterLandingPageVC, ListAdapterDataSource {
 
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 1)
@@ -17,7 +17,7 @@ final class ApartmentVC: MasterLandingPageVC, ListAdapterDataSource {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
-    let data: [HouseHomepageModel] = [HouseHomepageModel()]
+    lazy var data: HouseViewModel? = HouseViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,39 +38,21 @@ final class ApartmentVC: MasterLandingPageVC, ListAdapterDataSource {
     }
 
     private func loadData() {
-        var suggestions: [HouseSuggestionModel] = []
-        var saved: [HouseSavedModel] = []
-
-        let group = DispatchGroup()
-        group.enter()
-        DataStore.shared.getHouseSuggestions { (models, error) in
-            suggestions = models ?? []
-            group.leave()
-        }
-
-        group.enter()
-        DataStore.shared.getHouseSaved { (models, error) in
-            saved = models ?? []
-            group.leave()
-        }
-
-        group.notify(queue: .main) {
-            self.data[0].suggestions = suggestions
-            self.data[0].saved = saved
-            self.adapter.reloadData(completion: nil)
+        DataStore.shared.getHouseView(houseId: 0) { (model, error) in
+            self.data = model
         }
     }
 
     // MARK: ListAdapterDataSource
 
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return data as [ListDiffable]
+        return data == nil ? [] : [data!]
     }
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         var sectionControllers: [ListSectionController] = []
-        if data[0].suggestions.count != 0 { sectionControllers.append(SuggestionSectionController()) }
-        if data[0].saved.count != 0 { sectionControllers.append(SavedSectionController()) }
+        if data?.titleView != nil { sectionControllers.append(SuggestionSectionController())}
+        sectionControllers.append(SuggestionSectionController())
         let sectionController = ListStackedSectionController(sectionControllers: sectionControllers)
         sectionController.inset = UIEdgeInsets(top: 40, left: 0, bottom: 40, right: 0)
         return sectionController

@@ -22,4 +22,17 @@ extension TestService: HouseService {
         delay { completion(summaries, nil) }
     }
 
+    func getHouseList(userId: Int, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
+        var summaries: [HouseListModel]? = []
+        for _ in 0..<20 { summaries?.append(TestHouseListModel().toModel()) }
+        delay { completion(summaries, nil) }
+    }
+
+    func getHouseView(houseId: Int, completion: @escaping (HouseViewModel?, Error?) -> Void) {
+        var teams: [HouseTeamSummaryModel] = []
+        for _ in 0..<20 { teams.append(TestHouseTeamSummaryModel().toModel()) }
+        let model = HouseViewModel(titleView: TestHouseListModel().toModel(), teams: teams)
+        delay { completion(model, nil) }
+    }
+
 }

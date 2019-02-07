@@ -15,7 +15,7 @@ final class HouseSavedCell: UICollectionViewCell, ImageSettable {
     let sizeLabel = StandardLabel(color: .gray, size: 10, isBold: true, align: .right)
     fileprivate let imageView = StandardImageView(cornerRadius: 5, hasBackground: true)
     fileprivate let activityView = StandardActivityView()
-    fileprivate let starRatings = StarRatings(height: 10)
+    fileprivate let starRatings = StarRatingsView(height: 10)
     private let verticalSpacing: CGFloat = 5
 
     override init(frame: CGRect) {

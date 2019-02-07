@@ -14,8 +14,8 @@ final class HouseListCell: UICollectionViewCell, ImageSettable {
     let titleLabel = StandardLabel(color: .black, size: 16, isBold: true)
     let priceLabel = StandardLabel(color: .lightGray, size: 14, isBold: false)
     let sizeLabel = StandardLabel(color: .lightGray, size: 14, isBold: false, align: .right)
-    let subtitleLabel = StandardLabel(color: .gray, size: 14, isBold: false, numberOfLines: 3)
-    let starRatings = StarRatings(height: 16)
+    let subtitleLabel = StandardLabel(color: .gray, size: 14, isBold: false, numberOfLines: 2)
+    let starRatings = StarRatingsView(height: 16)
 
     let separator: CALayer = {
         let layer = CALayer()
@@ -36,22 +36,22 @@ final class HouseListCell: UICollectionViewCell, ImageSettable {
         imageView.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: imageHeight).isActive = true
 
-        starRatings.topAnchor.constraint(equalTo: imageView.topAnchor).isActive = true
-        starRatings.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
-
-        titleLabel.centerYAnchor.constraint(equalTo: starRatings.centerYAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: imageView.topAnchor).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 10).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: starRatings.leftAnchor, constant: -10).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
+
+        starRatings.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
+        starRatings.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
 
         priceLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
-        priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
+        priceLabel.topAnchor.constraint(equalTo: starRatings.bottomAnchor, constant: 5).isActive = true
 
-        sizeLabel.rightAnchor.constraint(equalTo: starRatings.rightAnchor).isActive = true
+        sizeLabel.rightAnchor.constraint(equalTo: titleLabel.rightAnchor).isActive = true
         sizeLabel.topAnchor.constraint(equalTo: priceLabel.topAnchor).isActive = true
 
         subtitleLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 5).isActive = true
         subtitleLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
-        subtitleLabel.rightAnchor.constraint(equalTo: starRatings.rightAnchor).isActive = true
+        subtitleLabel.rightAnchor.constraint(equalTo: titleLabel.rightAnchor).isActive = true
 
         for view in views { view.sizeToFit() }
     }
