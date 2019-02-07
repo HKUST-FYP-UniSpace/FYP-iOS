@@ -1,5 +1,5 @@
 //
-//  HouseSummaryTeamCell.swift
+//  HouseTeamSummaryCell.swift
 //  UniSpace
 //
 //  Created by KiKan Ng on 4/2/2019.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-final class HouseSummaryTeamCell: UICollectionViewCell {
+final class HouseTeamSummaryCell: UICollectionViewCell {
 
     let titleLabel = StandardLabel(color: Color.theme, size: 18, isBold: true)
     let priceLabel = StandardLabel(color: .lightGray, size: 16, isBold: false)
     let durationLabel = StandardLabel(color: .lightGray, size: 16, isBold: false)
-    let subtitleLabel = StandardLabel(color: .lightGray, size: 16, isBold: false, numberOfLines: 2)
+    let subtitleLabel = StandardLabel(color: .lightGray, size: 16, isBold: false)
     fileprivate let groupSize = GroupSizeView(height: 26)
 
     let separator: CALayer = {
@@ -30,10 +30,10 @@ final class HouseSummaryTeamCell: UICollectionViewCell {
         let views = [titleLabel, priceLabel, durationLabel, subtitleLabel, groupSize]
         for view in views { contentView.addSubview(view) }
 
-        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: seperateDis).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: seperateDis * 2).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: seperateDis * 2).isActive = true
 
-        groupSize.topAnchor.constraint(equalTo: topAnchor, constant: seperateDis * 2).isActive = true
+        groupSize.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: seperateDis).isActive = true
         groupSize.rightAnchor.constraint(equalTo: rightAnchor, constant: -seperateDis * 4).isActive = true
 
         priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: seperateDis).isActive = true

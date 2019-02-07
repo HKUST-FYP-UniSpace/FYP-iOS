@@ -34,7 +34,7 @@ final class HouseListCell: UICollectionViewCell, ImageSettable {
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 5).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: imageHeight).isActive = true
+        imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 4/3).isActive = true
 
         titleLabel.topAnchor.constraint(equalTo: imageView.topAnchor).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 10).isActive = true

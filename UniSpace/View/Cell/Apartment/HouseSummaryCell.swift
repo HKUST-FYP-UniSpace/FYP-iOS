@@ -11,8 +11,8 @@ import UIKit
 final class HouseSummaryCell: UICollectionViewCell, ImageSettable {
 
     fileprivate let imageView = StandardImageView(hasBackground: true)
-    fileprivate let activityView = StandardActivityView(cornerRadius: 5)
-    let titleLabel = StandardLabel(color: .black, size: 18, isBold: true)
+    fileprivate let activityView = StandardActivityView()
+    let titleLabel = StandardLabel(color: .darkGray, size: 18, isBold: true)
     let priceLabel = StandardLabel(color: .lightGray, size: 16, isBold: false)
     let sizeLabel = StandardLabel(color: .lightGray, size: 16, isBold: false, align: .right)
     let subtitleLabel = StandardLabel(color: .gray, size: 16, isBold: false, numberOfLines: 2)

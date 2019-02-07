@@ -35,4 +35,12 @@ extension TestService: HouseService {
         delay { completion(model, nil) }
     }
 
+    func getTeamView(teamId: Int, completion: @escaping (TeamSummaryViewModel?, Error?) -> Void) {
+        var teamMembers: [TeamMemberModel] = []
+        teamMembers.append(TestTeamMemberModel(name: "Jane Doe", role: .Leader).toModel())
+        teamMembers.append(TestTeamMemberModel(name: "Jon Stewart", role: .Member).toModel())
+        let model = TeamSummaryViewModel(teamView: TestHouseTeamSummaryModel().toModel(), teamMembers: teamMembers)
+        delay { completion(model, nil) }
+    }
+
 }

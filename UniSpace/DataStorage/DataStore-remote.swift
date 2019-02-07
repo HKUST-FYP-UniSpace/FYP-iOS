@@ -60,6 +60,10 @@ extension DataStore {
         Service().getHouseView(houseId: houseId, completion: completion)
     }
 
+    func getTeamView(teamId: Int, completion: @escaping (TeamSummaryViewModel?, Error?) -> Void) {
+        Service().getTeamView(teamId: teamId, completion: completion)
+    }
+
     func getTradeFeatured(completion: @escaping (_ summaries: [TradeFeaturedModel]?, _ error: Error?) -> ()) {
         let userId = DataStore.shared.user?.id ?? -1
         Service().getTradeFeatured(userId: userId, completion: completion)

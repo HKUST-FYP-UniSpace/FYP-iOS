@@ -15,3 +15,9 @@ protocol ImageSettable {
 protocol PhotoShowable {
     var photoURL: String { get set }
 }
+
+protocol PhotoURL {
+    var S: String { get set }
+    var M: String { get set }
+    var L: String { get set }
+}

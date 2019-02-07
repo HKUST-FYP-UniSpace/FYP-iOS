@@ -14,4 +14,5 @@ protocol HouseService: class {
     func getHouseSaved(userId: Int, completion: @escaping (_ summaries: [HouseListModel]?, _ error: Error?) -> Void)
     func getHouseList(userId: Int, completion: @escaping (_ summaries: [HouseListModel]?, _ error: Error?) -> Void)
     func getHouseView(houseId: Int, completion: @escaping (_ model: HouseViewModel?, _ error: Error?) -> Void)
+    func getTeamView(teamId: Int, completion: @escaping (_ model: TeamSummaryViewModel?, _ error: Error?) -> Void)
 }

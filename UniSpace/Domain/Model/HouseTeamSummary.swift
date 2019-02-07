@@ -15,6 +15,7 @@ protocol HouseTeamSummary {
     var price: Int { get set }
     var duration: String { get set }
     var subtitle: String { get set }
+    var description: String { get set }
     var groupSize: Int { get set }
     var occupiedCount: Int { get set }
 

@@ -14,7 +14,7 @@ enum MessageType: CaseIterable {
     case Trade
     case Request
 
-    func getName() -> String {
+    var name: String {
         switch self {
         case .Owner: return "Owner"
         case .Team: return "Team"
@@ -23,7 +23,7 @@ enum MessageType: CaseIterable {
         }
     }
 
-    func getColor() -> UIColor {
+    var color: UIColor {
         switch self {
         case .Owner: return UIColor(r: 238, g: 200, b: 87)
         case .Team: return UIColor(r: 75, g: 177, b: 157)

@@ -11,7 +11,7 @@ import UIKit
 final class HouseSuggestionCell: UICollectionViewCell, ImageSettable {
 
     fileprivate let imageView = StandardImageView(cornerRadius: 5, hasBackground: true)
-    fileprivate let activityView = StandardActivityView(cornerRadius: 5)
+    fileprivate let activityView = StandardActivityView()
     fileprivate let groupSize = GroupSizeView(height: 36)
     let titleLabel = StandardLabel(color: Color.theme, size: 18, isBold: true)
     let subtitleLabel = StandardLabel(color: .gray, size: 16, isBold: false)

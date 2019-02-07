@@ -14,7 +14,7 @@ class StandardActivityView: UIActivityIndicatorView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(cornerRadius: CGFloat = 5) {
+    init() {
         super.init(style: .gray)
         self.startAnimating()
         self.backgroundColor = .clear

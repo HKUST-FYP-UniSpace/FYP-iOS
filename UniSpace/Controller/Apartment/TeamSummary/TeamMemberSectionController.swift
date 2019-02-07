@@ -1,18 +1,18 @@
 //
-//  ApartmentTeamSummarySectionController.swift
+//  TeamMemberSectionController.swift
 //  UniSpace
 //
-//  Created by KiKan Ng on 6/2/2019.
+//  Created by KiKan Ng on 8/2/2019.
 //  Copyright © 2019 KiKan Ng. All rights reserved.
 //
 
 import IGListKit
 import UIKit
 
-final class ApartmentTeamSummarySectionController: ListSectionController, ListAdapterDataSource {
+final class TeamMemberSectionController: ListSectionController, ListAdapterDataSource {
 
     var contentOffset: CGFloat = 0
-    private var models: [HouseTeamSummaryModel]?
+    private var models: [TeamMemberModel]?
     private var cellSpacing: CGFloat = 10
 
     lazy var adapter: ListAdapter = {
@@ -32,7 +32,7 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
             return CGSize(width: collectionContext!.containerSize.width, height: 30)
         case 1:
             let teamCount = models?.count ?? 0
-            return CGSize(width: collectionContext!.containerSize.width, height: 100 * CGFloat(teamCount))
+            return CGSize(width: collectionContext!.containerSize.width, height: 80 * CGFloat(teamCount))
         case 2:
             return CGSize(width: collectionContext!.containerSize.width, height: 40)
         default:
@@ -45,7 +45,7 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
         case 0:
             let cell = collectionContext?.dequeueReusableCell(of: SectionHeaderCell.self, for: self, at: index)
             if let cell = cell as? SectionHeaderCell {
-                cell.titleLabel.text = "Teams"
+                cell.titleLabel.text = "Members"
                 return cell
             }
             fatalError()
@@ -63,7 +63,7 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
             let cell = collectionContext?.dequeueReusableCell(of: ButtonCell.self, for: self, at: index)
             if let cell = cell as? ButtonCell {
                 cell.delegate = self
-                cell.button.setTitle("Create Team", for: .normal)
+                cell.button.setTitle("Join Team", for: .normal)
                 return cell
             }
             fatalError()
@@ -73,8 +73,8 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
     }
 
     override func didUpdate(to object: Any) {
-        let object = object as? HouseViewModel
-        models = object?.teams
+        let object = object as? TeamSummaryViewModel
+        models = object?.teamMembers
     }
 
     // MARK: ListAdapterDataSource
@@ -84,7 +84,7 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
     }
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        return RowSectionController(type: .HouseSummaryTeam)
+        return RowSectionController(type: .TeamMembers)
     }
 
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
@@ -92,7 +92,7 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
     }
 }
 
-extension ApartmentTeamSummarySectionController: ButtonCellDelegate {
+extension TeamMemberSectionController: ButtonCellDelegate {
     func buttonCell(pressedButton sender: UIButton) {
     }
 }

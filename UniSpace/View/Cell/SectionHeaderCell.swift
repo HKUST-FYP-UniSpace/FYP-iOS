@@ -11,7 +11,7 @@ import UIKit
 
 final class SectionHeaderCell: UICollectionViewCell {
 
-    let titleLabel = StandardLabel(color: Color.theme, size: 12, isBold: false)
+    let titleLabel = StandardLabel(color: .gray, size: 12, isBold: false)
     private let seperateDis: CGFloat = 10
 
     override init(frame: CGRect) {

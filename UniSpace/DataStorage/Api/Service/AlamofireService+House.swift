@@ -26,4 +26,8 @@ extension AlamofireService: HouseService {
         completion(nil, nil)
     }
 
+    func getTeamView(teamId: Int, completion: @escaping (TeamSummaryViewModel?, Error?) -> Void) {
+        completion(nil, nil)
+    }
+
 }

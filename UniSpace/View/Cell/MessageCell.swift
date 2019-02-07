@@ -17,7 +17,7 @@ class MessageCell: UICollectionViewCell, ImageSettable {
     var typeLabel: MessageTypeButton
     var imageView: StandardImageView
 
-    let separator: CALayer = {
+    fileprivate let separator: CALayer = {
         let layer = CALayer()
         layer.backgroundColor = UIColor(red: 200 / 255.0, green: 199 / 255.0, blue: 204 / 255.0, alpha: 1).cgColor
         return layer
@@ -39,12 +39,12 @@ class MessageCell: UICollectionViewCell, ImageSettable {
     }
 
     func setup(messageType: MessageType, newMessagesCount: Int = 0) {
-        typeLabel.setType(title: messageType.getName(), color: messageType.getColor())
-        imageView.layer.borderColor = messageType.getColor().cgColor
+        typeLabel.setType(title: messageType.name, color: messageType.color)
+        imageView.layer.borderColor = messageType.color.cgColor
 
         if newMessagesCount > 0 {
             messagesCountLabel.isHidden = false
-            messagesCountLabel.setType(title: "\(newMessagesCount)", color: messageType.getColor())
+            messagesCountLabel.setType(title: "\(newMessagesCount)", color: messageType.color)
         } else {
             messagesCountLabel.isHidden = true
         }
