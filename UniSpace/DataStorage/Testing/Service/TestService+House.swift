@@ -16,9 +16,9 @@ extension TestService: HouseService {
         delay { completion(summaries, nil) }
     }
 
-    func getHouseSaved(userId: Int, completion: @escaping ([HouseSavedModel]?, Error?) -> Void) {
-        var summaries: [HouseSavedModel]? = []
-        for _ in 0..<4 { summaries?.append(TestHouseSavedModel().toModel()) }
+    func getHouseSaved(userId: Int, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
+        var summaries: [HouseListModel]? = []
+        for _ in 0..<4 { summaries?.append(TestHouseListModel().toModel()) }
         delay { completion(summaries, nil) }
     }
 
@@ -30,7 +30,7 @@ extension TestService: HouseService {
 
     func getHouseView(houseId: Int, completion: @escaping (HouseViewModel?, Error?) -> Void) {
         var teams: [HouseTeamSummaryModel] = []
-        for _ in 0..<20 { teams.append(TestHouseTeamSummaryModel().toModel()) }
+        for _ in 0..<4 { teams.append(TestHouseTeamSummaryModel().toModel()) }
         let model = HouseViewModel(titleView: TestHouseListModel().toModel(), teams: teams)
         delay { completion(model, nil) }
     }

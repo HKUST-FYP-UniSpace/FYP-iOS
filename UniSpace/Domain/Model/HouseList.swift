@@ -16,6 +16,7 @@ protocol HouseList: PhotoShowable {
     var size: Int { get set }
     var starRating: Int { get set }
     var subtitle: String { get set }
+    var address: String { get set }
     var photoURL: String { get set }
 
 }

@@ -17,6 +17,7 @@ class HouseListModel: Decodable, ListDiffable, HouseList {
     var size: Int = 0
     var starRating: Int = 0
     var subtitle: String = ""
+    var address: String = ""
     var photoURL: String = ""
 
     init() {}

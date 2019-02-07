@@ -10,11 +10,11 @@ import UIKit
 
 final class HouseSummaryTeamCell: UICollectionViewCell {
 
-    let titleLabel = StandardLabel(color: .black, size: 18, isBold: true)
+    let titleLabel = StandardLabel(color: Color.theme, size: 18, isBold: true)
     let priceLabel = StandardLabel(color: .lightGray, size: 16, isBold: false)
-    let durationLabel = StandardLabel(color: .lightGray, size: 16, isBold: false, align: .right)
-    let subtitleLabel = StandardLabel(color: .gray, size: 16, isBold: false, numberOfLines: 2)
-    let groupSize = StarRatingsView(height: 16)
+    let durationLabel = StandardLabel(color: .lightGray, size: 16, isBold: false)
+    let subtitleLabel = StandardLabel(color: .lightGray, size: 16, isBold: false, numberOfLines: 2)
+    fileprivate let groupSize = GroupSizeView(height: 26)
 
     let separator: CALayer = {
         let layer = CALayer()
@@ -22,18 +22,19 @@ final class HouseSummaryTeamCell: UICollectionViewCell {
         return layer
     }()
 
-    private let seperateDis: CGFloat = 10
+    private let seperateDis: CGFloat = 5
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.layer.addSublayer(separator)
         let views = [titleLabel, priceLabel, durationLabel, subtitleLabel, groupSize]
         for view in views { contentView.addSubview(view) }
 
         titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: seperateDis).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: seperateDis).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: seperateDis * 2).isActive = true
 
-        groupSize.topAnchor.constraint(equalTo: titleLabel.topAnchor).isActive = true
-        groupSize.rightAnchor.constraint(equalTo: rightAnchor, constant: -seperateDis).isActive = true
+        groupSize.topAnchor.constraint(equalTo: topAnchor, constant: seperateDis * 2).isActive = true
+        groupSize.rightAnchor.constraint(equalTo: rightAnchor, constant: -seperateDis * 4).isActive = true
 
         priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: seperateDis).isActive = true
         priceLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
@@ -58,6 +59,10 @@ final class HouseSummaryTeamCell: UICollectionViewCell {
         let height: CGFloat = 0.5
         let left: CGFloat = 15
         separator.frame = CGRect(x: left, y: 0, width: bounds.width - left, height: height)
+    }
+
+    func createGroup(occupiedCount: Int, size: Int) {
+        groupSize.create(occupiedCount: occupiedCount, size: size)
     }
 
 }

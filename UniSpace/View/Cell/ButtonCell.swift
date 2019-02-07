@@ -9,13 +9,19 @@
 import IGListKit
 import UIKit
 
+protocol ButtonCellDelegate: class {
+    func buttonCell(pressedButton sender: UIButton)
+}
+
 final class ButtonCell: UICollectionViewCell {
 
+    weak var delegate: ButtonCellDelegate?
     let button = StandardButton()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(button)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         button.topAnchor.constraint(equalTo: topAnchor).isActive = true
         button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
         button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
@@ -39,13 +45,8 @@ final class ButtonCell: UICollectionViewCell {
         }
     }
 
-}
-
-extension ButtonCell: ListBindable {
-
-    func bindViewModel(_ viewModel: Any) {
-//        guard let viewModel = viewModel as? String else { return }
-//        ButtonCell.text = viewModel
+    @objc func buttonAction(sender: UIButton) {
+        delegate?.buttonCell(pressedButton: sender)
     }
 
 }

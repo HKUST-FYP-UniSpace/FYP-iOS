@@ -39,7 +39,7 @@ final class ApartmentVC: MasterLandingPageVC, ListAdapterDataSource {
 
     private func loadData() {
         var suggestions: [HouseSuggestionModel] = []
-        var saved: [HouseSavedModel] = []
+        var saved: [HouseListModel] = []
 
         let group = DispatchGroup()
         group.enter()

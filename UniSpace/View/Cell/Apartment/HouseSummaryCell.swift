@@ -10,19 +10,19 @@ import UIKit
 
 final class HouseSummaryCell: UICollectionViewCell, ImageSettable {
 
-    fileprivate let imageView = StandardImageView(cornerRadius: 5, hasBackground: true)
+    fileprivate let imageView = StandardImageView(hasBackground: true)
     fileprivate let activityView = StandardActivityView(cornerRadius: 5)
     let titleLabel = StandardLabel(color: .black, size: 18, isBold: true)
     let priceLabel = StandardLabel(color: .lightGray, size: 16, isBold: false)
     let sizeLabel = StandardLabel(color: .lightGray, size: 16, isBold: false, align: .right)
     let subtitleLabel = StandardLabel(color: .gray, size: 16, isBold: false, numberOfLines: 2)
-    let starRatings = StarRatingsView(height: 16)
+    fileprivate let starRatings = StarRatingsView(height: 16)
 
     private let seperateDis: CGFloat = 10
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let views = [imageView, titleLabel, priceLabel, sizeLabel, subtitleLabel, starRatings]
+        let views = [imageView, activityView, titleLabel, priceLabel, sizeLabel, subtitleLabel, starRatings]
         for view in views { contentView.addSubview(view) }
 
         imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -59,7 +59,15 @@ final class HouseSummaryCell: UICollectionViewCell, ImageSettable {
 
     func setImage(image: UIImage?) {
         imageView.image = image
-        imageView.backgroundColor = .clear
+        if image != nil {
+            activityView.stopAnimating()
+        } else {
+            activityView.startAnimating()
+        }
+    }
+
+    func setStarRating(rating: Int) {
+        starRatings.setStarRating(rating: rating)
     }
 
 }

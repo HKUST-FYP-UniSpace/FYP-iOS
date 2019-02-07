@@ -11,7 +11,7 @@ import UIKit
 class GroupSizeView: UIView {
 
     private let width: CGFloat = 8
-    private let height: CGFloat = 36
+    private let height: CGFloat
     private let first: StandardImageView
     private var views: [StandardImageView] = []
 
@@ -19,7 +19,8 @@ class GroupSizeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init() {
+    init(height: CGFloat) {
+        self.height = height
         first = StandardImageView(cornerRadius: width / 2)
         super.init(frame: CGRect.zero)
         addSubview(first)

@@ -62,6 +62,7 @@ final class TradeFeaturedSectionController: ListSectionController, ListAdapterDa
         case 2:
             let cell = collectionContext?.dequeueReusableCell(of: ButtonCell.self, for: self, at: index)
             if let cell = cell as? ButtonCell {
+                cell.delegate = self
                 cell.button.setTitle("See All", for: .normal)
                 return cell
             }
@@ -87,5 +88,10 @@ final class TradeFeaturedSectionController: ListSectionController, ListAdapterDa
 
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return nil
+    }
+}
+
+extension TradeFeaturedSectionController: ButtonCellDelegate {
+    func buttonCell(pressedButton sender: UIButton) {
     }
 }

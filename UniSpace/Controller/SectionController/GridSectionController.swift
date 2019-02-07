@@ -45,7 +45,7 @@ final class GridSectionController: ListSectionController {
         guard let data = data else { fatalError() }
         switch type {
         case .HouseSaved:
-            guard let cell = collectionContext?.dequeueReusableCell(of: HouseSavedCell.self, for: self, at: index) as? HouseSavedCell, let cellData = data[index] as? HouseSavedModel else {
+            guard let cell = collectionContext?.dequeueReusableCell(of: HouseSavedCell.self, for: self, at: index) as? HouseSavedCell, let cellData = data[index] as? HouseListModel else {
                 fatalError()
             }
             cell.setImage(image: nil)
@@ -69,7 +69,12 @@ final class GridSectionController: ListSectionController {
     }
 
     override func didSelectItem(at index: Int) {
-        log.debug("Grid Section Controller", context: "Selected index: \(index)")
+        if let data = data?[0] as? HouseListModel {
+            let vc = ApartmentSummaryVC()
+            vc.houseId = data.id
+            viewController?.navigationController?.pushViewController(vc, animated: true)
+            return
+        }
     }
 
     override func didUpdate(to object: Any) {

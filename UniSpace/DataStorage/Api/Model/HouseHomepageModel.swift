@@ -13,7 +13,7 @@ class HouseHomepageModel: ListDiffable {
 
     var id: Int
     var suggestions: [HouseSuggestionModel] = []
-    var saved: [HouseSavedModel] = []
+    var saved: [HouseListModel] = []
 
     init() {
         id = DataStore.shared.randomInt(length: 8)

@@ -158,6 +158,8 @@
 		6DFE1DBD220AE1A80012E8A2 /* HouseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1DBC220AE1A80012E8A2 /* HouseViewModel.swift */; };
 		6DFE1DBF220AE7940012E8A2 /* ApartmentTitleViewSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1DBE220AE7940012E8A2 /* ApartmentTitleViewSectionController.swift */; };
 		6DFE1DC1220AE7A80012E8A2 /* ApartmentTeamSummarySectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1DC0220AE7A80012E8A2 /* ApartmentTeamSummarySectionController.swift */; };
+		6DFE1DC3220C31A60012E8A2 /* SectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1DC2220C31A60012E8A2 /* SectionHeaderCell.swift */; };
+		6DFE1DC5220C33850012E8A2 /* RowSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFE1DC4220C33850012E8A2 /* RowSectionController.swift */; };
 		B11DE1D56DED5120FC54DDA8 /* Pods_UniSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF3EE884EB625F551874B2A4 /* Pods_UniSpace.framework */; };
 /* End PBXBuildFile section */
 
@@ -336,6 +338,8 @@
 		6DFE1DBC220AE1A80012E8A2 /* HouseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseViewModel.swift; sourceTree = "<group>"; };
 		6DFE1DBE220AE7940012E8A2 /* ApartmentTitleViewSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentTitleViewSectionController.swift; sourceTree = "<group>"; };
 		6DFE1DC0220AE7A80012E8A2 /* ApartmentTeamSummarySectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentTeamSummarySectionController.swift; sourceTree = "<group>"; };
+		6DFE1DC2220C31A60012E8A2 /* SectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderCell.swift; sourceTree = "<group>"; };
+		6DFE1DC4220C33850012E8A2 /* RowSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowSectionController.swift; sourceTree = "<group>"; };
 		79FF517C0BD513CA5B8A9385 /* Pods-UniSpace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniSpace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniSpace/Pods-UniSpace.debug.xcconfig"; sourceTree = "<group>"; };
 		7BEEF90143DC5F19D8315615 /* Pods-UniSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniSpace/Pods-UniSpace.release.xcconfig"; sourceTree = "<group>"; };
 		8D647634F5983AFF4C73BC4E /* Pods-UniSpaceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniSpaceUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniSpaceUITests/Pods-UniSpaceUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -406,6 +410,7 @@
 				6D52818421EF1368007A4508 /* MessageCell.swift */,
 				6DFE1D8F2206F6E30012E8A2 /* NotificationCell.swift */,
 				6D563B7021E089A500E2E10D /* TitleCell.swift */,
+				6DFE1DC2220C31A60012E8A2 /* SectionHeaderCell.swift */,
 				6D7EE8EF21E904D5008D882F /* LabelCell.swift */,
 				6D7EE8DB21E8D7C2008D882F /* ButtonCell.swift */,
 				6DFE1DA4220869CD0012E8A2 /* Apartment */,
@@ -424,6 +429,7 @@
 				6D563B6721E074E000E2E10D /* EmbeddedSectionController.swift */,
 				6D7EE8C721E88CB3008D882F /* GridSectionController.swift */,
 				6D563B6221E073D100E2E10D /* HorizontalSectionController.swift */,
+				6DFE1DC4220C33850012E8A2 /* RowSectionController.swift */,
 				6DA035302202C48900258359 /* SingleSectionViewController.swift */,
 			);
 			path = SectionController;
@@ -1174,6 +1180,8 @@
 				6D68F6FA21A8040700D31472 /* TestUserProfileModel.swift in Sources */,
 				6D3F0AD021E064CF00B2A289 /* Logger.swift in Sources */,
 				6D98246321AD272000BAF80D /* DataStore-local.swift in Sources */,
+				6DFE1DC5220C33850012E8A2 /* RowSectionController.swift in Sources */,
+				6DFE1DC3220C31A60012E8A2 /* SectionHeaderCell.swift in Sources */,
 				6D52818521EF1368007A4508 /* MessageCell.swift in Sources */,
 				6DFE1D892206F00B0012E8A2 /* DayViewModel.swift in Sources */,
 				6D7EE8CC21E89B56008D882F /* VerticalExpandCollectionViewCell.swift in Sources */,

@@ -46,7 +46,7 @@ extension DataStore {
         Service().getHouseSuggestions(userId: userId, completion: completion)
     }
 
-    func getHouseSaved(completion: @escaping (_ summaries: [HouseSavedModel]?, _ error: Error?) -> ()) {
+    func getHouseSaved(completion: @escaping (_ summaries: [HouseListModel]?, _ error: Error?) -> ()) {
         let userId = DataStore.shared.user?.id ?? -1
         Service().getHouseSaved(userId: userId, completion: completion)
     }

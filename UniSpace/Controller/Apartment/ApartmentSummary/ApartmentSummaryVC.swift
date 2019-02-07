@@ -9,7 +9,7 @@
 import IGListKit
 import UIKit
 
-final class ApartmentSummaryVC: MasterLandingPageVC, ListAdapterDataSource {
+final class ApartmentSummaryVC: MasterVC, ListAdapterDataSource {
 
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 1)
@@ -17,10 +17,16 @@ final class ApartmentSummaryVC: MasterLandingPageVC, ListAdapterDataSource {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
-    lazy var data: HouseViewModel? = HouseViewModel()
+    var houseId: Int?
+    var data: HouseViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = ""
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.view.backgroundColor = .white
+
         collectionView.backgroundColor = .white
         view.addSubview(collectionView)
         adapter.collectionView = collectionView
@@ -38,8 +44,11 @@ final class ApartmentSummaryVC: MasterLandingPageVC, ListAdapterDataSource {
     }
 
     private func loadData() {
-        DataStore.shared.getHouseView(houseId: 0) { (model, error) in
+        guard let houseId = houseId else { return }
+        DataStore.shared.getHouseView(houseId: houseId) { (model, error) in
             self.data = model
+            self.title = model?.titleView?.title
+            self.adapter.reloadData(completion: nil)
         }
     }
 
@@ -51,10 +60,10 @@ final class ApartmentSummaryVC: MasterLandingPageVC, ListAdapterDataSource {
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         var sectionControllers: [ListSectionController] = []
-        if data?.titleView != nil { sectionControllers.append(SuggestionSectionController())}
-        sectionControllers.append(SuggestionSectionController())
+        if data?.titleView != nil { sectionControllers.append(RowSectionController(type: .HouseSummary))}
+        sectionControllers.append(ApartmentTeamSummarySectionController())
         let sectionController = ListStackedSectionController(sectionControllers: sectionControllers)
-        sectionController.inset = UIEdgeInsets(top: 40, left: 0, bottom: 40, right: 0)
+        sectionController.inset = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
         return sectionController
     }
 

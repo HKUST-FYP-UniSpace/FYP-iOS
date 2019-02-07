@@ -45,9 +45,12 @@ final class EmbeddedSectionController: ListSectionController {
     }
 
     override func didSelectItem(at index: Int) {
-        guard let data = data as? HouseSuggestionModel else { return }
-        log.debug("Embedded Section Controller", context: data.title)
-        viewController?.navigationController?.pushViewController(ApartmentListVC(), animated: true)
+        if let data = data as? HouseSuggestionModel {
+            let vc = ApartmentSummaryVC()
+            vc.houseId = data.id
+            viewController?.navigationController?.pushViewController(vc, animated: true)
+            return
+        }
     }
 
     override func didUpdate(to object: Any) {

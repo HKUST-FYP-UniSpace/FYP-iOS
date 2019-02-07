@@ -55,4 +55,13 @@ final class ApartmentListVC: SingleSectionViewController {
         sectionController.selectionDelegate = self
         return sectionController
     }
+
+    override func didSelect(_ sectionController: ListSingleSectionController, with object: Any) {
+        if let data = object as? HouseListModel {
+            let vc = ApartmentSummaryVC()
+            vc.houseId = data.id
+            adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
+            return
+        }
+    }
 }
