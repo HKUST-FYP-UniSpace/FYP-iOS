@@ -36,6 +36,7 @@ class TestHouseListModel: HouseList {
         let model = HouseListModel()
         model.id = id
         model.title = title
+        model.address = address
         model.price = price
         model.size = size
         model.starRating = starRating

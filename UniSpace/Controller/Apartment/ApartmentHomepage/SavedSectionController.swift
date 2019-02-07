@@ -94,6 +94,6 @@ final class SavedSectionController: ListSectionController, ListAdapterDataSource
 
 extension SavedSectionController: ButtonCellDelegate {
     func buttonCell(pressedButton sender: UIButton) {
-        viewController?.navigationController?.pushViewController(ApartmentListVC(), animated: true)
+        viewController?.navigationController?.pushViewController(ApartmentListVC(.Saved), animated: true)
     }
 }

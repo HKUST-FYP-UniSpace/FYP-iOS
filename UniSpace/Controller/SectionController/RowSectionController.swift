@@ -25,7 +25,15 @@ final class RowSectionController: ListSectionController {
     }
 
     override func sizeForItem(at index: Int) -> CGSize {
-        return CGSize(width: collectionContext!.containerSize.width, height: getHeight())
+        var height: CGFloat {
+            switch type {
+            case .HouseSummary:
+                return 480
+            case .HouseSummaryTeam:
+                return 100
+            }
+        }
+        return CGSize(width: collectionContext!.containerSize.width, height: height)
     }
 
     override func cellForItem(at index: Int) -> UICollectionViewCell {
@@ -42,15 +50,6 @@ final class RowSectionController: ListSectionController {
     }
 
     override func didSelectItem(at index: Int) {
-    }
-
-    private func getHeight() -> CGFloat {
-        switch type {
-        case .HouseSummary:
-            return 450
-        case .HouseSummaryTeam:
-            return 100
-        }
     }
 
     private func getHouseSummaryCell(at index: Int) -> UICollectionViewCell {

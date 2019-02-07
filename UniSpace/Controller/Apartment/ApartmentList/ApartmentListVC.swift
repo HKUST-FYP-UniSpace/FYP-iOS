@@ -9,11 +9,36 @@
 import IGListKit
 import UIKit
 
+enum ApartmentListType {
+    case Result
+    case Saved
+
+    var text: String {
+        switch self {
+        case .Result:
+            return "Result"
+        case .Saved:
+            return "Saved"
+        }
+    }
+}
+
 final class ApartmentListVC: SingleSectionViewController {
+
+    var type: ApartmentListType
+
+    init(_ type: ApartmentListType) {
+        self.type = type
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Results"
+        self.title = type.text
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.view.backgroundColor = .white
@@ -26,9 +51,18 @@ final class ApartmentListVC: SingleSectionViewController {
 
     override func loadData() {
         super.loadData()
-        DataStore.shared.getHouseList { (models, error) in
-            self.data = models
-            self.adapter.reloadData(completion: nil)
+        switch type {
+        case .Result:
+            DataStore.shared.getHouseList { (models, error) in
+                self.data = models
+                self.adapter.reloadData(completion: nil)
+            }
+
+        case .Saved:
+            DataStore.shared.getHouseSaved { (models, error) in
+                self.data = models
+                self.adapter.reloadData(completion: nil)
+            }
         }
     }
 

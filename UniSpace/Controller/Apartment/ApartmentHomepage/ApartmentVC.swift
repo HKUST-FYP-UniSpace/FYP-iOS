@@ -61,6 +61,10 @@ final class ApartmentVC: MasterLandingPageVC, ListAdapterDataSource {
         }
     }
 
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        adapter.viewController?.navigationController?.pushViewController(ApartmentListVC(.Result), animated: true)
+    }
+
     // MARK: ListAdapterDataSource
 
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
