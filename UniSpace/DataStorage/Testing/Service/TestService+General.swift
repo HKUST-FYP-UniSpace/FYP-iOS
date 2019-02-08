@@ -16,7 +16,7 @@ extension TestService: GeneralService {
 
     func getMessageSummaries(userId: Int, completion: @escaping ([MessageSummaryModel]?, Error?) -> Void) {
         var summaries: [MessageSummaryModel]? = []
-        for _ in 0..<30 { summaries?.append(TestMessageSummaryModel().toModel()) }
+        for _ in 0..<Int.random(in: (5..<30)) { summaries?.append(TestMessageSummaryModel().toModel()) }
         summaries?.sort(by: { $0.time > $1.time })
         delay { completion(summaries, nil) }
     }
@@ -33,7 +33,7 @@ extension TestService: GeneralService {
 
     func getBlogSummaries(completion: @escaping ([BlogSummaryModel]?, Error?) -> Void) {
         var summaries: [BlogSummaryModel]? = []
-        for _ in 0..<5 { summaries?.append(TestBlogSummaryModel().toModel()) }
+        for _ in 0..<Int.random(in: (1..<5)) { summaries?.append(TestBlogSummaryModel().toModel()) }
         delay { completion(summaries, nil) }
     }
     

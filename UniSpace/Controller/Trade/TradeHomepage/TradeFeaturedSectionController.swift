@@ -31,7 +31,9 @@ final class TradeFeaturedSectionController: ListSectionController, ListAdapterDa
         case 0:
             return CGSize(width: collectionContext!.containerSize.width, height: 60)
         case 1:
-            return CGSize(width: collectionContext!.containerSize.width, height: 420)
+            let count = model?.featured.count ?? 0
+            let factor = ceil(CGFloat(count) / 2)
+            return CGSize(width: collectionContext!.containerSize.width, height: 210 * factor)
         case 2:
             return CGSize(width: collectionContext!.containerSize.width, height: 120)
         default:

@@ -12,19 +12,19 @@ extension TestService: TradeService {
 
     func getTradeFeatured(userId: Int, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
         var summaries: [TradeFeaturedModel]? = []
-        for _ in 0..<4 { summaries?.append(TestTradeFeaturedModel().toModel()) }
+        for _ in 0..<Int.random(in: (1..<5)) { summaries?.append(TestTradeFeaturedModel().toModel()) }
         delay { completion(summaries, nil) }
     }
 
     func getTradeSellingItems(userId: Int, completion: @escaping ([TradeSellingItemModel]?, Error?) -> Void) {
         var summaries: [TradeSellingItemModel]? = []
-        for _ in 0..<2 { summaries?.append(TestTradeSellingItemModel().toModel()) }
+        for _ in 0..<Int.random(in: (2..<10)) { summaries?.append(TestTradeSellingItemModel().toModel()) }
         delay { completion(summaries, nil) }
     }
 
     func getTradeSaved(userId: Int, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
         var summaries: [TradeFeaturedModel]? = []
-        for _ in 0..<3 { summaries?.append(TestTradeFeaturedModel().toModel()) }
+        for _ in 0..<Int.random(in: (1..<5)) { summaries?.append(TestTradeFeaturedModel().toModel()) }
         delay { completion(summaries, nil) }
     }
 

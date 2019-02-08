@@ -38,7 +38,7 @@ final class BlogVC: SingleSectionViewController {
         let sizeBlock = { (item: Any, context: ListCollectionContext?) -> CGSize in
             guard let context = context else { return .zero }
             let cellSpacing: CGFloat = 20
-            return CGSize(width: context.containerSize.width - cellSpacing * 2, height: 420)
+            return CGSize(width: context.containerSize.width - cellSpacing * 2, height: 426)
         }
 
         let sectionController = ListSingleSectionController(cellClass: BlogCell.self, configureBlock: configureBlock, sizeBlock: sizeBlock)

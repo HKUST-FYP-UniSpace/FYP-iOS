@@ -21,7 +21,7 @@ final class BlogCell: UICollectionViewCell, ImageSettable {
         for view in views { contentView.addSubview(view) }
 
         titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 10).isActive = true
 
         subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
@@ -40,8 +40,9 @@ final class BlogCell: UICollectionViewCell, ImageSettable {
         for view in views { view.sizeToFit() }
         self.clipsToBounds = true
         self.layer.masksToBounds = false
-        self.layer.cornerRadius = 10
-        self.backgroundColor = UIColor(white: 0.95, alpha: 1)
+//        self.layer.cornerRadius = 10
+//        self.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        self.backgroundColor = .white
         addShadow()
     }
 
@@ -59,6 +60,9 @@ final class BlogCell: UICollectionViewCell, ImageSettable {
         layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
         layer.shadowRadius = 6.0
         layer.shadowOpacity = 0.7
+
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.lightGray.cgColor
     }
 
     func setImage(image: UIImage?) {
