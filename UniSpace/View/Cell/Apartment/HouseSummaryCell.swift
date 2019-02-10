@@ -18,8 +18,6 @@ final class HouseSummaryCell: UICollectionViewCell, ImageSettable {
     let subtitleLabel = StandardLabel(color: .gray, size: 16, isBold: false, numberOfLines: 2)
     fileprivate let starRatings = StarRatingsView(height: 16)
 
-    private let seperateDis: CGFloat = 10
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         let views = [imageView, activityView, titleLabel, priceLabel, sizeLabel, subtitleLabel, starRatings]
@@ -33,20 +31,20 @@ final class HouseSummaryCell: UICollectionViewCell, ImageSettable {
         activityView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
         activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
 
-        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: seperateDis).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: seperateDis).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -seperateDis).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Spacing.normal).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: Spacing.normal).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -Spacing.normal).isActive = true
 
-        starRatings.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: seperateDis).isActive = true
+        starRatings.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Spacing.normal).isActive = true
         starRatings.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
 
         priceLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
-        priceLabel.topAnchor.constraint(equalTo: starRatings.bottomAnchor, constant: seperateDis).isActive = true
+        priceLabel.topAnchor.constraint(equalTo: starRatings.bottomAnchor, constant: Spacing.normal).isActive = true
 
         sizeLabel.rightAnchor.constraint(equalTo: titleLabel.rightAnchor).isActive = true
         sizeLabel.topAnchor.constraint(equalTo: priceLabel.topAnchor).isActive = true
 
-        subtitleLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: seperateDis).isActive = true
+        subtitleLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: Spacing.normal).isActive = true
         subtitleLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
         subtitleLabel.rightAnchor.constraint(equalTo: titleLabel.rightAnchor).isActive = true
 

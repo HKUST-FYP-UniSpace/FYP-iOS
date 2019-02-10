@@ -8,13 +8,13 @@
 
 import UIKit
 
-enum MessageType: CaseIterable {
-    case Owner
+enum MessageType: Int, CaseIterable {
+    case Owner = 0
     case Team
     case Trade
     case Request
 
-    var name: String {
+    var text: String {
         switch self {
         case .Owner: return "Owner"
         case .Team: return "Team"

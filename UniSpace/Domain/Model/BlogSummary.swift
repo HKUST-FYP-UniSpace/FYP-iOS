@@ -14,5 +14,6 @@ protocol BlogSummary: PhotoShowable {
     var title: String { get set }
     var subtitle: String { get set }
     var photoURL: String { get set }
+//    var time: Double { get set }
 
 }

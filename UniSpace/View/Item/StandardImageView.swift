@@ -23,4 +23,8 @@ class StandardImageView: UIImageView {
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 
+    func setBackground(hasBackground: Bool) {
+        self.backgroundColor = hasBackground ? UIColor(white: 0.95, alpha: 1) : .clear
+    }
+
 }

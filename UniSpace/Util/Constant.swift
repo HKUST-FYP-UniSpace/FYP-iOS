@@ -8,6 +8,12 @@
 
 import UIKit
 
+struct Spacing {
+    static let narrow: CGFloat = 5
+    static let normal: CGFloat = 10
+    static let wide: CGFloat = 20
+}
+
 class Constants {
 
     static let screenWidth = UIScreen.main.bounds.width

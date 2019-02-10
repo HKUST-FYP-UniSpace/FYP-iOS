@@ -20,17 +20,17 @@ final class BlogCell: UICollectionViewCell, ImageSettable {
         let views = [imageView, activityView, titleLabel, subtitleLabel]
         for view in views { contentView.addSubview(view) }
 
-        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 10).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Spacing.normal).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.wide).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Spacing.normal).isActive = true
 
-        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
+        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Spacing.normal).isActive = true
         subtitleLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor).isActive = true
         subtitleLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor).isActive = true
 
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        imageView.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 20).isActive = true
+        imageView.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: Spacing.wide).isActive = true
         imageView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.75).isActive = true
 

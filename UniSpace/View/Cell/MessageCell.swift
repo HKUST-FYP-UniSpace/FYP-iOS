@@ -16,12 +16,7 @@ class MessageCell: UICollectionViewCell, ImageSettable {
     var messagesCountLabel: MessageTypeButton
     var typeLabel: MessageTypeButton
     var imageView: StandardImageView
-
-    fileprivate let separator: CALayer = {
-        let layer = CALayer()
-        layer.backgroundColor = UIColor(red: 200 / 255.0, green: 199 / 255.0, blue: 204 / 255.0, alpha: 1).cgColor
-        return layer
-    }()
+    fileprivate let separator: CALayer
 
     private let imageHeight: CGFloat = 60
 
@@ -32,6 +27,7 @@ class MessageCell: UICollectionViewCell, ImageSettable {
         messagesCountLabel = MessageTypeButton(isNumber: true)
         typeLabel = MessageTypeButton(isNumber: false)
         imageView = StandardImageView(cornerRadius: imageHeight / 2, hasBackground: true)
+        separator = StandardSeparator()
 
         super.init(frame: frame)
         setupImageView()
@@ -39,7 +35,7 @@ class MessageCell: UICollectionViewCell, ImageSettable {
     }
 
     func setup(messageType: MessageType, newMessagesCount: Int = 0) {
-        typeLabel.setType(title: messageType.name, color: messageType.color)
+        typeLabel.setType(title: messageType.text, color: messageType.color)
         imageView.layer.borderColor = messageType.color.cgColor
 
         if newMessagesCount > 0 {
@@ -60,28 +56,28 @@ class MessageCell: UICollectionViewCell, ImageSettable {
         for view in views { contentView.addSubview(view) }
 
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 5).isActive = true
+        imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: Spacing.narrow).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: imageHeight).isActive = true
 
-        typeLabel.bottomAnchor.constraint(equalTo: centerYAnchor, constant: -5).isActive = true
-        typeLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
+        typeLabel.bottomAnchor.constraint(equalTo: centerYAnchor, constant: -Spacing.narrow).isActive = true
+        typeLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -Spacing.normal).isActive = true
 
         messagesCountLabel.bottomAnchor.constraint(equalTo: typeLabel.bottomAnchor).isActive = true
-        messagesCountLabel.rightAnchor.constraint(equalTo: typeLabel.leftAnchor, constant: -5).isActive = true
+        messagesCountLabel.rightAnchor.constraint(equalTo: typeLabel.leftAnchor, constant: -Spacing.narrow).isActive = true
 
-        titleLabel.bottomAnchor.constraint(equalTo: centerYAnchor, constant: -5).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 10).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: messagesCountLabel.leftAnchor, constant: -10).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: centerYAnchor, constant: -Spacing.narrow).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: Spacing.normal).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: messagesCountLabel.leftAnchor, constant: -Spacing.normal).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
 
-        timeLabel.topAnchor.constraint(equalTo: centerYAnchor, constant: 5).isActive = true
+        timeLabel.topAnchor.constraint(equalTo: centerYAnchor, constant: Spacing.normal).isActive = true
         timeLabel.rightAnchor.constraint(equalTo: typeLabel.rightAnchor).isActive = true
         timeLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
 
         subtitleLabel.bottomAnchor.constraint(equalTo: timeLabel.bottomAnchor).isActive = true
         subtitleLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
-        subtitleLabel.rightAnchor.constraint(equalTo: timeLabel.leftAnchor, constant: -10).isActive = true
+        subtitleLabel.rightAnchor.constraint(equalTo: timeLabel.leftAnchor, constant: -Spacing.normal).isActive = true
 
         for view in views { view.sizeToFit() }
         messagesCountLabel.isHidden = true
@@ -105,7 +101,7 @@ class MessageCell: UICollectionViewCell, ImageSettable {
 
     func setImage(image: UIImage?) {
         imageView.image = image
-        imageView.backgroundColor = .clear
+        imageView.setBackground(hasBackground: image == nil)
     }
     
 }

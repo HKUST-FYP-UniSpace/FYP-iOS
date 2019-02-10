@@ -33,7 +33,8 @@ final class SavedSectionController: ListSectionController, ListAdapterDataSource
         case 1:
             let count = model?.saved.count ?? 0
             let factor = ceil(CGFloat(count) / 2)
-            return CGSize(width: collectionContext!.containerSize.width, height: 200 * factor)
+            let height = (collectionContext!.containerSize.width / 2 - 20 * 2) * 0.75
+            return CGSize(width: collectionContext!.containerSize.width, height: (height + 75) * factor)
         case 2:
             return CGSize(width: collectionContext!.containerSize.width, height: 40)
         default:

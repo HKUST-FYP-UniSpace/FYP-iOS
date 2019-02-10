@@ -31,10 +31,10 @@ final class HouseSuggestionCell: UICollectionViewCell, ImageSettable {
         activityView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
         activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
 
-        groupSize.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 10).isActive = true
-        groupSize.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -10).isActive = true
+        groupSize.topAnchor.constraint(equalTo: imageView.topAnchor, constant: Spacing.normal).isActive = true
+        groupSize.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -Spacing.normal).isActive = true
 
-        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Spacing.normal).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: centerXAnchor).isActive = true
 
@@ -42,7 +42,7 @@ final class HouseSuggestionCell: UICollectionViewCell, ImageSettable {
         durationLabel.leadingAnchor.constraint(equalTo: centerXAnchor).isActive = true
         durationLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
-        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
+        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Spacing.normal).isActive = true
         subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 

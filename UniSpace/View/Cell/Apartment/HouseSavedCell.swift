@@ -16,7 +16,6 @@ final class HouseSavedCell: UICollectionViewCell, ImageSettable {
     fileprivate let imageView = StandardImageView(cornerRadius: 5, hasBackground: true)
     fileprivate let activityView = StandardActivityView()
     fileprivate let starRatings = StarRatingsView(height: 10)
-    private let verticalSpacing: CGFloat = 5
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,13 +31,13 @@ final class HouseSavedCell: UICollectionViewCell, ImageSettable {
         activityView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
         activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
 
-        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: verticalSpacing).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Spacing.narrow).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
-        starRatings.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: verticalSpacing).isActive = true
+        starRatings.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Spacing.narrow).isActive = true
 
-        priceLabel.topAnchor.constraint(equalTo: starRatings.bottomAnchor, constant: verticalSpacing).isActive = true
+        priceLabel.topAnchor.constraint(equalTo: starRatings.bottomAnchor, constant: Spacing.narrow).isActive = true
         priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         priceLabel.trailingAnchor.constraint(equalTo: centerXAnchor).isActive = true
 

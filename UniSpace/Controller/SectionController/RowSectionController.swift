@@ -29,7 +29,7 @@ final class RowSectionController: ListSectionController {
     override func sizeForItem(at index: Int) -> CGSize {
         var height: CGFloat {
             switch type {
-            case .HouseSummary: return 480
+            case .HouseSummary: return collectionContext!.containerSize.width * 0.75 + 170
             case .HouseSummaryTeam: return 100
             case .TeamDescription: return 100
             case .TeamMembers: return 80

@@ -13,14 +13,10 @@ final class LabelCell: UICollectionViewCell {
 
     fileprivate static let insets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
     let label = StandardLabel(color: Color.theme, size: 20, isBold: false)
-
-    let separator: CALayer = {
-        let layer = CALayer()
-        layer.backgroundColor = UIColor(red: 200 / 255.0, green: 199 / 255.0, blue: 204 / 255.0, alpha: 1).cgColor
-        return layer
-    }()
+    fileprivate let separator: CALayer
 
     override init(frame: CGRect) {
+        separator = StandardSeparator()
         super.init(frame: frame)
         contentView.addSubview(label)
         contentView.layer.addSublayer(separator)

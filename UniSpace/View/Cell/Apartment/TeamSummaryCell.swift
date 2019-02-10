@@ -11,20 +11,8 @@ import UIKit
 final class TeamSummaryCell: UICollectionViewCell {
 
     let label = StandardLabel(color: .darkGray, size: 16, isBold: false, numberOfLines: 4)
-
-    fileprivate let topSeparator: CALayer = {
-        let layer = CALayer()
-        layer.backgroundColor = UIColor(red: 200 / 255.0, green: 199 / 255.0, blue: 204 / 255.0, alpha: 1).cgColor
-        return layer
-    }()
-
-    fileprivate let bottomSeparator: CALayer = {
-        let layer = CALayer()
-        layer.backgroundColor = UIColor(red: 200 / 255.0, green: 199 / 255.0, blue: 204 / 255.0, alpha: 1).cgColor
-        return layer
-    }()
-
-    private let seperateDis: CGFloat = 10
+    fileprivate let topSeparator: CALayer = StandardSeparator()
+    fileprivate let bottomSeparator: CALayer = StandardSeparator()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,9 +20,9 @@ final class TeamSummaryCell: UICollectionViewCell {
         contentView.layer.addSublayer(bottomSeparator)
         contentView.addSubview(label)
 
-        label.topAnchor.constraint(equalTo: topAnchor, constant: seperateDis).isActive = true
-        label.leftAnchor.constraint(equalTo: leftAnchor, constant: seperateDis).isActive = true
-        label.rightAnchor.constraint(equalTo: rightAnchor, constant: -seperateDis).isActive = true
+        label.topAnchor.constraint(equalTo: topAnchor, constant: Spacing.normal).isActive = true
+        label.leftAnchor.constraint(equalTo: leftAnchor, constant: Spacing.normal).isActive = true
+        label.rightAnchor.constraint(equalTo: rightAnchor, constant: -Spacing.normal).isActive = true
 
         label.sizeToFit()
     }

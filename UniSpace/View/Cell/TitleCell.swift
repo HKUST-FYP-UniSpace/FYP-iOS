@@ -23,18 +23,18 @@ final class TitleCell: UICollectionViewCell, ImageSettable {
         contentView.addSubview(subtitleLabel)
         contentView.addSubview(imageView)
 
-        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.wide).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.wide).isActive = true
         titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
 
-        subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-        subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.wide).isActive = true
+        subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.wide).isActive = true
         subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
 
         imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
+        imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(Spacing.normal + Spacing.wide)).isActive = true
 
         titleLabel.sizeToFit()
         subtitleLabel.sizeToFit()
@@ -60,7 +60,6 @@ final class TitleCell: UICollectionViewCell, ImageSettable {
 
     func setImage(image: UIImage?) {
         imageView.image = image
-        imageView.backgroundColor = .clear
     }
 
 }

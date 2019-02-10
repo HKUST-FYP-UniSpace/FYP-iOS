@@ -13,12 +13,7 @@ class TeamMemberCell: UICollectionViewCell, ImageSettable {
     var nameLabel: StandardLabel
     var roleLabel: StandardLabel
     fileprivate var imageView: StandardImageView
-
-    fileprivate let separator: CALayer = {
-        let layer = CALayer()
-        layer.backgroundColor = UIColor(red: 200 / 255.0, green: 199 / 255.0, blue: 204 / 255.0, alpha: 1).cgColor
-        return layer
-    }()
+    fileprivate let separator: CALayer
 
     private let imageHeight: CGFloat = 60
 
@@ -26,6 +21,7 @@ class TeamMemberCell: UICollectionViewCell, ImageSettable {
         nameLabel = StandardLabel(color: .darkGray, size: 18, isBold: true, align: .center)
         roleLabel = StandardLabel(color: .gray, size: 14, isBold: false, align: .center)
         imageView = StandardImageView(cornerRadius: imageHeight / 2, hasBackground: true)
+        separator = StandardSeparator()
 
         super.init(frame: frame)
         setupImageView()
@@ -42,16 +38,16 @@ class TeamMemberCell: UICollectionViewCell, ImageSettable {
         for view in views { contentView.addSubview(view) }
 
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 5).isActive = true
+        imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: Spacing.narrow).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: imageHeight).isActive = true
 
-        nameLabel.bottomAnchor.constraint(equalTo: centerYAnchor, constant: -5).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 10).isActive = true
-        nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: centerYAnchor, constant: -Spacing.narrow).isActive = true
+        nameLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: Spacing.normal).isActive = true
+        nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -Spacing.normal).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
 
-        roleLabel.topAnchor.constraint(equalTo: centerYAnchor, constant: 5).isActive = true
+        roleLabel.topAnchor.constraint(equalTo: centerYAnchor, constant: Spacing.narrow).isActive = true
         roleLabel.leftAnchor.constraint(equalTo: nameLabel.leftAnchor).isActive = true
         roleLabel.rightAnchor.constraint(equalTo: nameLabel.rightAnchor).isActive = true
 
@@ -74,7 +70,7 @@ class TeamMemberCell: UICollectionViewCell, ImageSettable {
 
     func setImage(image: UIImage?) {
         imageView.image = image
-        imageView.backgroundColor = .clear
+        imageView.setBackground(hasBackground: image == nil)
     }
 
 }

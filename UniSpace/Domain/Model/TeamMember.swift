@@ -8,8 +8,8 @@
 
 import Foundation
 
-enum TeamMemberRole {
-    case Leader
+enum TeamMemberRole: Int {
+    case Leader = 0
     case Member
 
     var text: String {

@@ -14,12 +14,7 @@ class NotificationCell: UICollectionViewCell, ImageSettable {
     var subtitleLabel: StandardLabel
     var timeLabel: StandardLabel
     var imageView: StandardImageView
-
-    let separator: CALayer = {
-        let layer = CALayer()
-        layer.backgroundColor = UIColor(red: 200 / 255.0, green: 199 / 255.0, blue: 204 / 255.0, alpha: 1).cgColor
-        return layer
-    }()
+    fileprivate let separator: CALayer
 
     private let imageHeight: CGFloat = 60
 
@@ -28,6 +23,7 @@ class NotificationCell: UICollectionViewCell, ImageSettable {
         subtitleLabel = StandardLabel(color: .gray, size: 14, isBold: false)
         timeLabel = StandardLabel(color: .gray, size: 14, isBold: false, align: .right)
         imageView = StandardImageView(cornerRadius: imageHeight / 2, hasBackground: true)
+        separator = StandardSeparator()
 
         super.init(frame: frame)
         setupImageView()
@@ -44,22 +40,22 @@ class NotificationCell: UICollectionViewCell, ImageSettable {
         for view in views { contentView.addSubview(view) }
 
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 5).isActive = true
+        imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: Spacing.narrow).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: imageHeight).isActive = true
 
-        titleLabel.bottomAnchor.constraint(equalTo: centerYAnchor, constant: -5).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 10).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: centerYAnchor, constant: -Spacing.narrow).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: Spacing.normal).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -Spacing.normal).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
 
-        timeLabel.topAnchor.constraint(equalTo: centerYAnchor, constant: 5).isActive = true
+        timeLabel.topAnchor.constraint(equalTo: centerYAnchor, constant: Spacing.narrow).isActive = true
         timeLabel.rightAnchor.constraint(equalTo: titleLabel.rightAnchor).isActive = true
         timeLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
 
         subtitleLabel.bottomAnchor.constraint(equalTo: timeLabel.bottomAnchor).isActive = true
         subtitleLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
-        subtitleLabel.rightAnchor.constraint(equalTo: timeLabel.leftAnchor, constant: -10).isActive = true
+        subtitleLabel.rightAnchor.constraint(equalTo: timeLabel.leftAnchor, constant: Spacing.normal).isActive = true
 
         for view in views { view.sizeToFit() }
     }
@@ -80,7 +76,7 @@ class NotificationCell: UICollectionViewCell, ImageSettable {
 
     func setImage(image: UIImage?) {
         imageView.image = image
-        imageView.backgroundColor = .clear
+        imageView.setBackground(hasBackground: image == nil)
     }
 
 }

@@ -23,8 +23,8 @@ final class ButtonCell: UICollectionViewCell {
         contentView.addSubview(button)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         button.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-        button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.wide).isActive = true
+        button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.wide).isActive = true
         button.sizeToFit()
         contentView.sizeToFit()
         contentView.backgroundColor = .white

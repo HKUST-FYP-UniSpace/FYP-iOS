@@ -32,7 +32,8 @@ final class SuggestionSectionController: ListSectionController, ListAdapterDataS
         case 0:
             return CGSize(width: collectionContext!.containerSize.width, height: 80)
         case 1:
-            return CGSize(width: collectionContext!.containerSize.width, height: 400)
+            let height = (collectionContext!.containerSize.width - 10 * 6) * 0.75
+            return CGSize(width: collectionContext!.containerSize.width, height: height + 135)
         default:
             return CGSize.zero
         }

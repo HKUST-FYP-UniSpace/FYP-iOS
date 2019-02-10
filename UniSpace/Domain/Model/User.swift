@@ -21,7 +21,14 @@ protocol User {
     
 }
 
-enum UserType: String {
-    case Tenant = "Student Tenant"
-    case Owner = "House Owner"
+enum UserType: Int {
+    case Tenant = 0
+    case Owner
+
+    var text: String {
+        switch self {
+        case .Tenant: return "Student Tenant"
+        case .Owner: return "House Owner"
+        }
+    }
 }

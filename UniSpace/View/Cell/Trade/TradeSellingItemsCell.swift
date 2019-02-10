@@ -30,11 +30,11 @@ final class TradeSellingItemsCell: UICollectionViewCell, ImageSettable {
         activityView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
         activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
 
-        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Spacing.narrow).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
 
-        priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
+        priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Spacing.narrow).isActive = true
         priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         priceLabel.trailingAnchor.constraint(equalTo: centerXAnchor).isActive = true
 
