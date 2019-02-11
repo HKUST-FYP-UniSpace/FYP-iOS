@@ -26,6 +26,7 @@ enum ApartmentListType {
 final class ApartmentListVC: SingleSectionViewController {
 
     var type: ApartmentListType
+    var filter = HouseFilterModel()
 
     init(_ type: ApartmentListType) {
         self.type = type
@@ -53,7 +54,7 @@ final class ApartmentListVC: SingleSectionViewController {
         super.loadData()
         switch type {
         case .Result:
-            DataStore.shared.getHouseList(filter: nil) { (models, error) in
+            DataStore.shared.getHouseList(filter: filter) { (models, error) in
                 self.data = models
                 self.adapter.reloadData(completion: nil)
             }

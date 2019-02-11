@@ -29,6 +29,7 @@ enum TradeListType {
 final class TradeListVC: SingleSectionViewController {
 
     var type: TradeListType
+    var filter = TradeFilterModel()
 
     init(_ type: TradeListType) {
         self.type = type
@@ -56,7 +57,7 @@ final class TradeListVC: SingleSectionViewController {
         super.loadData()
         switch type {
         case .Result:
-            DataStore.shared.getTradeList(filter: nil) { (models, error) in
+            DataStore.shared.getTradeList(filter: filter) { (models, error) in
                 self.data = models
                 self.adapter.reloadData(completion: nil)
             }

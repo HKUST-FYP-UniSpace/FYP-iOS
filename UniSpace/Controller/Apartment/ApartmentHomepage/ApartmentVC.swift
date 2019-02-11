@@ -62,7 +62,9 @@ final class ApartmentVC: MasterLandingPageVC, ListAdapterDataSource {
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        adapter.viewController?.navigationController?.pushViewController(ApartmentListVC(.Result), animated: true)
+        let vc = ApartmentListVC(.Result)
+        vc.filter.keyword = searchBar.text
+        adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
     // MARK: ListAdapterDataSource

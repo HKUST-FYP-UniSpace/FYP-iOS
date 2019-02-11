@@ -10,14 +10,15 @@ import Foundation
 
 class HouseFilterModel {
 
-    var university: Int = 0
+    var keyword: String? = ""
+    var university: Int? = 0
     var maxPrice: Int? = nil
     var minPrice: Int? = nil
     var maxSize: Int? = nil
     var minSize: Int? = nil
     var maxTravelTime: Int? = nil
-    var teamFormed: Bool = false
-    
+    var teamFormed: Bool? = false
+
     init() {}
 
 }

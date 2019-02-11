@@ -78,7 +78,9 @@ final class TradeVC: MasterLandingPageVC, ListAdapterDataSource {
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        adapter.viewController?.navigationController?.pushViewController(TradeListVC(.Result), animated: true)
+        let vc = TradeListVC(.Result)
+        vc.filter.keyword = searchBar.text
+        adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
     // MARK: ListAdapterDataSource
