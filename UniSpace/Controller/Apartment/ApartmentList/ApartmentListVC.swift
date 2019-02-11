@@ -54,16 +54,9 @@ final class ApartmentListVC: SingleSectionViewController {
         super.loadData()
         switch type {
         case .Result:
-            DataStore.shared.getHouseList(filter: filter) { (models, error) in
-                self.data = models
-                self.adapter.reloadData(completion: nil)
-            }
-
+            DataStore.shared.getHouseList(filter: filter, completion: completion)
         case .Saved:
-            DataStore.shared.getHouseSaved { (models, error) in
-                self.data = models
-                self.adapter.reloadData(completion: nil)
-            }
+            DataStore.shared.getHouseSaved(completion: completion)
         }
     }
 

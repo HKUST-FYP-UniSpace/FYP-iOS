@@ -51,7 +51,9 @@ final class EmbeddedSectionController: ListSectionController {
             viewController?.navigationController?.pushViewController(vc, animated: true)
             let presentVC = TeamSummaryVC()
             presentVC.teamId = data.teamId
-            viewController?.present(UINavigationController(rootViewController: presentVC), animated: true, completion: nil)
+            DispatchQueue.main.async {
+                self.viewController?.present(UINavigationController(rootViewController: presentVC), animated: true, completion: nil)
+            }
             return
         }
     }

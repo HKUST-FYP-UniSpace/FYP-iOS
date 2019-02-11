@@ -57,22 +57,11 @@ final class TradeListVC: SingleSectionViewController {
         super.loadData()
         switch type {
         case .Result:
-            DataStore.shared.getTradeList(filter: filter) { (models, error) in
-                self.data = models
-                self.adapter.reloadData(completion: nil)
-            }
-
+            DataStore.shared.getTradeList(filter: filter, completion: completion)
         case .Featured:
-            DataStore.shared.getTradeFeatured { (models, error) in
-                self.data = models
-                self.adapter.reloadData(completion: nil)
-            }
-
+            DataStore.shared.getTradeFeatured(completion: completion)
         case .Saved:
-            DataStore.shared.getTradeSaved { (models, error) in
-                self.data = models
-                self.adapter.reloadData(completion: nil)
-            }
+            DataStore.shared.getTradeSaved(completion: completion)
         }
     }
 

@@ -29,10 +29,7 @@ final class BlogDetailVC: SingleSectionViewController {
 
     override func loadData() {
         super.loadData()
-        DataStore.shared.getBlogDetail(blogId: 0, completion: { (model, error) in
-            self.data = model == nil ? nil : [model!]
-            self.adapter.reloadData(completion: nil)
-        })
+        DataStore.shared.getBlogDetail(blogId: 0, completion: completion)
     }
 
     override func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {

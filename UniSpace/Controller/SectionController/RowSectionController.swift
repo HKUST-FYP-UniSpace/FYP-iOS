@@ -69,7 +69,9 @@ final class RowSectionController: ListSectionController {
             guard let object = self.object as? HouseTeamSummaryModel else { return }
             let vc = TeamSummaryVC()
             vc.teamId = object.id
-            viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+            DispatchQueue.main.async {
+                self.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+            }
         default:
             return
         }

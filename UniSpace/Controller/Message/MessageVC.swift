@@ -25,10 +25,7 @@ final class MessageVC: SingleSectionViewController {
 
     override func loadData() {
         super.loadData()
-        DataStore.shared.getMessageSummaries { (models, error) in
-            self.data = models
-            self.adapter.reloadData(completion: nil)
-        }
+        DataStore.shared.getMessageSummaries(completion: completion)
     }
 
     private func setupSegControl() {

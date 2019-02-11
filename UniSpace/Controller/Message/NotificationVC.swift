@@ -25,10 +25,7 @@ final class NotificationVC: SingleSectionViewController {
 
     override func loadData() {
         super.loadData()
-        DataStore.shared.getNotificationSummaries { (models, error) in
-            self.data = models
-            self.adapter.reloadData(completion: nil)
-        }
+        DataStore.shared.getNotificationSummaries(completion: completion)
     }
 
     private func setupSegControl() {

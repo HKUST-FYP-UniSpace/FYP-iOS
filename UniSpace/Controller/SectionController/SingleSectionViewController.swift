@@ -32,6 +32,16 @@ class SingleSectionViewController: MasterVC, ListAdapterDataSource, ListSingleSe
 
     func loadData() {}
 
+    func completion(_ models: [ListDiffable]?, _ error: Error?) {
+        self.data = models
+        self.adapter.reloadData(completion: nil)
+    }
+
+    func completion(_ model: ListDiffable?, _ error: Error?) {
+        self.data = model == nil ? nil : [model!]
+        self.adapter.reloadData(completion: nil)
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
