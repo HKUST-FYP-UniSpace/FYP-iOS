@@ -18,6 +18,7 @@ class TestHouseTeamSummaryModel: HouseTeamSummary {
     var description: String
     var groupSize: Int
     var occupiedCount: Int
+    var photoURL: String
 
     required init() {
         id = DataStore.shared.randomInt(length: 8)
@@ -30,6 +31,7 @@ class TestHouseTeamSummaryModel: HouseTeamSummary {
         """
         groupSize = Int.random(in: 2..<6)
         occupiedCount = Int.random(in: 1..<groupSize)
+        photoURL = Constants.dummyPhotoURL(Constants.cardWidth_L, ratio: 0.75)
     }
 
     func toModel() -> HouseTeamSummaryModel {
@@ -42,6 +44,7 @@ class TestHouseTeamSummaryModel: HouseTeamSummary {
         model.description = description
         model.groupSize = groupSize
         model.occupiedCount = occupiedCount
+        model.photoURL = photoURL
         return model
     }
 }

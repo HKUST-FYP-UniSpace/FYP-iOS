@@ -10,7 +10,8 @@ import Foundation
 
 class TestHouseSuggestionModel: HouseSuggestion {
 
-    var id: Int
+    var houseId: Int
+    var teamId: Int
     var title: String
     var subtitle: String
     var groupSize: Int
@@ -19,7 +20,8 @@ class TestHouseSuggestionModel: HouseSuggestion {
     var duration: String
 
     required init() {
-        id = DataStore.shared.randomInt(length: 8)
+        houseId = DataStore.shared.randomInt(length: 8)
+        teamId = DataStore.shared.randomInt(length: 8)
         title = "Team Awesome"
         subtitle = ["Boys / Pet-free / Casual drinker", "Girls / Pet-friendly / Talk to us"].randomElement()!
         groupSize = Int.random(in: 2..<6)
@@ -30,7 +32,8 @@ class TestHouseSuggestionModel: HouseSuggestion {
 
     func toModel() -> HouseSuggestionModel {
         let model = HouseSuggestionModel()
-        model.id = id
+        model.houseId = houseId
+        model.teamId = teamId
         model.title = title
         model.subtitle = subtitle
         model.groupSize = groupSize

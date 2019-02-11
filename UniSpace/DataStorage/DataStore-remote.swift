@@ -51,9 +51,9 @@ extension DataStore {
         Service().getHouseSaved(userId: userId, completion: completion)
     }
 
-    func getHouseList(completion: @escaping ([HouseListModel]?, Error?) -> Void) {
+    func getHouseList(filter: HouseFilterModel?, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
         let userId = DataStore.shared.user?.id ?? -1
-        Service().getHouseList(userId: userId, completion: completion)
+        Service().getHouseList(userId: userId, filter: filter ?? HouseFilterModel(), completion: completion)
     }
 
     func getHouseView(houseId: Int, completion: @escaping (_ model: HouseViewModel?, _ error: Error?) -> Void) {
@@ -81,6 +81,11 @@ extension DataStore {
 
     func getTradeCategories(completion: @escaping (_ summaries: [TradeCategoryModel]?, _ error: Error?) -> ()) {
         Service().getTradeCategories(completion: completion)
+    }
+
+    func getTradeList(filter: TradeFilterModel?, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
+        let userId = DataStore.shared.user?.id ?? -1
+        Service().getTradeList(userId: userId, filter: filter ?? TradeFilterModel(), completion: completion)
     }
     
 }

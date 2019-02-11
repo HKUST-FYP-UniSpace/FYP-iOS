@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HouseTeamSummary {
+protocol HouseTeamSummary: PhotoShowable {
 
     var id: Int { get set }
     var title: String { get set }
@@ -18,5 +18,6 @@ protocol HouseTeamSummary {
     var description: String { get set }
     var groupSize: Int { get set }
     var occupiedCount: Int { get set }
+    var photoURL: String { get set }
 
 }

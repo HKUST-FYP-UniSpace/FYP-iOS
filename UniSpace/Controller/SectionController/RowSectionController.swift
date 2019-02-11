@@ -14,6 +14,7 @@ enum RowSectionType {
     case HouseSummaryTeam
     case TeamDescription
     case TeamMembers
+    case ScreenWidthImage
 }
 
 final class RowSectionController: ListSectionController {
@@ -33,6 +34,7 @@ final class RowSectionController: ListSectionController {
             case .HouseSummaryTeam: return 100
             case .TeamDescription: return 100
             case .TeamMembers: return 80
+            case .ScreenWidthImage: return collectionContext!.containerSize.width * 0.75
             }
         }
         return CGSize(width: collectionContext!.containerSize.width, height: height)
@@ -48,6 +50,8 @@ final class RowSectionController: ListSectionController {
             return getTeamSummaryCell(at: index)
         case .TeamMembers:
             return getTeamMemberCell(at: index)
+        case .ScreenWidthImage:
+            return getImageCell(at: index)
         }
     }
 
@@ -62,8 +66,9 @@ final class RowSectionController: ListSectionController {
     override func didSelectItem(at index: Int) {
         switch type {
         case .HouseSummaryTeam:
+            guard let object = self.object as? HouseTeamSummaryModel else { return }
             let vc = TeamSummaryVC()
-            vc.teamId = 0
+            vc.teamId = object.id
             viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
         default:
             return
@@ -106,6 +111,17 @@ final class RowSectionController: ListSectionController {
         guard let cell = collectionContext?.dequeueReusableCell(of: TeamMemberCell.self, for: self, at: index) as? TeamMemberCell, let object = object as? TeamMemberModel else { fatalError() }
         cell.nameLabel.text = object.name
         cell.roleLabel.text = object.role.text
+        cell.setImage(image: nil)
+
+        AlamofireService.shared.downloadImageData(at: object.photoURL, downloadProgress: nil) { (data, error) in
+            guard let data = data else { return }
+            cell.setImage(image: UIImage(data: data))
+        }
+        return cell
+    }
+
+    private func getImageCell(at index: Int) -> UICollectionViewCell {
+        guard let cell = collectionContext?.dequeueReusableCell(of: ImageCell.self, for: self, at: index) as? ImageCell, let object = object as? HouseTeamSummaryModel else { fatalError() }
         cell.setImage(image: nil)
 
         AlamofireService.shared.downloadImageData(at: object.photoURL, downloadProgress: nil) { (data, error) in

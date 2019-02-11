@@ -11,7 +11,8 @@ import IGListKit
 
 class HouseSuggestionModel: Decodable, ListDiffable, HouseSuggestion {
 
-    var id: Int = 0
+    var houseId: Int = 0
+    var teamId: Int = 0
     var title: String = ""
     var subtitle: String = ""
     var groupSize: Int = 0
@@ -22,12 +23,12 @@ class HouseSuggestionModel: Decodable, ListDiffable, HouseSuggestion {
     init() {}
 
     func diffIdentifier() -> NSObjectProtocol {
-        return id as NSObjectProtocol
+        return teamId as NSObjectProtocol
     }
 
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
         guard let object = object as? HouseSuggestionModel else { return false }
-        return self.id == object.id
+        return self.teamId == object.teamId
     }
 
 }

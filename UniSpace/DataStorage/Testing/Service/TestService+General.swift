@@ -34,6 +34,7 @@ extension TestService: GeneralService {
     func getBlogSummaries(completion: @escaping ([BlogSummaryModel]?, Error?) -> Void) {
         var summaries: [BlogSummaryModel]? = []
         for _ in 0..<Int.random(in: (1..<5)) { summaries?.append(TestBlogSummaryModel().toModel()) }
+        summaries?.sort(by: { $0.time > $1.time })
         delay { completion(summaries, nil) }
     }
     

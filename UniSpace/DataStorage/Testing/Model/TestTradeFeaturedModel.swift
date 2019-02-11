@@ -12,6 +12,7 @@ class TestTradeFeaturedModel: TradeFeatured {
 
     var id: Int
     var title: String
+    var location: String
     var price: Int
     var status: String
     var detail: String
@@ -20,6 +21,7 @@ class TestTradeFeaturedModel: TradeFeatured {
     required init() {
         id = DataStore.shared.randomInt(length: 8)
         title = ["Barcelona Chair", "Wassily Chair", "Brno Chair"].randomElement()!
+        location = "Discovery Park, Tsuen Wan"
         price = Int.random(in: 20..<100) * 100
         status = ["NEW", ""].randomElement()!
         detail = "Designed by Marcel Breuer, it is an iconic Bauhaus style chair"
@@ -30,6 +32,7 @@ class TestTradeFeaturedModel: TradeFeatured {
         let model = TradeFeaturedModel()
         model.id = id
         model.title = title
+        model.location = location
         model.price = price
         model.status = status
         model.detail = detail

@@ -76,6 +76,10 @@ final class TradeVC: MasterLandingPageVC, ListAdapterDataSource {
         }
     }
 
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        adapter.viewController?.navigationController?.pushViewController(TradeListVC(.Result), animated: true)
+    }
+
     // MARK: ListAdapterDataSource
 
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {

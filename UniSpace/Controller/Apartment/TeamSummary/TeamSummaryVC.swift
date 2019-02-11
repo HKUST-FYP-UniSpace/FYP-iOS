@@ -23,6 +23,7 @@ final class TeamSummaryVC: MasterPopupVC, ListAdapterDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Team Summary"
         collectionView.backgroundColor = .white
         view.addSubview(collectionView)
         adapter.collectionView = collectionView
@@ -56,6 +57,7 @@ final class TeamSummaryVC: MasterPopupVC, ListAdapterDataSource {
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         var sectionControllers: [ListSectionController] = []
         if data?.teamView != nil {
+            sectionControllers.append(RowSectionController(type: .ScreenWidthImage))
             sectionControllers.append(RowSectionController(type: .HouseSummaryTeam))
             sectionControllers.append(TeamDescriptionSectionController())
         }

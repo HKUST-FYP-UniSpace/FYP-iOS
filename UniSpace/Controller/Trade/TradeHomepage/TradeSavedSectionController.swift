@@ -95,5 +95,6 @@ final class TradeSavedSectionController: ListSectionController, ListAdapterDataS
 
 extension TradeSavedSectionController: ButtonCellDelegate {
     func buttonCell(pressedButton sender: UIButton) {
+        viewController?.navigationController?.pushViewController(TradeListVC(.Saved), animated: true)
     }
 }

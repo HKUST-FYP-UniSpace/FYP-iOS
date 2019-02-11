@@ -25,4 +25,8 @@ extension AlamofireService: TradeService {
         completion(nil, nil)
     }
 
+    func getTradeList(userId: Int, filter: TradeFilterModel, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
+        completion(nil, nil)
+    }
+
 }

@@ -22,7 +22,7 @@ extension TestService: HouseService {
         delay { completion(summaries, nil) }
     }
 
-    func getHouseList(userId: Int, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
+    func getHouseList(userId: Int, filter: HouseFilterModel, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
         var summaries: [HouseListModel]? = []
         for _ in 0..<Int.random(in: (5..<30)) { summaries?.append(TestHouseListModel().toModel()) }
         delay { completion(summaries, nil) }
@@ -37,8 +37,9 @@ extension TestService: HouseService {
 
     func getTeamView(teamId: Int, completion: @escaping (TeamSummaryViewModel?, Error?) -> Void) {
         var teamMembers: [TeamMemberModel] = []
-        teamMembers.append(TestTeamMemberModel(name: "Jane Doe", role: .Leader).toModel())
-        teamMembers.append(TestTeamMemberModel(name: "Jon Stewart", role: .Member).toModel())
+        teamMembers.append(TestTeamMemberModel(name: "Jon Stewart", role: .Leader).toModel())
+        teamMembers.append(TestTeamMemberModel(name: "John Oliver", role: .Member).toModel())
+        teamMembers.append(TestTeamMemberModel(name: "Stephen Colbert", role: .Member).toModel())
         let model = TeamSummaryViewModel(teamView: TestHouseTeamSummaryModel().toModel(), teamMembers: teamMembers)
         delay { completion(model, nil) }
     }

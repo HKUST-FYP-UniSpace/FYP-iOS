@@ -18,7 +18,7 @@ extension AlamofireService: HouseService {
         completion(nil, nil)
     }
 
-    func getHouseList(userId: Int, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
+    func getHouseList(userId: Int, filter: HouseFilterModel, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
         completion(nil, nil)
     }
 

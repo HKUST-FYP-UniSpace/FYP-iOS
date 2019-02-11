@@ -1,33 +1,36 @@
 //
-//  ApartmentListVC.swift
+//  TradeListVC.swift
 //  UniSpace
 //
-//  Created by KiKan Ng on 4/2/2019.
+//  Created by KiKan Ng on 11/2/2019.
 //  Copyright © 2019 KiKan Ng. All rights reserved.
 //
 
 import IGListKit
 import UIKit
 
-enum ApartmentListType {
+enum TradeListType {
     case Result
+    case Featured
     case Saved
 
     var text: String {
         switch self {
         case .Result:
             return "Result"
+        case .Featured:
+            return "Featured"
         case .Saved:
             return "Saved"
         }
     }
 }
 
-final class ApartmentListVC: SingleSectionViewController {
+final class TradeListVC: SingleSectionViewController {
 
-    var type: ApartmentListType
+    var type: TradeListType
 
-    init(_ type: ApartmentListType) {
+    init(_ type: TradeListType) {
         self.type = type
         super.init(nibName: nil, bundle: nil)
     }
@@ -53,13 +56,19 @@ final class ApartmentListVC: SingleSectionViewController {
         super.loadData()
         switch type {
         case .Result:
-            DataStore.shared.getHouseList(filter: nil) { (models, error) in
+            DataStore.shared.getTradeList(filter: nil) { (models, error) in
+                self.data = models
+                self.adapter.reloadData(completion: nil)
+            }
+
+        case .Featured:
+            DataStore.shared.getTradeFeatured { (models, error) in
                 self.data = models
                 self.adapter.reloadData(completion: nil)
             }
 
         case .Saved:
-            DataStore.shared.getHouseSaved { (models, error) in
+            DataStore.shared.getTradeSaved { (models, error) in
                 self.data = models
                 self.adapter.reloadData(completion: nil)
             }
@@ -68,12 +77,12 @@ final class ApartmentListVC: SingleSectionViewController {
 
     override func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         let configureBlock = { (item: Any, cell: UICollectionViewCell) in
-            guard let cell = cell as? HouseListCell, let object = object as? HouseListModel else { return }
+            guard let cell = cell as? TradeListCell, let object = object as? TradeFeaturedModel else { return }
             cell.titleLabel.text = object.title
-            cell.starRatings.setStarRating(rating: Int.random(in: 0..<6))
-            cell.priceLabel.text = "$\(object.price.addComma()!) pcm"
-            cell.sizeLabel.text = "\(object.size.addComma()!) sq. ft."
-            cell.subtitleLabel.text = object.subtitle
+            cell.locationLabel.text = object.location
+            cell.priceLabel.text = "$\(object.price.addComma()!)"
+            cell.statusLabel.text = object.status
+            cell.subtitleLabel.text = object.detail
 
             AlamofireService.shared.downloadImageData(at: object.photoURL, downloadProgress: nil) { (data, error) in
                 guard let data = data else { return }
@@ -85,7 +94,7 @@ final class ApartmentListVC: SingleSectionViewController {
             return CGSize(width: context.containerSize.width, height: 120)
         }
 
-        let sectionController = ListSingleSectionController(cellClass: HouseListCell.self, configureBlock: configureBlock, sizeBlock: sizeBlock)
+        let sectionController = ListSingleSectionController(cellClass: TradeListCell.self, configureBlock: configureBlock, sizeBlock: sizeBlock)
         sectionController.selectionDelegate = self
         return sectionController
     }

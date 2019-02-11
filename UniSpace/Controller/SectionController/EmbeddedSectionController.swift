@@ -47,8 +47,11 @@ final class EmbeddedSectionController: ListSectionController {
     override func didSelectItem(at index: Int) {
         if let data = data as? HouseSuggestionModel {
             let vc = ApartmentSummaryVC()
-            vc.houseId = data.id
+            vc.houseId = data.houseId
             viewController?.navigationController?.pushViewController(vc, animated: true)
+            let presentVC = TeamSummaryVC()
+            presentVC.teamId = data.teamId
+            viewController?.present(UINavigationController(rootViewController: presentVC), animated: true, completion: nil)
             return
         }
     }

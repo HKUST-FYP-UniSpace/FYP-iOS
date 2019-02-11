@@ -95,5 +95,6 @@ final class TradeFeaturedSectionController: ListSectionController, ListAdapterDa
 
 extension TradeFeaturedSectionController: ButtonCellDelegate {
     func buttonCell(pressedButton sender: UIButton) {
+        viewController?.navigationController?.pushViewController(TradeListVC(.Featured), animated: true)
     }
 }

@@ -14,7 +14,9 @@ class BlogSummaryModel: Decodable, ListDiffable, BlogSummary {
     var id: Int = 0
     var title: String = ""
     var subtitle: String = ""
+    var detail: String = ""
     var photoURL: String = ""
+    var time: Double = 0
 
     init() {}
 

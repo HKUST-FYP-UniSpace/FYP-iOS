@@ -10,7 +10,8 @@ import Foundation
 
 protocol HouseSuggestion: PhotoShowable {
 
-    var id: Int { get set }
+    var houseId: Int { get set }
+    var teamId: Int { get set }
     var title: String { get set }
     var subtitle: String { get set }
     var groupSize: Int { get set }

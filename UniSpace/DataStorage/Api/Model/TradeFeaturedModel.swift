@@ -13,6 +13,7 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
 
     var id: Int = 0
     var title: String = ""
+    var location: String = ""
     var price: Int = 0
     var status: String = ""
     var detail: String = ""

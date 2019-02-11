@@ -19,6 +19,7 @@ class HouseTeamSummaryModel: Decodable, ListDiffable, HouseTeamSummary {
     var description: String = ""
     var groupSize: Int = 0
     var occupiedCount: Int = 0
+    var photoURL: String = ""
 
     init() {}
 
