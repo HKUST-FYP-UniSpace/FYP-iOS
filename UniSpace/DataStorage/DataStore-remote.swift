@@ -41,6 +41,10 @@ extension DataStore {
         Service().getBlogSummaries(completion: completion)
     }
 
+    func getBlogDetail(blogId: Int, completion: @escaping (BlogSummaryModel?, Error?) -> Void) {
+        Service().getBlogDetail(blogId: blogId, completion: completion)
+    }
+
     func getHouseSuggestions(completion: @escaping (_ summaries: [HouseSuggestionModel]?, _ error: Error?) -> ()) {
         let userId = DataStore.shared.user?.id ?? -1
         Service().getHouseSuggestions(userId: userId, completion: completion)

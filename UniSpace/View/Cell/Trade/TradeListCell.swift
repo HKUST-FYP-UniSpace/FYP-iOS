@@ -15,7 +15,7 @@ final class TradeListCell: UICollectionViewCell, ImageSettable {
     let locationLabel = StandardLabel(color: .gray, size: 14, isBold: false)
     let priceLabel = StandardLabel(color: .lightGray, size: 14, isBold: false)
     let statusLabel = StandardLabel(color: Color.theme, size: 14, isBold: true, align: .right)
-    let subtitleLabel = StandardLabel(color: .gray, size: 14, isBold: false, numberOfLines: 2)
+    let subtitleLabel = StandardLabel(color: .lightGray, size: 14, isBold: false, numberOfLines: 2)
     fileprivate let separator: CALayer = StandardSeparator()
 
     private let imageHeight: CGFloat = 100

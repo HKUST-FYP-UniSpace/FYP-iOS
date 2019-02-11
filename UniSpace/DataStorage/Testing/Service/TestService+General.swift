@@ -37,5 +37,9 @@ extension TestService: GeneralService {
         summaries?.sort(by: { $0.time > $1.time })
         delay { completion(summaries, nil) }
     }
-    
+
+    func getBlogDetail(blogId: Int, completion: @escaping (BlogSummaryModel?, Error?) -> Void) {
+        let blog = TestBlogSummaryModel().toModel()
+        delay { completion(blog, nil) }
+    }
 }

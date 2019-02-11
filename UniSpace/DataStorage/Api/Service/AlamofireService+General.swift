@@ -33,5 +33,9 @@ extension AlamofireService: GeneralService {
     func getBlogSummaries(completion: @escaping ([BlogSummaryModel]?, Error?) -> Void) {
         completion(nil, nil)
     }
+
+    func getBlogDetail(blogId: Int, completion: @escaping (BlogSummaryModel?, Error?) -> Void) {
+        completion(nil, nil)
+    }
     
 }

@@ -11,9 +11,10 @@ import UIKit
 
 final class BlogVC: SingleSectionViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        loadData()
     }
 
     override func loadData() {
@@ -45,5 +46,14 @@ final class BlogVC: SingleSectionViewController {
         sectionController.selectionDelegate = self
         sectionController.inset = UIEdgeInsets(top: 30, left: 0, bottom: 30, right: 0)
         return sectionController
+    }
+
+    override func didSelect(_ sectionController: ListSingleSectionController, with object: Any) {
+        if let data = object as? BlogSummaryModel {
+            let vc = BlogDetailVC()
+            vc.id = data.id
+            adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
+            return
+        }
     }
 }

@@ -28,6 +28,7 @@ final class TradeVC: MasterLandingPageVC, ListAdapterDataSource {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loadData()
     }
 
