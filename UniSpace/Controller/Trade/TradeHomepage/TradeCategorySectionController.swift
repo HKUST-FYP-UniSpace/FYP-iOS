@@ -63,8 +63,10 @@ final class TradeCategorySectionController: ListSectionController {
 
     override func didSelectItem(at index: Int) {
         guard index != 0 else { return }
+        let cat = cats[index - 1]
         let vc = TradeListVC(.Result)
-        vc.filter.cat = cats[index - 1].pathExtention
+        vc.title = cat.title
+        vc.filter.cat = cat.pathExtention
         adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }
