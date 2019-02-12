@@ -27,17 +27,12 @@ final class ApartmentVC: MasterLandingPageVC, ListAdapterDataSource {
         adapter.dataSource = self
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadData()
-    }
-
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
     }
 
-    private func loadData() {
+    override func loadData() {
         var suggestions: [HouseSuggestionModel] = []
         var saved: [HouseListModel] = []
 

@@ -9,7 +9,7 @@
 import IGListKit
 import UIKit
 
-final class CalendarVC: UIViewController, ListAdapterDataSource {
+final class CalendarVC: MasterVC, ListAdapterDataSource {
 
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self)
@@ -27,16 +27,17 @@ final class CalendarVC: UIViewController, ListAdapterDataSource {
         super.viewDidLoad()
         self.title = "Calendar"
         tabBarItem = UITabBarItem(title: "Message", image: UIImage(named: "Message"), tag: 3)
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.view.backgroundColor = .white
         setupSegControl()
-        loadData()
 
         collectionView.backgroundColor = .white
         view.addSubview(collectionView)
         adapter.collectionView = collectionView
         adapter.dataSource = self
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupLargeTitle()
     }
 
     private func setupSegControl() {
@@ -61,7 +62,7 @@ final class CalendarVC: UIViewController, ListAdapterDataSource {
         }
     }
 
-    private func loadData() {
+    override func loadData() {
         let date = Date()
         let currentMonth = Calendar.current.component(.month, from: date)
 
@@ -82,6 +83,7 @@ final class CalendarVC: UIViewController, ListAdapterDataSource {
             ]
         )
         months.append(month)
+        adapter.reloadData(completion: nil)
     }
 
     override func viewDidLayoutSubviews() {

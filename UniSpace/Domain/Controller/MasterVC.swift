@@ -18,7 +18,10 @@ class MasterVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
 //        navigationController?.navigationBar.isHidden = true
+        loadData()
     }
+
+    func loadData() {}
     
     func login(username: String, password: String, completion: @escaping (UserModel?, Error?) -> ()) {
         log.verbose("VC", context: "Attempt to login")
@@ -62,6 +65,12 @@ class MasterVC: UIViewController {
         navigationBar.backgroundColor = background
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
+    }
+
+    func setupLargeTitle() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.view.backgroundColor = .white
     }
 
 }

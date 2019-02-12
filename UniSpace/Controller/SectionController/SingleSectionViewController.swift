@@ -26,12 +26,6 @@ class SingleSectionViewController: MasterVC, ListAdapterDataSource, ListSingleSe
         adapter.dataSource = self
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        loadData()
-    }
-
-    func loadData() {}
-
     func completion(_ models: [ListDiffable]?, _ error: Error?) {
         self.data = models
         self.adapter.reloadData(completion: nil)

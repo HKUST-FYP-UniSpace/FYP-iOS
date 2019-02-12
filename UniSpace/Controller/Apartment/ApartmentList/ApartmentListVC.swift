@@ -40,18 +40,14 @@ final class ApartmentListVC: SingleSectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = type.text
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.view.backgroundColor = .white
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadData()
+        setupLargeTitle()
     }
 
     override func loadData() {
-        super.loadData()
         switch type {
         case .Result:
             DataStore.shared.getHouseList(filter: filter, completion: completion)

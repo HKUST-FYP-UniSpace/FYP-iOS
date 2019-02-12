@@ -17,10 +17,13 @@ final class MessageVC: SingleSectionViewController {
         super.viewDidLoad()
         self.title = "Message"
         tabBarItem = UITabBarItem(title: "Message", image: UIImage(named: "Message"), tag: 3)
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.view.backgroundColor = .white
         setupSegControl()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupLargeTitle()
+        loadData()
     }
 
     override func loadData() {

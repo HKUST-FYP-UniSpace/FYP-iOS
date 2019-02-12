@@ -21,6 +21,7 @@ class MasterLandingPageVC: MasterVC, UISearchBarDelegate {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = false
         searchBar.text = nil
         searchBarCancelButtonClicked(searchBar)

@@ -30,17 +30,12 @@ final class TeamSummaryVC: MasterPopupVC, ListAdapterDataSource {
         adapter.dataSource = self
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadData()
-    }
-
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
     }
 
-    private func loadData() {
+    override func loadData() {
         guard let teamId = teamId else { return }
         DataStore.shared.getTeamView(teamId: teamId) { (model, error) in
             self.data = model

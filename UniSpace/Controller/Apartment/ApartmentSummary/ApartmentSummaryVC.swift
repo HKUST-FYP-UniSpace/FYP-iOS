@@ -22,11 +22,6 @@ final class ApartmentSummaryVC: MasterVC, ListAdapterDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = ""
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.view.backgroundColor = .white
-
         collectionView.backgroundColor = .white
         view.addSubview(collectionView)
         adapter.collectionView = collectionView
@@ -35,7 +30,7 @@ final class ApartmentSummaryVC: MasterVC, ListAdapterDataSource {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadData()
+        setupLargeTitle()
     }
 
     override func viewDidLayoutSubviews() {
@@ -43,7 +38,7 @@ final class ApartmentSummaryVC: MasterVC, ListAdapterDataSource {
         collectionView.frame = view.bounds
     }
 
-    private func loadData() {
+    override func loadData() {
         guard let houseId = houseId else { return }
         DataStore.shared.getHouseView(houseId: houseId) { (model, error) in
             self.data = model

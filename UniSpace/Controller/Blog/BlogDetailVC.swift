@@ -17,13 +17,11 @@ final class BlogDetailVC: SingleSectionViewController {
         super.viewDidLoad()
         self.title = "Blog"
         navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.view.backgroundColor = .white
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupLargeTitle()
         loadData()
     }
 

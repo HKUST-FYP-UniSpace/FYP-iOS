@@ -43,13 +43,11 @@ final class TradeListVC: SingleSectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if self.title == nil { self.title = type.text }
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.view.backgroundColor = .white
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupLargeTitle()
         loadData()
     }
 
