@@ -119,6 +119,7 @@ extension RegisterDetailVC {
     private func setupEmailTextField() {
         view.addSubview(emailTextField)
         emailTextField.setBottomBorder()
+        emailTextField.keyboardType = .emailAddress
         emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         emailTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 10).isActive = true
         emailTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: sideSuggestBound).isActive = true
