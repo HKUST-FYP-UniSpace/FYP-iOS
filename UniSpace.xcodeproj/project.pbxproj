@@ -77,6 +77,7 @@
 		6D8AD41E22116F3700EA6643 /* BlogDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD41D22116F3700EA6643 /* BlogDetailVC.swift */; };
 		6D8AD4232212B17100EA6643 /* ApartmentFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD4222212B17100EA6643 /* ApartmentFilterVC.swift */; };
 		6D8AD42822130BC600EA6643 /* TradeFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD42722130BC600EA6643 /* TradeFilterVC.swift */; };
+		6D8AD42B2213322100EA6643 /* Bookmarkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD42A2213322100EA6643 /* Bookmarkable.swift */; };
 		6D98246321AD272000BAF80D /* DataStore-local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D98246221AD272000BAF80D /* DataStore-local.swift */; };
 		6D98246521AD274800BAF80D /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D98246421AD274800BAF80D /* KeychainManager.swift */; };
 		6DA035312202C48900258359 /* SingleSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA035302202C48900258359 /* SingleSectionViewController.swift */; };
@@ -268,6 +269,7 @@
 		6D8AD41D22116F3700EA6643 /* BlogDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogDetailVC.swift; sourceTree = "<group>"; };
 		6D8AD4222212B17100EA6643 /* ApartmentFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentFilterVC.swift; sourceTree = "<group>"; };
 		6D8AD42722130BC600EA6643 /* TradeFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeFilterVC.swift; sourceTree = "<group>"; };
+		6D8AD42A2213322100EA6643 /* Bookmarkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmarkable.swift; sourceTree = "<group>"; };
 		6D98246221AD272000BAF80D /* DataStore-local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataStore-local.swift"; sourceTree = "<group>"; };
 		6D98246421AD274800BAF80D /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		6DA035302202C48900258359 /* SingleSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSectionViewController.swift; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 			children = (
 				6D68F6D121A7F17C00D31472 /* User.swift */,
 				6DAAC20721EC36120052748D /* ImageSettable.swift */,
+				6D8AD42A2213322100EA6643 /* Bookmarkable.swift */,
 				6D68F6E121A7F95A00D31472 /* UserProfile.swift */,
 				6DA9D46022043DCC009464B6 /* MessageSummary.swift */,
 				6DFE1D912206F8CA0012E8A2 /* NotificationSummary.swift */,
@@ -1176,6 +1179,7 @@
 				6D68F6EE21A7FA1C00D31472 /* AlamofireService.swift in Sources */,
 				6D7EE8D621E8C671008D882F /* StandardImageView.swift in Sources */,
 				6D563B6E21E075D400E2E10D /* EmbeddedCollectionViewCell.swift in Sources */,
+				6D8AD42B2213322100EA6643 /* Bookmarkable.swift in Sources */,
 				6DFE1DC7220C8EE10012E8A2 /* TeamSummaryCell.swift in Sources */,
 				6D7EE8F621E9ABD5008D882F /* Enum.swift in Sources */,
 				6D52818921EF1863007A4508 /* MessageTypeButton.swift in Sources */,

@@ -9,7 +9,7 @@
 import IGListKit
 import UIKit
 
-final class ApartmentSummaryVC: MasterVC, ListAdapterDataSource {
+final class ApartmentSummaryVC: MasterVC, ListAdapterDataSource, Bookmarkable {
 
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 1)
@@ -17,8 +17,24 @@ final class ApartmentSummaryVC: MasterVC, ListAdapterDataSource {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
+    var isBookmarked: Bool
     var houseId: Int?
     var data: HouseViewModel?
+
+    init(isBookmarked: Bool = false) {
+        self.isBookmarked = isBookmarked
+        super.init(nibName: nil, bundle: nil)
+        navigationItem.rightBarButtonItem = createBookmark(isBookmarked: isBookmarked)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func heartButton(_ sender: UIButton) {
+        isBookmarked = !isBookmarked
+        navigationItem.rightBarButtonItem = createBookmark(isBookmarked: isBookmarked)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
