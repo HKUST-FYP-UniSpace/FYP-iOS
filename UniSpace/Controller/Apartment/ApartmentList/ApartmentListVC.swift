@@ -40,11 +40,25 @@ final class ApartmentListVC: SingleSectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = type.text
+        let filterItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterButton))
+        navigationItem.rightBarButtonItem = filterItem
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupLargeTitle()
+    }
+
+    @objc func filterButton(_ sender: UIButton) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
+
+        let vc = ApartmentFilterVC()
+        vc.filter = filter
+        DispatchQueue.main.async {
+            generator.notificationOccurred(.success)
+            self.adapter.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+        }
     }
 
     override func loadData() {

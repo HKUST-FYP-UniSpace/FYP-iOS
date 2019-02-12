@@ -64,12 +64,16 @@ final class RowSectionController: ListSectionController {
     }
 
     override func didSelectItem(at index: Int) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
+        
         switch type {
         case .HouseSummaryTeam:
             guard let object = self.object as? HouseTeamSummaryModel else { return }
             let vc = TeamSummaryVC()
             vc.teamId = object.id
             DispatchQueue.main.async {
+                generator.notificationOccurred(.success)
                 self.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
             }
         default:

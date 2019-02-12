@@ -13,10 +13,12 @@ fileprivate struct ColorConstant {
     static let hightlightedPrimary = UIColor(r: 24, g: 167, b: 169)
     static let titleBarGray = UIColor(r: 240, g: 240, b: 246)
     static let hightlightedGray = UIColor(r: 143, g: 143, b: 147)
+    static let transparentWhite = UIColor(white: 1, alpha: 0.8)
 }
 
 struct Color {
     static let theme = ColorConstant.primary
+    static let white = ColorConstant.transparentWhite
     
     struct Button {
         static let text = UIColor.white

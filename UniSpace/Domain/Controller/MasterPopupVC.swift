@@ -11,7 +11,6 @@ import UIKit
 class MasterPopupVC: MasterVC {
 
     override func viewDidLoad() {
-        setupTheme(theme: Color.theme, background: .clear)
         let cancelItem = UIBarButtonItem(image: UIImage(named: "Delete"), style: .plain, target: self, action: #selector(cancelButton))
 
         cancelItem.tintColor = UIColor.darkGray

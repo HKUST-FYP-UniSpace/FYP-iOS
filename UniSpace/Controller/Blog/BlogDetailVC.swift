@@ -15,13 +15,11 @@ final class BlogDetailVC: SingleSectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Blog"
         navigationController?.navigationBar.isHidden = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupLargeTitle()
         loadData()
     }
 

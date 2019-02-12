@@ -45,6 +45,9 @@ final class EmbeddedSectionController: ListSectionController {
     }
 
     override func didSelectItem(at index: Int) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
+        
         if let data = data as? HouseSuggestionModel {
             let vc = ApartmentSummaryVC()
             vc.houseId = data.houseId
@@ -52,6 +55,7 @@ final class EmbeddedSectionController: ListSectionController {
             let presentVC = TeamSummaryVC()
             presentVC.teamId = data.teamId
             DispatchQueue.main.async {
+                generator.notificationOccurred(.success)
                 self.viewController?.present(UINavigationController(rootViewController: presentVC), animated: true, completion: nil)
             }
             return

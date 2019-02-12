@@ -15,6 +15,7 @@ class MasterLandingPageVC: MasterVC, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.placeholder = "what are you looking for"
+        searchBar.backgroundColor = .clear
         searchBar.sizeToFit()
         navigationItem.titleView = searchBar
         searchBar.delegate = self

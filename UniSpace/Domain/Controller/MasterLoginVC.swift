@@ -22,8 +22,8 @@ class MasterLoginVC: MasterVC {
         navigationController?.navigationBar.isHidden = true
     }
     
-    override func setupTheme(theme: UIColor, background: UIColor) {
-        super.setupTheme(theme: theme, background: background)
+    func setupTheme(theme: UIColor, background: UIColor) {
+        super.setupTheme(theme: theme, background: background, withLine: true)
         setupBackButtom(color: theme)
     }
     

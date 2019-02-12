@@ -11,7 +11,6 @@ import UIKit
 
 final class LabelCell: UICollectionViewCell {
 
-    fileprivate static let insets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
     let label = StandardLabel(color: Color.theme, size: 20, isBold: false)
     fileprivate let separator: CALayer
 
@@ -20,12 +19,12 @@ final class LabelCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.addSubview(label)
         contentView.layer.addSublayer(separator)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
-        label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Spacing.wide).isActive = true
+        label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Spacing.wide).isActive = true
         label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         label.sizeToFit()
 
+        self.translatesAutoresizingMaskIntoConstraints = false
         contentView.backgroundColor = .white
     }
 
@@ -35,11 +34,10 @@ final class LabelCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        label.frame.inset(by: LabelCell.insets)
 
         let bounds = contentView.bounds
         let height: CGFloat = 0.5
-        let left = LabelCell.insets.left
+        let left: CGFloat = Spacing.wide
         separator.frame = CGRect(x: left, y: bounds.height - height, width: bounds.width - left, height: height)
     }
 

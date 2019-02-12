@@ -17,7 +17,7 @@ class MasterVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        navigationController?.navigationBar.isHidden = true
+        setupTheme(theme: Color.theme, background: Color.white, withLine: false)
         loadData()
     }
 
@@ -55,22 +55,11 @@ class MasterVC: UIViewController {
             showAlert(title: "Wrong username or password")
         }
     }
-    
-    func setupTheme(theme: UIColor, background: UIColor) {
-        view.backgroundColor = background
-        UIApplication.shared.statusBarView?.backgroundColor = background
-        
-        guard let navigationController = navigationController else { return }
-        let navigationBar = navigationController.navigationBar
-        navigationBar.backgroundColor = background
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
-    }
 
     func setupLargeTitle() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.view.backgroundColor = .white
+        navigationController?.navigationBar.backgroundColor = Color.white
+        navigationController?.view.backgroundColor = Color.white
     }
 
 }
@@ -91,5 +80,18 @@ extension MasterVC: UIGestureRecognizerDelegate {
     @objc func dismissKeyboard() {
         navigationController?.navigationBar.endEditing(true)
         view.endEditing(true)
+    }
+}
+
+extension UIViewController {
+    func setupTheme(theme: UIColor, background: UIColor, withLine: Bool) {
+        view.backgroundColor = background
+        UIApplication.shared.statusBarView?.backgroundColor = background
+
+        guard let navigationController = navigationController else { return }
+        let navigationBar = navigationController.navigationBar
+        navigationBar.backgroundColor = background
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        if withLine { navigationBar.shadowImage = UIImage() }
     }
 }
