@@ -55,6 +55,7 @@ final class ApartmentListVC: SingleSectionViewController {
 
         let vc = ApartmentFilterVC()
         vc.filter = filter
+        vc.delegate = self
         DispatchQueue.main.async {
             generator.notificationOccurred(.success)
             self.adapter.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
@@ -101,5 +102,11 @@ final class ApartmentListVC: SingleSectionViewController {
             adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
             return
         }
+    }
+}
+
+extension ApartmentListVC: ApartmentFilterVCDelegate {
+    func updateFilter(filter: HouseFilterModel?) {
+        if let filter = filter { self.filter = filter }
     }
 }

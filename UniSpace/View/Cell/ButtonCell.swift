@@ -46,6 +46,7 @@ final class ButtonCell: UICollectionViewCell {
     }
 
     @objc func buttonAction(sender: UIButton) {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
         delegate?.buttonCell(pressedButton: sender)
     }
 

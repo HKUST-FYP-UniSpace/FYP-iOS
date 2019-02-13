@@ -11,10 +11,12 @@ import Foundation
 class TradeFilterModel {
 
     var keyword: String? = ""
-    var location: Int? = 0
-    var maxPrice: Int? = nil
-    var minPrice: Int? = nil
-    var cat: String? = ""
+    var searchBy: [String]? = []
+    var category: [String]? = []
+    var itemCondition: [String]? = []
+    var maxPrice: Float? = nil
+    var minPrice: Float? = nil
+    var sortBy: String? = ""
 
     init() {}
 

@@ -11,12 +11,12 @@ import Foundation
 class HouseFilterModel {
 
     var keyword: String? = ""
-    var university: Int? = 0
-    var maxPrice: Int? = nil
-    var minPrice: Int? = nil
-    var maxSize: Int? = nil
-    var minSize: Int? = nil
-    var maxTravelTime: Int? = nil
+    var university: String? = ""
+    var maxPrice: Float? = nil
+    var minPrice: Float? = nil
+    var maxSize: Float? = nil
+    var minSize: Float? = nil
+    var maxTravelTime: Double? = nil
     var teamFormed: Bool? = false
 
     init() {}

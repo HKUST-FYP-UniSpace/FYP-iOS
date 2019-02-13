@@ -66,7 +66,7 @@ final class TradeCategorySectionController: ListSectionController {
         let cat = cats[index - 1]
         let vc = TradeListVC(.Result)
         vc.title = cat.title
-        vc.filter.cat = cat.pathExtention
+//        vc.filter.category = cat.pathExtention
         adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -59,6 +59,7 @@ final class TradeListVC: SingleSectionViewController {
 
         let vc = TradeFilterVC()
         vc.filter = filter
+        vc.delegate = self
         DispatchQueue.main.async {
             generator.notificationOccurred(.success)
             self.adapter.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
@@ -108,5 +109,11 @@ final class TradeListVC: SingleSectionViewController {
             adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
             return
         }
+    }
+}
+
+extension TradeListVC: TradeFilterVCDelegate {
+    func updateFilter(filter: TradeFilterModel?) {
+        if let filter = filter { self.filter = filter }
     }
 }

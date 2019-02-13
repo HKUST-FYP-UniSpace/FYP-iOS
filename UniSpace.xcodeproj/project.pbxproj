@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B62B4BE6C59A494F8C27CF6 /* Pods_UniSpaceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4FFD128587ACDC440252E2 /* Pods_UniSpaceUITests.framework */; };
 		43FB6611209E6385EE7C8615 /* Pods_UniSpaceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A906E0D0716C95F31A424A17 /* Pods_UniSpaceTests.framework */; };
+		6D10545C22143A3E00B61CFC /* MasterFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D10545B22143A3E00B61CFC /* MasterFilterVC.swift */; };
 		6D30716D21B27C7A008D0FA3 /* MasterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D30716C21B27C7A008D0FA3 /* MasterVC.swift */; };
 		6D30716F21B27DEF008D0FA3 /* MasterPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D30716E21B27DEF008D0FA3 /* MasterPopupVC.swift */; };
 		6D30717121B27E40008D0FA3 /* MasterLandingPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D30717021B27E40008D0FA3 /* MasterLandingPageVC.swift */; };
@@ -201,6 +202,7 @@
 /* Begin PBXFileReference section */
 		26935826BAA54CD3A0D85929 /* Pods-UniSpaceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniSpaceUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniSpaceUITests/Pods-UniSpaceUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6A84D09087258E489DCD88EA /* Pods-UniSpaceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniSpaceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniSpaceTests/Pods-UniSpaceTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6D10545B22143A3E00B61CFC /* MasterFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterFilterVC.swift; sourceTree = "<group>"; };
 		6D30716C21B27C7A008D0FA3 /* MasterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterVC.swift; sourceTree = "<group>"; };
 		6D30716E21B27DEF008D0FA3 /* MasterPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPopupVC.swift; sourceTree = "<group>"; };
 		6D30717021B27E40008D0FA3 /* MasterLandingPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterLandingPageVC.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				6D30716E21B27DEF008D0FA3 /* MasterPopupVC.swift */,
 				6D30717021B27E40008D0FA3 /* MasterLandingPageVC.swift */,
 				6D30717221B27EA0008D0FA3 /* MasterTableVC.swift */,
+				6D10545B22143A3E00B61CFC /* MasterFilterVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1250,6 +1253,7 @@
 				6D68F6F021A7FA2F00D31472 /* AlamofireService+General.swift in Sources */,
 				6D30717121B27E40008D0FA3 /* MasterLandingPageVC.swift in Sources */,
 				6DFE1DD2220C9E4A0012E8A2 /* TeamMemberModel.swift in Sources */,
+				6D10545C22143A3E00B61CFC /* MasterFilterVC.swift in Sources */,
 				6D7EE8C821E88CB3008D882F /* GridSectionController.swift in Sources */,
 				6D83DAA02210144B000E3B52 /* ImageCell.swift in Sources */,
 				6D68F6FD21A8059D00D31472 /* DateManager.swift in Sources */,
