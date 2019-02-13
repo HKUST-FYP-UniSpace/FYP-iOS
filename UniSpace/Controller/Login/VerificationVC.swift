@@ -37,6 +37,7 @@ class VerificationVC: MasterLoginVC {
     }
     
     @objc func handleVerify() {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
         guard let id = DataStore.shared.user?.id, let code = codeTextField.text else {
             showAlert(title: "Please input the id")
             return

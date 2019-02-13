@@ -33,10 +33,12 @@ class RegisterLandingVC: MasterLoginVC {
     }
     
     @objc func handleTenant() {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
         navigationController?.pushViewController(RegisterDetailVC(isTenant: true), animated: true)
     }
     
     @objc func handleOwner() {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
         navigationController?.pushViewController(RegisterDetailVC(isTenant: false), animated: true)
     }
     

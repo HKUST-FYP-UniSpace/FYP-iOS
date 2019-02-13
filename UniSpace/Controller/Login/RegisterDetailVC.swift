@@ -51,6 +51,7 @@ class RegisterDetailVC: MasterLoginVC {
     }
     
     @objc func handleNext() {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
         let type: UserType = isTenant ? .Tenant : .Owner
         guard let username = usernameTextField.text,
             let name = nameTextField.text,
@@ -68,11 +69,15 @@ class RegisterDetailVC: MasterLoginVC {
         }
         
         guard password != confirmPassword else {
+            showAlert(title: "Password and confirm password are not the same")
             return
         }
         
         DataStore.shared.register(userType: type, username: username, name: name, email: email, password: password) { (user, error) in
-            guard user != nil else { return }
+            guard user != nil else {
+                self.showAlert(title: "Registration failed")
+                return
+            }
             
             let vc = VerificationVC()
             vc.username = username

@@ -46,7 +46,7 @@ extension AlamofireService: AuthService {
     
     fileprivate func convertRegisterInfoToParams(userType: UserType, username: String, name: String, email: String, password: String) -> Parameters {
         var params = Parameters()
-        params["userType"] = userType
+        params["userType"] = userType.rawValue
         params["username"] = username
         params["name"] = name
         params["email"] = email

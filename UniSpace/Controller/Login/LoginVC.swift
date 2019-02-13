@@ -39,6 +39,7 @@ class LoginVC: MasterLoginVC {
     }
 
     @objc func handleLogin() {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
         guard let username = usernameTextField.text, let password = passwordTextField.text else {
             showAlert(title: "Please input your username and password")
             return
@@ -47,6 +48,7 @@ class LoginVC: MasterLoginVC {
     }
     
     @objc func handleRegister() {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
         navigationController?.pushViewController(RegisterLandingVC(), animated: true)
     }
 
