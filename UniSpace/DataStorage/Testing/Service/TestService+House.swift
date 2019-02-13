@@ -44,4 +44,8 @@ extension TestService: HouseService {
         delay { completion(model, nil) }
     }
 
+    func bookmarkHouse(userId: Int, houseId: Int, completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
+    }
+
 }

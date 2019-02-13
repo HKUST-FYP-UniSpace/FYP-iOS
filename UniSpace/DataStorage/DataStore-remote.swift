@@ -64,6 +64,11 @@ extension DataStore {
         Service().getHouseView(houseId: houseId, completion: completion)
     }
 
+    func bookmarkHouse(houseId: Int, completion: SendRequestResult?) {
+        let userId = DataStore.shared.user?.id ?? -1
+        Service().bookmarkHouse(userId: userId, houseId: houseId, completion: completion)
+    }
+
     func getTeamView(teamId: Int, completion: @escaping (TeamSummaryViewModel?, Error?) -> Void) {
         Service().getTeamView(teamId: teamId, completion: completion)
     }

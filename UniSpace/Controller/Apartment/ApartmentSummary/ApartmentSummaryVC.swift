@@ -32,8 +32,15 @@ final class ApartmentSummaryVC: MasterVC, ListAdapterDataSource, Bookmarkable {
     }
 
     func heartButton(_ sender: UIButton) {
-        isBookmarked = !isBookmarked
-        navigationItem.rightBarButtonItem = createBookmark(isBookmarked: isBookmarked)
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
+        guard let houseId = houseId else { return }
+        self.isBookmarked = !self.isBookmarked
+        self.navigationItem.rightBarButtonItem = self.createBookmark(isBookmarked: self.isBookmarked)
+        generator.notificationOccurred(.success)
+        DataStore.shared.bookmarkHouse(houseId: houseId) { (msg, error) in
+            guard !self.sendFailed(msg, error: error) else { return }
+        }
     }
 
     override func viewDidLoad() {
@@ -60,6 +67,9 @@ final class ApartmentSummaryVC: MasterVC, ListAdapterDataSource, Bookmarkable {
             self.data = model
             self.title = model?.titleView?.title
             self.adapter.reloadData(completion: nil)
+
+            self.isBookmarked = model?.titleView?.isBookmarked ?? false
+            self.navigationItem.rightBarButtonItem = self.createBookmark(isBookmarked: self.isBookmarked)
         }
     }
 

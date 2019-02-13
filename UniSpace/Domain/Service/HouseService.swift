@@ -15,4 +15,5 @@ protocol HouseService: class {
     func getHouseList(userId: Int, filter: HouseFilterModel, completion: @escaping (_ summaries: [HouseListModel]?, _ error: Error?) -> Void)
     func getHouseView(houseId: Int, completion: @escaping (_ model: HouseViewModel?, _ error: Error?) -> Void)
     func getTeamView(teamId: Int, completion: @escaping (_ model: TeamSummaryViewModel?, _ error: Error?) -> Void)
+    func bookmarkHouse(userId: Int, houseId: Int, completion: SendRequestResult?)
 }

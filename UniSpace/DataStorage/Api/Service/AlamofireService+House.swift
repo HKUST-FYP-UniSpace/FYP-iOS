@@ -30,4 +30,8 @@ extension AlamofireService: HouseService {
         completion(nil, nil)
     }
 
+    func bookmarkHouse(userId: Int, houseId: Int, completion: SendRequestResult?) {
+        completion?(nil, nil)
+    }
+
 }

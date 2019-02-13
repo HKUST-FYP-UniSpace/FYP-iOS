@@ -56,6 +56,13 @@ class MasterVC: UIViewController {
         navigationController?.view.backgroundColor = Color.white
     }
 
+    func sendFailed(_ message: String?, error: Error?) -> Bool {
+        if message == nil && error == nil { return false }
+        if let message = message { showAlert(title: message) }
+        else if let error = error { showAlert(title: error.localizedDescription) }
+        return true
+    }
+
 }
 
 extension UIViewController {
