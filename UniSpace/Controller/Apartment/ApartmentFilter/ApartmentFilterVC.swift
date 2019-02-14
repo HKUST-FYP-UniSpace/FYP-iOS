@@ -18,7 +18,7 @@ class ApartmentFilterVC: MasterFilterVC {
     var filter: HouseFilterModel?
     weak var delegate: ApartmentFilterVCDelegate?
 
-    override func setupTable() {
+    override func setupSimpleFilter() {
         form +++ Section("")
             <<< getTextRow(id: "keyword", title: "Keyword", defaultValue: filter?.keyword)
             <<< getSingleSelectorRow(id: "university", title: "University", defaultValue: filter?.university, selectorTitle: "Pick your university", options: ["Hong Kong University", "Chinese University", "HKUST", "Poly University"])

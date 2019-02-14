@@ -11,30 +11,31 @@ import Eureka
 
 class MasterFilterVC: FormViewController {
 
+    private var isSimpleFilter: Bool = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundColor = .white
 
         title = "What are you looking for?"
         let cancelItem = UIBarButtonItem(image: UIImage(named: "Delete"), style: .plain, target: self, action: #selector(cancelButton))
-        let advanceItem = UIBarButtonItem(title: "Advance", style: .done, target: self, action: #selector(advanceButton))
-
         cancelItem.tintColor = .darkGray
-        advanceItem.tintColor = Color.theme
         navigationItem.leftBarButtonItem = cancelItem
-        navigationItem.rightBarButtonItem = advanceItem
-        
-        setupTable()
+        navigationItem.rightBarButtonItem = setupSwtichModeButton()
+        setupSimpleFilter()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         setupTheme(theme: Color.theme, background: Color.white, withLine: false)
         navigationItem.largeTitleDisplayMode = .never
         tableView.tableFooterView = UIView()
+    }
 
-//        form.removeAll()
-//        self.setupTable()
-//        self.tableView.reloadData()
+    private func setupSwtichModeButton() -> UIBarButtonItem {
+        let buttonTitle = !isSimpleFilter ? "Simple" : "Advance"
+        let advanceItem = UIBarButtonItem(title: buttonTitle, style: .done, target: self, action: #selector(advanceButton))
+        advanceItem.tintColor = Color.theme
+        return advanceItem
     }
 
     @objc func cancelButton(_ sender: UIButton) {
@@ -42,14 +43,30 @@ class MasterFilterVC: FormViewController {
     }
 
     @objc func advanceButton(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        form.removeAll()
+        if isSimpleFilter { setupAdvanceFilter() }
+        else { setupSimpleFilter() }
+        tableView.reloadData()
+
+        isSimpleFilter = !isSimpleFilter
+        navigationItem.rightBarButtonItem = setupSwtichModeButton()
     }
 
     override func inputAccessoryView(for row: BaseRow) -> UIView? {
         return nil
     }
 
-    func setupTable() {}
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let view = view as? UITableViewHeaderFooterView {
+            view.backgroundView?.backgroundColor = UIColor.clear
+            view.textLabel?.backgroundColor = UIColor.clear
+            view.textLabel?.textColor = Color.theme
+        }
+    }
+
+    func setupSimpleFilter() {}
+
+    func setupAdvanceFilter() {}
 
     func getTextRow(id: String, title: String?, defaultValue: String?) -> BaseRow {
         return TextRow(id) {

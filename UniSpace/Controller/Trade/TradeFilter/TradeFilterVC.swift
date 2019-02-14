@@ -18,7 +18,7 @@ class TradeFilterVC: MasterFilterVC {
     var filter: TradeFilterModel?
     weak var delegate: TradeFilterVCDelegate?
 
-    override func setupTable() {
+    override func setupSimpleFilter() {
         form +++ Section("")
             <<< getTextRow(id: "keyword", title: "Keyword", defaultValue: filter?.keyword)
 
