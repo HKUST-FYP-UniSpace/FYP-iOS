@@ -25,7 +25,7 @@ class MasterLoginVC: MasterVC {
     }
     
     func setupTheme(theme: UIColor, background: UIColor) {
-        super.setupTheme(theme: theme, background: background, withLine: true)
+        super.setupTheme(theme: theme, background: background, withLine: false)
         setupBackButtom(color: theme)
     }
     

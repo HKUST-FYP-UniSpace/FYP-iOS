@@ -11,7 +11,7 @@ import UIKit
 class MasterVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
-        setupTheme(theme: Color.theme, background: Color.white, withLine: false)
+        setupTheme(theme: Color.theme, background: Color.white, withLine: true)
         loadData()
     }
 
@@ -74,6 +74,6 @@ extension UIViewController {
         let navigationBar = navigationController.navigationBar
         navigationBar.backgroundColor = background
         navigationBar.setBackgroundImage(UIImage(), for: .default)
-        if withLine { navigationBar.shadowImage = UIImage() }
+        if !withLine { navigationBar.shadowImage = UIImage() }
     }
 }
