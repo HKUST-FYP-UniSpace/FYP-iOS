@@ -14,10 +14,18 @@ class TestUserProfileModel: UserProfile {
     var username: String
     var photoURL: String
     
-    required init(id: Int, username: String, photoURL: URL?) {
-        self.id = id
+    required init(username: String) {
+        id = DataStore.shared.randomInt(length: 8)
         self.username = username
-        self.photoURL = photoURL?.absoluteString ?? ""
+        self.photoURL = Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 1)
+    }
+
+    func toModel() -> UserProfileModel {
+        let user = UserProfileModel()
+        user.id = id
+        user.username = username
+        user.photoURL = photoURL
+        return user
     }
     
 }

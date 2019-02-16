@@ -11,7 +11,8 @@ import Foundation
 extension TestService: GeneralService {
     
     func getUserProfile(userId: Int, completion: @escaping (UserProfileModel?, Error?) -> Void) {
-        completion(nil, nil)
+        let user = TestUserProfileModel(username: "John Doe").toModel()
+        delay { completion(user, nil) }
     }
 
     func getMessageSummaries(userId: Int, completion: @escaping ([MessageSummaryModel]?, Error?) -> Void) {
