@@ -15,7 +15,7 @@ class TradeHomepageModel: ListDiffable {
     var featured: [TradeFeaturedModel] = []
     var sellingItems: [TradeSellingItemModel] = []
     var saved: [TradeFeaturedModel] = []
-    var categories: [TradeCategoryModel] = []
+    var categories: [TradeCategory] = []
 
     init() {
         id = DataStore.shared.randomInt(length: 8)

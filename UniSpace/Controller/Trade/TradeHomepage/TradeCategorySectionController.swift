@@ -13,7 +13,7 @@ final class TradeCategorySectionController: ListSectionController {
 
     var contentOffset: CGFloat = 0
     private var cellSpacing: CGFloat = 10
-    private var cats: [TradeCategoryModel] = []
+    private var cats: [TradeCategory] = []
 
     lazy var adapter: ListAdapter = {
         let adapter = ListAdapter(updater: ListAdapterUpdater(),
@@ -48,7 +48,7 @@ final class TradeCategorySectionController: ListSectionController {
         default:
             let cell = collectionContext?.dequeueReusableCell(of: LabelCell.self, for: self, at: index)
             if let cell = cell as? LabelCell {
-                cell.label.text = cats[index - 1].title
+                cell.label.text = cats[index - 1].rawValue
                 cell.label.tintColor = Color.theme
                 return cell
             }
@@ -65,8 +65,8 @@ final class TradeCategorySectionController: ListSectionController {
         guard index != 0 else { return }
         let cat = cats[index - 1]
         let vc = TradeListVC(.Result)
-        vc.title = cat.title
-//        vc.filter.category = cat.pathExtention
+        vc.title = cat.rawValue
+        vc.filter.category = [cat]
         adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

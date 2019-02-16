@@ -36,7 +36,6 @@ final class TradeVC: MasterLandingPageVC, ListAdapterDataSource {
         var featured: [TradeFeaturedModel] = []
         var sellingItems: [TradeSellingItemModel] = []
         var saved: [TradeFeaturedModel] = []
-        var categories: [TradeCategoryModel] = []
 
         let group = DispatchGroup()
         group.enter()
@@ -57,17 +56,11 @@ final class TradeVC: MasterLandingPageVC, ListAdapterDataSource {
             group.leave()
         }
 
-        group.enter()
-        DataStore.shared.getTradeCategories { (models, error) in
-            categories = models ?? []
-            group.leave()
-        }
-
         group.notify(queue: .main) {
             self.data[0].featured = featured
             self.data[0].sellingItems = sellingItems
             self.data[0].saved = saved
-            self.data[0].categories = categories
+            self.data[0].categories = [.Kitchenwares, .ElectronicsAndGadgets, .Furnitures]
             self.adapter.reloadData(completion: nil)
         }
     }

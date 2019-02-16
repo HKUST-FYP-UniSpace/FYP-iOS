@@ -28,14 +28,6 @@ extension TestService: TradeService {
         delay { completion(summaries, nil) }
     }
 
-    func getTradeCategories(completion: @escaping ([TradeCategoryModel]?, Error?) -> Void) {
-        var categories: [TradeCategoryModel]? = []
-        categories?.append(TestTradeCategoryModel(title: "Electronics and Gadgets", pathExtention: "electronics-and-gadgets").toModel())
-        categories?.append(TestTradeCategoryModel(title: "Furnitures", pathExtention: "furnitures").toModel())
-        categories?.append(TestTradeCategoryModel(title: "Kitchenwares", pathExtention: "kitchenwares").toModel())
-        delay { completion(categories, nil) }
-    }
-
     func getTradeList(userId: Int, filter: TradeFilterModel, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
         var summaries: [TradeFeaturedModel]? = []
         for _ in 0..<Int.random(in: (1..<30)) { summaries?.append(TestTradeFeaturedModel().toModel()) }

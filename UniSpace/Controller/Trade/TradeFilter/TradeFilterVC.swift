@@ -28,7 +28,7 @@ class TradeFilterVC: MasterFilterVC {
 
         form +++ Section("Search")
             <<< getMultipleSelectorRow(id: "searchBy", title: "Search by", defaultValue: searchByDefault, selectorTitle: "Search by", options: TradeSearchBy.allCases.map { $0.rawValue })
-            <<< getMultipleSelectorRow(id: "category", title: "Category", defaultValue: categoryDefault, selectorTitle: "Category", options: TradeCategoryOption.allCases.map { $0.rawValue })
+            <<< getMultipleSelectorRow(id: "category", title: "Category", defaultValue: categoryDefault, selectorTitle: "Category", options: TradeCategory.allCases.map { $0.rawValue })
             <<< getMultipleSelectorRow(id: "itemCondition", title: "Item condition", defaultValue: itemConditionDefault, selectorTitle: "Item condition", options: TradeItemCondition.allCases.map { $0.rawValue })
 
         form +++ Section("Price (HK$)")
@@ -55,7 +55,7 @@ class TradeFilterVC: MasterFilterVC {
         }
         if let row = self.form.rowBy(tag: "category") as? MultipleSelectorRow<String> {
             if row.value == nil { filter.category = nil }
-            else { filter.category = Array(row.value!).compactMap { TradeCategoryOption(rawValue: $0) } }
+            else { filter.category = Array(row.value!).compactMap { TradeCategory(rawValue: $0) } }
         }
         if let row = self.form.rowBy(tag: "itemCondition") as? MultipleSelectorRow<String> {
             if row.value == nil { filter.itemCondition = nil }

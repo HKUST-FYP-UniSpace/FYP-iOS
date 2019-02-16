@@ -12,7 +12,7 @@ class TradeFilterModel {
 
     var keyword: String? = nil
     var searchBy: [TradeSearchBy]? = nil
-    var category: [TradeCategoryOption]? = nil
+    var category: [TradeCategory]? = nil
     var itemCondition: [TradeItemCondition]? = nil
     var maxPrice: Float? = nil
     var minPrice: Float? = nil
@@ -34,7 +34,7 @@ enum TradeSearchBy: String, CaseIterable {
     }
 }
 
-enum TradeCategoryOption: String, CaseIterable {
+enum TradeCategory: String, CaseIterable {
     case Kitchenwares = "Kitchenwares"
     case ElectronicsAndGadgets = "Electronics and Gadgets"
     case Furnitures = "Furnitures"

@@ -88,10 +88,6 @@ extension DataStore {
         Service().getTradeSaved(userId: userId, completion: completion)
     }
 
-    func getTradeCategories(completion: @escaping (_ summaries: [TradeCategoryModel]?, _ error: Error?) -> ()) {
-        Service().getTradeCategories(completion: completion)
-    }
-
     func getTradeList(filter: TradeFilterModel?, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
         let userId = DataStore.shared.user?.id ?? -1
         Service().getTradeList(userId: userId, filter: filter ?? TradeFilterModel(), completion: completion)
