@@ -68,14 +68,14 @@ class MasterFilterVC: FormViewController {
 
     func setupAdvanceFilter() {}
 
-    func getTextRow(id: String, title: String?, defaultValue: String?) -> BaseRow {
+    func getTextRow(id: String?, title: String?, defaultValue: String?) -> BaseRow {
         return TextRow(id) {
             $0.title = title
             $0.value = defaultValue
         }
     }
 
-    func getMultipleSelectorRow(id: String, title: String?, defaultValue: [String]?, selectorTitle: String?, options: [String]?) -> BaseRow {
+    func getMultipleSelectorRow(id: String?, title: String?, defaultValue: [String]?, selectorTitle: String?, options: [String]?) -> BaseRow {
         return MultipleSelectorRow<String>(id) {
             $0.title = title
             $0.selectorTitle = selectorTitle
@@ -84,7 +84,7 @@ class MasterFilterVC: FormViewController {
         }
     }
 
-    func getSingleSelectorRow(id: String, title: String?, defaultValue: String?, selectorTitle: String?, options: [String]?) -> BaseRow {
+    func getSingleSelectorRow(id: String?, title: String?, defaultValue: String?, selectorTitle: String?, options: [String]?) -> BaseRow {
         return ActionSheetRow<String>(id) {
             $0.title = title
             $0.selectorTitle = selectorTitle
@@ -97,7 +97,7 @@ class MasterFilterVC: FormViewController {
         }
     }
 
-    func getSliderRow(id: String, title: String?, defaultValue: Float?, max: Float, min: Float, startFromSmallest: Bool = true) -> BaseRow {
+    func getSliderRow(id: String?, title: String?, defaultValue: Float?, max: Float, min: Float, startFromSmallest: Bool = true) -> BaseRow {
         return SliderRow(id) {
             $0.title = title
             $0.value = startFromSmallest ? min : max
@@ -112,7 +112,7 @@ class MasterFilterVC: FormViewController {
         }
     }
 
-    func getStepperRow(id: String, title: String?, defaultValue: Double?, max: Double, min: Double, step: Double) -> BaseRow {
+    func getStepperRow(id: String?, title: String?, defaultValue: Double?, max: Double, min: Double, step: Double) -> BaseRow {
         return StepperRow(id) {
             $0.title = title
             $0.value = 10
@@ -126,7 +126,7 @@ class MasterFilterVC: FormViewController {
         }
     }
 
-    func getSwitchRow(id: String, title: String?, defaultValue: Bool?) -> BaseRow {
+    func getSwitchRow(id: String?, title: String?, defaultValue: Bool?) -> BaseRow {
         return SwitchRow(id) {
             $0.title = title
             $0.value = defaultValue
@@ -136,7 +136,7 @@ class MasterFilterVC: FormViewController {
         }
     }
 
-    func getButtonRow(id: String, title: String?, callback: @escaping (() -> Void)) -> BaseRow {
+    func getButtonRow(id: String?, title: String?, callback: @escaping (() -> Void)) -> BaseRow {
         return ButtonRow(id) {
             $0.title = title
             }

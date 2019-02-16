@@ -10,14 +10,68 @@ import Foundation
 
 class TradeFilterModel {
 
-    var keyword: String? = ""
-    var searchBy: [String]? = []
-    var category: [String]? = []
-    var itemCondition: [String]? = []
+    var keyword: String? = nil
+    var searchBy: [TradeSearchBy]? = nil
+    var category: [TradeCategoryOption]? = nil
+    var itemCondition: [TradeItemCondition]? = nil
     var maxPrice: Float? = nil
     var minPrice: Float? = nil
-    var sortBy: String? = ""
+    var sortBy: TradeSortBy? = nil
 
     init() {}
 
+}
+
+enum TradeSearchBy: String, CaseIterable {
+    case Title = "Title"
+    case Seller = "Seller"
+
+    var pathExtension: String {
+        switch self {
+        case .Title: return "title"
+        case .Seller: return "seller"
+        }
+    }
+}
+
+enum TradeCategoryOption: String, CaseIterable {
+    case Kitchenwares = "Kitchenwares"
+    case ElectronicsAndGadgets = "Electronics and Gadgets"
+    case Furnitures = "Furnitures"
+
+    var pathExtension: String {
+        switch self {
+        case .Kitchenwares: return "Kitchenwares"
+        case .ElectronicsAndGadgets: return "electronics_and_gadgets"
+        case .Furnitures: return "furnitures"
+        }
+    }
+}
+
+enum TradeItemCondition: String, CaseIterable {
+    case Perfect = "Perfect"
+    case AlmostPerfect = "Almost Perfect"
+    case Okay = "Okay"
+
+    var pathExtension: String {
+        switch self {
+        case .Perfect: return "perfect"
+        case .AlmostPerfect: return "almost_perfect"
+        case .Okay: return "okay"
+        }
+    }
+}
+
+enum TradeSortBy: String, CaseIterable {
+    case Recent = "Recent"
+    case Top = "Top"
+    case Hot = "Hot"
+
+    var pathExtension: String {
+        switch self {
+        case .Recent: return "recent"
+        case .Top: return "top"
+        case .Hot: return "hot"
+        }
+    }
 }

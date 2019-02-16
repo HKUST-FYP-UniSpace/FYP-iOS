@@ -19,23 +19,27 @@ class TradeFilterVC: MasterFilterVC {
     weak var delegate: TradeFilterVCDelegate?
 
     override func setupSimpleFilter() {
+        let searchByDefault: [String]? = filter?.searchBy == nil ? nil : filter!.searchBy!.map { $0.rawValue }
+        let categoryDefault: [String]? = filter?.category == nil ? nil : filter!.category!.map { $0.rawValue }
+        let itemConditionDefault: [String]? = filter?.itemCondition == nil ? nil : filter!.itemCondition!.map { $0.rawValue }
+
         form +++ Section("")
             <<< getTextRow(id: "keyword", title: "Keyword", defaultValue: filter?.keyword)
 
         form +++ Section("Search")
-            <<< getMultipleSelectorRow(id: "searchBy", title: "Search by", defaultValue: filter?.searchBy, selectorTitle: "Search by", options: ["Title", "Seller"])
-            <<< getMultipleSelectorRow(id: "category", title: "Category", defaultValue: filter?.category, selectorTitle: "Category", options: ["Kitchenwares", "Electronics and Gadgets", "Furnitures"])
-            <<< getMultipleSelectorRow(id: "itemCondition", title: "Item condition", defaultValue: filter?.itemCondition, selectorTitle: "Item condition", options: ["Perfect", "Almost perfect", "Okay"])
+            <<< getMultipleSelectorRow(id: "searchBy", title: "Search by", defaultValue: searchByDefault, selectorTitle: "Search by", options: TradeSearchBy.allCases.map { $0.rawValue })
+            <<< getMultipleSelectorRow(id: "category", title: "Category", defaultValue: categoryDefault, selectorTitle: "Category", options: TradeCategoryOption.allCases.map { $0.rawValue })
+            <<< getMultipleSelectorRow(id: "itemCondition", title: "Item condition", defaultValue: itemConditionDefault, selectorTitle: "Item condition", options: TradeItemCondition.allCases.map { $0.rawValue })
 
         form +++ Section("Price (HK$)")
             <<< getSliderRow(id: "priceMax", title: "Max", defaultValue: filter?.maxPrice, max: 1000, min: 300, startFromSmallest: false)
             <<< getSliderRow(id: "priceMin", title: "Min", defaultValue: filter?.minPrice, max: 500, min: 0)
 
         form +++ Section("")
-            <<< getSingleSelectorRow(id: "sortBy", title: "Sort by", defaultValue: filter?.sortBy, selectorTitle: "Sort by", options: ["Recent", "Top", "Hot"])
+            <<< getSingleSelectorRow(id: "sortBy", title: "Sort by", defaultValue: filter?.sortBy?.rawValue, selectorTitle: "Sort by", options: TradeSortBy.allCases.map { $0.rawValue })
 
         form +++ Section("")
-            <<< getButtonRow(id: "search", title: "Search", callback: {
+            <<< getButtonRow(id: nil, title: "Search", callback: {
                 self.updateFilterModel()
                 self.delegate?.updateFilter(filter: self.filter)
                 self.dismiss(animated: true, completion: nil)
@@ -45,12 +49,21 @@ class TradeFilterVC: MasterFilterVC {
     private func updateFilterModel() {
         let filter = TradeFilterModel()
         if let row = self.form.rowBy(tag: "keyword") as? TextRow { filter.keyword = row.value }
-        if let row = self.form.rowBy(tag: "searchBy") as? MultipleSelectorRow<String> { filter.searchBy = Array(row.value ?? []) }
-        if let row = self.form.rowBy(tag: "category") as? MultipleSelectorRow<String> { filter.category = Array(row.value ?? []) }
-        if let row = self.form.rowBy(tag: "itemCondition") as? MultipleSelectorRow<String> { filter.itemCondition = Array(row.value ?? []) }
+        if let row = self.form.rowBy(tag: "searchBy") as? MultipleSelectorRow<String> {
+            if row.value == nil { filter.searchBy = nil }
+            else { filter.searchBy = Array(row.value!).compactMap { TradeSearchBy(rawValue: $0) } }
+        }
+        if let row = self.form.rowBy(tag: "category") as? MultipleSelectorRow<String> {
+            if row.value == nil { filter.category = nil }
+            else { filter.category = Array(row.value!).compactMap { TradeCategoryOption(rawValue: $0) } }
+        }
+        if let row = self.form.rowBy(tag: "itemCondition") as? MultipleSelectorRow<String> {
+            if row.value == nil { filter.itemCondition = nil }
+            else { filter.itemCondition = Array(row.value!).compactMap { TradeItemCondition(rawValue: $0) } }
+        }
         if let row = form.rowBy(tag: "priceMax") as? SliderRow { filter.maxPrice = row.value }
         if let row = form.rowBy(tag: "priceMin") as? SliderRow { filter.minPrice = row.value }
-        if let row = form.rowBy(tag: "sortBy") as? ActionSheetRow<String> { filter.sortBy = row.value }
+        if let row = form.rowBy(tag: "sortBy") as? ActionSheetRow<String> { filter.sortBy = TradeSortBy(rawValue: row.value ?? "") }
         self.filter = filter
     }
 

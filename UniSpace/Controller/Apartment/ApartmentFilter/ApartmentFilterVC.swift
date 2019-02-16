@@ -21,7 +21,7 @@ class ApartmentFilterVC: MasterFilterVC {
     override func setupSimpleFilter() {
         form +++ Section("")
             <<< getTextRow(id: "keyword", title: "Keyword", defaultValue: filter?.keyword)
-            <<< getSingleSelectorRow(id: "university", title: "University", defaultValue: filter?.university, selectorTitle: "Pick your university", options: ["Hong Kong University", "Chinese University", "HKUST", "Poly University"])
+            <<< getSingleSelectorRow(id: "university", title: "University", defaultValue: filter?.university?.rawValue, selectorTitle: "Pick your university", options: University.allCases.map { $0.rawValue })
 
         form +++ Section("Price (HK$)")
             <<< getSliderRow(id: "priceMax", title: "Max", defaultValue: filter?.maxPrice, max: 30000, min: 10000, startFromSmallest: false)
@@ -36,7 +36,7 @@ class ApartmentFilterVC: MasterFilterVC {
             <<< getSwitchRow(id: "teamFormed", title: "Team Formed", defaultValue: filter?.teamFormed)
 
         form +++ Section("")
-            <<< getButtonRow(id: "search", title: "Search", callback: {
+            <<< getButtonRow(id: nil, title: "Search", callback: {
                 self.updateFilterModel()
                 self.delegate?.updateFilter(filter: self.filter)
                 self.dismiss(animated: true, completion: nil)
@@ -46,7 +46,7 @@ class ApartmentFilterVC: MasterFilterVC {
     private func updateFilterModel() {
         let filter = HouseFilterModel()
         if let row = form.rowBy(tag: "keyword") as? TextRow { filter.keyword = row.value }
-        if let row = form.rowBy(tag: "university") as? ActionSheetRow<String> { filter.university = row.value }
+        if let row = form.rowBy(tag: "university") as? ActionSheetRow<String> { filter.university = University(rawValue: row.value ?? "") }
         if let row = form.rowBy(tag: "priceMax") as? SliderRow { filter.maxPrice = row.value }
         if let row = form.rowBy(tag: "priceMin") as? SliderRow { filter.minPrice = row.value }
         if let row = form.rowBy(tag: "sizeMax") as? SliderRow { filter.maxSize = row.value }
