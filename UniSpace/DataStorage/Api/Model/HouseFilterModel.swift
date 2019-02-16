@@ -24,11 +24,11 @@ class HouseFilterModel {
 }
 
 enum University: String, CaseIterable {
-    case HKU = "Hong Kong University"
-    case CU = "Chinese University"
-    case UST = "University of Science and Technology"
-    case PolyU = "Hong Kong Polytechnic University"
-    case CityU = "City University of Hong Kong"
+    case HKU = "HKU"
+    case CU = "CU"
+    case UST = "HKUST"
+    case PolyU = "Poly U"
+    case CityU = "City U"
 
     var pathExtension: String {
         switch self {
