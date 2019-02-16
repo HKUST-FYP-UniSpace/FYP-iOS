@@ -52,6 +52,26 @@ class SettingsVC: FormViewController {
                     //
                 }
 
+            <<< LabelRow() {
+                $0.title = "Apartment History"
+                }
+                .cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = Color.theme
+                }
+                .onCellSelection { (cell, row) in
+                    //
+            }
+
+            <<< LabelRow() {
+                $0.title = "Trade History"
+                }
+                .cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = Color.theme
+                }
+                .onCellSelection { (cell, row) in
+                    //
+            }
+
             <<< SwitchRow() {
                 $0.title = "Notification"
                 $0.value = true
