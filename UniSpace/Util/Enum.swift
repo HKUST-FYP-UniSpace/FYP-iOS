@@ -9,13 +9,13 @@
 import Foundation
 
 enum KeychainKeys: String {
-    case username = "pentagon-email"
-    case password = "pentagon-password"
-    case token = "pentagon-token"
+    case username = "unispace-email"
+    case password = "unispace-password"
+    case token = "unispace-token"
 }
 
 enum UserDefaultKeys: String {
-    case shouldSendToken = "pentagon-should_send_token"
-    case lastSync = "pentagon-last_sync"
-    case shouldNotSendNoti = "pentagon-should_not_send_noti"
+    case shouldSendToken = "unispace-should_send_token"
+    case lastSync = "unispace-last_sync"
+    case shouldNotSendNoti = "unispace-should_not_send_noti"
 }

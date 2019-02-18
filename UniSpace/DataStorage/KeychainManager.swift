@@ -12,7 +12,7 @@ class KeychainManager {
 
     public static let shared: KeychainManager = KeychainManager()
 
-    private let keychain = Keychain(service: "com.aritaone.pentagon-token")
+    private let keychain = Keychain(service: "com.fyp.unispace-token")
 
     func savePref(_ key: KeychainKeys, value: String) {
         keychain[key.rawValue] = value
