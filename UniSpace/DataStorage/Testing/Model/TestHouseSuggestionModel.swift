@@ -13,7 +13,7 @@ class TestHouseSuggestionModel: HouseSuggestion {
     var houseId: Int
     var teamId: Int
     var title: String
-    var subtitle: String
+    var preference: PreferenceModel
     var groupSize: Int
     var occupiedCount: Int
     var photoURL: String
@@ -23,7 +23,7 @@ class TestHouseSuggestionModel: HouseSuggestion {
         houseId = DataStore.shared.randomInt(length: 8)
         teamId = DataStore.shared.randomInt(length: 8)
         title = "Team Awesome"
-        subtitle = ["Boys / Pet-free / Casual drinker", "Girls / Pet-friendly / Talk to us"].randomElement()!
+        preference = TestPreferenceModel().toModel()
         groupSize = Int.random(in: 2..<6)
         occupiedCount = Int.random(in: 1..<groupSize)
         photoURL = Constants.dummyPhotoURL(Constants.cardWidth_L, ratio: 0.75)
@@ -35,7 +35,7 @@ class TestHouseSuggestionModel: HouseSuggestion {
         model.houseId = houseId
         model.teamId = teamId
         model.title = title
-        model.subtitle = subtitle
+        model.preference = preference
         model.groupSize = groupSize
         model.occupiedCount = occupiedCount
         model.photoURL = photoURL

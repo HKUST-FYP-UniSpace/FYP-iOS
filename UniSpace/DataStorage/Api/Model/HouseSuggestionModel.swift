@@ -14,7 +14,7 @@ class HouseSuggestionModel: Decodable, ListDiffable, HouseSuggestion {
     var houseId: Int = 0
     var teamId: Int = 0
     var title: String = ""
-    var subtitle: String = ""
+    var preference: PreferenceModel = PreferenceModel()
     var groupSize: Int = 0
     var occupiedCount: Int = 0
     var photoURL: String = ""

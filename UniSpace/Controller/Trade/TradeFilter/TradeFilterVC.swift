@@ -27,16 +27,16 @@ class TradeFilterVC: MasterFilterVC {
             <<< getTextRow(id: "keyword", title: "Keyword", defaultValue: filter?.keyword)
 
         form +++ Section("Search")
-            <<< getMultipleSelectorRow(id: "searchBy", title: "Search by", defaultValue: searchByDefault, selectorTitle: "Search by", options: TradeSearchBy.allCases.map { $0.rawValue })
-            <<< getMultipleSelectorRow(id: "category", title: "Category", defaultValue: categoryDefault, selectorTitle: "Category", options: TradeCategory.allCases.map { $0.rawValue })
-            <<< getMultipleSelectorRow(id: "itemCondition", title: "Item condition", defaultValue: itemConditionDefault, selectorTitle: "Item condition", options: TradeItemCondition.allCases.map { $0.rawValue })
+            <<< getMultipleSelectorRow(id: "searchBy", title: "Search by", defaultValue: searchByDefault, selectorTitle: nil, options: TradeSearchBy.allCases.map { $0.rawValue })
+            <<< getMultipleSelectorRow(id: "category", title: "Category", defaultValue: categoryDefault, selectorTitle: nil, options: TradeCategory.allCases.map { $0.rawValue })
+            <<< getMultipleSelectorRow(id: "itemCondition", title: "Item condition", defaultValue: itemConditionDefault, selectorTitle: nil, options: TradeItemCondition.allCases.map { $0.rawValue })
 
         form +++ Section("Price (HK$)")
             <<< getSliderRow(id: "priceMax", title: "Max", defaultValue: filter?.maxPrice, max: 1000, min: 300, startFromSmallest: false)
             <<< getSliderRow(id: "priceMin", title: "Min", defaultValue: filter?.minPrice, max: 500, min: 0)
 
         form +++ Section("")
-            <<< getSingleSelectorRow(id: "sortBy", title: "Sort by", defaultValue: filter?.sortBy?.rawValue, selectorTitle: "Sort by", options: TradeSortBy.allCases.map { $0.rawValue })
+            <<< getSingleSelectorRow(id: "sortBy", title: "Sort by", defaultValue: filter?.sortBy?.rawValue, selectorTitle: nil, options: TradeSortBy.allCases.map { $0.rawValue })
 
         form +++ Section("")
             <<< getButtonRow(id: nil, title: "Search", callback: {

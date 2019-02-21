@@ -12,6 +12,7 @@ protocol UserProfile: PhotoShowable {
     
     var id: Int { get set }
     var username: String { get set }
+    var preference: PreferenceModel { get set }
     var photoURL: String { get set }
     
 }

@@ -12,11 +12,13 @@ class TestUserProfileModel: UserProfile {
     
     var id: Int
     var username: String
+    var preference: PreferenceModel
     var photoURL: String
     
     required init(username: String) {
         id = DataStore.shared.randomInt(length: 8)
         self.username = username
+        self.preference = TestPreferenceModel().toModel()
         self.photoURL = Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 1)
     }
 
@@ -24,6 +26,7 @@ class TestUserProfileModel: UserProfile {
         let user = UserProfileModel()
         user.id = id
         user.username = username
+        user.preference = preference
         user.photoURL = photoURL
         return user
     }

@@ -13,7 +13,7 @@ protocol HouseSuggestion: PhotoShowable {
     var houseId: Int { get set }
     var teamId: Int { get set }
     var title: String { get set }
-    var subtitle: String { get set }
+    var preference: PreferenceModel { get set }
     var groupSize: Int { get set }
     var occupiedCount: Int { get set }
     var photoURL: String { get set }

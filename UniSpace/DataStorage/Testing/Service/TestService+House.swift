@@ -45,7 +45,11 @@ extension TestService: HouseService {
     }
 
     func bookmarkHouse(userId: Int, houseId: Int, completion: SendRequestResult?) {
-        delay { completion?(nil, nil) }
+        delay { completion?("", nil) }
+    }
+
+    func changePreference(userId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
+        delay { completion?("", nil) }
     }
 
 }

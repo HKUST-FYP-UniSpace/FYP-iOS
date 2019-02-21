@@ -32,7 +32,7 @@ class SettingsVC: FormViewController {
         form +++ Section("")
             <<< UserInfoRow { row in
                 row.cell.nameLabel.text = user?.username
-                row.cell.preferenceLabel.text = "Boys / Pet-free / Casual drinker"
+                row.cell.preferenceLabel.text = user?.preference.getTextForm()
                 row.cell.setImage(image: nil)
 
                 guard let url = user?.photoURL else { return }
@@ -49,7 +49,7 @@ class SettingsVC: FormViewController {
                     cell.textLabel?.textColor = Color.theme
                 }
                 .onCellSelection { (cell, row) in
-                    //
+                    self.present(UINavigationController(rootViewController: PreferenceVC()), animated: true, completion: nil)
                 }
 
             <<< LabelRow() {

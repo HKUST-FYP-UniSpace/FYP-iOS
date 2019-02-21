@@ -102,7 +102,7 @@ final class RowSectionController: ListSectionController {
         cell.titleLabel.text = object.title
         cell.priceLabel.text = "$\(object.price.addComma()!) pcm"
         cell.durationLabel.text = object.duration
-        cell.subtitleLabel.text = object.subtitle
+        cell.subtitleLabel.text = object.preference.getTextForm()
         cell.createGroup(occupiedCount: object.occupiedCount, size: object.groupSize)
         return cell
     }

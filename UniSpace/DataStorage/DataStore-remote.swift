@@ -22,9 +22,9 @@ extension DataStore {
         Service().verify(userId: userId, code: code, completion: completion)
     }
     
-    func getUserProfile(completion: @escaping (UserProfileModel?, Error?) -> ()) {
-        let userId = DataStore.shared.user?.id ?? -1
-        Service().getUserProfile(userId: userId, completion: completion)
+    func getUserProfile(userId: Int? = nil, completion: @escaping (UserProfileModel?, Error?) -> ()) {
+        let id = (userId == nil) ? (DataStore.shared.user?.id ?? -1) : userId!
+        Service().getUserProfile(userId: id, completion: completion)
     }
 
     func getMessageSummaries(completion: @escaping ([MessageSummaryModel]?, Error?) -> ()) {
@@ -67,6 +67,11 @@ extension DataStore {
     func bookmarkHouse(houseId: Int, completion: SendRequestResult?) {
         let userId = DataStore.shared.user?.id ?? -1
         Service().bookmarkHouse(userId: userId, houseId: houseId, completion: completion)
+    }
+
+    func changePreference(userId: Int? = nil, preference: PreferenceModel, completion: SendRequestResult?) {
+        let id = (userId == nil) ? (DataStore.shared.user?.id ?? -1) : userId!
+        Service().changePreference(userId: id, preference: preference, completion: completion)
     }
 
     func getTeamView(teamId: Int, completion: @escaping (TeamSummaryViewModel?, Error?) -> Void) {

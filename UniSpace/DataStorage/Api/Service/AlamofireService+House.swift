@@ -34,4 +34,8 @@ extension AlamofireService: HouseService {
         completion?(nil, nil)
     }
 
+    func changePreference(userId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
+        completion?(nil, nil)
+    }
+
 }

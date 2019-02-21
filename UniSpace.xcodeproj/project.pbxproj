@@ -73,6 +73,12 @@
 		6D83DA9E221010E5000E3B52 /* BlogDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D83DA9D221010E5000E3B52 /* BlogDetailCell.swift */; };
 		6D83DAA02210144B000E3B52 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D83DA9F2210144B000E3B52 /* ImageCell.swift */; };
 		6D83DAA222101B76000E3B52 /* TradeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D83DAA122101B76000E3B52 /* TradeListCell.swift */; };
+		6D891CBB221BCD7800DEB9F4 /* PreferenceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D891CBA221BCD7800DEB9F4 /* PreferenceVC.swift */; };
+		6D891CBD221BCE6B00DEB9F4 /* FormVC+EasyRowInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D891CBC221BCE6B00DEB9F4 /* FormVC+EasyRowInit.swift */; };
+		6D891CBF221BD1FB00DEB9F4 /* MasterFormPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D891CBE221BD1FB00DEB9F4 /* MasterFormPopupVC.swift */; };
+		6D891CC3221BF85100DEB9F4 /* PreferenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D891CC2221BF85100DEB9F4 /* PreferenceModel.swift */; };
+		6D891CC5221D2ED300DEB9F4 /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D891CC4221D2ED300DEB9F4 /* Preference.swift */; };
+		6D891CC7221D2F2700DEB9F4 /* TestPreferenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D891CC6221D2F2700DEB9F4 /* TestPreferenceModel.swift */; };
 		6D8AD4182211683A00EA6643 /* TradeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD4172211683A00EA6643 /* TradeListVC.swift */; };
 		6D8AD41A221169C700EA6643 /* HouseFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD419221169C700EA6643 /* HouseFilterModel.swift */; };
 		6D8AD41C221169DA00EA6643 /* TradeFilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD41B221169DA00EA6643 /* TradeFilterModel.swift */; };
@@ -264,6 +270,12 @@
 		6D83DA9D221010E5000E3B52 /* BlogDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogDetailCell.swift; sourceTree = "<group>"; };
 		6D83DA9F2210144B000E3B52 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		6D83DAA122101B76000E3B52 /* TradeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeListCell.swift; sourceTree = "<group>"; };
+		6D891CBA221BCD7800DEB9F4 /* PreferenceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceVC.swift; sourceTree = "<group>"; };
+		6D891CBC221BCE6B00DEB9F4 /* FormVC+EasyRowInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FormVC+EasyRowInit.swift"; sourceTree = "<group>"; };
+		6D891CBE221BD1FB00DEB9F4 /* MasterFormPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterFormPopupVC.swift; sourceTree = "<group>"; };
+		6D891CC2221BF85100DEB9F4 /* PreferenceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceModel.swift; sourceTree = "<group>"; };
+		6D891CC4221D2ED300DEB9F4 /* Preference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
+		6D891CC6221D2F2700DEB9F4 /* TestPreferenceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPreferenceModel.swift; sourceTree = "<group>"; };
 		6D8AD4172211683A00EA6643 /* TradeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeListVC.swift; sourceTree = "<group>"; };
 		6D8AD419221169C700EA6643 /* HouseFilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseFilterModel.swift; sourceTree = "<group>"; };
 		6D8AD41B221169DA00EA6643 /* TradeFilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeFilterModel.swift; sourceTree = "<group>"; };
@@ -434,6 +446,7 @@
 				6D30717021B27E40008D0FA3 /* MasterLandingPageVC.swift */,
 				6D30717221B27EA0008D0FA3 /* MasterTableVC.swift */,
 				6D10545B22143A3E00B61CFC /* MasterFilterVC.swift */,
+				6D891CBE221BD1FB00DEB9F4 /* MasterFormPopupVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -510,6 +523,7 @@
 				6DFE1DCD220C9CC30012E8A2 /* TeamMember.swift */,
 				6DA9D46822043FC9009464B6 /* TradeFeatured.swift */,
 				6DA9D46A220440C8009464B6 /* TradeSellingItem.swift */,
+				6D891CC4221D2ED300DEB9F4 /* Preference.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -571,6 +585,7 @@
 				6DFE1DCF220C9DEE0012E8A2 /* TestTeamMemberModel.swift */,
 				6DA9D47E22057946009464B6 /* TestTradeFeaturedModel.swift */,
 				6DA9D48222057A4E009464B6 /* TestTradeSellingItemModel.swift */,
+				6D891CC6221D2F2700DEB9F4 /* TestPreferenceModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -620,6 +635,7 @@
 				6DA9D498220587A0009464B6 /* TradeHomepageModel.swift */,
 				6DA9D480220579E8009464B6 /* TradeFeaturedModel.swift */,
 				6DA9D48422057AD5009464B6 /* TradeSellingItemModel.swift */,
+				6D891CC2221BF85100DEB9F4 /* PreferenceModel.swift */,
 				6D68F6F721A8003700D31472 /* ServerMessage.swift */,
 			);
 			path = Model;
@@ -765,6 +781,7 @@
 				6DE5562E21A3F0AB00B23398 /* StringExten.swift */,
 				6D3F0AD121E0652700B2A289 /* Collection+Safe.swift */,
 				6D7EE8E321E8E7EA008D882F /* CollectionView+SnapToCell.swift */,
+				6D891CBC221BCE6B00DEB9F4 /* FormVC+EasyRowInit.swift */,
 				6DE5561821A3B7FC00B23398 /* Color.swift */,
 				6D3F0ACF21E064CF00B2A289 /* Logger.swift */,
 			);
@@ -904,6 +921,7 @@
 			isa = PBXGroup;
 			children = (
 				6DE5562C21A3E83600B23398 /* SettingsVC.swift */,
+				6D891CBA221BCD7800DEB9F4 /* PreferenceVC.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1189,6 +1207,7 @@
 				6D68F6D621A7F25900D31472 /* AuthService.swift in Sources */,
 				6DE5563621A3F7FA00B23398 /* RegisterChoiceButton.swift in Sources */,
 				6D68F6E421A7F9C600D31472 /* TestService+Auth.swift in Sources */,
+				6D891CC7221D2F2700DEB9F4 /* TestPreferenceModel.swift in Sources */,
 				6DFE1D832206EE510012E8A2 /* Month.swift in Sources */,
 				6DE5562F21A3F0AB00B23398 /* StringExten.swift in Sources */,
 				6DA9D49522057DB1009464B6 /* AlamofireService+Trade.swift in Sources */,
@@ -1251,6 +1270,7 @@
 				6D68F6FD21A8059D00D31472 /* DateManager.swift in Sources */,
 				6DE5561F21A3BC3100B23398 /* LoginLabel.swift in Sources */,
 				6D8AD41C221169DA00EA6643 /* TradeFilterModel.swift in Sources */,
+				6D891CC3221BF85100DEB9F4 /* PreferenceModel.swift in Sources */,
 				6DA9D46322043E51009464B6 /* BlogSummary.swift in Sources */,
 				6DFE1D9A2208656F0012E8A2 /* ApartmentListVC.swift in Sources */,
 				6D563B7421E0911F00E2E10D /* SuggestionSectionController.swift in Sources */,
@@ -1270,11 +1290,13 @@
 				6D68F6FA21A8040700D31472 /* TestUserProfileModel.swift in Sources */,
 				6D3F0AD021E064CF00B2A289 /* Logger.swift in Sources */,
 				6D98246321AD272000BAF80D /* DataStore-local.swift in Sources */,
+				6D891CBB221BCD7800DEB9F4 /* PreferenceVC.swift in Sources */,
 				6DFE1DC5220C33850012E8A2 /* RowSectionController.swift in Sources */,
 				6DFE1DC3220C31A60012E8A2 /* SectionHeaderCell.swift in Sources */,
 				6D52818521EF1368007A4508 /* MessageCell.swift in Sources */,
 				6DFE1D892206F00B0012E8A2 /* DayViewModel.swift in Sources */,
 				6D7EE8CC21E89B56008D882F /* VerticalExpandCollectionViewCell.swift in Sources */,
+				6D891CBD221BCE6B00DEB9F4 /* FormVC+EasyRowInit.swift in Sources */,
 				6D68F6E221A7F95A00D31472 /* UserProfile.swift in Sources */,
 				6D3F0AD221E0652700B2A289 /* Collection+Safe.swift in Sources */,
 				6DFE1DCC220C977D0012E8A2 /* TeamSummaryVC.swift in Sources */,
@@ -1283,6 +1305,7 @@
 				6DFE1D8C2206F0790012E8A2 /* CalendarDayCell.swift in Sources */,
 				6DFE1D852206EF9A0012E8A2 /* MonthSectionController.swift in Sources */,
 				6D68F6E621A7F9D500D31472 /* TestService+General.swift in Sources */,
+				6D891CC5221D2ED300DEB9F4 /* Preference.swift in Sources */,
 				6DC9DDAF219FEE9C00A4B5DD /* AppDelegate.swift in Sources */,
 				6DE5563A21A40B5E00B23398 /* MasterLoginVC.swift in Sources */,
 				6DFE1D922206F8CA0012E8A2 /* NotificationSummary.swift in Sources */,
@@ -1311,6 +1334,7 @@
 				6D98246521AD274800BAF80D /* KeychainManager.swift in Sources */,
 				6DA9D48B22057C08009464B6 /* HouseService.swift in Sources */,
 				6D30717321B27EA0008D0FA3 /* MasterTableVC.swift in Sources */,
+				6D891CBF221BD1FB00DEB9F4 /* MasterFormPopupVC.swift in Sources */,
 				6DFE1DB7220ADE080012E8A2 /* HouseTeamSummary.swift in Sources */,
 				6DA9D4792205757F009464B6 /* HouseSuggestionModel.swift in Sources */,
 				6D68F6E821A7F9E600D31472 /* UserModel.swift in Sources */,

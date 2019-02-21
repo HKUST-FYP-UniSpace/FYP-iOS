@@ -14,7 +14,7 @@ protocol HouseTeamSummary: PhotoShowable {
     var title: String { get set }
     var price: Int { get set }
     var duration: String { get set }
-    var subtitle: String { get set }
+    var preference: PreferenceModel { get set }
     var description: String { get set }
     var groupSize: Int { get set }
     var occupiedCount: Int { get set }

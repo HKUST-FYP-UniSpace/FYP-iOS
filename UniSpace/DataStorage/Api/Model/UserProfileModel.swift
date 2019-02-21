@@ -12,6 +12,7 @@ class UserProfileModel: Decodable, Equatable, UserProfile {
     
     var id: Int = 0
     var username: String = ""
+    var preference: PreferenceModel = PreferenceModel()
     var photoURL: String = ""
     
     init() {}

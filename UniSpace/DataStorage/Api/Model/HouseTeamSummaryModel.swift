@@ -15,7 +15,7 @@ class HouseTeamSummaryModel: Decodable, ListDiffable, HouseTeamSummary {
     var title: String = ""
     var price: Int = 0
     var duration: String = ""
-    var subtitle: String = ""
+    var preference: PreferenceModel = PreferenceModel()
     var description: String = ""
     var groupSize: Int = 0
     var occupiedCount: Int = 0

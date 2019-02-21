@@ -131,7 +131,7 @@ extension EmbeddedSectionController {
         }
         cell.setImage(image: nil)
         cell.titleLabel.text = cellData.title
-        cell.subtitleLabel.text = cellData.subtitle
+        cell.subtitleLabel.text = cellData.preference.getTextForm()
         cell.durationLabel.text = cellData.duration
         cell.createGroup(occupiedCount: cellData.occupiedCount, size: cellData.groupSize)
         return cell
