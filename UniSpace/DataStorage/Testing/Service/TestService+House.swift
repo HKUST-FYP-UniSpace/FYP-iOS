@@ -45,11 +45,11 @@ extension TestService: HouseService {
     }
 
     func bookmarkHouse(userId: Int, houseId: Int, completion: SendRequestResult?) {
-        delay { completion?("", nil) }
+        delay { completion?(nil, nil) }
     }
 
     func changePreference(userId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
-        delay { completion?("", nil) }
+        delay { completion?(nil, nil) }
     }
 
 }

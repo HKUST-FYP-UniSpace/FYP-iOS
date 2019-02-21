@@ -11,6 +11,7 @@ import Foundation
 class TestService: NSObject {
     
     public static let shared: TestService = TestService()
+    public static var canLogin: Bool = true
 
     func delay(_ t: Double = 0.5, completion: @escaping (() -> Void)) {
         DispatchQueue.main.asyncAfter(deadline: .now() + t) {

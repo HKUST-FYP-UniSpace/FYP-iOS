@@ -11,6 +11,11 @@ import Foundation
 extension TestService: AuthService {
         
     func authorize(completion: @escaping (UserModel?, Error?) -> Void) {
+        if !TestService.canLogin {
+            delay { completion(nil, nil) }
+            return
+        }
+        
         let user = TestUserModel(email: "123@test.com", username: "Test user", name: "123", role: .Tenant)
         DataStore.shared.user = user.toUserModel()
         delay { completion(DataStore.shared.user, nil) }
@@ -23,6 +28,7 @@ extension TestService: AuthService {
     }
     
     func verify(userId: Int, code: String, completion: @escaping (UserModel?, Error?) -> Void) {
+        TestService.canLogin = true
         DataStore.shared.user?.verified = true
         delay { completion(DataStore.shared.user, nil) }
     }
