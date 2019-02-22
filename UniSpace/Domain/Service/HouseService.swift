@@ -17,5 +17,5 @@ protocol HouseService: class {
     func getTeamView(teamId: Int, completion: @escaping (_ model: TeamSummaryViewModel?, _ error: Error?) -> Void)
     func bookmarkHouse(userId: Int, houseId: Int, completion: SendRequestResult?)
     func changePreference(userId: Int, preference: PreferenceModel, completion: SendRequestResult?)
-    func createTeam(userId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?)
+    func createTeam(userId: Int, houseId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?)
 }

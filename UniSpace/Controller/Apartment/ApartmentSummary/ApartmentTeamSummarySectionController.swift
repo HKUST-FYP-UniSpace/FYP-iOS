@@ -12,6 +12,7 @@ import UIKit
 final class ApartmentTeamSummarySectionController: ListSectionController, ListAdapterDataSource {
 
     var contentOffset: CGFloat = 0
+    private var houseId: Int?
     private var models: [HouseTeamSummaryModel]?
     private var cellSpacing: CGFloat = 10
 
@@ -74,6 +75,7 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
 
     override func didUpdate(to object: Any) {
         let object = object as? HouseViewModel
+        houseId = object?.id
         models = object?.teams
     }
 
@@ -94,6 +96,7 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
 
 extension ApartmentTeamSummarySectionController: ButtonCellDelegate {
     func buttonCell(pressedButton sender: UIButton) {
-        adapter.viewController?.present(UINavigationController(rootViewController: TeamCreationVC()), animated: true, completion: nil)
+        guard let houseId = houseId else { return }
+        adapter.viewController?.present(UINavigationController(rootViewController: TeamCreationVC(houseId: houseId)), animated: true, completion: nil)
     }
 }

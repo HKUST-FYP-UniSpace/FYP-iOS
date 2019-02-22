@@ -74,9 +74,9 @@ extension DataStore {
         Service().changePreference(userId: id, preference: preference, completion: completion)
     }
 
-    func createTeam(model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
+    func createTeam(houseId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
         let userId = DataStore.shared.user?.id ?? -1
-        Service().createTeam(userId: userId, model: model, image: image, completion: completion)
+        Service().createTeam(userId: userId, houseId: houseId, model: model, image: image, completion: completion)
     }
 
     func getTeamView(teamId: Int, completion: @escaping (TeamSummaryViewModel?, Error?) -> Void) {

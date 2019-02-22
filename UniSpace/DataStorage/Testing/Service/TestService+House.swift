@@ -52,7 +52,7 @@ extension TestService: HouseService {
         delay { completion?(nil, nil) }
     }
 
-    func createTeam(userId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
+    func createTeam(userId: Int, houseId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
         delay { completion?(nil, nil) }
     }
 

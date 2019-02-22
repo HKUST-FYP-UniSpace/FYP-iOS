@@ -11,6 +11,7 @@ import Eureka
 
 class PreferenceVC: MasterFormPopupVC {
 
+    private var houseId: Int?
     private var image: UIImage?
     private var houseTeamSummaryModel: HouseTeamSummaryModel?
     private var model: PreferenceModel?
@@ -21,7 +22,8 @@ class PreferenceVC: MasterFormPopupVC {
         super.init(nibName: nil, bundle: nil)
     }
 
-    init(houseTeamSummaryModel: HouseTeamSummaryModel, image: UIImage) {
+    init(houseId: Int, houseTeamSummaryModel: HouseTeamSummaryModel, image: UIImage) {
+        self.houseId = houseId
         self.houseTeamSummaryModel = houseTeamSummaryModel
         self.image = image
         self.isCreatingTeam = true
@@ -85,10 +87,10 @@ class PreferenceVC: MasterFormPopupVC {
     }
 
     private func createTeam(_ preferenceModel: PreferenceModel) {
-        guard let houseTeamSummaryModel = houseTeamSummaryModel, let image = image else { return }
+        guard let houseId = houseId, let houseTeamSummaryModel = houseTeamSummaryModel, let image = image else { return }
         houseTeamSummaryModel.preference = preferenceModel
 
-        DataStore.shared.createTeam(model: houseTeamSummaryModel, image: image) { (msg, error) in
+        DataStore.shared.createTeam(houseId: houseId, model: houseTeamSummaryModel, image: image) { (msg, error) in
             guard !self.sendFailed(msg, error: error) else { return }
             self.dismiss(animated: true, completion: nil)
         }

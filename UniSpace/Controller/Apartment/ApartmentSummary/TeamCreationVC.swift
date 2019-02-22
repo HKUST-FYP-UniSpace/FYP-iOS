@@ -11,8 +11,18 @@ import Eureka
 
 class TeamCreationVC: MasterFormPopupVC {
 
+    private var houseId: Int
     private var model: HouseTeamSummaryModel?
     private var image: UIImage?
+
+    init(houseId: Int) {
+        self.houseId = houseId
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +61,7 @@ class TeamCreationVC: MasterFormPopupVC {
                     return
                 }
 
-                let vc = PreferenceVC(houseTeamSummaryModel: model, image: image)
+                let vc = PreferenceVC(houseId: self.houseId, houseTeamSummaryModel: model, image: image)
                 self.navigationController?.pushViewController(vc, animated: true)
             })
     }
