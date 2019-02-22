@@ -34,8 +34,7 @@ class PreferenceModel: Decodable, ListDiffable, Preference {
     }
 
     func allSet() -> Bool {
-        return gender != nil
-            && petFree != nil
+        return petFree != nil
             && timeInHouse != nil
             && personalities != nil
             && interests != nil

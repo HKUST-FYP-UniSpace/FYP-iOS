@@ -11,7 +11,26 @@ import Eureka
 
 class PreferenceVC: MasterFormPopupVC {
 
-    var model: PreferenceModel?
+    private var image: UIImage?
+    private var houseTeamSummaryModel: HouseTeamSummaryModel?
+    private var model: PreferenceModel?
+    private var isCreatingTeam: Bool
+
+    init() {
+        self.isCreatingTeam = true
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    init(houseTeamSummaryModel: HouseTeamSummaryModel, image: UIImage) {
+        self.houseTeamSummaryModel = houseTeamSummaryModel
+        self.image = image
+        self.isCreatingTeam = true
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +39,19 @@ class PreferenceVC: MasterFormPopupVC {
     }
 
     private func loadData() {
-        DataStore.shared.getUserProfile { (user, error) in
-            self.createForm(user?.preference)
-            self.tableView.reloadData()
+        guard !isCreatingTeam else {
+            loadForm()
+            return
         }
+
+        DataStore.shared.getUserProfile { (user, error) in
+            self.loadForm(user?.preference)
+        }
+    }
+
+    private func loadForm(_ preference: PreferenceModel? = nil) {
+        createForm(preference)
+        tableView.reloadData()
     }
 
     private func createForm(_ preference: PreferenceModel?) {
@@ -44,12 +72,26 @@ class PreferenceVC: MasterFormPopupVC {
                     return
                 }
 
-                guard let preferenceModel = self.model else { return }
-                DataStore.shared.changePreference(preference: preferenceModel, completion: { (msg, errpr) in
-                    guard !self.sendFailed(msg, error: errpr) else { return }
-                    self.dismiss(animated: true, completion: nil)
-                })
+                if self.isCreatingTeam { self.createTeam(model) }
+                else { self.changePreference(model) }
             })
+    }
+
+    private func changePreference(_ preferenceModel: PreferenceModel) {
+        DataStore.shared.changePreference(preference: preferenceModel, completion: { (msg, error) in
+            guard !self.sendFailed(msg, error: error) else { return }
+            self.dismiss(animated: true, completion: nil)
+        })
+    }
+
+    private func createTeam(_ preferenceModel: PreferenceModel) {
+        guard let houseTeamSummaryModel = houseTeamSummaryModel, let image = image else { return }
+        houseTeamSummaryModel.preference = preferenceModel
+
+        DataStore.shared.createTeam(model: houseTeamSummaryModel, image: image) { (msg, error) in
+            guard !self.sendFailed(msg, error: error) else { return }
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
     private func updateModel() {

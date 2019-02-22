@@ -12,7 +12,7 @@ extension TestService: AuthService {
         
     func authorize(completion: @escaping (UserModel?, Error?) -> Void) {
         if !TestService.canLogin {
-            delay { completion(nil, nil) }
+            delay { completion(nil, TestingAPIError.LoginFailed) }
             return
         }
         

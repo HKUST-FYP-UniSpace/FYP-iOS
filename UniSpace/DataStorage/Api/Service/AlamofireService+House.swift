@@ -38,4 +38,8 @@ extension AlamofireService: HouseService {
         completion?(nil, nil)
     }
 
+    func createTeam(userId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
+        completion?(nil, nil)
+    }
+
 }

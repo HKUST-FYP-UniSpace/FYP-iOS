@@ -19,3 +19,19 @@ enum UserDefaultKeys: String {
     case lastSync = "unispace-last_sync"
     case shouldNotSendNoti = "unispace-should_not_send_noti"
 }
+
+enum TestingAPIError: LocalizedError {
+    case LoginFailed
+    case ObjectNotFound
+
+    var errorDescription: String? {
+        get {
+            switch self {
+            case .LoginFailed:
+                return "Login failed"
+            case .ObjectNotFound:
+                return "Object not found"
+            }
+        }
+    }
+}

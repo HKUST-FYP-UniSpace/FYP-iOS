@@ -94,5 +94,6 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
 
 extension ApartmentTeamSummarySectionController: ButtonCellDelegate {
     func buttonCell(pressedButton sender: UIButton) {
+        adapter.viewController?.present(UINavigationController(rootViewController: TeamCreationVC()), animated: true, completion: nil)
     }
 }

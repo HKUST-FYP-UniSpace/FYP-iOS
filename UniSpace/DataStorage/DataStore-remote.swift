@@ -6,7 +6,7 @@
 //  Copyright © 2018 KiKan Ng. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension DataStore {
     
@@ -72,6 +72,11 @@ extension DataStore {
     func changePreference(userId: Int? = nil, preference: PreferenceModel, completion: SendRequestResult?) {
         let id = (userId == nil) ? (DataStore.shared.user?.id ?? -1) : userId!
         Service().changePreference(userId: id, preference: preference, completion: completion)
+    }
+
+    func createTeam(model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
+        let userId = DataStore.shared.user?.id ?? -1
+        Service().createTeam(userId: userId, model: model, image: image, completion: completion)
     }
 
     func getTeamView(teamId: Int, completion: @escaping (TeamSummaryViewModel?, Error?) -> Void) {

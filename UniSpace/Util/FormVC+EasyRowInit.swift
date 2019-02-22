@@ -24,6 +24,14 @@ extension FormViewController {
         }
     }
 
+    func getTextAreaRow(id: String?, placeholder: String?, defaultValue: String?) -> BaseRow {
+        return TextAreaRow(id) {
+            $0.placeholder = placeholder
+            $0.textAreaHeight = .dynamic(initialTextViewHeight: 50)
+            $0.value = defaultValue
+            }
+    }
+
     func getMultipleSelectorRow(id: String?, title: String?, defaultValue: [String]?, selectorTitle: String?, options: [String]?) -> BaseRow {
         return MultipleSelectorRow<String>(id) {
             $0.title = title
@@ -61,12 +69,12 @@ extension FormViewController {
         }
     }
 
-    func getStepperRow(id: String?, title: String?, defaultValue: Double?, max: Double, min: Double, step: Double) -> BaseRow {
+    func getStepperRow(id: String?, title: String?, defaultValue: Double?, max: Double, min: Double, step: Double, displayWithText: String = "< ") -> BaseRow {
         return StepperRow(id) {
             $0.title = title
             $0.value = 10
             if let defaultValue = defaultValue { $0.value = defaultValue }
-            $0.displayValueFor = { return "< \(Int($0 ?? 0).addComma()!)" }
+            $0.displayValueFor = { return "\(displayWithText)\(Int($0 ?? 0).addComma()!)" }
             }
             .cellSetup { (cell, row) in
                 cell.stepper.minimumValue = min

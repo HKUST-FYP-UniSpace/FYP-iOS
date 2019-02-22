@@ -20,6 +20,13 @@ extension AppDelegate {
         window?.rootViewController?.loadViewIfNeeded()
         window?.rootViewController = rootController
         window?.makeKeyAndVisible()
+
+        if authorized {
+            DataStore.shared.getUserProfile { (model, error) in
+                guard let preference = model?.preference, !preference.allSet() else { return }
+                self.window?.rootViewController?.present(UINavigationController(rootViewController: PreferenceVC()), animated: true, completion: nil)
+            }
+        }
     }
     
     func addUserCredential() {

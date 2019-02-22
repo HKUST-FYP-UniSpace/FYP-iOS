@@ -40,7 +40,7 @@ class MasterVC: UIViewController {
     
     func loginCompletion(user: UserModel?, error: Error?) {
         if user == nil {
-            showAlert(title: "Wrong username or password")
+            showAlert(title: error?.localizedDescription)
         }
     }
 
@@ -68,6 +68,11 @@ extension UIViewController {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+
+    func getPhoto(handlePopover: @escaping (_ actionSheet: UIAlertController) -> (), completion: @escaping (_ image: UIImage) -> ()) {
+        CameraHandler.shared.showActionSheet(vc: self, completion: handlePopover)
+        CameraHandler.shared.imagePickedBlock = completion
     }
 
     func sendFailed(_ message: String?, error: Error?) -> Bool {

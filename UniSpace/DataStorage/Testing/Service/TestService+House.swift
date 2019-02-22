@@ -6,7 +6,7 @@
 //  Copyright © 2019 KiKan Ng. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension TestService: HouseService {
     
@@ -49,6 +49,10 @@ extension TestService: HouseService {
     }
 
     func changePreference(userId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
+    }
+
+    func createTeam(userId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
         delay { completion?(nil, nil) }
     }
 
