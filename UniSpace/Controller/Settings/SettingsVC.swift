@@ -72,6 +72,16 @@ class SettingsVC: FormViewController {
                     //
             }
 
+            <<< LabelRow() {
+                $0.title = "Pending Requests"
+                }
+                .cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = Color.theme
+                }
+                .onCellSelection { (cell, row) in
+                    //
+            }
+
             <<< SwitchRow() {
                 $0.title = "Notification"
                 $0.value = true
@@ -93,7 +103,7 @@ class SettingsVC: FormViewController {
                 }
 
             <<< LabelRow() {
-                $0.title = "Sign out"
+                $0.title = "Sign Out"
                 }
                 .cellUpdate { (cell, row) in
                     cell.textLabel?.textColor = .red

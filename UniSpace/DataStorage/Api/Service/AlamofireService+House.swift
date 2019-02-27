@@ -42,4 +42,8 @@ extension AlamofireService: HouseService {
         completion?(nil, nil)
     }
 
+    func joinTeam(userId: Int, teamId: Int, completion: SendRequestResult?) {
+        completion?(nil, nil)
+    }
+
 }

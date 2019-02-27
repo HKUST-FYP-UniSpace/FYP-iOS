@@ -12,6 +12,7 @@ import UIKit
 final class TeamMemberSectionController: ListSectionController, ListAdapterDataSource {
 
     var contentOffset: CGFloat = 0
+    private var teamId: Int?
     private var models: [TeamMemberModel]?
     private var cellSpacing: CGFloat = 10
 
@@ -74,6 +75,7 @@ final class TeamMemberSectionController: ListSectionController, ListAdapterDataS
 
     override func didUpdate(to object: Any) {
         let object = object as? TeamSummaryViewModel
+        teamId = object?.id
         models = object?.teamMembers
     }
 
@@ -94,5 +96,10 @@ final class TeamMemberSectionController: ListSectionController, ListAdapterDataS
 
 extension TeamMemberSectionController: ButtonCellDelegate {
     func buttonCell(pressedButton sender: UIButton) {
+        guard let teamId = teamId else { return }
+        DataStore.shared.joinTeam(teamId: teamId) { (msg, error) in
+            guard let vc = self.adapter.viewController, !vc.sendFailed(msg, error: error) else { return }
+            vc.showAlert(title: "Request Sent")
+        }
     }
 }

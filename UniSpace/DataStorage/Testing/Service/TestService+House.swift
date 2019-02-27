@@ -56,4 +56,8 @@ extension TestService: HouseService {
         delay { completion?(nil, nil) }
     }
 
+    func joinTeam(userId: Int, teamId: Int, completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
+    }
+
 }

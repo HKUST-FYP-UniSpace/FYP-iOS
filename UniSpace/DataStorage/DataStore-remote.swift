@@ -79,6 +79,11 @@ extension DataStore {
         Service().createTeam(userId: userId, houseId: houseId, model: model, image: image, completion: completion)
     }
 
+    func joinTeam(teamId: Int, completion: SendRequestResult?) {
+        let userId = DataStore.shared.user?.id ?? -1
+        Service().joinTeam(userId: userId, teamId: teamId, completion: completion)
+    }
+
     func getTeamView(teamId: Int, completion: @escaping (TeamSummaryViewModel?, Error?) -> Void) {
         Service().getTeamView(teamId: teamId, completion: completion)
     }
