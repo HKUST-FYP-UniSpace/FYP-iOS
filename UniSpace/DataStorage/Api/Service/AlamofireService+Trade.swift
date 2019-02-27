@@ -25,4 +25,8 @@ extension AlamofireService: TradeService {
         completion(nil, nil)
     }
 
+    func createTradeItem(userId: Int, model: TradeFeaturedModel, image: UIImage, completion: SendRequestResult?) {
+        completion?(nil, nil)
+    }
+
 }

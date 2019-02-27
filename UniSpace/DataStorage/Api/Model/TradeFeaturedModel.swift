@@ -30,4 +30,11 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
         return self.id == object.id
     }
 
+    func allSet() -> Bool {
+        return title != ""
+            && location != ""
+            && price != 0
+            && detail != ""
+    }
+
 }

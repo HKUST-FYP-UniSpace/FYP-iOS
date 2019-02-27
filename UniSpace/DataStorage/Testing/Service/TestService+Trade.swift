@@ -6,7 +6,7 @@
 //  Copyright © 2019 KiKan Ng. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension TestService: TradeService {
 
@@ -32,6 +32,10 @@ extension TestService: TradeService {
         var summaries: [TradeFeaturedModel]? = []
         for _ in 0..<Int.random(in: (1..<30)) { summaries?.append(TestTradeFeaturedModel().toModel()) }
         delay { completion(summaries, nil) }
+    }
+
+    func createTradeItem(userId: Int, model: TradeFeaturedModel, image: UIImage, completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
     }
 
 

@@ -21,7 +21,43 @@ extension FormViewController {
         return TextRow(id) {
             $0.title = title
             $0.value = defaultValue
+            $0.placeholder = "-"
         }
+    }
+
+    func getPriceRow(id: String?, title: String?, defaultValue: String?, unit: String) -> BaseRow {
+        return TextRow(id) {
+            $0.title = title
+            $0.value = defaultValue
+            $0.placeholder = "-"
+            }
+            .cellSetup { (cell, row) in
+                cell.textLabel?.lineBreakMode = .byWordWrapping
+                cell.textLabel?.numberOfLines = 0
+                cell.textField.keyboardType = .numbersAndPunctuation
+            }
+            .onCellHighlightChanged { (textCell, row) in
+                guard var rowValue = row.value else { return }
+                textCell.backgroundColor = .clear
+
+                if rowValue.contains(unit) { // is editing cell
+                    row.value = ""
+
+                } else { // finish editing cell
+                    rowValue = (rowValue == "") ? "-" : (unit + " " + rowValue)
+                    row.placeholder = unit
+
+                    let currentRowValue: String = rowValue.deletingPrefix("\(unit) ")
+                    if currentRowValue.isNumber() {
+                        row.value = unit + " " + currentRowValue
+                    } else {
+                        textCell.backgroundColor = .yellow
+                        return
+                    }
+
+                    row.placeholder = row.value
+                }
+            }
     }
 
     func getTextAreaRow(id: String?, placeholder: String?, defaultValue: String?) -> BaseRow {

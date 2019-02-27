@@ -62,6 +62,11 @@ final class TradeSellingItemsSectionController: ListSectionController, ListAdapt
         sellingItems = model?.sellingItems ?? []
     }
 
+    override func didSelectItem(at index: Int) {
+        guard index == 0 else { return }
+        adapter.viewController?.present(UINavigationController(rootViewController: TradeAddItemVC()), animated: true, completion: nil)
+    }
+
     // MARK: ListAdapterDataSource
 
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {

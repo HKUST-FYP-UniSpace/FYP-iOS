@@ -6,7 +6,7 @@
 //  Copyright © 2019 KiKan Ng. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol TradeService: class {
 
@@ -14,4 +14,5 @@ protocol TradeService: class {
     func getTradeSellingItems(userId: Int, completion: @escaping (_ summaries: [TradeSellingItemModel]?, _ error: Error?) -> Void)
     func getTradeSaved(userId: Int, completion: @escaping (_ summaries: [TradeFeaturedModel]?, _ error: Error?) -> Void)
     func getTradeList(userId: Int, filter: TradeFilterModel, completion: @escaping (_ summaries: [TradeFeaturedModel]?, _ error: Error?) -> Void)
+    func createTradeItem(userId: Int, model: TradeFeaturedModel, image: UIImage, completion: SendRequestResult?)
 }
