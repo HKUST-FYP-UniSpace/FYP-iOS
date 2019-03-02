@@ -16,6 +16,7 @@ class TestTradeFeaturedModel: TradeFeatured {
     var price: Int
     var status: String
     var detail: String
+    var isBookmarked: Bool
     var photoURL: String
 
     required init() {
@@ -25,6 +26,7 @@ class TestTradeFeaturedModel: TradeFeatured {
         price = Int.random(in: 20..<100) * 100
         status = ["NEW", ""].randomElement()!
         detail = "Designed by Marcel Breuer, it is an iconic Bauhaus style chair"
+        isBookmarked = Bool.random()
         photoURL = Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 0.75)
     }
 
@@ -36,6 +38,7 @@ class TestTradeFeaturedModel: TradeFeatured {
         model.price = price
         model.status = status
         model.detail = detail
+        model.isBookmarked = isBookmarked
         model.photoURL = photoURL
         return model
     }

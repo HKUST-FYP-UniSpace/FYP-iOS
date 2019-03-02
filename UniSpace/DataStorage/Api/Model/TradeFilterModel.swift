@@ -41,7 +41,7 @@ enum TradeCategory: String, CaseIterable {
 
     var pathExtension: String {
         switch self {
-        case .Kitchenwares: return "Kitchenwares"
+        case .Kitchenwares: return "kitchenwares"
         case .ElectronicsAndGadgets: return "electronics_and_gadgets"
         case .Furnitures: return "furnitures"
         }

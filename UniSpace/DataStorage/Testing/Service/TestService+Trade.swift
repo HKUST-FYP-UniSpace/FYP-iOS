@@ -38,5 +38,16 @@ extension TestService: TradeService {
         delay { completion?(nil, nil) }
     }
 
+    func getTradeDetail(itemId: Int, completion: @escaping (TradeFeaturedModel?, Error?) -> Void) {
+        delay { completion(TestTradeFeaturedModel().toModel(), nil) }
+    }
+
+    func bookmarkItem(userId: Int, itemId: Int, completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
+    }
+
+    func contactOwner(userId: Int, itemId: Int, message: String, completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
+    }
 
 }

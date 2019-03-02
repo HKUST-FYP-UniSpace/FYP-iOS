@@ -75,6 +75,12 @@ final class GridSectionController: ListSectionController {
             viewController?.navigationController?.pushViewController(vc, animated: true)
             return
         }
+        if let data = data?[0] as? TradeFeaturedModel {
+            let vc = TradeDetailVC()
+            vc.tradeItemId = data.id
+            viewController?.navigationController?.pushViewController(vc, animated: true)
+            return
+        }
     }
 
     override func didUpdate(to object: Any) {

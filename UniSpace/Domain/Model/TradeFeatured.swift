@@ -16,6 +16,7 @@ protocol TradeFeatured: PhotoShowable {
     var price: Int { get set }
     var status: String { get set }
     var detail: String { get set }
+    var isBookmarked: Bool { get set }
     var photoURL: String { get set }
 
 }

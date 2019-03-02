@@ -120,6 +120,13 @@
 		6DA9D499220587A0009464B6 /* TradeHomepageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9D498220587A0009464B6 /* TradeHomepageModel.swift */; };
 		6DAAC20821EC36120052748D /* ImageSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAAC20721EC36120052748D /* ImageSettable.swift */; };
 		6DC0DD7D22265159000BCA36 /* TradeAddItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC0DD7C22265159000BCA36 /* TradeAddItemVC.swift */; };
+		6DC0DD802227EAF5000BCA36 /* TradeDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC0DD7F2227EAF5000BCA36 /* TradeDetailVC.swift */; };
+		6DC0DD822227EB11000BCA36 /* TradeDetailSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC0DD812227EB11000BCA36 /* TradeDetailSectionController.swift */; };
+		6DC0DD842227EDE6000BCA36 /* TradeDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC0DD832227EDE6000BCA36 /* TradeDetailCell.swift */; };
+		6DC0DD862227F020000BCA36 /* TradeSendMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC0DD852227F020000BCA36 /* TradeSendMessageVC.swift */; };
+		6DC0DD882227F1A0000BCA36 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC0DD872227F1A0000BCA36 /* Message.swift */; };
+		6DC0DD8A222ACCF6000BCA36 /* TestMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC0DD89222ACCF6000BCA36 /* TestMessageModel.swift */; };
+		6DC0DD8C222ACD06000BCA36 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC0DD8B222ACD06000BCA36 /* MessageModel.swift */; };
 		6DC9DDAF219FEE9C00A4B5DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9DDAE219FEE9C00A4B5DD /* AppDelegate.swift */; };
 		6DC9DDB1219FEE9C00A4B5DD /* ApartmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9DDB0219FEE9C00A4B5DD /* ApartmentVC.swift */; };
 		6DC9DDB3219FEE9C00A4B5DD /* TradeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC9DDB2219FEE9C00A4B5DD /* TradeVC.swift */; };
@@ -321,6 +328,13 @@
 		6DA9D498220587A0009464B6 /* TradeHomepageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeHomepageModel.swift; sourceTree = "<group>"; };
 		6DAAC20721EC36120052748D /* ImageSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSettable.swift; sourceTree = "<group>"; };
 		6DC0DD7C22265159000BCA36 /* TradeAddItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeAddItemVC.swift; sourceTree = "<group>"; };
+		6DC0DD7F2227EAF5000BCA36 /* TradeDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeDetailVC.swift; sourceTree = "<group>"; };
+		6DC0DD812227EB11000BCA36 /* TradeDetailSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeDetailSectionController.swift; sourceTree = "<group>"; };
+		6DC0DD832227EDE6000BCA36 /* TradeDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeDetailCell.swift; sourceTree = "<group>"; };
+		6DC0DD852227F020000BCA36 /* TradeSendMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeSendMessageVC.swift; sourceTree = "<group>"; };
+		6DC0DD872227F1A0000BCA36 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		6DC0DD89222ACCF6000BCA36 /* TestMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMessageModel.swift; sourceTree = "<group>"; };
+		6DC0DD8B222ACD06000BCA36 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		6DC9DDAB219FEE9C00A4B5DD /* UniSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DC9DDAE219FEE9C00A4B5DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DC9DDB0219FEE9C00A4B5DD /* ApartmentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentVC.swift; sourceTree = "<group>"; };
@@ -523,6 +537,7 @@
 				6D8AD42A2213322100EA6643 /* Bookmarkable.swift */,
 				6D68F6E121A7F95A00D31472 /* UserProfile.swift */,
 				6DA9D46022043DCC009464B6 /* MessageSummary.swift */,
+				6DC0DD872227F1A0000BCA36 /* Message.swift */,
 				6DFE1D912206F8CA0012E8A2 /* NotificationSummary.swift */,
 				6DA9D46222043E51009464B6 /* BlogSummary.swift */,
 				6DA9D46422043ECE009464B6 /* HouseSuggestion.swift */,
@@ -585,6 +600,7 @@
 				6D68F6D921A7F34800D31472 /* TestUserModel.swift */,
 				6D68F6F921A8040700D31472 /* TestUserProfileModel.swift */,
 				6DA9D46E22044289009464B6 /* TestMessageSummaryModel.swift */,
+				6DC0DD89222ACCF6000BCA36 /* TestMessageModel.swift */,
 				6DFE1D932206F90F0012E8A2 /* TestNotificationSummaryModel.swift */,
 				6DA9D4722204680A009464B6 /* TestBlogSummaryModel.swift */,
 				6DA9D47622046A63009464B6 /* TestHouseSuggestionModel.swift */,
@@ -629,6 +645,7 @@
 				6D68F6E721A7F9E600D31472 /* UserModel.swift */,
 				6D68F6E921A7F9F400D31472 /* UserProfileModel.swift */,
 				6DA9D470220444C1009464B6 /* MessageSummaryModel.swift */,
+				6DC0DD8B222ACD06000BCA36 /* MessageModel.swift */,
 				6DFE1D952206F9A00012E8A2 /* NotificationSummaryModel.swift */,
 				6DA9D474220469C0009464B6 /* BlogSummaryModel.swift */,
 				6D8AD419221169C700EA6643 /* HouseFilterModel.swift */,
@@ -705,6 +722,16 @@
 				6D8AD42722130BC600EA6643 /* TradeFilterVC.swift */,
 			);
 			path = TradeFilter;
+			sourceTree = "<group>";
+		};
+		6DC0DD7E2227EAC0000BCA36 /* TradeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				6DC0DD7F2227EAF5000BCA36 /* TradeDetailVC.swift */,
+				6DC0DD812227EB11000BCA36 /* TradeDetailSectionController.swift */,
+				6DC0DD852227F020000BCA36 /* TradeSendMessageVC.swift */,
+			);
+			path = TradeDetail;
 			sourceTree = "<group>";
 		};
 		6DC9DDA2219FEE9C00A4B5DD = {
@@ -916,6 +943,7 @@
 				6D8AD42622130BB200EA6643 /* TradeFilter */,
 				6D7EE8EA21E8F276008D882F /* TradeHomepage */,
 				6D8AD4162211682200EA6643 /* TradeList */,
+				6DC0DD7E2227EAC0000BCA36 /* TradeDetail */,
 			);
 			path = Trade;
 			sourceTree = "<group>";
@@ -958,6 +986,7 @@
 				6D7EE8E521E8EA5A008D882F /* TradeFeaturedCell.swift */,
 				6D7EE8EB21E8F4E3008D882F /* TradeSellingItemsCell.swift */,
 				6D83DAA122101B76000E3B52 /* TradeListCell.swift */,
+				6DC0DD832227EDE6000BCA36 /* TradeDetailCell.swift */,
 			);
 			path = Trade;
 			sourceTree = "<group>";
@@ -1208,6 +1237,7 @@
 				6D563B6E21E075D400E2E10D /* EmbeddedCollectionViewCell.swift in Sources */,
 				6D8AD42B2213322100EA6643 /* Bookmarkable.swift in Sources */,
 				6DFE1DC7220C8EE10012E8A2 /* TeamSummaryCell.swift in Sources */,
+				6DC0DD8A222ACCF6000BCA36 /* TestMessageModel.swift in Sources */,
 				6D7EE8F621E9ABD5008D882F /* Enum.swift in Sources */,
 				6D52818921EF1863007A4508 /* MessageTypeButton.swift in Sources */,
 				6D7EE8D021E8B1C9008D882F /* Constant.swift in Sources */,
@@ -1256,6 +1286,7 @@
 				6DE5563821A4052D00B23398 /* RegisterDetailVC.swift in Sources */,
 				6DFE1D812206EDC80012E8A2 /* NotificationVC.swift in Sources */,
 				6DE5562B21A3E82B00B23398 /* MessageVC.swift in Sources */,
+				6DC0DD862227F020000BCA36 /* TradeSendMessageVC.swift in Sources */,
 				6DFE1DBB220AE0760012E8A2 /* HouseTeamSummaryModel.swift in Sources */,
 				6D83DA9E221010E5000E3B52 /* BlogDetailCell.swift in Sources */,
 				6DA9D47D220578E3009464B6 /* HouseSavedModel.swift in Sources */,
@@ -1287,13 +1318,16 @@
 				6D891CC3221BF85100DEB9F4 /* PreferenceModel.swift in Sources */,
 				6DA9D46322043E51009464B6 /* BlogSummary.swift in Sources */,
 				6DFE1D9A2208656F0012E8A2 /* ApartmentListVC.swift in Sources */,
+				6DC0DD8C222ACD06000BCA36 /* MessageModel.swift in Sources */,
 				6D563B7421E0911F00E2E10D /* SuggestionSectionController.swift in Sources */,
 				6DA9D49722058793009464B6 /* HouseHomepageModel.swift in Sources */,
 				6D563B6821E074E000E2E10D /* EmbeddedSectionController.swift in Sources */,
 				6DA9D48322057A4E009464B6 /* TestTradeSellingItemModel.swift in Sources */,
 				6D7EE8CA21E899AA008D882F /* SavedSectionController.swift in Sources */,
+				6DC0DD842227EDE6000BCA36 /* TradeDetailCell.swift in Sources */,
 				6DFE1D872206EFF20012E8A2 /* MonthTitleViewModel.swift in Sources */,
 				6D3CBF3A2217E252007EC89D /* UserInfoCell.swift in Sources */,
+				6DC0DD822227EB11000BCA36 /* TradeDetailSectionController.swift in Sources */,
 				6DA9D48F22057D4B009464B6 /* TestService+House.swift in Sources */,
 				6DFE1DB1220ADBBF0012E8A2 /* HouseList.swift in Sources */,
 				6DA9D46922043FC9009464B6 /* TradeFeatured.swift in Sources */,
@@ -1302,6 +1336,7 @@
 				6D68F6DA21A7F34800D31472 /* TestUserModel.swift in Sources */,
 				6D7EE8EC21E8F4E3008D882F /* TradeSellingItemsCell.swift in Sources */,
 				6D68F6FA21A8040700D31472 /* TestUserProfileModel.swift in Sources */,
+				6DC0DD802227EAF5000BCA36 /* TradeDetailVC.swift in Sources */,
 				6D3F0AD021E064CF00B2A289 /* Logger.swift in Sources */,
 				6D98246321AD272000BAF80D /* DataStore-local.swift in Sources */,
 				6D891CBB221BCD7800DEB9F4 /* PreferenceVC.swift in Sources */,
@@ -1329,6 +1364,7 @@
 				6DE5561921A3B7FC00B23398 /* Color.swift in Sources */,
 				6DA9D48522057AD5009464B6 /* TradeSellingItemModel.swift in Sources */,
 				6DA9D46B220440C8009464B6 /* TradeSellingItem.swift in Sources */,
+				6DC0DD882227F1A0000BCA36 /* Message.swift in Sources */,
 				6DA035312202C48900258359 /* SingleSectionViewController.swift in Sources */,
 				6D30716F21B27DEF008D0FA3 /* MasterPopupVC.swift in Sources */,
 				6DE9F3A5220EE1F40074B495 /* StandardSeparator.swift in Sources */,

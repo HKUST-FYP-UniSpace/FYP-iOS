@@ -15,6 +15,7 @@ enum RowSectionType {
     case TeamDescription
     case TeamMembers
     case ScreenWidthImage
+    case TradeDetail
 }
 
 final class RowSectionController: ListSectionController {
@@ -35,6 +36,7 @@ final class RowSectionController: ListSectionController {
             case .TeamDescription: return 100
             case .TeamMembers: return 80
             case .ScreenWidthImage: return collectionContext!.containerSize.width * 0.75
+            case .TradeDetail: return collectionContext!.containerSize.width * 0.75 + 160
             }
         }
         return CGSize(width: collectionContext!.containerSize.width, height: height)
@@ -52,6 +54,8 @@ final class RowSectionController: ListSectionController {
             return getTeamMemberCell(at: index)
         case .ScreenWidthImage:
             return getImageCell(at: index)
+        case .TradeDetail:
+            return getTradeDetailCell(at: index)
         }
     }
 
@@ -86,7 +90,7 @@ final class RowSectionController: ListSectionController {
         cell.titleLabel.text = titleView.address
         cell.setStarRating(rating: titleView.starRating)
         cell.priceLabel.text = "$\(titleView.price.addComma()!) pcm"
-        cell.sizeLabel.text = "\(titleView.size) sq. ft."
+        cell.sizeLabel.text = "\(titleView.size.addComma()!) sq. ft."
         cell.subtitleLabel.text = titleView.subtitle
         cell.setImage(image: nil)
 
@@ -136,5 +140,23 @@ final class RowSectionController: ListSectionController {
         }
         return cell
     }
+
+    private func getTradeDetailCell(at index: Int) -> UICollectionViewCell {
+        guard let cell = collectionContext?.dequeueReusableCell(of: TradeDetailCell.self, for: self, at: index) as? TradeDetailCell, let object = object as? TradeFeaturedModel else { fatalError() }
+        cell.titleLabel.text = object.title
+        cell.locationLabel.text = object.location
+        cell.priceLabel.text = "$\(object.price.addComma()!)"
+        cell.statusLabel.text = object.status
+        cell.subtitleLabel.text = object.detail
+        cell.setImage(image: nil)
+
+        AlamofireService.shared.downloadImageData(at: object.photoURL, downloadProgress: nil) { (data, error) in
+            guard let data = data else { return }
+            cell.setImage(image: UIImage(data: data))
+        }
+        return cell
+    }
+
+
 
 }

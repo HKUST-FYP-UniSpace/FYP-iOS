@@ -112,5 +112,19 @@ extension DataStore {
         let userId = DataStore.shared.user?.id ?? -1
         Service().createTradeItem(userId: userId, model: model, image: image, completion: completion)
     }
+
+    func getTradeDetail(itemId: Int, completion: @escaping (TradeFeaturedModel?, Error?) -> Void) {
+        Service().getTradeDetail(itemId: itemId, completion: completion)
+    }
+
+    func bookmarkItem(itemId: Int, completion: SendRequestResult?) {
+        let userId = DataStore.shared.user?.id ?? -1
+        Service().bookmarkItem(userId: userId, itemId: itemId, completion: completion)
+    }
+
+    func contactOwner(itemId: Int, message: String, completion: SendRequestResult?) {
+        let userId = DataStore.shared.user?.id ?? -1
+        Service().contactOwner(userId: userId, itemId: itemId, message: message, completion: completion)
+    }
     
 }

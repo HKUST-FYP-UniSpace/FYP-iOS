@@ -17,6 +17,7 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
     var price: Int = 0
     var status: String = ""
     var detail: String = ""
+    var isBookmarked: Bool = false
     var photoURL: String = ""
 
     init() {}

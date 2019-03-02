@@ -29,4 +29,18 @@ extension AlamofireService: TradeService {
         completion?(nil, nil)
     }
 
+    func getTradeDetail(itemId: Int, completion: @escaping (TradeFeaturedModel?, Error?) -> Void) {
+        completion(nil, nil)
+    }
+
+    func bookmarkItem(userId: Int, itemId: Int, completion: SendRequestResult?) {
+        completion?(nil, nil)
+    }
+
+    func contactOwner(userId: Int, itemId: Int, message: String, completion: SendRequestResult?) {
+//        let senderId = DataStore.shared.user?.id ?? -1
+//        let time = DateManager.shared.getCurrentDate().timeIntervalSince1970
+        completion?(nil, nil)
+    }
+
 }

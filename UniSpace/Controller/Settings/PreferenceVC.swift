@@ -18,7 +18,7 @@ class PreferenceVC: MasterFormPopupVC {
     private var isCreatingTeam: Bool
 
     init() {
-        self.isCreatingTeam = true
+        self.isCreatingTeam = false
         super.init(nibName: nil, bundle: nil)
     }
 
