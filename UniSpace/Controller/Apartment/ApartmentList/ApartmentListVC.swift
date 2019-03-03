@@ -40,6 +40,7 @@ final class ApartmentListVC: SingleSectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = type.text
+        guard type == .Result else { return }
         let filterItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterButton))
         navigationItem.rightBarButtonItem = filterItem
     }

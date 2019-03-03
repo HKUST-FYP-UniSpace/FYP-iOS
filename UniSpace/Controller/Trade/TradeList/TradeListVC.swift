@@ -43,6 +43,7 @@ final class TradeListVC: SingleSectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if self.title == nil { self.title = type.text }
+        guard type == .Result else { return }
         let filterItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterButton))
         navigationItem.rightBarButtonItem = filterItem
     }
