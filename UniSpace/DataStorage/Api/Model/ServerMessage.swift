@@ -13,9 +13,7 @@ class ServerMessage: Decodable {
     var code: Int = 0
     var resource: String = ""
     
-    init() {
-        
-    }
+    init() {}
 }
 
 

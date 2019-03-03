@@ -18,8 +18,20 @@ class TeamMemberModel: Decodable, ListDiffable, TeamMember {
 
     init() {}
 
-    required init(from decoder: Decoder) throws {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case role
+        case photoURL
+    }
 
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        let roleInt = try container.decode(Int.self, forKey: .role)
+        role = TeamMemberRole(rawValue: roleInt) ?? .Member
+        photoURL = try container.decode(String.self, forKey: .photoURL)
     }
 
     func diffIdentifier() -> NSObjectProtocol {

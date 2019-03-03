@@ -11,39 +11,88 @@ import Alamofire
 extension AlamofireService: HouseService {
 
     func getHouseSuggestions(userId: Int, completion: @escaping ([HouseSuggestionModel]?, Error?) -> Void) {
-        completion(nil, nil)
+        get(at: .getHouseSuggestions()).responseJSON { (res: DataResponse<Any>) in
+            var result: [HouseSuggestionModel]? = nil
+            if let data = res.data { result = try? JSONDecoder().decode([HouseSuggestionModel].self, from: data) }
+            completion(result, res.result.error)
+        }
     }
 
     func getHouseSaved(userId: Int, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
-        completion(nil, nil)
+        get(at: .getHouseSaved()).responseJSON { (res: DataResponse<Any>) in
+            var result: [HouseListModel]? = nil
+            if let data = res.data { result = try? JSONDecoder().decode([HouseListModel].self, from: data) }
+            completion(result, res.result.error)
+        }
     }
 
     func getHouseList(userId: Int, filter: HouseFilterModel, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
-        completion(nil, nil)
+        get(at: .getHouseList(filter: filter)).responseJSON { (res: DataResponse<Any>) in
+            var result: [HouseListModel]? = nil
+            if let data = res.data { result = try? JSONDecoder().decode([HouseListModel].self, from: data) }
+            completion(result, res.result.error)
+        }
     }
 
     func getHouseView(houseId: Int, completion: @escaping (HouseViewModel?, Error?) -> Void) {
-        completion(nil, nil)
+        get(at: .getHouseView(houseId: houseId)).responseJSON { (res: DataResponse<Any>) in
+            var result: HouseViewModel? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(HouseViewModel.self, from: data) }
+            completion(result, res.result.error)
+        }
     }
 
     func getTeamView(teamId: Int, completion: @escaping (TeamSummaryViewModel?, Error?) -> Void) {
-        completion(nil, nil)
+        get(at: .getTeamView(teamId: teamId)).responseJSON { (res: DataResponse<Any>) in
+            var result: TeamSummaryViewModel? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(TeamSummaryViewModel.self, from: data) }
+            completion(result, res.result.error)
+        }
     }
 
     func bookmarkHouse(userId: Int, houseId: Int, completion: SendRequestResult?) {
-        completion?(nil, nil)
+        post(at: .bookmarkHouse(houseId: houseId)).responseJSON { (res: DataResponse<Any>) in
+            var result: ServerMessage? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
+            completion?(result?.message, res.result.error)
+        }
     }
 
     func changePreference(userId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
-        completion?(nil, nil)
+        let params = getPreferenceParams(preference)
+        post(at: .updatePreference(), params: params).responseJSON { (res: DataResponse<Any>) in
+            var result: ServerMessage? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
+            completion?(result?.message, res.result.error)
+        }
     }
 
     func createTeam(userId: Int, houseId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
-        completion?(nil, nil)
+        let params = getTeamParams(model)
+        post(at: .updatePreference(), params: params).responseJSON { (res: DataResponse<Any>) in
+            var result: ServerMessage? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
+            completion?(result?.message, res.result.error)
+            // send image
+        }
     }
 
     func joinTeam(userId: Int, teamId: Int, completion: SendRequestResult?) {
-        completion?(nil, nil)
+        post(at: .joinTeam(teamId: teamId)).responseJSON { (res: DataResponse<Any>) in
+            var result: ServerMessage? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
+            completion?(result?.message, res.result.error)
+        }
     }
 
+}
+
+extension AlamofireService {
+    private func getPreferenceParams(_ preference: PreferenceModel) -> Parameters {
+        return Parameters()
+    }
+
+    private func getTeamParams(_ model: HouseTeamSummaryModel) -> Parameters {
+        return Parameters()
+    }
 }

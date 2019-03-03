@@ -49,6 +49,7 @@ class SettingsVC: FormViewController {
                     cell.textLabel?.textColor = Color.theme
                 }
                 .onCellSelection { (cell, row) in
+                    UINotificationFeedbackGenerator().notificationOccurred(.success)
                     self.present(UINavigationController(rootViewController: PreferenceVC()), animated: true, completion: nil)
                 }
 

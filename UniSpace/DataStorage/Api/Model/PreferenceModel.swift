@@ -20,8 +20,24 @@ class PreferenceModel: Decodable, ListDiffable, Preference {
 
     init() {}
 
-    required init(from decoder: Decoder) throws {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case gender
+        case petFree
+        case timeInHouse
+        case personalities
+        case interests
+    }
 
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
+        let genderInt = try container.decode(Int.self, forKey: .gender)
+        gender = Gender(rawValue: genderInt)
+        petFree = try container.decode(Bool.self, forKey: .petFree)
+        timeInHouse = try container.decode(String.self, forKey: .timeInHouse)
+        personalities = try container.decode([String].self, forKey: .personalities)
+        interests = try container.decode([String].self, forKey: .interests)
     }
 
     func diffIdentifier() -> NSObjectProtocol {

@@ -21,8 +21,26 @@ class MessageSummaryModel: Decodable, ListDiffable, MessageSummary {
 
     init() {}
 
-    required init(from decoder: Decoder) throws {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case subtitle
+        case time
+        case unreadMessagesCount
+        case photoURL
+        case messageType
+    }
 
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
+        title = try container.decode(String.self, forKey: .title)
+        subtitle = try container.decode(String.self, forKey: .subtitle)
+        time = try container.decode(Double.self, forKey: .time)
+        unreadMessagesCount = try container.decode(Int.self, forKey: .unreadMessagesCount)
+        photoURL = try container.decode(String.self, forKey: .photoURL)
+        let messageTypeInt = try container.decode(Int.self, forKey: .messageType)
+        messageType = MessageType(rawValue: messageTypeInt) ?? .Request
     }
 
     func diffIdentifier() -> NSObjectProtocol {

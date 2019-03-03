@@ -19,10 +19,6 @@ class NotificationSummaryModel: Decodable, ListDiffable, NotificationSummary {
 
     init() {}
 
-    required init(from decoder: Decoder) throws {
-
-    }
-
     func diffIdentifier() -> NSObjectProtocol {
         return id as NSObjectProtocol
     }

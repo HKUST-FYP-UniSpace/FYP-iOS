@@ -18,10 +18,6 @@ class MessageModel: Decodable, ListDiffable, Message {
 
     init() {}
 
-    required init(from decoder: Decoder) throws {
-
-    }
-
     func diffIdentifier() -> NSObjectProtocol {
         return id as NSObjectProtocol
     }

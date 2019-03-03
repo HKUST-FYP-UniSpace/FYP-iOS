@@ -103,9 +103,9 @@ final class TradeListVC: SingleSectionViewController {
     }
 
     override func didSelect(_ sectionController: ListSingleSectionController, with object: Any) {
-        if let data = object as? HouseListModel {
-            let vc = ApartmentSummaryVC()
-            vc.houseId = data.id
+        if let data = object as? TradeFeaturedModel {
+            let vc = TradeDetailVC()
+            vc.tradeItemId = data.id
             adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
             return
         }
