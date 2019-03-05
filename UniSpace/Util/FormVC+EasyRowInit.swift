@@ -44,7 +44,7 @@ extension FormViewController {
                     row.value = ""
 
                 } else { // finish editing cell
-                    rowValue = (rowValue == "") ? "-" : (unit + " " + rowValue)
+                    rowValue = rowValue.isEmpty ? "-" : (unit + " " + rowValue)
                     row.placeholder = unit
 
                     let currentRowValue: String = rowValue.deletingPrefix("\(unit) ")

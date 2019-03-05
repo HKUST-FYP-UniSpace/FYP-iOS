@@ -76,7 +76,7 @@ final class ApartmentListVC: SingleSectionViewController {
         let configureBlock = { (item: Any, cell: UICollectionViewCell) in
             guard let cell = cell as? HouseListCell, let object = object as? HouseListModel else { return }
             cell.titleLabel.text = object.title
-            cell.starRatings.setStarRating(rating: Int.random(in: 0..<6))
+            cell.starRatings.setStarRating(rating: object.starRating)
             cell.priceLabel.text = "$\(object.price.addComma()!) pcm"
             cell.sizeLabel.text = "\(object.size.addComma()!) sq. ft."
             cell.subtitleLabel.text = object.subtitle
