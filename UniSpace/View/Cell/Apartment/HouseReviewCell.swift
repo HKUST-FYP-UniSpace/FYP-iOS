@@ -23,7 +23,7 @@ final class HouseReviewCell: UICollectionViewCell, ImageSettable {
     let detailLabel = StandardLabel(color: .gray, size: 16, isBold: false, numberOfLines: 5)
 
     let ownerTitleLabel = StandardLabel(color: .black, size: 16, isBold: true)
-    let ownerCommentLabel = StandardLabel(color: .gray, size: 16, isBold: false, numberOfLines: 3)
+    let ownerCommentLabel = StandardLabel(color: .gray, size: 16, isBold: false, numberOfLines: 5)
 
     override init(frame: CGRect) {
         imageView = StandardImageView(cornerRadius: imageHeight / 2, hasBackground: true)
@@ -31,13 +31,13 @@ final class HouseReviewCell: UICollectionViewCell, ImageSettable {
         let views = [imageView, reviewBackgroundView, ownerBackgroundView, starRatings, titleLabel, dateLabel, usernameLabel, detailLabel, ownerTitleLabel, ownerCommentLabel]
         for view in views { contentView.addSubview(view) }
 
-        dateLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        dateLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
         dateLabel.topAnchor.constraint(equalTo: topAnchor, constant: Spacing.normal).isActive = true
-        dateLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -Spacing.wide).isActive = true
+        dateLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -Spacing.normal).isActive = true
 
         titleLabel.topAnchor.constraint(equalTo: dateLabel.topAnchor).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: Spacing.wide).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: dateLabel.leftAnchor, constant: -Spacing.wide).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: Spacing.normal).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: dateLabel.leftAnchor, constant: -Spacing.normal).isActive = true
 
         starRatings.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Spacing.narrow).isActive = true
         starRatings.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
@@ -55,7 +55,7 @@ final class HouseReviewCell: UICollectionViewCell, ImageSettable {
         reviewBackgroundView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 
         imageView.topAnchor.constraint(equalTo: reviewBackgroundView.bottomAnchor, constant: Spacing.wide).isActive = true
-        imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: Spacing.narrow).isActive = true
+        imageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: imageHeight).isActive = true
 
@@ -64,12 +64,12 @@ final class HouseReviewCell: UICollectionViewCell, ImageSettable {
         ownerBackgroundView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 
         ownerTitleLabel.topAnchor.constraint(equalTo: ownerBackgroundView.topAnchor, constant: Spacing.normal).isActive = true
-        ownerTitleLabel.leftAnchor.constraint(equalTo: ownerBackgroundView.leftAnchor, constant: Spacing.wide).isActive = true
-        ownerTitleLabel.rightAnchor.constraint(equalTo: ownerBackgroundView.rightAnchor, constant: -Spacing.wide).isActive = true
+        ownerTitleLabel.leftAnchor.constraint(equalTo: ownerBackgroundView.leftAnchor, constant: Spacing.normal).isActive = true
+        ownerTitleLabel.rightAnchor.constraint(equalTo: ownerBackgroundView.rightAnchor, constant: -Spacing.normal).isActive = true
 
-        ownerCommentLabel.topAnchor.constraint(equalTo: ownerTitleLabel.bottomAnchor, constant: Spacing.normal).isActive = true
-        ownerCommentLabel.leftAnchor.constraint(equalTo: ownerBackgroundView.leftAnchor, constant: Spacing.wide).isActive = true
-        ownerCommentLabel.rightAnchor.constraint(equalTo: ownerBackgroundView.rightAnchor, constant: -Spacing.wide).isActive = true
+        ownerCommentLabel.topAnchor.constraint(equalTo: ownerTitleLabel.bottomAnchor, constant: Spacing.narrow).isActive = true
+        ownerCommentLabel.leftAnchor.constraint(equalTo: ownerTitleLabel.leftAnchor).isActive = true
+        ownerCommentLabel.rightAnchor.constraint(equalTo: ownerTitleLabel.rightAnchor).isActive = true
 
         ownerBackgroundView.bottomAnchor.constraint(equalTo: ownerCommentLabel.bottomAnchor, constant: Spacing.normal).isActive = true
 

@@ -35,7 +35,7 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
             let teamCount = models?.count ?? 0
             return CGSize(width: collectionContext!.containerSize.width, height: 100 * CGFloat(teamCount))
         case 2:
-            return CGSize(width: collectionContext!.containerSize.width, height: 40)
+            return CGSize(width: collectionContext!.containerSize.width, height: 80)
         default:
             return CGSize.zero
         }

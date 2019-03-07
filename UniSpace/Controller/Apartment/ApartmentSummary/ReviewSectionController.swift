@@ -32,7 +32,7 @@ final class ReviewSectionController: ListSectionController, ListAdapterDataSourc
         case 0:
             return CGSize(width: collectionContext!.containerSize.width, height: 60)
         case 1:
-            return CGSize(width: collectionContext!.containerSize.width, height: 400)
+            return CGSize(width: collectionContext!.containerSize.width, height: 340)
         default:
             return CGSize.zero
         }
