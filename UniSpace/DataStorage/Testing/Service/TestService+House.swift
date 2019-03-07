@@ -30,8 +30,11 @@ extension TestService: HouseService {
 
     func getHouseView(houseId: Int, completion: @escaping (HouseViewModel?, Error?) -> Void) {
         var teams: [HouseTeamSummaryModel] = []
+        var reviews: [HouseReviewModel] = []
         for _ in 0..<Int.random(in: (1..<5)) { teams.append(TestHouseTeamSummaryModel().toModel()) }
-        let model = HouseViewModel(titleView: TestHouseListModel().toModel(), teams: teams)
+        for _ in 0..<Int.random(in: (1..<10)) { reviews.append(TestHouseReviewModel().toModel()) }
+        reviews.sort(by: { $0.date > $1.date })
+        let model = HouseViewModel(titleView: TestHouseListModel().toModel(), teams: teams, reviews: reviews)
         delay { completion(model, nil) }
     }
 

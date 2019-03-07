@@ -14,15 +14,17 @@ class HouseViewModel: Decodable, ListDiffable {
     var id: Int
     var titleView: HouseListModel?
     var teams: [HouseTeamSummaryModel]
+    var reviews: [HouseReviewModel]
 
     convenience init() {
-        self.init(titleView: nil, teams: [])
+        self.init(titleView: nil, teams: [], reviews: [])
     }
 
-    init(titleView: HouseListModel?, teams: [HouseTeamSummaryModel]) {
+    init(titleView: HouseListModel?, teams: [HouseTeamSummaryModel], reviews: [HouseReviewModel]) {
         id = DataStore.shared.randomInt(length: 8)
         self.titleView = titleView
         self.teams = teams
+        self.reviews = reviews
     }
 
     func diffIdentifier() -> NSObjectProtocol {

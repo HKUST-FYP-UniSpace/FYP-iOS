@@ -16,11 +16,11 @@ class TestMessageSummaryModel: MessageSummary {
     var time: Double = 0
     var unreadMessagesCount: Int = 0
     var photoURL: String = ""
-    var messageType: MessageType = .Request
+    var messageType: MessageGroupType = .Request
 
     required init() {
         id = DataStore.shared.randomInt(length: 8)
-        let type = MessageType.allCases
+        let type = MessageGroupType.allCases
         let randomNumber = Int.random(in: (0..<10))
         messageType = type.randomElement()!
         unreadMessagesCount = randomNumber % 2 == 0 ? 0 : randomNumber

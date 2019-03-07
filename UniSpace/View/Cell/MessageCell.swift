@@ -34,7 +34,7 @@ class MessageCell: UICollectionViewCell, ImageSettable {
         setupViews()
     }
 
-    func setup(messageType: MessageType, newMessagesCount: Int = 0) {
+    func setup(messageType: MessageGroupType, newMessagesCount: Int = 0) {
         typeLabel.setType(title: messageType.text, color: messageType.color)
         imageView.layer.borderColor = messageType.color.cgColor
 

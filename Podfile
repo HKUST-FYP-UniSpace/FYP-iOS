@@ -11,6 +11,8 @@ target 'UniSpace' do
   pod 'Eureka', '~> 4.3.1'
   pod 'IGListKit', '~> 3.4.0'
   pod 'KeychainAccess', '~> 3.1.2'
+  pod 'MessageKit', '~> 2.0.0'
+  pod 'RealmSwift' '~> 3.13.1'
 
   target 'UniSpaceTests' do
     inherit! :search_paths

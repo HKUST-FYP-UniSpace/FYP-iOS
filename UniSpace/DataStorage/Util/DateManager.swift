@@ -18,6 +18,12 @@ class DateManager: NSObject {
         formatter.dateFormat = "h:mm a"
         return formatter
     }
+
+    private let dateFormatter = { () -> DateFormatter in
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter
+    }
     
     private override init() {
         super.init()
@@ -25,6 +31,10 @@ class DateManager: NSObject {
 
     func convertToTimeFormat(date: Date) -> String {
         return timeFormatter().string(from: date)
+    }
+
+    func convertToDateFormat(date: Date) -> String {
+        return dateFormatter().string(from: date)
     }
 
     func daysBeforeNow(_ before: Date) -> Int {

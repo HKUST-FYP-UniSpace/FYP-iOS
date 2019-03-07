@@ -13,6 +13,7 @@ enum EmbeddedSectionType {
     case Demo
     case HouseSuggestion
     case TradeSellingItems
+    case Reviews
 }
 
 final class EmbeddedSectionController: ListSectionController {
@@ -41,6 +42,8 @@ final class EmbeddedSectionController: ListSectionController {
             return getHouseSuggestionCell(at: index)
         case .TradeSellingItems:
             return getTradeSellingItemsCell(at: index)
+        case .Reviews:
+            return getHouseReviewCell(at: index)
         }
     }
 
@@ -70,6 +73,8 @@ final class EmbeddedSectionController: ListSectionController {
             data = object as? HouseSuggestionModel
         case .TradeSellingItems:
             data = object as? TradeSellingItemModel
+        case .Reviews:
+            data = object as? HouseReviewModel
         }
     }
 
@@ -84,6 +89,10 @@ final class EmbeddedSectionController: ListSectionController {
         case .TradeSellingItems:
             let width = Constants.screenWidth / 2 - 40
             return (width, width)
+        case .Reviews:
+            let width = Constants.screenWidth - cellSpacing * 6
+            let height = collectionContext?.containerSize.height ?? 0
+            return (width, height)
         }
     }
 }
@@ -134,6 +143,20 @@ extension EmbeddedSectionController {
         cell.subtitleLabel.text = cellData.preference.getTextForm()
         cell.durationLabel.text = cellData.duration
         cell.createGroup(occupiedCount: cellData.occupiedCount, size: cellData.groupSize)
+        return cell
+    }
+
+    private func getHouseReviewCell(at index: Int) -> UICollectionViewCell {
+        guard let cell = collectionContext?.dequeueReusableCell(of: HouseReviewCell.self, for: self, at: index) as? HouseReviewCell, let data = data, let cellData = data as? HouseReviewModel else {
+            fatalError()
+        }
+        cell.setImage(image: nil)
+        cell.usernameLabel.text = cellData.username
+        cell.titleLabel.text = cellData.title
+        cell.dateLabel.text = cellData.readableDate()
+        cell.detailLabel.text = cellData.detail
+        cell.setStarRating(rating: cellData.starRating)
+        cell.ownerCommentLabel.text = cellData.ownerComment
         return cell
     }
 }

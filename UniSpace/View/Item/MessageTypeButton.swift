@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum MessageType: Int, CaseIterable {
+enum MessageGroupType: Int, CaseIterable {
     case Owner = 0
     case Team
     case Trade

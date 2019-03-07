@@ -83,6 +83,7 @@ final class ApartmentSummaryVC: MasterVC, ListAdapterDataSource, Bookmarkable {
         var sectionControllers: [ListSectionController] = []
         if data?.titleView != nil { sectionControllers.append(RowSectionController(type: .HouseSummary))}
         sectionControllers.append(ApartmentTeamSummarySectionController())
+        if data?.reviews.count != 0 { sectionControllers.append(ReviewSectionController()) }
         let sectionController = ListStackedSectionController(sectionControllers: sectionControllers)
         sectionController.inset = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
         return sectionController

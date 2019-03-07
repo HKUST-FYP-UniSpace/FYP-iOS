@@ -16,6 +16,6 @@ protocol MessageSummary: PhotoShowable {
     var time: Double { get set }
     var unreadMessagesCount: Int { get set }
     var photoURL: String { get set }
-    var messageType: MessageType { get set }
+    var messageType: MessageGroupType { get set }
 
 }

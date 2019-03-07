@@ -17,7 +17,7 @@ class MessageSummaryModel: Decodable, ListDiffable, MessageSummary {
     var time: Double = 0
     var unreadMessagesCount: Int = 0
     var photoURL: String = ""
-    var messageType: MessageType = .Request
+    var messageType: MessageGroupType = .Request
 
     init() {}
 
@@ -40,7 +40,7 @@ class MessageSummaryModel: Decodable, ListDiffable, MessageSummary {
         unreadMessagesCount = try container.decode(Int.self, forKey: .unreadMessagesCount)
         photoURL = try container.decode(String.self, forKey: .photoURL)
         let messageTypeInt = try container.decode(Int.self, forKey: .messageType)
-        messageType = MessageType(rawValue: messageTypeInt) ?? .Request
+        messageType = MessageGroupType(rawValue: messageTypeInt) ?? .Request
     }
 
     func diffIdentifier() -> NSObjectProtocol {
