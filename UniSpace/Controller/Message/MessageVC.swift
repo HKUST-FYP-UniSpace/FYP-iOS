@@ -31,6 +31,15 @@ final class MessageVC: SingleSectionViewController {
         DataStore.shared.getMessageSummaries(completion: completion)
     }
 
+    override func didSelect(_ sectionController: ListSingleSectionController, with object: Any) {
+        if let data = object as? MessageSummaryModel {
+            log.debug("Message", context: data.id)
+            let vc = MessageConversationVC()
+            adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
+            return
+        }
+    }
+
     private func setupSegControl() {
         let font = UIFont.boldSystemFont(ofSize: 14)
         options.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
