@@ -25,7 +25,7 @@ class TestTradeFeaturedModel: TradeFeatured {
         location = "Discovery Park, Tsuen Wan"
         price = Int.random(in: 20..<100) * 100
         status = ["NEW", ""].randomElement()!
-        detail = "Designed by Marcel Breuer, it is an iconic Bauhaus style chair"
+        detail = Lorem.sentence()
         isBookmarked = Bool.random()
         photoURL = Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 0.75)
     }

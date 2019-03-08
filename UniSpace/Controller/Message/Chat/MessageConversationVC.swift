@@ -21,7 +21,7 @@ final class MessageConversationVC: ChatVC {
         messagesCollectionView.register(CustomCell.self)
         super.viewDidLoad()
 
-//        title = titleText
+        title = ""
         updateTitleView(title: titleText, subtitle: "2 Online")
 
         // Customize the typing bubble! These are the default values

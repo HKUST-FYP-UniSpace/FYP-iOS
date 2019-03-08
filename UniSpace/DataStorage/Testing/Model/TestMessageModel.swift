@@ -18,7 +18,7 @@ class TestMessageModel: Message {
     required init() {
         id = DataStore.shared.randomInt(length: 8)
         senderId = DataStore.shared.randomInt(length: 8)
-        message = ["Hey bud, let's make a deal", "Wakanda Forever!", "Super long text that would need to be handled"].randomElement()!
+        message = Lorem.sentence()
         time = DateManager.shared.randomTime(30)
     }
 

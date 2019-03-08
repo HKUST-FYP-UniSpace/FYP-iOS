@@ -32,7 +32,7 @@ extension TestService: HouseService {
         var teams: [HouseTeamSummaryModel] = []
         var reviews: [HouseReviewModel] = []
         for _ in 0..<Int.random(in: (1..<5)) { teams.append(TestHouseTeamSummaryModel().toModel()) }
-        for _ in 0..<Int.random(in: (1..<10)) { reviews.append(TestHouseReviewModel().toModel()) }
+        for _ in 0..<Int.random(in: (6..<10)) { reviews.append(TestHouseReviewModel().toModel()) }
         reviews.sort(by: { $0.date > $1.date })
         let model = HouseViewModel(titleView: TestHouseListModel().toModel(), teams: teams, reviews: reviews)
         delay { completion(model, nil) }

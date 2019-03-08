@@ -25,12 +25,10 @@ class TestHouseReviewModel: HouseReview {
         username = ["Derek K.", "Jessi J.", "T'challa"].randomElement()!
         title = ["Team Awesome", "Warmest team you can find", "Funny Rommies!"].randomElement()!
         date = DateManager.shared.randomTime(30)
-        detail = """
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse placerat purus scelerisque, sodales enim quis, blandit nunc. In posuere, tellus ut iaculis maximus, mauris erat vulputate mauris, vitae aliquet turpis urna eget tortor. Phasellus vitae semper lacus. Etiam turpis dui, placerat eu malesuada ut, semper vel diam.
-        """
+        detail = Lorem.paragraph()
         starRating = Int.random(in: 0..<6)
         ownerId = DataStore.shared.randomInt(length: 8)
-        ownerComment = detail
+        ownerComment = Lorem.paragraph()
         photoURL = Constants.dummyPhotoURL(Constants.cardWidth_S, ratio: 0.75)
     }
 
