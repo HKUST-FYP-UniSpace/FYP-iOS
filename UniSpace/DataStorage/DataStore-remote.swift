@@ -21,6 +21,10 @@ extension DataStore {
     func verify(userId: Int, code: String, completion: @escaping (UserModel?, Error?) -> ()) {
         Service().verify(userId: userId, code: code, completion: completion)
     }
+
+    func getMyUserDetail(completion: @escaping (UserModel?, Error?) -> Void) {
+        Service().getMyUserDetail(completion: completion)
+    }
     
     func getUserProfile(userId: Int? = nil, completion: @escaping (UserProfileModel?, Error?) -> ()) {
         let id = (userId == nil) ? (DataStore.shared.user?.id ?? -1) : userId!

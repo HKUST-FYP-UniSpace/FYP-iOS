@@ -25,7 +25,7 @@ class TestMessageSummaryModel: MessageSummary {
         messageType = type.randomElement()!
         unreadMessagesCount = randomNumber % 2 == 0 ? 0 : randomNumber
         title = ["Derek K.", "Earth Mightiest Heros", "Jessi J.", "T'challa"].randomElement()!
-        subtitle = Lorem.words()
+        subtitle = Lorem.words().capitalizingFirstLetter()
         time = DateManager.shared.randomTime(30)
         photoURL = Constants.dummyPhotoURL(Constants.cardWidth_S, ratio: 1)
     }

@@ -17,7 +17,8 @@ class TestUserModel: User {
     var email: String
     var familyName: String
     var givenName: String
-    var role: UserType
+    var gender: Gender
+    var userType: UserType
     var isActive: Bool
     var createTime: Double
     var verified: Bool
@@ -31,10 +32,11 @@ class TestUserModel: User {
         self.email = email
         self.familyName = ""
         self.givenName = ""
-        self.role = role
+        self.gender = .Male
+        self.userType = role
         isActive = true
         createTime = DateManager.shared.getCurrentDate().timeIntervalSince1970
-        verified = false
+        verified = true
     }
     
     func toUserModel() -> UserModel {
@@ -46,7 +48,8 @@ class TestUserModel: User {
         model.email = email
         model.familyName = familyName
         model.givenName = givenName
-        model.role = role
+        model.gender = gender
+        model.userType = userType
         model.isActive = isActive
         model.createTime = createTime
         model.verified = verified

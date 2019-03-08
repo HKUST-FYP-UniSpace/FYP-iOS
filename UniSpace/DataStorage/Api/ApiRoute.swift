@@ -16,11 +16,15 @@ enum ApiRoute { case
     verify(userId: Int),
 
     // general
+    getMyUserDetail(),
     getUserProfile(userId: Int),
     getMessageSummaries(),
     getNotificationSummaries(),
     getBlogSummaries(),
     getBlogDetail(blogId: Int),
+
+    // owner
+    getOwnerStatsSummary(),
 
     // apartment
     getHouseSuggestions(),

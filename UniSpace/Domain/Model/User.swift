@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol User {
+protocol User: UserProfile {
     
     var id: Int { get set }
     var username: String { get set }
@@ -18,7 +18,8 @@ protocol User {
     var email: String { get set }
     var familyName: String { get set }
     var givenName: String { get set }
-    var role: UserType { get set }
+    var gender: Gender { get set }
+    var userType: UserType { get set }
     var isActive: Bool { get set }
     var createTime: Double { get set }
     var verified: Bool { get set }

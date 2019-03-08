@@ -21,13 +21,20 @@ extension AppDelegate {
             return
         }
 
-        let rootController: UIViewController = MainTabBarController(user.role)
+        let rootController: UIViewController = MainTabBarController(user.userType)
         window?.rootViewController?.loadViewIfNeeded()
         window?.rootViewController = rootController
         window?.makeKeyAndVisible()
 
-        guard !user.preference.allSet() else { return }
-        self.window?.rootViewController?.present(UINavigationController(rootViewController: PreferenceVC()), animated: true, completion: nil)
+        guard user.verified else {
+            self.window?.rootViewController?.present(VerificationVC(), animated: true, completion: nil)
+            return
+        }
+
+        guard user.preference.allSet() else {
+            self.window?.rootViewController?.present(UINavigationController(rootViewController: PreferenceVC()), animated: true, completion: nil)
+            return
+        }
     }
     
     func addUserCredential() {

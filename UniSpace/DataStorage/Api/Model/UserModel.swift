@@ -15,7 +15,8 @@ class UserModel: Decodable, User {
     var email: String = ""
     var familyName: String = ""
     var givenName: String = ""
-    var role: UserType = .Tenant
+    var gender: Gender = .Male
+    var userType: UserType = .Tenant
     var isActive: Bool = false
     var createTime: Double = 0
     var verified: Bool = false
@@ -30,6 +31,7 @@ class UserModel: Decodable, User {
         case email
         case familyName
         case givenName
+        case gender
         case role
         case isActive
         case createTime
@@ -45,8 +47,10 @@ class UserModel: Decodable, User {
         email = try container.decode(String.self, forKey: .email)
         familyName = try container.decode(String.self, forKey: .familyName)
         givenName = try container.decode(String.self, forKey: .givenName)
-        let roleInt = try container.decode(Int.self, forKey: .role)
-        role = UserType(rawValue: roleInt) ?? .Tenant
+        let genderInt = try container.decode(Int.self, forKey: .gender)
+        gender = Gender(rawValue: genderInt) ?? .Male
+        let userTypeInt = try container.decode(Int.self, forKey: .role)
+        userType = UserType(rawValue: userTypeInt) ?? .Tenant
         isActive = try container.decode(Bool.self, forKey: .isActive)
         createTime = try container.decode(Double.self, forKey: .createTime)
         verified = try container.decode(Bool.self, forKey: .verified)

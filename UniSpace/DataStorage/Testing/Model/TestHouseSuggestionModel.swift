@@ -22,7 +22,7 @@ class TestHouseSuggestionModel: HouseSuggestion {
     required init() {
         houseId = DataStore.shared.randomInt(length: 8)
         teamId = DataStore.shared.randomInt(length: 8)
-        title = Lorem.words()
+        title = Lorem.words().capitalized
         preference = TestPreferenceModel().toModel()
         groupSize = Int.random(in: 2..<6)
         occupiedCount = Int.random(in: 1..<groupSize)

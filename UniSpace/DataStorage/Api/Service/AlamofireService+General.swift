@@ -9,6 +9,14 @@
 import Alamofire
 
 extension AlamofireService: GeneralService {
+
+    func getMyUserDetail(completion: @escaping (UserModel?, Error?) -> Void) {
+        get(at: .getMyUserDetail()).responseJSON { (res: DataResponse<Any>) in
+            var result: UserModel? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }
+            completion(result, res.result.error)
+        }
+    }
     
     func getUserProfile(userId: Int, completion: @escaping (UserProfileModel?, Error?) -> Void) {
         get(at: .getUserProfile(userId: userId)).responseJSON { (res: DataResponse<Any>) in

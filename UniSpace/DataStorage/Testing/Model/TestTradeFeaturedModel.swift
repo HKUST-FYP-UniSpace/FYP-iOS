@@ -21,7 +21,7 @@ class TestTradeFeaturedModel: TradeFeatured {
 
     required init() {
         id = DataStore.shared.randomInt(length: 8)
-        title = ["Barcelona Chair", "Wassily Chair", "Brno Chair"].randomElement()!
+        title = Lorem.words().capitalized
         location = "Discovery Park, Tsuen Wan"
         price = Int.random(in: 20..<100) * 100
         status = ["NEW", ""].randomElement()!

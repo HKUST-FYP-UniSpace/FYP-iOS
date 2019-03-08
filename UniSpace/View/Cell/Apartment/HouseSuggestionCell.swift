@@ -34,13 +34,13 @@ final class HouseSuggestionCell: UICollectionViewCell, ImageSettable {
         groupSize.topAnchor.constraint(equalTo: imageView.topAnchor, constant: Spacing.normal).isActive = true
         groupSize.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: -Spacing.normal).isActive = true
 
-        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Spacing.normal).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: centerXAnchor).isActive = true
-
-        durationLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor).isActive = true
-        durationLabel.leadingAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        durationLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Spacing.normal).isActive = true
+        durationLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
         durationLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+
+        titleLabel.topAnchor.constraint(equalTo: durationLabel.topAnchor).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: durationLabel.leadingAnchor, constant: Spacing.normal).isActive = true
 
         subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Spacing.normal).isActive = true
         subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
