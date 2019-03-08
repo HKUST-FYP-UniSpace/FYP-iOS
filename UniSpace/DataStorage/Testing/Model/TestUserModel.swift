@@ -23,10 +23,10 @@ class TestUserModel: User {
     var createTime: Double
     var verified: Bool
     
-    required init(email: String, username: String, name: String, role: UserType) {
-        id = DataStore.shared.randomInt(length: 8)
+    required init(email: String, username: String, role: UserType, verified: Bool, hasPreference: Bool) {
+        self.id = DataStore.shared.randomInt(length: 8)
         self.username = username
-        self.preference = TestPreferenceModel().toModel()
+        self.preference = hasPreference ? TestPreferenceModel().toModel() : PreferenceModel()
         self.photoURL = Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 1)
 
         self.email = email
@@ -34,9 +34,9 @@ class TestUserModel: User {
         self.givenName = ""
         self.gender = .Male
         self.userType = role
-        isActive = true
-        createTime = DateManager.shared.getCurrentDate().timeIntervalSince1970
-        verified = true
+        self.isActive = true
+        self.createTime = DateManager.shared.getCurrentDate().timeIntervalSince1970
+        self.verified = verified
     }
     
     func toUserModel() -> UserModel {

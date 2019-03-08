@@ -19,6 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.tintColor = Color.theme
+
+        // Test user
+        let user = TestUserModel(email: "123@test.com",
+                                 username: "Test user",
+                                 role: .Tenant,
+                                 verified: true,
+                                 hasPreference: true)
+        DataStore.shared.user = user.toUserModel()
         tryToLogin()
         return true
     }

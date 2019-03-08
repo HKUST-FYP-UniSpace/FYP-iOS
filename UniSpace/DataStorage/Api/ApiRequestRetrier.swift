@@ -37,7 +37,7 @@ class ApiRequestRetrier: RequestRetrier {
         isAuthorizing = true
         log.info("Request Retrier", context: "Retry count: \(retryQueue.count)")
         DataStore.shared.authorize { (user, error) in
-            DataStore.shared.user = user
+            guard user != nil else { return }
             self.isAuthorizing = false
             self.retryQueue.forEach { $0(true, 0) }
             self.retryQueue.removeAll()
