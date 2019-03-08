@@ -12,21 +12,22 @@ let log = Logger(canLocalLog: true, canServerLog: false)
 
 extension AppDelegate {
     
-    func redirecting(authorized: Bool) {
-        let rootController: UIViewController = authorized ?
-            MainTabBarController() :
-            UINavigationController(rootViewController: LoginVC())
-        
+    func redirecting(_ user: User?) {
+        guard let user = user else {
+            let rootController: UIViewController = UINavigationController(rootViewController: LoginVC())
+            window?.rootViewController?.loadViewIfNeeded()
+            window?.rootViewController = rootController
+            window?.makeKeyAndVisible()
+            return
+        }
+
+        let rootController: UIViewController = MainTabBarController(user.role)
         window?.rootViewController?.loadViewIfNeeded()
         window?.rootViewController = rootController
         window?.makeKeyAndVisible()
 
-        if authorized {
-            DataStore.shared.getUserProfile { (model, error) in
-                guard let preference = model?.preference, !preference.allSet() else { return }
-                self.window?.rootViewController?.present(UINavigationController(rootViewController: PreferenceVC()), animated: true, completion: nil)
-            }
-        }
+        guard !user.preference.allSet() else { return }
+        self.window?.rootViewController?.present(UINavigationController(rootViewController: PreferenceVC()), animated: true, completion: nil)
     }
     
     func addUserCredential() {
@@ -36,7 +37,7 @@ extension AppDelegate {
     
     func tryToLogin() {
         DataStore.shared.authorize { (user, error) in
-            self.redirecting(authorized: user != nil)
+            self.redirecting(user)
         }
     }
     

@@ -30,7 +30,7 @@ class MasterVC: UIViewController {
             }
             
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.redirecting(authorized: true)
+            appDelegate.redirecting(user)
         }
     }
     

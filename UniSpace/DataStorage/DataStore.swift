@@ -16,7 +16,7 @@ class DataStore: NSObject {
         super.init()
     }
     
-    func Service() -> AuthService & GeneralService & HouseService & TradeService {
+    func Service() -> AuthService & GeneralService & OwnerService & HouseService & TradeService {
         return TestService.shared
 //        return true ? TestService.shared : AlamofireService.shared
     }

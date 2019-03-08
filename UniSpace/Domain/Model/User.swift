@@ -11,10 +11,14 @@ import Foundation
 protocol User {
     
     var id: Int { get set }
-    var email: String { get set }
     var username: String { get set }
-    var name: String { get set }
-    var role: Int { get set }
+    var preference: PreferenceModel { get set }
+    var photoURL: String { get set }
+
+    var email: String { get set }
+    var familyName: String { get set }
+    var givenName: String { get set }
+    var role: UserType { get set }
     var isActive: Bool { get set }
     var createTime: Double { get set }
     var verified: Bool { get set }

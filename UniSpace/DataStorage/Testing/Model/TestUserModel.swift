@@ -9,39 +9,48 @@
 import Foundation
 
 class TestUserModel: User {
-    
+
     var id: Int
-    var email: String
     var username: String
-    var name: String
-    var role: Int
+    var preference: PreferenceModel
+    var photoURL: String
+    var email: String
+    var familyName: String
+    var givenName: String
+    var role: UserType
     var isActive: Bool
     var createTime: Double
     var verified: Bool
     
     required init(email: String, username: String, name: String, role: UserType) {
-        id = Int.random(in: 0 ..< 1000)
-        createTime = DateManager.shared.getCurrentDate().timeIntervalSince1970
-        isActive = true
-        verified = false
-        
-        self.email = email
+        id = DataStore.shared.randomInt(length: 8)
         self.username = username
-        self.name = name
-        self.role = role.hashValue
+        self.preference = TestPreferenceModel().toModel()
+        self.photoURL = Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 1)
+
+        self.email = email
+        self.familyName = ""
+        self.givenName = ""
+        self.role = role
+        isActive = true
+        createTime = DateManager.shared.getCurrentDate().timeIntervalSince1970
+        verified = false
     }
     
     func toUserModel() -> UserModel {
-        let user = UserModel()
-        id = user.id
-        email = user.email
-        username = user.username
-        name = user.name
-        role = user.role
-        isActive = user.isActive
-        createTime = user.createTime
-        verified = user.verified
-        return user
+        let model = UserModel()
+        model.id = id
+        model.username = username
+        model.preference = preference
+        model.photoURL = photoURL
+        model.email = email
+        model.familyName = familyName
+        model.givenName = givenName
+        model.role = role
+        model.isActive = isActive
+        model.createTime = createTime
+        model.verified = verified
+        return model
     }
     
 }
