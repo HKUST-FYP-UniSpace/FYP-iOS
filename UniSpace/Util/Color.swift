@@ -9,8 +9,10 @@
 import UIKit
 
 fileprivate struct ColorConstant {
-    static let primary = UIColor(r: 25, g: 133, b: 132)
-    static let hightlightedPrimary = UIColor(r: 24, g: 167, b: 169)
+    static let primary = UIColor(r: 253, g: 170, b: 41)
+    static let hightlightedPrimary = UIColor(r: 254, g: 220, b: 89)
+//    static let primary = UIColor(r: 25, g: 133, b: 132)
+//    static let hightlightedPrimary = UIColor(r: 24, g: 167, b: 169)
     static let titleBarGray = UIColor(r: 240, g: 240, b: 246)
     static let hightlightedGray = UIColor(r: 143, g: 143, b: 147)
     static let transparentWhite = UIColor(white: 1, alpha: 0.8)
