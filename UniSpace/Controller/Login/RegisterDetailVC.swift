@@ -67,8 +67,8 @@ class RegisterDetailVC: MasterLoginVC {
             showAlert(title: "The email is not legal")
             return
         }
-        
-        guard password != confirmPassword else {
+
+        guard password == confirmPassword else {
             showAlert(title: "Password and confirm password are not the same")
             return
         }

@@ -63,6 +63,9 @@ enum ApiRoute { case
         case .verify(let userId):
             return "users/verify/\(userId)"
 
+//        case .getMyUserDetail:
+//            return ""
+
         case .getUserProfile(let userId):
             return "users/profile/\(userId)"
 
@@ -78,6 +81,9 @@ enum ApiRoute { case
         case .getBlogDetail(let blogId):
             return "blog/\(blogId)"
 
+//        case .getOwnerStatsSummary:
+//            return ""
+//
 //        case .getHouseSuggestions:
 //            return ""
 
