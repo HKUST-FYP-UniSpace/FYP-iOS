@@ -53,14 +53,19 @@ class RegisterDetailVC: MasterLoginVC {
     @objc func handleNext() {
         UINotificationFeedbackGenerator().notificationOccurred(.success)
         let type: UserType = isTenant ? .Tenant : .Owner
-        guard let username = usernameTextField.text,
-            let name = nameTextField.text,
-            let email = emailTextField.text,
-            let password = passwordTextField.text,
-            let confirmPassword = confirmPasswordTextField.text
+        guard let username = usernameTextField.text, !username.isEmpty,
+            let name = nameTextField.text, !name.isEmpty,
+            let email = emailTextField.text, !email.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty,
+            let confirmPassword = confirmPasswordTextField.text, !confirmPassword.isEmpty
             else {
                 showAlert(title: "Please input all fields")
                 return
+        }
+
+        guard username.isUsername() else {
+            showAlert(title: "Username is not legal", msg: "Username can only contain alphabets, numbers and underscore")
+            return
         }
         
         guard email.isEmail() else {
@@ -72,17 +77,24 @@ class RegisterDetailVC: MasterLoginVC {
             showAlert(title: "Password and confirm password are not the same")
             return
         }
-        
-        DataStore.shared.register(userType: type, username: username, name: name, email: email, password: password) { (user, error) in
-            guard user != nil else {
-                self.showAlert(title: "Registration failed")
+
+        DataStore.shared.existUsername(username: username) { (exist, error) in
+            guard let exist = exist, !exist else {
+                self.showAlert(title: "Username is already taken")
                 return
             }
-            
-            let vc = VerificationVC()
-            vc.username = username
-            vc.password = password
-            self.navigationController?.pushViewController(vc, animated: true)
+
+            DataStore.shared.register(userType: type, username: username, name: name, email: email, password: password) { (user, error) in
+                guard user != nil else {
+                    self.showAlert(title: "Registration failed")
+                    return
+                }
+
+                let vc = VerificationVC()
+                vc.username = username
+                vc.password = password
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     

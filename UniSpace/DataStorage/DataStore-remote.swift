@@ -22,6 +22,10 @@ extension DataStore {
         Service().verify(userId: userId, code: code, completion: completion)
     }
 
+    func existUsername(username: String, completion: @escaping (_ exist: Bool?, _ error: Error?) -> Void) {
+        Service().existUsername(username: username, completion: completion)
+    }
+
     func getMyUserDetail(completion: @escaping (UserModel?, Error?) -> Void) {
         Service().getMyUserDetail(completion: completion)
     }

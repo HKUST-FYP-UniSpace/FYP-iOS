@@ -14,9 +14,10 @@ class TestUserModel: User {
     var username: String
     var preference: PreferenceModel
     var photoURL: String
+    var contact: String
+    var selfIntro: String
+    var name: String
     var email: String
-    var familyName: String
-    var givenName: String
     var gender: Gender
     var userType: UserType
     var isActive: Bool
@@ -29,9 +30,10 @@ class TestUserModel: User {
         self.preference = hasPreference ? TestPreferenceModel().toModel() : PreferenceModel()
         self.photoURL = Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 1)
 
+        self.contact = ""
+        self.selfIntro = ""
+        self.name = ""
         self.email = email
-        self.familyName = ""
-        self.givenName = ""
         self.gender = .Male
         self.userType = role
         self.isActive = true
@@ -45,9 +47,10 @@ class TestUserModel: User {
         model.username = username
         model.preference = preference
         model.photoURL = photoURL
+        model.contact = contact
+        model.selfIntro = selfIntro
+        model.name = name
         model.email = email
-        model.familyName = familyName
-        model.givenName = givenName
         model.gender = gender
         model.userType = userType
         model.isActive = isActive

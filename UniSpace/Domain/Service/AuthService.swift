@@ -16,5 +16,7 @@ protocol AuthService: class {
     
     //  or no userId is needed bc of the token
     func verify(userId: Int, code: String, completion: @escaping (_ user: UserModel?, _ error: Error?) -> Void)
+
+    func existUsername(username: String, completion: @escaping (_ exist: Bool?, _ error: Error?) -> Void)
     
 }

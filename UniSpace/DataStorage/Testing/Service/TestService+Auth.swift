@@ -24,5 +24,9 @@ extension TestService: AuthService {
         DataStore.shared.user?.verified = true
         delay { completion(DataStore.shared.user, nil) }
     }
+
+    func existUsername(username: String, completion: @escaping (_ exist: Bool?, _ error: Error?) -> Void) {
+        delay { completion(false, nil) }
+    }
     
 }

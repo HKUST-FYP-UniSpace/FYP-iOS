@@ -12,9 +12,10 @@ class UserModel: Decodable, User {
     var username: String = ""
     var preference: PreferenceModel = PreferenceModel()
     var photoURL: String = ""
+    var contact: String = ""
+    var selfIntro: String = ""
+    var name: String = ""
     var email: String = ""
-    var familyName: String = ""
-    var givenName: String = ""
     var gender: Gender = .Male
     var userType: UserType = .Tenant
     var isActive: Bool = false
@@ -28,9 +29,10 @@ class UserModel: Decodable, User {
         case username
         case preference
         case photoURL
+        case contact
+        case selfIntro
+        case name
         case email
-        case familyName
-        case givenName
         case gender
         case role
         case isActive
@@ -44,9 +46,10 @@ class UserModel: Decodable, User {
         username = try container.decode(String.self, forKey: .username)
         preference = try container.decode(PreferenceModel.self, forKey: .preference)
         photoURL = try container.decode(String.self, forKey: .photoURL)
+        contact = try container.decode(String.self, forKey: .contact)
+        selfIntro = try container.decode(String.self, forKey: .selfIntro)
+        name = try container.decode(String.self, forKey: .name)
         email = try container.decode(String.self, forKey: .email)
-        familyName = try container.decode(String.self, forKey: .familyName)
-        givenName = try container.decode(String.self, forKey: .givenName)
         let genderInt = try container.decode(Int.self, forKey: .gender)
         gender = Gender(rawValue: genderInt) ?? .Male
         let userTypeInt = try container.decode(Int.self, forKey: .role)

@@ -37,6 +37,14 @@ extension AlamofireService: AuthService {
             completion(result, res.result.error)
         }
     }
+
+    func existUsername(username: String, completion: @escaping (Bool?, Error?) -> Void) {
+        post(at: .existUsername(username: username)).responseJSON { (res: DataResponse<Any>) in
+            var result: Bool? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(Bool.self, from: data) }
+            completion(result, res.result.error)
+        }
+    }
     
     fileprivate func getCredentials() -> Dictionary<String,String> {
         return [

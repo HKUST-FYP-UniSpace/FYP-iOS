@@ -14,6 +14,7 @@ enum ApiRoute { case
     authorize,
     register,
     verify(userId: Int),
+    existUsername(username: String),
 
     // general
     getMyUserDetail(),
@@ -63,6 +64,9 @@ enum ApiRoute { case
         case .verify(let userId):
             return "users/verify/\(userId)"
 
+//        case .existUsername(let username):
+//            return ""
+//
 //        case .getMyUserDetail:
 //            return ""
 
