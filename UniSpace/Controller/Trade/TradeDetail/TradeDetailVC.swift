@@ -82,6 +82,7 @@ final class TradeDetailVC: MasterVC, ListAdapterDataSource, Bookmarkable {
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         var sectionControllers: [ListSectionController] = []
+        if data != nil { sectionControllers.append(TradePhotosSectionController())}
         if data != nil { sectionControllers.append(RowSectionController(type: .TradeDetail))}
         sectionControllers.append(TradeDetailSectionController())
         let sectionController = ListStackedSectionController(sectionControllers: sectionControllers)

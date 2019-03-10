@@ -88,7 +88,8 @@ final class TradeListVC: SingleSectionViewController {
             cell.statusLabel.text = object.status
             cell.subtitleLabel.text = object.detail
 
-            AlamofireService.shared.downloadImageData(at: object.photoURL, downloadProgress: nil) { (data, error) in
+            guard let url = object.getFirstPhotoURL() else { return }
+            AlamofireService.shared.downloadImageData(at: url, downloadProgress: nil) { (data, error) in
                 guard let data = data else { return }
                 cell.setImage(image: UIImage(data: data))
             }

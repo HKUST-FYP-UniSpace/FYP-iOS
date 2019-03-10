@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HouseList: PhotoShowable {
+protocol HouseList: HavePhotos {
 
     var id: Int { get set }
     var title: String { get set }
@@ -18,6 +18,6 @@ protocol HouseList: PhotoShowable {
     var subtitle: String { get set }
     var address: String { get set }
     var isBookmarked: Bool { get set }
-    var photoURL: String { get set }
+    var photoURLs: [String] { get set }
 
 }

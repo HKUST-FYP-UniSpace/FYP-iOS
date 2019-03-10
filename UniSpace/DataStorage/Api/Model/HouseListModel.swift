@@ -19,7 +19,7 @@ class HouseListModel: Decodable, ListDiffable, HouseList {
     var subtitle: String = ""
     var address: String = ""
     var isBookmarked: Bool = false
-    var photoURL: String = ""
+    var photoURLs: [String] = []
 
     init() {}
 

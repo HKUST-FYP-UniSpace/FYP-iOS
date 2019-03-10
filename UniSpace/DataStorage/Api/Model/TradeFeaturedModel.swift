@@ -18,7 +18,7 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
     var status: String = ""
     var detail: String = ""
     var isBookmarked: Bool = false
-    var photoURL: String = ""
+    var photoURLs: [String] = []
 
     init() {}
 

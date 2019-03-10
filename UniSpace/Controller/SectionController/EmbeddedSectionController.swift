@@ -14,6 +14,7 @@ enum EmbeddedSectionType {
     case HouseSuggestion
     case TradeSellingItems
     case Reviews
+    case Images
 }
 
 final class EmbeddedSectionController: ListSectionController {
@@ -25,7 +26,9 @@ final class EmbeddedSectionController: ListSectionController {
     init(_ type: EmbeddedSectionType) {
         self.type = type
         super.init()
-        self.inset = UIEdgeInsets(top: 0, left: cellSpacing, bottom: 0, right: cellSpacing)
+        self.inset = type == .Images
+            ? UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            : UIEdgeInsets(top: 0, left: cellSpacing, bottom: 0, right: cellSpacing)
         workingRangeDelegate = self
     }
 
@@ -44,6 +47,8 @@ final class EmbeddedSectionController: ListSectionController {
             return getTradeSellingItemsCell(at: index)
         case .Reviews:
             return getHouseReviewCell(at: index)
+        case .Images:
+            return getImageCell(at: index)
         }
     }
 
@@ -75,6 +80,8 @@ final class EmbeddedSectionController: ListSectionController {
             data = object as? TradeSellingItemModel
         case .Reviews:
             data = object as? HouseReviewModel
+        case .Images:
+            data = object as? ListDiffable
         }
     }
 
@@ -93,15 +100,25 @@ final class EmbeddedSectionController: ListSectionController {
             let width = Constants.screenWidth - cellSpacing * 6
             let height = collectionContext?.containerSize.height ?? 0
             return (width, height)
+        case .Images:
+            let width = collectionContext?.containerSize.width ?? 0
+            let height = collectionContext?.containerSize.height ?? 0
+            return (width, height)
         }
     }
 }
 
 extension EmbeddedSectionController: ListWorkingRangeDelegate {
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerWillEnterWorkingRange sectionController: ListSectionController) {
-        guard let data = data else { return }
-        guard let photo = data as? PhotoShowable else { return }
-        let url = photo.photoURL
+        if let data = data, let url = data as? String {
+            setImage(url)
+            return
+        }
+        guard let data = data, let photo = data as? PhotoShowable, let url = photo.getFirstPhotoURL() else { return }
+        setImage(url)
+    }
+
+    private func setImage(_ url: String) {
         AlamofireService.shared.downloadImageData(at: url, downloadProgress: nil) { (data, error) in
             guard let data = data else { return }
             if let cell = self.collectionContext?.cellForItem(at: 0, sectionController: self) as? ImageSettable {
@@ -157,6 +174,14 @@ extension EmbeddedSectionController {
         cell.detailLabel.text = cellData.detail
         cell.setStarRating(rating: cellData.starRating)
         cell.ownerCommentLabel.text = cellData.ownerComment
+        return cell
+    }
+
+    private func getImageCell(at index: Int) -> UICollectionViewCell {
+        guard let cell = collectionContext?.dequeueReusableCell(of: ImageCell.self, for: self, at: index) as? ImageCell else {
+            fatalError()
+        }
+        cell.setImage(image: nil)
         return cell
     }
 }

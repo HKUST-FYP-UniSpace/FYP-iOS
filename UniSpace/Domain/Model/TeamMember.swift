@@ -20,7 +20,7 @@ enum TeamMemberRole: Int {
     }
 }
 
-protocol TeamMember: PhotoShowable {
+protocol TeamMember: HavePhoto {
 
     var id: Int { get set }
     var name: String { get set }

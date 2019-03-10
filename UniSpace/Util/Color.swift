@@ -40,14 +40,14 @@ struct Color {
     }
     
     struct Login {
-        static let title = UIColor.init(r: 74, g: 74, b: 74)
-        static let detail = UIColor.init(r: 155, g: 155, b: 155)
+        static let title = UIColor(r: 74, g: 74, b: 74)
+        static let detail = UIColor(r: 155, g: 155, b: 155)
         static let back = ColorConstant.primary
         static let background = UIColor.white
         
         static let inverseTitle = UIColor.white
-        static let inverseDetail = UIColor.init(r: 216, g: 216, b: 216)
-        static let inverseBack = UIColor.init(r: 216, g: 216, b: 216)
+        static let inverseDetail = UIColor(r: 236, g: 236, b: 236)
+        static let inverseBack = UIColor(r: 236, g: 236, b: 236)
         static let inverseBackground = ColorConstant.primary
     }
     

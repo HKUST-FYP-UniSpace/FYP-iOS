@@ -18,7 +18,7 @@ class TestHouseListModel: HouseList {
     var subtitle: String
     var address: String
     var isBookmarked: Bool
-    var photoURL: String
+    var photoURLs: [String]
 
     required init() {
         id = DataStore.shared.randomInt(length: 8)
@@ -28,8 +28,8 @@ class TestHouseListModel: HouseList {
         starRating = Int.random(in: 0..<6)
         subtitle = Lorem.sentence()
         address = "8 Clear Water Road, Clear Water Bay, N.T."
-        isBookmarked = [true, false].randomElement()!
-        photoURL = Constants.dummyPhotoURL(Constants.cardWidth_L, ratio: 0.75)
+        isBookmarked = Bool.random()
+        photoURLs = Array(repeating: Constants.dummyPhotoURL(Constants.cardWidth_L, ratio: 0.75), count: Int.random(in: 2...10))
     }
 
     func toModel() -> HouseListModel {
@@ -42,7 +42,7 @@ class TestHouseListModel: HouseList {
         model.starRating = starRating
         model.subtitle = subtitle
         model.isBookmarked = isBookmarked
-        model.photoURL = photoURL
+        model.photoURLs = photoURLs
         return model
     }
 }

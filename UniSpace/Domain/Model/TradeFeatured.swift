@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol TradeFeatured: PhotoShowable {
+protocol TradeFeatured: HavePhotos {
 
     var id: Int { get set }
     var title: String { get set }
@@ -17,6 +17,6 @@ protocol TradeFeatured: PhotoShowable {
     var status: String { get set }
     var detail: String { get set }
     var isBookmarked: Bool { get set }
-    var photoURL: String { get set }
+    var photoURLs: [String] { get set }
 
 }

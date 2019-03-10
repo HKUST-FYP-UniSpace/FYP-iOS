@@ -17,7 +17,7 @@ class TestTradeFeaturedModel: TradeFeatured {
     var status: String
     var detail: String
     var isBookmarked: Bool
-    var photoURL: String
+    var photoURLs: [String]
 
     required init() {
         id = DataStore.shared.randomInt(length: 8)
@@ -27,7 +27,7 @@ class TestTradeFeaturedModel: TradeFeatured {
         status = ["NEW", ""].randomElement()!
         detail = Lorem.sentence()
         isBookmarked = Bool.random()
-        photoURL = Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 0.75)
+        photoURLs = Array(repeating: Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 0.75), count: Int.random(in: 2...10))
     }
 
     func toModel() -> TradeFeaturedModel {
@@ -39,7 +39,7 @@ class TestTradeFeaturedModel: TradeFeatured {
         model.status = status
         model.detail = detail
         model.isBookmarked = isBookmarked
-        model.photoURL = photoURL
+        model.photoURLs = photoURLs
         return model
     }
 }

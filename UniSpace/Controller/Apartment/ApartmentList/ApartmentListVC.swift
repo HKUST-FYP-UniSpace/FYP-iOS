@@ -81,7 +81,8 @@ final class ApartmentListVC: SingleSectionViewController {
             cell.sizeLabel.text = "\(object.size.addComma()!) sq. ft."
             cell.subtitleLabel.text = object.subtitle
 
-            AlamofireService.shared.downloadImageData(at: object.photoURL, downloadProgress: nil) { (data, error) in
+            guard let url = object.getFirstPhotoURL() else { return }
+            AlamofireService.shared.downloadImageData(at: url, downloadProgress: nil) { (data, error) in
                 guard let data = data else { return }
                 cell.setImage(image: UIImage(data: data))
             }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HouseReview: PhotoShowable {
+protocol HouseReview: HavePhoto {
 
     var id: Int { get set }
     var username: String { get set }

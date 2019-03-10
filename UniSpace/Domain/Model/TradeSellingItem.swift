@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol TradeSellingItem: PhotoShowable {
+protocol TradeSellingItem: HavePhoto {
 
     var id: Int { get set }
     var title: String { get set }

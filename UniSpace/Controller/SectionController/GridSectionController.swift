@@ -111,8 +111,7 @@ extension GridSectionController: ListWorkingRangeDelegate {
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerWillEnterWorkingRange sectionController: ListSectionController) {
         guard let data = data else { return }
         for index in (0..<data.count) {
-            guard let photo = data[index] as? PhotoShowable else { continue }
-            let url = photo.photoURL
+            guard let photo = data[index] as? PhotoShowable, let url = photo.getFirstPhotoURL() else { continue }
             AlamofireService.shared.downloadImageData(at: url, downloadProgress: nil) { (data, error) in
                 guard let data = data else { return }
                 if let cell = self.collectionContext?.cellForItem(at: index, sectionController: self) as? ImageSettable {

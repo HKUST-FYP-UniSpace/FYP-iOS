@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol MessageSummary: PhotoShowable {
+protocol MessageSummary: HavePhoto {
 
     var id: Int { get set }
     var title: String { get set }

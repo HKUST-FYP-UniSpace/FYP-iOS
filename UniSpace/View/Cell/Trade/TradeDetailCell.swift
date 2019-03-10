@@ -8,10 +8,8 @@
 
 import UIKit
 
-final class TradeDetailCell: UICollectionViewCell, ImageSettable {
+final class TradeDetailCell: UICollectionViewCell {
 
-    fileprivate let imageView = StandardImageView(hasBackground: true)
-    fileprivate let activityView = StandardActivityView()
     let titleLabel = StandardLabel(color: .black, size: 18, isBold: true)
     let locationLabel = StandardLabel(color: .gray, size: 16, isBold: false)
     let priceLabel = StandardLabel(color: .lightGray, size: 16, isBold: false)
@@ -20,18 +18,10 @@ final class TradeDetailCell: UICollectionViewCell, ImageSettable {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let views = [imageView, activityView, titleLabel, locationLabel, priceLabel, statusLabel, subtitleLabel]
+        let views = [titleLabel, locationLabel, priceLabel, statusLabel, subtitleLabel]
         for view in views { contentView.addSubview(view) }
 
-        imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        imageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        imageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.75).isActive = true
-
-        activityView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
-        activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
-
-        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Spacing.normal).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Spacing.normal).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: Spacing.normal).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -Spacing.normal).isActive = true
 
@@ -53,15 +43,6 @@ final class TradeDetailCell: UICollectionViewCell, ImageSettable {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    func setImage(image: UIImage?) {
-        imageView.image = image
-        if image != nil {
-            activityView.stopAnimating()
-        } else {
-            activityView.startAnimating()
-        }
     }
 
 }

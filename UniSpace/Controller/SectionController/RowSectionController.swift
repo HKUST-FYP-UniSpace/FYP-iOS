@@ -36,7 +36,7 @@ final class RowSectionController: ListSectionController {
             case .TeamDescription: return 100
             case .TeamMembers: return 80
             case .ScreenWidthImage: return collectionContext!.containerSize.width * 0.75
-            case .TradeDetail: return collectionContext!.containerSize.width * 0.75 + 160
+            case .TradeDetail: return 160
             }
         }
         return CGSize(width: collectionContext!.containerSize.width, height: height)
@@ -94,7 +94,8 @@ final class RowSectionController: ListSectionController {
         cell.subtitleLabel.text = titleView.subtitle
         cell.setImage(image: nil)
 
-        AlamofireService.shared.downloadImageData(at: titleView.photoURL, downloadProgress: nil) { (data, error) in
+        guard let url = titleView.getFirstPhotoURL() else { return cell }
+        AlamofireService.shared.downloadImageData(at: url, downloadProgress: nil) { (data, error) in
             guard let data = data else { return }
             cell.setImage(image: UIImage(data: data))
         }
@@ -148,12 +149,6 @@ final class RowSectionController: ListSectionController {
         cell.priceLabel.text = "$\(object.price.addComma()!)"
         cell.statusLabel.text = object.status
         cell.subtitleLabel.text = object.detail
-        cell.setImage(image: nil)
-
-        AlamofireService.shared.downloadImageData(at: object.photoURL, downloadProgress: nil) { (data, error) in
-            guard let data = data else { return }
-            cell.setImage(image: UIImage(data: data))
-        }
         return cell
     }
 

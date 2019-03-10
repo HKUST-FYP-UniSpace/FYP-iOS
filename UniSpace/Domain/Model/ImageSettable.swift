@@ -13,7 +13,27 @@ protocol ImageSettable {
 }
 
 protocol PhotoShowable {
+    func getFirstPhotoURL() -> String?
+}
+
+protocol HavePhoto: PhotoShowable {
     var photoURL: String { get set }
+}
+
+protocol HavePhotos: PhotoShowable {
+    var photoURLs: [String] { get set }
+}
+
+extension HavePhoto {
+    func getFirstPhotoURL() -> String? {
+        return photoURL
+    }
+}
+
+extension HavePhotos {
+    func getFirstPhotoURL() -> String? {
+        return photoURLs.first
+    }
 }
 
 //protocol PhotoURL {
