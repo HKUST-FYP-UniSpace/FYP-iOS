@@ -31,7 +31,7 @@ extension AppDelegate {
             return
         }
 
-        guard user.preference.allSet() else {
+        guard user.preference.allSet() || user.userType == .Owner else {
             self.window?.rootViewController?.present(UINavigationController(rootViewController: PreferenceVC()), animated: true, completion: nil)
             return
         }

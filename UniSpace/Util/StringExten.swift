@@ -20,6 +20,10 @@ extension String {
     func isEmail() -> Bool {
         return self.matches(regex: "^[^@]+@[^@]+\\.[^@]+$")
     }
+
+    func isPureNumber() -> Bool {
+        return self.matches(regex: "^[0-9]+$")
+    }
     
     func isNumber() -> Bool {
         return self.matches(regex: "^[0-9.-]+$")

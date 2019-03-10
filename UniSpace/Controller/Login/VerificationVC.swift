@@ -44,7 +44,7 @@ class VerificationVC: MasterLoginVC {
             return
         }
         
-        guard code.count == 6, code.isNumber() else {
+        guard code.count == 6, code.isPureNumber() else {
             showAlert(title: "The code has to be a 6 digits number")
             return
         }
