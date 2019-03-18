@@ -40,3 +40,19 @@ enum University: String, CaseIterable {
         }
     }
 }
+
+enum HouseType: String, CaseIterable {
+    case Flat = "Flat"
+    case Cottage = "Cottage"
+    case Detached = "Detached"
+    case SubDivided = "Sub-divided"
+
+    var pathExtension: String {
+        switch self {
+        case .Flat: return "flat"
+        case .Cottage: return "cottage"
+        case .Detached: return "detached"
+        case .SubDivided: return "sub-divided"
+        }
+    }
+}

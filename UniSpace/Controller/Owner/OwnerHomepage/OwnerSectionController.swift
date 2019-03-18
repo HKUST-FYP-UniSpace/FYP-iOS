@@ -73,6 +73,7 @@ final class OwnerSectionController: ListSectionController {
                 cell.addressLabel.text = model.address
                 cell.priceLabel.text = "$\(model.price.addComma()!)"
                 cell.sizeLabel.text = "\(model.size.addComma()!) sq. ft."
+                cell.setup(type: model.houseStatus)
                 return cell
             }
             fatalError()

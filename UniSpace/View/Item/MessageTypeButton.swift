@@ -33,6 +33,31 @@ enum MessageGroupType: Int, CaseIterable {
     }
 }
 
+enum HouseStatus: Int, CaseIterable {
+    case Hide = 1
+    case Reveal
+    case Archive
+    case Rent
+
+    var text: String {
+        switch self {
+        case .Hide: return "Hide"
+        case .Reveal: return "Reveal"
+        case .Archive: return "Archive"
+        case .Rent: return "Rent"
+        }
+    }
+
+    var color: UIColor {
+        switch self {
+        case .Hide: return UIColor(r: 238, g: 200, b: 87)
+        case .Reveal: return UIColor(r: 75, g: 177, b: 157)
+        case .Archive: return UIColor(r: 224, g: 122, b: 87)
+        case .Rent: return UIColor(r: 65, g: 146, b: 191)
+        }
+    }
+}
+
 class MessageTypeButton: UIButton {
 
     required init(coder aDecoder: NSCoder) {

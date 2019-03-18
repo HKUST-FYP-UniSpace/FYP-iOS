@@ -22,8 +22,18 @@ class OwnerStatsSummaryModel: Decodable, ListDiffable, OwnerStatsSummary {
     var starRating: Int = 0
     var arrangingTeamCount: Int = 0
     var formingTeamCount: Int = 0
+    var houseStatus: HouseStatus = .Reveal
 
     init() {}
+
+    enum CodingKeys: String, CodingKey {
+        case id
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
+    }
 
     func diffIdentifier() -> NSObjectProtocol {
         return id as NSObjectProtocol

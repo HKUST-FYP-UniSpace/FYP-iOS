@@ -38,12 +38,22 @@ enum TradeCategory: String, CaseIterable {
     case Kitchenwares = "Kitchenwares"
     case ElectronicsAndGadgets = "Electronics and Gadgets"
     case Furnitures = "Furnitures"
+    case HealthAndBeauty = "Health and Beauty"
+    case ToysAndGames = "Toys and Games"
+    case BooksAndStationeries = "Books and Stationeries"
+    case Fashion = "Fashion"
+    case Sports = "Sports"
 
     var pathExtension: String {
         switch self {
         case .Kitchenwares: return "kitchenwares"
         case .ElectronicsAndGadgets: return "electronics_and_gadgets"
         case .Furnitures: return "furnitures"
+        case .HealthAndBeauty: return "health_and_beauty"
+        case .ToysAndGames: return "toys_and_games"
+        case .BooksAndStationeries: return "books_and_stationeries"
+        case .Fashion: return "fashion"
+        case .Sports: return "sports"
         }
     }
 }
@@ -52,12 +62,14 @@ enum TradeItemCondition: String, CaseIterable {
     case Perfect = "Perfect"
     case AlmostPerfect = "Almost Perfect"
     case Okay = "Okay"
+    case Worn = "Worn"
 
     var pathExtension: String {
         switch self {
         case .Perfect: return "perfect"
         case .AlmostPerfect: return "almost_perfect"
         case .Okay: return "okay"
+        case .Worn: return "worn"
         }
     }
 }

@@ -13,6 +13,7 @@ final class OwnerInfoCell: UICollectionViewCell {
     let addressLabel = StandardLabel(color: .gray, size: 18, isBold: true)
     let priceLabel = StandardLabel(color: .lightGray, size: 18, isBold: false)
     let sizeLabel = StandardLabel(color: .lightGray, size: 18, isBold: false)
+    private let typeLabel = MessageTypeButton(isNumber: false)
     fileprivate let separator: CALayer = StandardSeparator()
 
     private let imageHeight: CGFloat = 100
@@ -21,7 +22,7 @@ final class OwnerInfoCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.layer.addSublayer(separator)
 
-        let views = [addressLabel, priceLabel, sizeLabel]
+        let views = [addressLabel, priceLabel, sizeLabel, typeLabel]
         for view in views { contentView.addSubview(view) }
 
         addressLabel.topAnchor.constraint(equalTo: topAnchor, constant: Spacing.normal).isActive = true
@@ -35,6 +36,9 @@ final class OwnerInfoCell: UICollectionViewCell {
         sizeLabel.topAnchor.constraint(equalTo: priceLabel.topAnchor).isActive = true
         sizeLabel.leftAnchor.constraint(equalTo: priceLabel.rightAnchor, constant: Spacing.wide).isActive = true
         sizeLabel.rightAnchor.constraint(equalTo: addressLabel.rightAnchor).isActive = true
+
+        typeLabel.centerYAnchor.constraint(equalTo: priceLabel.centerYAnchor).isActive = true
+        typeLabel.rightAnchor.constraint(equalTo: addressLabel.rightAnchor).isActive = true
 
         for view in views { view.sizeToFit() }
     }
@@ -50,6 +54,10 @@ final class OwnerInfoCell: UICollectionViewCell {
         let height: CGFloat = 0.5
         let left: CGFloat = 15
         separator.frame = CGRect(x: left, y: 0, width: bounds.width - left, height: height)
+    }
+
+    func setup(type: HouseStatus) {
+        typeLabel.setType(title: type.text, color: type.color)
     }
 
 }

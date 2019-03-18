@@ -21,6 +21,7 @@ class TestOwnerStatsSummaryModel: OwnerStatsSummary {
     var starRating: Int
     var arrangingTeamCount: Int
     var formingTeamCount: Int
+    var houseStatus: HouseStatus
 
     required init() {
         id = DataStore.shared.randomInt(length: 8)
@@ -34,6 +35,7 @@ class TestOwnerStatsSummaryModel: OwnerStatsSummary {
         starRating = Int.random(in: 0..<6)
         arrangingTeamCount = Int.random(in: 0..<10)
         formingTeamCount = Int.random(in: 0..<10)
+        houseStatus = HouseStatus.allCases.randomElement()!
     }
 
     func toModel() -> OwnerStatsSummaryModel {
@@ -49,6 +51,7 @@ class TestOwnerStatsSummaryModel: OwnerStatsSummary {
         model.starRating = starRating
         model.arrangingTeamCount = arrangingTeamCount
         model.formingTeamCount = formingTeamCount
+        model.houseStatus = houseStatus
         return model
     }
 }

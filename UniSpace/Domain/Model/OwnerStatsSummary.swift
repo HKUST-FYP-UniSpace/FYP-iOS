@@ -21,5 +21,6 @@ protocol OwnerStatsSummary {
     var starRating: Int { get set }
     var arrangingTeamCount: Int { get set }
     var formingTeamCount: Int { get set }
+    var houseStatus: HouseStatus { get set }
 
 }
