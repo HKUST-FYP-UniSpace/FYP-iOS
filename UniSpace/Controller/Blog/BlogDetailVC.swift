@@ -34,7 +34,6 @@ final class BlogDetailVC: SingleSectionViewController {
             cell.titleLabel.text = object.title
             cell.subtitleLabel.text = object.subtitle
             cell.detailLabel.text = object.detail
-            cell.setImage(nil)
 
             AlamofireService.shared.downloadImage(at: object.photoURL, downloadProgress: nil) { (image, error) in
                 cell.setImage(image)

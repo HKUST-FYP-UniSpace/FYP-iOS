@@ -47,7 +47,6 @@ final class TradeSavedSectionController: ListSectionController, ListAdapterDataS
             let cell = collectionContext?.dequeueReusableCell(of: TitleCell.self, for: self, at: index)
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Saved"
-                cell.setImage(nil)
                 return cell
             }
             fatalError()

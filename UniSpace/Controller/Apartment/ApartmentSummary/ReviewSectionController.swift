@@ -43,7 +43,6 @@ final class ReviewSectionController: ListSectionController, ListAdapterDataSourc
             let cell = collectionContext?.dequeueReusableCell(of: TitleCell.self, for: self, at: index)
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Reviews"
-                cell.setImage(nil)
                 return cell
             }
             fatalError()

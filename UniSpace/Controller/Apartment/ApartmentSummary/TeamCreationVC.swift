@@ -33,9 +33,7 @@ class TeamCreationVC: MasterFormPopupVC {
     private func createForm() {
         form +++ Section("Team Information")
 
-            <<< ChangeImageRow() {
-                $0.cell.setImage(nil)
-                }
+            <<< ChangeImageRow()
                 .onCellSelection({ (cell, row) in
                     self.getPhoto(handlePopover: { (actionSheet) in
                         if let popover = actionSheet.popoverPresentationController {

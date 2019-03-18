@@ -92,7 +92,6 @@ final class RowSectionController: ListSectionController {
         cell.priceLabel.text = "$\(titleView.price.addComma()!) pcm"
         cell.sizeLabel.text = "\(titleView.size.addComma()!) sq. ft."
         cell.subtitleLabel.text = titleView.subtitle
-        cell.setImage(nil)
 
         guard let url = titleView.getFirstPhotoURL() else { return cell }
         AlamofireService.shared.downloadImage(at: url, downloadProgress: nil) { (image, error) in
@@ -121,7 +120,6 @@ final class RowSectionController: ListSectionController {
         guard let cell = collectionContext?.dequeueReusableCell(of: TeamMemberCell.self, for: self, at: index) as? TeamMemberCell, let object = object as? TeamMemberModel else { fatalError() }
         cell.nameLabel.text = object.name
         cell.roleLabel.text = object.role.text
-        cell.setImage(nil)
 
         AlamofireService.shared.downloadImage(at: object.photoURL, downloadProgress: nil) { (image, error) in
             cell.setImage(image)
@@ -131,7 +129,6 @@ final class RowSectionController: ListSectionController {
 
     private func getImageCell(at index: Int) -> UICollectionViewCell {
         guard let cell = collectionContext?.dequeueReusableCell(of: ImageCell.self, for: self, at: index) as? ImageCell, let object = object as? HouseTeamSummaryModel else { fatalError() }
-        cell.setImage(nil)
 
         AlamofireService.shared.downloadImage(at: object.photoURL, downloadProgress: nil) { (image, error) in
             cell.setImage(image)

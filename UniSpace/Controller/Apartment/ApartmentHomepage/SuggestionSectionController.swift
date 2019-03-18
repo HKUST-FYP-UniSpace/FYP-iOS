@@ -45,7 +45,6 @@ final class SuggestionSectionController: ListSectionController, ListAdapterDataS
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Suggestions"
                 cell.subtitleLabel.text = "Teams that fit you the most"
-                cell.setImage(nil)
                 return cell
             }
             fatalError()
