@@ -55,7 +55,7 @@ final class HouseSummaryCell: UICollectionViewCell, ImageSettable {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setImage(image: UIImage?) {
+    func setImage(_ image: UIImage?) {
         imageView.image = image
         if image != nil {
             activityView.stopAnimating()

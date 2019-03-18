@@ -58,7 +58,7 @@ final class TitleCell: UICollectionViewCell, ImageSettable {
         }
     }
 
-    func setImage(image: UIImage?) {
+    func setImage(_ image: UIImage?) {
         imageView.image = image
     }
 

@@ -47,7 +47,7 @@ final class TradeFeaturedSectionController: ListSectionController, ListAdapterDa
             let cell = collectionContext?.dequeueReusableCell(of: TitleCell.self, for: self, at: index)
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Featured"
-                cell.setImage(image: nil)
+                cell.setImage(nil)
                 return cell
             }
             fatalError()

@@ -48,7 +48,6 @@ final class GridSectionController: ListSectionController {
             guard let cell = collectionContext?.dequeueReusableCell(of: HouseSavedCell.self, for: self, at: index) as? HouseSavedCell, let cellData = data[index] as? HouseListModel else {
                 fatalError()
             }
-            cell.setImage(image: nil)
             cell.setStarRating(rating: cellData.starRating)
             cell.titleLabel.text = cellData.title
             cell.priceLabel.text = "$\(cellData.price.addComma()!) pcm"
@@ -59,7 +58,6 @@ final class GridSectionController: ListSectionController {
             guard let cell = collectionContext?.dequeueReusableCell(of: TradeFeaturedCell.self, for: self, at: index) as? TradeFeaturedCell, let cellData = data[index] as? TradeFeaturedModel else {
                 fatalError()
             }
-            cell.setImage(image: nil)
             cell.titleLabel.text = cellData.title
             cell.priceLabel.text = "$\(cellData.price.addComma()!)"
             cell.statusLabel.text = cellData.status
@@ -112,10 +110,9 @@ extension GridSectionController: ListWorkingRangeDelegate {
         guard let data = data else { return }
         for index in (0..<data.count) {
             guard let photo = data[index] as? PhotoShowable, let url = photo.getFirstPhotoURL() else { continue }
-            AlamofireService.shared.downloadImageData(at: url, downloadProgress: nil) { (data, error) in
-                guard let data = data else { return }
+            AlamofireService.shared.downloadImage(at: url, downloadProgress: nil) { (image, error) in
                 if let cell = self.collectionContext?.cellForItem(at: index, sectionController: self) as? ImageSettable {
-                    cell.setImage(image: UIImage(data: data))
+                    cell.setImage(image)
                 }
             }
         }

@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Test user
         let user = TestUserModel(email: "123@test.com",
                                  username: "Test user",
-                                 role: .Owner,
+                                 role: .Tenant,
                                  verified: true,
                                  hasPreference: true)
         DataStore.shared.user = user.toUserModel()

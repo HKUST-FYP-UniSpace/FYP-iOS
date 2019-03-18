@@ -41,11 +41,11 @@ final class OwnerTeamsCell: UICollectionViewCell {
         formingLabel.topAnchor.constraint(equalTo: formingTitleLabel.topAnchor).isActive = true
         formingLabel.rightAnchor.constraint(equalTo: arrangingLabel.rightAnchor).isActive = true
 
-        starRatings.topAnchor.constraint(equalTo: formingTitleLabel.bottomAnchor, constant: Spacing.normal).isActive = true
-        starRatings.rightAnchor.constraint(equalTo: arrangingLabel.rightAnchor).isActive = true
-
-        ratingsTitleLabel.centerYAnchor.constraint(equalTo: starRatings.centerYAnchor).isActive = true
+        ratingsTitleLabel.topAnchor.constraint(equalTo: formingTitleLabel.bottomAnchor, constant: Spacing.normal).isActive = true
         ratingsTitleLabel.leftAnchor.constraint(equalTo: arrangingTitleLabel.leftAnchor).isActive = true
+
+        starRatings.centerYAnchor.constraint(equalTo: ratingsTitleLabel.centerYAnchor).isActive = true
+        starRatings.rightAnchor.constraint(equalTo: arrangingLabel.rightAnchor).isActive = true
 
         for view in views { view.sizeToFit() }
     }

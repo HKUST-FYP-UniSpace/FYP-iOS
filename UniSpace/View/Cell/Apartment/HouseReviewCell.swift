@@ -17,13 +17,13 @@ final class HouseReviewCell: UICollectionViewCell, ImageSettable {
     fileprivate let ownerBackgroundView = StandardImageView(cornerRadius: 5)
     fileprivate let starRatings = StarRatingsView(height: 16)
 
+    fileprivate let ownerTitleLabel = StandardLabel(color: .black, size: 16, isBold: true)
+    fileprivate let ownerCommentLabel = StandardLabel(color: .gray, size: 16, isBold: false, numberOfLines: 5)
+
     let titleLabel = StandardLabel(color: .black, size: 16, isBold: true)
     let dateLabel = StandardLabel(color: .lightGray, size: 16, isBold: false, align: .right)
     let usernameLabel = StandardLabel(color: .lightGray, size: 16, isBold: false, align: .right)
     let detailLabel = StandardLabel(color: .gray, size: 16, isBold: false, numberOfLines: 5)
-
-    let ownerTitleLabel = StandardLabel(color: .black, size: 16, isBold: true)
-    let ownerCommentLabel = StandardLabel(color: .gray, size: 16, isBold: false, numberOfLines: 5)
 
     override init(frame: CGRect) {
         imageView = StandardImageView(cornerRadius: imageHeight / 2, hasBackground: true)
@@ -78,7 +78,6 @@ final class HouseReviewCell: UICollectionViewCell, ImageSettable {
         self.backgroundColor = .white
         reviewBackgroundView.backgroundColor = Color.Option.background
         ownerBackgroundView.backgroundColor = Color.Option.background
-        ownerTitleLabel.text = "Owner Responses"
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -90,13 +89,38 @@ final class HouseReviewCell: UICollectionViewCell, ImageSettable {
         sizeToFit()
     }
 
-    func setImage(image: UIImage?) {
+    func setImage(_ image: UIImage?) {
         imageView.image = image
         imageView.setBackground(hasBackground: image == nil)
     }
 
     func setStarRating(rating: Int) {
         starRatings.setStarRating(rating: rating)
+    }
+
+    func setOwnerComment(_ comment: String, role: UserType) {
+        hideOwnerComment(false)
+        ownerTitleLabel.text = "Owner Responses"
+        guard comment.isEmpty else {
+            ownerCommentLabel.text = comment
+            return
+        }
+
+        switch role {
+        case .Tenant:
+            hideOwnerComment(true)
+
+        case .Owner:
+            ownerTitleLabel.text = "Reply Now"
+            ownerCommentLabel.text = nil
+        }
+    }
+
+    private func hideOwnerComment(_ hidden: Bool) {
+        imageView.isHidden = hidden
+        ownerTitleLabel.isHidden = hidden
+        ownerCommentLabel.isHidden = hidden
+        ownerBackgroundView.isHidden = hidden
     }
 
 }

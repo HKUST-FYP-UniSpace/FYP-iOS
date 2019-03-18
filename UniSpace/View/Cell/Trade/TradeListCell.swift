@@ -65,7 +65,7 @@ final class TradeListCell: UICollectionViewCell, ImageSettable {
         separator.frame = CGRect(x: left, y: bounds.height - height, width: bounds.width - left, height: height)
     }
 
-    func setImage(image: UIImage?) {
+    func setImage(_ image: UIImage?) {
         imageView.image = image
         imageView.setBackground(hasBackground: image == nil)
     }

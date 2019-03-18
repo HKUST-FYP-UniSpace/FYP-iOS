@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ImageSettable {
-    func setImage(image: UIImage?)
+    func setImage(_ image: UIImage?)
 }
 
 protocol PhotoShowable {

@@ -49,7 +49,7 @@ final class SavedSectionController: ListSectionController, ListAdapterDataSource
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Saved"
                 cell.subtitleLabel.text = nil
-                cell.setImage(image: nil)
+                cell.setImage(nil)
                 return cell
             }
             fatalError()

@@ -82,9 +82,8 @@ final class ApartmentListVC: SingleSectionViewController {
             cell.subtitleLabel.text = object.subtitle
 
             guard let url = object.getFirstPhotoURL() else { return }
-            AlamofireService.shared.downloadImageData(at: url, downloadProgress: nil) { (data, error) in
-                guard let data = data else { return }
-                cell.setImage(image: UIImage(data: data))
+            AlamofireService.shared.downloadImage(at: url, downloadProgress: nil) { (image, error) in
+                cell.setImage(image)
             }
         }
         let sizeBlock = { (item: Any, context: ListCollectionContext?) -> CGSize in

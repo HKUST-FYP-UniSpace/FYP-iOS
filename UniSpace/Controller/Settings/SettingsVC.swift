@@ -33,12 +33,11 @@ class SettingsVC: FormViewController {
             <<< UserInfoRow { row in
                 row.cell.nameLabel.text = user?.username
                 row.cell.preferenceLabel.text = user?.preference.getTextForm()
-                row.cell.setImage(image: nil)
+                row.cell.setImage(nil)
 
                 guard let url = user?.photoURL else { return }
-                AlamofireService.shared.downloadImageData(at: url, downloadProgress: nil) { (data, error) in
-                    guard let data = data else { return }
-                    row.cell.setImage(image: UIImage(data: data))
+                AlamofireService.shared.downloadImage(at: url, downloadProgress: nil) { (image, error) in
+                    row.cell.setImage(image)
                 }
             }
 

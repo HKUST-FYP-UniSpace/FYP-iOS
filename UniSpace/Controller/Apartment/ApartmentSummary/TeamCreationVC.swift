@@ -34,7 +34,7 @@ class TeamCreationVC: MasterFormPopupVC {
         form +++ Section("Team Information")
 
             <<< ChangeImageRow() {
-                $0.cell.setImage(image: nil)
+                $0.cell.setImage(nil)
                 }
                 .onCellSelection({ (cell, row) in
                     self.getPhoto(handlePopover: { (actionSheet) in
@@ -44,7 +44,7 @@ class TeamCreationVC: MasterFormPopupVC {
                         }
                         self.present(actionSheet, animated: true, completion: nil)
                     }, completion: { (image) in
-                        cell.setImage(image: image)
+                        cell.setImage(image)
                         self.image = image
                     })
                 })

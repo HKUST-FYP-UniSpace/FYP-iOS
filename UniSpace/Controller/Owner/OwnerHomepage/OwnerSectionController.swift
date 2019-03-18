@@ -54,7 +54,7 @@ final class OwnerSectionController: ListSectionController {
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = model.title.capitalized
                 cell.subtitleLabel.text = nil
-                cell.setImage(image: nil)
+                cell.setImage(nil)
                 return cell
             }
             fatalError()

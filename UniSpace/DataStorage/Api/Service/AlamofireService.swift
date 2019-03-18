@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import AlamofireImage
 
 typealias DownloadProgress = (_ fractionCompleted: String) -> Void
 typealias SendRequestResult = (String?, Error?) -> Void
@@ -15,6 +16,7 @@ class AlamofireService: NSObject {
 
     public static let shared:AlamofireService = AlamofireService()
     private var manager: SessionManager!
+    private let imageCache = AutoPurgingImageCache()
 
     var headers: [String: String] = [
         "Content-Type": "application/json",
@@ -92,13 +94,30 @@ class AlamofireService: NSObject {
         }
     }
 
-    func downloadImageData(at url: String, downloadProgress: DownloadProgress?, completion: @escaping (_ data: Data?, _ error: Error?) -> Void) {
+    func downloadImage(at url: String, downloadProgress: DownloadProgress?, completion: @escaping (_ image: Image?, _ error: Error?) -> Void) {
+//        let urlRequest = getURLRequest(url)
+//        if let urlRequest = urlRequest, let cachedImage = imageCache.image(for: urlRequest) {
+//            print("Obtain from cache: \(url), \(cachedImage.size)")
+//            completion(cachedImage, nil)
+//            return
+//        }
+
         manager.request(url, method: .get).downloadProgress(closure: { (progress) in
             downloadProgress?(self.roundUpTo2dpWithPrecent(progress.fractionCompleted))
         }).response { (response) in
             log.verbose("DOWNLOAD \(response.response?.statusCode ?? 0)", context: "Request: \(url)")
-            completion(response.data, response.error)
+            let image = response.data == nil ? nil : UIImage(data: response.data!)
+            completion(image, response.error)
+
+//            if let image = image, let urlRequest = urlRequest {
+//                self.imageCache.add(image, for: urlRequest)
+//            }
         }
+    }
+
+    private func getURLRequest(_ url: String) -> URLRequest? {
+        guard let url = URL(string: url) else { return nil }
+        return URLRequest(url: url)
     }
 
     private func roundUpTo2dpWithPrecent(_ x: Double) -> String {

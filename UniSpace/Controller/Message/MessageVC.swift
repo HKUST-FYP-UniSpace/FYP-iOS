@@ -70,9 +70,8 @@ final class MessageVC: SingleSectionViewController {
             cell.subtitleLabel.text = object.subtitle
             cell.timeLabel.text = object.readableTime()
 
-            AlamofireService.shared.downloadImageData(at: object.photoURL, downloadProgress: nil) { (data, error) in
-                guard let data = data else { return }
-                cell.setImage(image: UIImage(data: data))
+            AlamofireService.shared.downloadImage(at: object.photoURL, downloadProgress: nil) { (image, error) in
+                cell.setImage(image)
             }
         }
         let sizeBlock = { (item: Any, context: ListCollectionContext?) -> CGSize in

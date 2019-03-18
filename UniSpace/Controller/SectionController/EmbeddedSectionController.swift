@@ -119,10 +119,9 @@ extension EmbeddedSectionController: ListWorkingRangeDelegate {
     }
 
     private func setImage(_ url: String) {
-        AlamofireService.shared.downloadImageData(at: url, downloadProgress: nil) { (data, error) in
-            guard let data = data else { return }
+        AlamofireService.shared.downloadImage(at: url, downloadProgress: nil) { (image, error) in
             if let cell = self.collectionContext?.cellForItem(at: 0, sectionController: self) as? ImageSettable {
-                cell.setImage(image: UIImage(data: data))
+                cell.setImage(image)
             }
         }
     }
@@ -155,7 +154,6 @@ extension EmbeddedSectionController {
         guard let cell = collectionContext?.dequeueReusableCell(of: HouseSuggestionCell.self, for: self, at: index) as? HouseSuggestionCell, let data = data, let cellData = data as? HouseSuggestionModel else {
             fatalError()
         }
-        cell.setImage(image: nil)
         cell.titleLabel.text = cellData.title
         cell.subtitleLabel.text = cellData.preference.getTextForm()
         cell.durationLabel.text = cellData.duration
@@ -167,13 +165,13 @@ extension EmbeddedSectionController {
         guard let cell = collectionContext?.dequeueReusableCell(of: HouseReviewCell.self, for: self, at: index) as? HouseReviewCell, let data = data, let cellData = data as? HouseReviewModel else {
             fatalError()
         }
-        cell.setImage(image: nil)
         cell.usernameLabel.text = cellData.username
         cell.titleLabel.text = cellData.title
         cell.dateLabel.text = cellData.readableDate()
         cell.detailLabel.text = cellData.detail
         cell.setStarRating(rating: cellData.starRating)
-        cell.ownerCommentLabel.text = cellData.ownerComment
+        let role = DataStore.shared.user?.userType ?? .Tenant
+        cell.setOwnerComment(cellData.ownerComment, role: role)
         return cell
     }
 
@@ -181,7 +179,6 @@ extension EmbeddedSectionController {
         guard let cell = collectionContext?.dequeueReusableCell(of: ImageCell.self, for: self, at: index) as? ImageCell else {
             fatalError()
         }
-        cell.setImage(image: nil)
         return cell
     }
 }

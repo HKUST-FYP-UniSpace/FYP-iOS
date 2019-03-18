@@ -24,6 +24,7 @@
 		6D06245D2234FBD20046D06B /* TradePhotosSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D06245C2234FBD20046D06B /* TradePhotosSectionController.swift */; };
 		6D06246222350D160046D06B /* OwnerChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D06246122350D160046D06B /* OwnerChartVC.swift */; };
 		6D10545C22143A3E00B61CFC /* MasterFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D10545B22143A3E00B61CFC /* MasterFilterVC.swift */; };
+		6D2B8090223F7A9F006708FE /* OwnerTeamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B808F223F7A9F006708FE /* OwnerTeamVC.swift */; };
 		6D2BEDA8223167E4005FFEEE /* MessageConversationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2BEDA7223167E4005FFEEE /* MessageConversationVC.swift */; };
 		6D2BEDAA22316831005FFEEE /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2BEDA922316831005FFEEE /* ChatVC.swift */; };
 		6D2BEDAD223168B6005FFEEE /* ChatMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2BEDAC223168B6005FFEEE /* ChatMessageModel.swift */; };
@@ -259,6 +260,7 @@
 		6D06245C2234FBD20046D06B /* TradePhotosSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradePhotosSectionController.swift; sourceTree = "<group>"; };
 		6D06246122350D160046D06B /* OwnerChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerChartVC.swift; sourceTree = "<group>"; };
 		6D10545B22143A3E00B61CFC /* MasterFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterFilterVC.swift; sourceTree = "<group>"; };
+		6D2B808F223F7A9F006708FE /* OwnerTeamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerTeamVC.swift; sourceTree = "<group>"; };
 		6D2BEDA7223167E4005FFEEE /* MessageConversationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConversationVC.swift; sourceTree = "<group>"; };
 		6D2BEDA922316831005FFEEE /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		6D2BEDAC223168B6005FFEEE /* ChatMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageModel.swift; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 		6D0624402232523E0046D06B /* Owner */ = {
 			isa = PBXGroup;
 			children = (
+				6D2B808E223F79DB006708FE /* OwnerTeamVC */,
 				6D062465223A1F200046D06B /* Charts */,
 				6D06243B22324F460046D06B /* OwnerHomepage */,
 			);
@@ -546,6 +549,14 @@
 				6D06246122350D160046D06B /* OwnerChartVC.swift */,
 			);
 			path = Charts;
+			sourceTree = "<group>";
+		};
+		6D2B808E223F79DB006708FE /* OwnerTeamVC */ = {
+			isa = PBXGroup;
+			children = (
+				6D2B808F223F7A9F006708FE /* OwnerTeamVC.swift */,
+			);
+			path = OwnerTeamVC;
 			sourceTree = "<group>";
 		};
 		6D2BEDAB22316890005FFEEE /* Chat */ = {
@@ -1535,6 +1546,7 @@
 				6D8AD41A221169C700EA6643 /* HouseFilterModel.swift in Sources */,
 				6D83DAA222101B76000E3B52 /* TradeListCell.swift in Sources */,
 				6D7EE8DA21E8D68A008D882F /* StandardButton.swift in Sources */,
+				6D2B8090223F7A9F006708FE /* OwnerTeamVC.swift in Sources */,
 				6DE5562D21A3E83600B23398 /* SettingsVC.swift in Sources */,
 				6DFE1DD8220CA1E60012E8A2 /* TeamDescriptionSectionController.swift in Sources */,
 				6D68F6F221A7FA4100D31472 /* TestService.swift in Sources */,

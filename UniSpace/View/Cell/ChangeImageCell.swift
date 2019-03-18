@@ -55,7 +55,7 @@ class ChangeImageCell: Cell<String>, CellType, ImageSettable {
         height = { return Constants.screenWidth * 0.75 }
     }
 
-    func setImage(image: UIImage?) {
+    func setImage(_ image: UIImage?) {
         photoView.image = image
         cameraIconView.isHidden = image == nil ? false : true
         photoView.setBackground(hasBackground: image == nil)

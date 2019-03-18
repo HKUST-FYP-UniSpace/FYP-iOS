@@ -65,7 +65,7 @@ final class BlogCell: UICollectionViewCell, ImageSettable {
         layer.borderColor = UIColor.lightGray.cgColor
     }
 
-    func setImage(image: UIImage?) {
+    func setImage(_ image: UIImage?) {
         imageView.image = image
         if image != nil {
             activityView.stopAnimating()

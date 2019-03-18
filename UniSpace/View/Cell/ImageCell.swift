@@ -34,7 +34,7 @@ final class ImageCell: UICollectionViewCell, ImageSettable {
     }
 
 
-    func setImage(image: UIImage?) {
+    func setImage(_ image: UIImage?) {
         imageView.image = image
         if image != nil {
             activityView.stopAnimating()

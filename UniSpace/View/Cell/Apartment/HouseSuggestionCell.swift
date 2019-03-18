@@ -65,7 +65,7 @@ final class HouseSuggestionCell: UICollectionViewCell, ImageSettable {
         layer.shadowOpacity = 0.7
     }
 
-    func setImage(image: UIImage?) {
+    func setImage(_ image: UIImage?) {
         imageView.image = image
         if image != nil {
             activityView.stopAnimating()

@@ -61,7 +61,7 @@ class UserInfoCell: Cell<UserProfileModel>, CellType, ImageSettable {
         for view in views { view.sizeToFit() }
     }
 
-    func setImage(image: UIImage?) {
+    func setImage(_ image: UIImage?) {
         photoView.image = image
         photoView.setBackground(hasBackground: image == nil)
     }

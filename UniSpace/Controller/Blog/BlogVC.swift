@@ -28,9 +28,8 @@ final class BlogVC: SingleSectionViewController {
             cell.titleLabel.text = object.title.uppercased()
             cell.subtitleLabel.text = object.subtitle
 
-            AlamofireService.shared.downloadImageData(at: object.photoURL, downloadProgress: nil) { (data, error) in
-                guard let data = data else { return }
-                cell.setImage(image: UIImage(data: data))
+            AlamofireService.shared.downloadImage(at: object.photoURL, downloadProgress: nil) { (image, error) in
+                cell.setImage(image)
             }
         }
         let sizeBlock = { (item: Any, context: ListCollectionContext?) -> CGSize in

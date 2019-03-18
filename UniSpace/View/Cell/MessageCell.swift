@@ -99,7 +99,7 @@ class MessageCell: UICollectionViewCell, ImageSettable {
         imageView.layer.borderColor = UIColor.black.cgColor
     }
 
-    func setImage(image: UIImage?) {
+    func setImage(_ image: UIImage?) {
         imageView.image = image
         imageView.setBackground(hasBackground: image == nil)
     }
