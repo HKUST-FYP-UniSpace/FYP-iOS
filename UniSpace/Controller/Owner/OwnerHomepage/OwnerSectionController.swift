@@ -35,11 +35,11 @@ final class OwnerSectionController: ListSectionController {
         case 3:
             return CGSize(width: collectionContext!.containerSize.width, height: 30)
         case 4:
-            return CGSize(width: collectionContext!.containerSize.width, height: 140)
+            return CGSize(width: collectionContext!.containerSize.width, height: 100)
         case 5:
             return CGSize(width: collectionContext!.containerSize.width, height: 30)
         case 6:
-            return CGSize(width: collectionContext!.containerSize.width, height: 100)
+            return CGSize(width: collectionContext!.containerSize.width, height: 140)
         default:
             return CGSize.zero
         }
@@ -81,7 +81,7 @@ final class OwnerSectionController: ListSectionController {
         case 3:
             let cell = collectionContext?.dequeueReusableCell(of: SectionHeaderCell.self, for: self, at: index)
             if let cell = cell as? SectionHeaderCell {
-                cell.titleLabel.text = "Stats & Response".uppercased()
+                cell.titleLabel.text = "Stats".uppercased()
                 cell.titleLabel.textColor = Color.theme
                 return cell
             }
@@ -94,8 +94,6 @@ final class OwnerSectionController: ListSectionController {
                 cell.numberOfViewsLabel.text = "\(model.numberOfViews.addComma()!)"
                 cell.statsTitleLabel.text = "Total # of bookmarks per week"
                 cell.statsLabel.text = "\(model.numberOfBookmarks.addComma()!)"
-                cell.ratingsTitleLabel.text = "Ratings"
-                cell.setStarRating(rating: model.starRating)
                 return cell
             }
             fatalError()
@@ -103,7 +101,7 @@ final class OwnerSectionController: ListSectionController {
         case 5:
             let cell = collectionContext?.dequeueReusableCell(of: SectionHeaderCell.self, for: self, at: index)
             if let cell = cell as? SectionHeaderCell {
-                cell.titleLabel.text = "Teams".uppercased()
+                cell.titleLabel.text = "Teams & Response".uppercased()
                 cell.titleLabel.textColor = Color.theme
                 return cell
             }
@@ -116,6 +114,8 @@ final class OwnerSectionController: ListSectionController {
                 cell.arrangingLabel.text = "\(model.arrangingTeamCount.addComma()!) teams"
                 cell.formingTitleLabel.text = "Forming"
                 cell.formingLabel.text = "\(model.formingTeamCount.addComma()!) teams"
+                cell.ratingsTitleLabel.text = "Ratings"
+                cell.setStarRating(rating: model.starRating)
                 return cell
             }
             fatalError()

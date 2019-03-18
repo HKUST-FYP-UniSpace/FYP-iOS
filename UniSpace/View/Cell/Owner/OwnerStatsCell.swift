@@ -15,9 +15,7 @@ final class OwnerStatsCell: UICollectionViewCell {
 
     let numberOfViewsTitleLabel = StandardLabel(color: .gray, size: 18, isBold: true)
     let statsTitleLabel = StandardLabel(color: .gray, size: 18, isBold: true)
-    let ratingsTitleLabel = StandardLabel(color: .gray, size: 18, isBold: true)
 
-    fileprivate let starRatings = StarRatingsView(height: 16)
     fileprivate let separator: CALayer = StandardSeparator()
 
     private let imageHeight: CGFloat = 100
@@ -26,7 +24,7 @@ final class OwnerStatsCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.layer.addSublayer(separator)
 
-        let views = [numberOfViewsLabel, statsLabel, numberOfViewsTitleLabel, statsTitleLabel, ratingsTitleLabel, starRatings]
+        let views = [numberOfViewsLabel, statsLabel, numberOfViewsTitleLabel, statsTitleLabel]
         for view in views { contentView.addSubview(view) }
 
         numberOfViewsTitleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Spacing.normal).isActive = true
@@ -40,12 +38,6 @@ final class OwnerStatsCell: UICollectionViewCell {
 
         statsLabel.topAnchor.constraint(equalTo: statsTitleLabel.topAnchor).isActive = true
         statsLabel.rightAnchor.constraint(equalTo: numberOfViewsLabel.rightAnchor).isActive = true
-
-        starRatings.topAnchor.constraint(equalTo: statsTitleLabel.bottomAnchor, constant: Spacing.normal).isActive = true
-        starRatings.rightAnchor.constraint(equalTo: numberOfViewsLabel.rightAnchor).isActive = true
-
-        ratingsTitleLabel.centerYAnchor.constraint(equalTo: starRatings.centerYAnchor).isActive = true
-        ratingsTitleLabel.leftAnchor.constraint(equalTo: numberOfViewsTitleLabel.leftAnchor).isActive = true
 
         for view in views { view.sizeToFit() }
     }
@@ -61,10 +53,6 @@ final class OwnerStatsCell: UICollectionViewCell {
         let height: CGFloat = 0.5
         let left: CGFloat = 15
         separator.frame = CGRect(x: left, y: 0, width: bounds.width - left, height: height)
-    }
-
-    func setStarRating(rating: Int) {
-        starRatings.setStarRating(rating: rating)
     }
 
 }
