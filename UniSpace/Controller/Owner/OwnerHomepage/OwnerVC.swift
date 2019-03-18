@@ -17,7 +17,7 @@ final class OwnerVC: MasterVC, ListAdapterDataSource {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
-    var data: [OwnerStatsSummaryModel]? = []
+    var data: [OwnerHouseSummaryModel]? = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ final class OwnerVC: MasterVC, ListAdapterDataSource {
     }
 
     override func loadData() {
-        DataStore.shared.getOwnerStatsSummary { (models, error) in
+        DataStore.shared.getOwnerHouseSummary { (models, error) in
             self.data = models
             self.adapter.reloadData(completion: nil)
         }

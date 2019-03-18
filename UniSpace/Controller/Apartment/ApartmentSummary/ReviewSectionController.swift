@@ -58,8 +58,13 @@ final class ReviewSectionController: ListSectionController, ListAdapterDataSourc
     }
 
     override func didUpdate(to object: Any) {
-        let model = object as? HouseViewModel
-        reviews = model?.reviews ?? []
+        if let model = object as? HouseViewModel {
+            reviews = model.reviews
+        }
+
+        if let model = object as? OwnerTeamsModel {
+            reviews = model.reviews
+        }
     }
 
     // MARK: ListAdapterDataSource

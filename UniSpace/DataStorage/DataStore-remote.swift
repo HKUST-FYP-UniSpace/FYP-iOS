@@ -135,9 +135,14 @@ extension DataStore {
         Service().contactOwner(userId: userId, itemId: itemId, message: message, completion: completion)
     }
 
-    func getOwnerStatsSummary(completion: @escaping ([OwnerStatsSummaryModel]?, Error?) -> Void) {
+    func getOwnerHouseSummary(completion: @escaping ([OwnerHouseSummaryModel]?, Error?) -> Void) {
         let userId = DataStore.shared.user?.id ?? -1
-        Service().getOwnerStatsSummary(userId: userId, completion: completion)
+        Service().getOwnerHouseSummary(userId: userId, completion: completion)
+    }
+
+    func getOwnerTeamsSummary(houseId: Int, completion: @escaping (OwnerTeamsModel?, Error?) -> Void) {
+        let userId = DataStore.shared.user?.id ?? -1
+        Service().getOwnerTeamsSummary(userId: userId, houseId: houseId, completion: completion)
     }
     
 }

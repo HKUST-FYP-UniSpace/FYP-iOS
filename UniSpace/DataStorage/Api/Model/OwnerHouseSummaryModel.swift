@@ -1,5 +1,5 @@
 //
-//  OwnerStatsSummaryModel.swift
+//  OwnerHouseSummaryModel.swift
 //  UniSpace
 //
 //  Created by KiKan Ng on 8/3/2019.
@@ -9,7 +9,7 @@
 import Foundation
 import IGListKit
 
-class OwnerStatsSummaryModel: Decodable, ListDiffable, OwnerStatsSummary {
+class OwnerHouseSummaryModel: Decodable, ListDiffable, OwnerHouseSummary {
 
     var id: Int = 0
     var createTime: Double = 0
@@ -40,7 +40,7 @@ class OwnerStatsSummaryModel: Decodable, ListDiffable, OwnerStatsSummary {
     }
 
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        guard let object = object as? OwnerStatsSummaryModel else { return false }
+        guard let object = object as? OwnerHouseSummaryModel else { return false }
         return self.id == object.id
     }
 

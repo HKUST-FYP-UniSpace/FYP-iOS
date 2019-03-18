@@ -1,5 +1,5 @@
 //
-//  TestOwnerStatsSummaryModel.swift
+//  TestOwnerHouseSummaryModel.swift
 //  UniSpace
 //
 //  Created by KiKan Ng on 8/3/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TestOwnerStatsSummaryModel: OwnerStatsSummary {
+class TestOwnerHouseSummaryModel: OwnerHouseSummary {
 
     var id: Int
     var createTime: Double
@@ -38,8 +38,8 @@ class TestOwnerStatsSummaryModel: OwnerStatsSummary {
         houseStatus = HouseStatus.allCases.randomElement()!
     }
 
-    func toModel() -> OwnerStatsSummaryModel {
-        let model = OwnerStatsSummaryModel()
+    func toModel() -> OwnerHouseSummaryModel {
+        let model = OwnerHouseSummaryModel()
         model.id = id
         model.createTime = createTime
         model.title = title

@@ -9,8 +9,15 @@
 import IGListKit
 import UIKit
 
+enum ApartmentTeamSummarySectionType: String {
+    case Teams = "Teams"
+    case ArrangingTeams = "Arranging"
+    case FormingTeams = "Forming"
+}
+
 final class ApartmentTeamSummarySectionController: ListSectionController, ListAdapterDataSource {
 
+    private var type: ApartmentTeamSummarySectionType
     var contentOffset: CGFloat = 0
     private var houseId: Int?
     private var models: [HouseTeamSummaryModel]?
@@ -23,8 +30,13 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
         return adapter
     }()
 
+    init(_ type: ApartmentTeamSummarySectionType) {
+        self.type = type
+        super.init()
+    }
+
     override func numberOfItems() -> Int {
-        return 3
+        return type == .Teams ? 3 : 2
     }
 
     override func sizeForItem(at index: Int) -> CGSize {
@@ -46,7 +58,7 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
         case 0:
             let cell = collectionContext?.dequeueReusableCell(of: SectionHeaderCell.self, for: self, at: index)
             if let cell = cell as? SectionHeaderCell {
-                cell.titleLabel.text = "Teams"
+                cell.titleLabel.text = type.rawValue
                 return cell
             }
             fatalError()
@@ -74,9 +86,21 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
     }
 
     override func didUpdate(to object: Any) {
-        let object = object as? HouseViewModel
-        houseId = object?.id
-        models = object?.teams
+        switch type {
+        case .Teams:
+            let object = object as? HouseViewModel
+            houseId = object?.id
+            models = object?.teams
+
+        case .ArrangingTeams:
+            let object = object as? OwnerTeamsModel
+            models = object?.arrangingTeams
+
+        case .FormingTeams:
+            let object = object as? OwnerTeamsModel
+            models = object?.formingTeams
+        }
+
     }
 
     // MARK: ListAdapterDataSource

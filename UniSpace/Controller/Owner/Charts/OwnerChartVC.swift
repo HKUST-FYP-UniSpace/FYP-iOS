@@ -31,7 +31,7 @@ class ColoredLineChartViewController: MasterVC {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = false
         view.backgroundColor = .white
-        title = "Stats & Response"
+        title = "Stats"
 
         chartViews = getChartViews()
         guard let chartViews = chartViews else { return }

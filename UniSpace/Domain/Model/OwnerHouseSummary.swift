@@ -1,5 +1,5 @@
 //
-//  OwnerStatsSummary.swift
+//  OwnerHouseSummary.swift
 //  UniSpace
 //
 //  Created by KiKan Ng on 8/3/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol OwnerStatsSummary {
+protocol OwnerHouseSummary {
 
     var id: Int { get set }
     var createTime: Double { get set }

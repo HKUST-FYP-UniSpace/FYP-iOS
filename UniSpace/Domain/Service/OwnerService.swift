@@ -10,6 +10,8 @@ import UIKit
 
 protocol OwnerService: class {
 
-    func getOwnerStatsSummary(userId: Int, completion: @escaping (_ summaries: [OwnerStatsSummaryModel]?, _ error: Error?) -> Void)
+    func getOwnerHouseSummary(userId: Int, completion: @escaping (_ summaries: [OwnerHouseSummaryModel]?, _ error: Error?) -> Void)
+
+    func getOwnerTeamsSummary(userId: Int, houseId: Int, completion: @escaping (_ model: OwnerTeamsModel?, _ error: Error?) -> Void)
 
 }

@@ -10,12 +10,16 @@ import Alamofire
 
 extension AlamofireService: OwnerService {
 
-    func getOwnerStatsSummary(userId: Int, completion: @escaping ([OwnerStatsSummaryModel]?, Error?) -> Void) {
+    func getOwnerHouseSummary(userId: Int, completion: @escaping ([OwnerHouseSummaryModel]?, Error?) -> Void) {
         get(at: .getOwnerStatsSummary()).responseJSON { (res: DataResponse<Any>) in
-            var result: [OwnerStatsSummaryModel]? = nil
-            if let data = res.data { result = try? JSONDecoder().decode([OwnerStatsSummaryModel].self, from: data) }
+            var result: [OwnerHouseSummaryModel]? = nil
+            if let data = res.data { result = try? JSONDecoder().decode([OwnerHouseSummaryModel].self, from: data) }
             completion(result, res.result.error)
         }
+    }
+
+    func getOwnerTeamsSummary(userId: Int, houseId: Int, completion: @escaping (OwnerTeamsModel?, Error?) -> Void) {
+        
     }
 
 }

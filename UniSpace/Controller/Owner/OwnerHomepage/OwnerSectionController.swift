@@ -12,7 +12,7 @@ import UIKit
 final class OwnerSectionController: ListSectionController {
 
     var contentOffset: CGFloat = 0
-    private var model: OwnerStatsSummaryModel?
+    private var model: OwnerHouseSummaryModel?
 
     lazy var adapter: ListAdapter = {
         let adapter = ListAdapter(updater: ListAdapterUpdater(),
@@ -133,15 +133,18 @@ final class OwnerSectionController: ListSectionController {
             log.debug("OwnerStatsCell")
             adapter.viewController?.navigationController?.pushViewController(ColoredLineChartViewController(), animated: true)
 
-        case 5:
+        case 6:
             log.debug("OwnerTeamsCell")
+            let vc = OwnerTeamVC()
+            vc.houseId = model?.id
+            adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
         default:
             return
         }
     }
 
     override func didUpdate(to object: Any) {
-        model = object as? OwnerStatsSummaryModel
+        model = object as? OwnerHouseSummaryModel
     }
 
 }
