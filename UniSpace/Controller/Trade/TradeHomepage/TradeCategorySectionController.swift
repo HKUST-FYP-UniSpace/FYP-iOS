@@ -40,6 +40,7 @@ final class TradeCategorySectionController: ListSectionController {
             let cell = collectionContext?.dequeueReusableCell(of: TitleCell.self, for: self, at: index)
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Category"
+                cell.setImage(nil)
                 return cell
             }
             fatalError()
