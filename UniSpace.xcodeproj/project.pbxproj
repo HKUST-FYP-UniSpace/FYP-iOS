@@ -22,6 +22,7 @@
 		6D06245222325F440046D06B /* TestService+Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D06245122325F440046D06B /* TestService+Owner.swift */; };
 		6D06245422325F8A0046D06B /* AlamofireService+Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D06245322325F8A0046D06B /* AlamofireService+Owner.swift */; };
 		6D06245D2234FBD20046D06B /* TradePhotosSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D06245C2234FBD20046D06B /* TradePhotosSectionController.swift */; };
+		6D06246222350D160046D06B /* OwnerChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D06246122350D160046D06B /* OwnerChartVC.swift */; };
 		6D10545C22143A3E00B61CFC /* MasterFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D10545B22143A3E00B61CFC /* MasterFilterVC.swift */; };
 		6D2BEDA8223167E4005FFEEE /* MessageConversationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2BEDA7223167E4005FFEEE /* MessageConversationVC.swift */; };
 		6D2BEDAA22316831005FFEEE /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2BEDA922316831005FFEEE /* ChatVC.swift */; };
@@ -256,6 +257,7 @@
 		6D06245122325F440046D06B /* TestService+Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TestService+Owner.swift"; sourceTree = "<group>"; };
 		6D06245322325F8A0046D06B /* AlamofireService+Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlamofireService+Owner.swift"; sourceTree = "<group>"; };
 		6D06245C2234FBD20046D06B /* TradePhotosSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradePhotosSectionController.swift; sourceTree = "<group>"; };
+		6D06246122350D160046D06B /* OwnerChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerChartVC.swift; sourceTree = "<group>"; };
 		6D10545B22143A3E00B61CFC /* MasterFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterFilterVC.swift; sourceTree = "<group>"; };
 		6D2BEDA7223167E4005FFEEE /* MessageConversationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConversationVC.swift; sourceTree = "<group>"; };
 		6D2BEDA922316831005FFEEE /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 		6D0624402232523E0046D06B /* Owner */ = {
 			isa = PBXGroup;
 			children = (
+				6D062465223A1F200046D06B /* Charts */,
 				6D06243B22324F460046D06B /* OwnerHomepage */,
 			);
 			path = Owner;
@@ -535,6 +538,14 @@
 				6D0624472232529C0046D06B /* OwnerTeamsCell.swift */,
 			);
 			path = Owner;
+			sourceTree = "<group>";
+		};
+		6D062465223A1F200046D06B /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				6D06246122350D160046D06B /* OwnerChartVC.swift */,
+			);
+			path = Charts;
 			sourceTree = "<group>";
 		};
 		6D2BEDAB22316890005FFEEE /* Chat */ = {
@@ -1262,6 +1273,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-UniSpace/Pods-UniSpace-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
@@ -1274,6 +1286,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
@@ -1431,6 +1444,7 @@
 				6DF1B98121E5EF0C002814AE /* DocumentHandler.swift in Sources */,
 				6D563B7621E0AD9900E2E10D /* HouseSuggestionCell.swift in Sources */,
 				6DE5561B21A3B9A100B23398 /* LoginVC.swift in Sources */,
+				6D06246222350D160046D06B /* OwnerChartVC.swift in Sources */,
 				6D486DFE22310E75005D2946 /* ReviewSectionController.swift in Sources */,
 				6DFE1DBD220AE1A80012E8A2 /* HouseViewModel.swift in Sources */,
 				6D68F6F021A7FA2F00D31472 /* AlamofireService+General.swift in Sources */,

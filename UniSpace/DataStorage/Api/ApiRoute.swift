@@ -157,7 +157,7 @@ enum ApiRoute { case
     }
     
     func url() -> String {
-        let host = "http://localhost:8080/api-mobile/v1"
+        let host = "http://ec2-18-219-7-135.us-east-2.compute.amazonaws.com/api"
         return "\(host)/\(path)"
     }
 }

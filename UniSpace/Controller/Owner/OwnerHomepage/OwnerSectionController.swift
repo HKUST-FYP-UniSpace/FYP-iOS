@@ -124,6 +124,22 @@ final class OwnerSectionController: ListSectionController {
         }
     }
 
+    override func didSelectItem(at index: Int) {
+        switch index {
+        case 2:
+            log.debug("OwnerInfoCell")
+
+        case 4:
+            log.debug("OwnerStatsCell")
+            adapter.viewController?.navigationController?.pushViewController(ColoredLineChartViewController(), animated: true)
+
+        case 5:
+            log.debug("OwnerTeamsCell")
+        default:
+            return
+        }
+    }
+
     override func didUpdate(to object: Any) {
         model = object as? OwnerStatsSummaryModel
     }

@@ -2,6 +2,9 @@ PODS:
   - Alamofire (4.7.3)
   - AlamofireImage (3.4.1):
     - Alamofire (~> 4.7)
+  - Charts (3.2.1):
+    - Charts/Core (= 3.2.1)
+  - Charts/Core (3.2.1)
   - Eureka (4.3.1)
   - IGListKit (3.4.0):
     - IGListKit/Default (= 3.4.0)
@@ -21,16 +24,18 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.7.3)
   - AlamofireImage (~> 3.4.1)
+  - Charts (~> 3.2.1)
   - Eureka (~> 4.3.1)
   - IGListKit (~> 3.4.0)
   - KeychainAccess (~> 3.1.2)
-  - MessageKit
-  - RealmSwift
+  - MessageKit (~> 2.0.0)
+  - RealmSwift (~> 3.13.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireImage
+    - Charts
     - Eureka
     - IGListKit
     - KeychainAccess
@@ -42,6 +47,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   AlamofireImage: 78d67ccbb763d87ba44b21583d2153500a195630
+  Charts: f122fb70b19847fa5817d018b77d6c5a2296ab25
   Eureka: 28ea296f06710f6745266b71f17862048941a32d
   IGListKit: 7a5d788e9fb746bcd402baa8e8b24bc3bd2a5a07
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
@@ -50,6 +56,6 @@ SPEC CHECKSUMS:
   Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
   RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
 
-PODFILE CHECKSUM: 1182f09653a859e1000d13e5052130f6f413dd6d
+PODFILE CHECKSUM: 09aada1e30b717fe37b78017a82dd744e42233fa
 
 COCOAPODS: 1.5.3

@@ -14,6 +14,11 @@ extension AlamofireService: AuthService {
         post(at: .authorize, params: getCredentials()).responseJSON { (res: DataResponse<Any>) in
             var result: UserModel? = nil
             if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }
+//            result = TestUserModel(email: "register@gmail.com",
+//                                   username: "register",
+//                                   role: .Tenant,
+//                                   verified: true,
+//                                   hasPreference: false).toUserModel()
             DataStore.shared.user = result
             completion(result, res.result.error)
         }
