@@ -41,7 +41,7 @@ extension AlamofireService: TradeService {
         }
     }
 
-    func createTradeItem(userId: Int, model: TradeFeaturedModel, image: UIImage, completion: SendRequestResult?) {
+    func createTradeItem(userId: Int, model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
         let params = getItemParams(model)
         post(at: .updatePreference(), params: params).responseJSON { (res: DataResponse<Any>) in
             var result: ServerMessage? = nil

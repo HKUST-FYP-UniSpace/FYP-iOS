@@ -14,7 +14,7 @@ protocol TradeService: class {
     func getTradeSellingItems(userId: Int, completion: @escaping (_ summaries: [TradeSellingItemModel]?, _ error: Error?) -> Void)
     func getTradeSaved(userId: Int, completion: @escaping (_ summaries: [TradeFeaturedModel]?, _ error: Error?) -> Void)
     func getTradeList(userId: Int, filter: TradeFilterModel, completion: @escaping (_ summaries: [TradeFeaturedModel]?, _ error: Error?) -> Void)
-    func createTradeItem(userId: Int, model: TradeFeaturedModel, image: UIImage, completion: SendRequestResult?)
+    func createTradeItem(userId: Int, model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?)
     func getTradeDetail(itemId: Int, completion: @escaping (_ model: TradeFeaturedModel?, _ error: Error?) -> Void)
     func bookmarkItem(userId: Int, itemId: Int, completion: SendRequestResult?)
     func contactOwner(userId: Int, itemId: Int, message: String, completion: SendRequestResult?)

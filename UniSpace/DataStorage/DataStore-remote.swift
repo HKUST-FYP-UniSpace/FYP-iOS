@@ -116,9 +116,9 @@ extension DataStore {
         Service().getTradeList(userId: userId, filter: filter ?? TradeFilterModel(), completion: completion)
     }
 
-    func createTradeItem(model: TradeFeaturedModel, image: UIImage, completion: SendRequestResult?) {
+    func createTradeItem(model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
         let userId = DataStore.shared.user?.id ?? -1
-        Service().createTradeItem(userId: userId, model: model, image: image, completion: completion)
+        Service().createTradeItem(userId: userId, model: model, images: images, completion: completion)
     }
 
     func getTradeDetail(itemId: Int, completion: @escaping (TradeFeaturedModel?, Error?) -> Void) {

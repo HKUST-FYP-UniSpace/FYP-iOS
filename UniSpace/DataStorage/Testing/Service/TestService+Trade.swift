@@ -34,7 +34,7 @@ extension TestService: TradeService {
         delay { completion(summaries, nil) }
     }
 
-    func createTradeItem(userId: Int, model: TradeFeaturedModel, image: UIImage, completion: SendRequestResult?) {
+    func createTradeItem(userId: Int, model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
         delay { completion?(nil, nil) }
     }
 

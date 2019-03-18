@@ -61,4 +61,8 @@ class ChangeImageCell: Cell<String>, CellType, ImageSettable {
         photoView.setBackground(hasBackground: image == nil)
     }
 
+    func getImage() -> UIImage? {
+        return photoView.image
+    }
+
 }
