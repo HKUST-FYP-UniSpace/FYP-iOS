@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TeamMemberRole: Int {
+enum TeamMemberRole: Int, Codable {
     case Leader = 0
     case Member
 

@@ -26,15 +26,6 @@ class OwnerHouseSummaryModel: Decodable, ListDiffable, OwnerHouseSummary {
 
     init() {}
 
-    enum CodingKeys: String, CodingKey {
-        case id
-    }
-
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
-    }
-
     func diffIdentifier() -> NSObjectProtocol {
         return id as NSObjectProtocol
     }

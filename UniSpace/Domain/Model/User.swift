@@ -27,7 +27,7 @@ protocol User: UserProfile {
     
 }
 
-enum UserType: Int {
+enum UserType: Int, Codable {
     case Tenant = 0
     case Owner
 

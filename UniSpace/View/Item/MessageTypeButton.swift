@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum MessageGroupType: Int, CaseIterable {
+enum MessageGroupType: Int, Codable, CaseIterable {
     case Owner = 0
     case Team
     case Trade
@@ -33,7 +33,7 @@ enum MessageGroupType: Int, CaseIterable {
     }
 }
 
-enum HouseStatus: Int, CaseIterable {
+enum HouseStatus: Int, Codable, CaseIterable {
     case Hide = 1
     case Reveal
     case Archive

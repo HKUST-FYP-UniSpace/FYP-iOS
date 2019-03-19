@@ -19,7 +19,7 @@ protocol Preference {
 
 }
 
-enum Gender: Int, CaseIterable {
+enum Gender: Int, Codable, CaseIterable {
     case Male = 0
     case Female
 

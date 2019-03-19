@@ -50,10 +50,8 @@ class UserModel: Decodable, User {
         selfIntro = try container.decode(String.self, forKey: .selfIntro)
         name = try container.decode(String.self, forKey: .name)
         email = try container.decode(String.self, forKey: .email)
-        let genderInt = try container.decode(Int.self, forKey: .gender)
-        gender = Gender(rawValue: genderInt) ?? .Male
-        let userTypeInt = try container.decode(Int.self, forKey: .role)
-        userType = UserType(rawValue: userTypeInt) ?? .Tenant
+        gender = try container.decode(Gender.self, forKey: .gender)
+        userType = try container.decode(UserType.self, forKey: .role)
         isActive = try container.decode(Bool.self, forKey: .isActive)
         createTime = try container.decode(Double.self, forKey: .createTime)
         verified = try container.decode(Bool.self, forKey: .verified)

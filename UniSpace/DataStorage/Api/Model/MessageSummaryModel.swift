@@ -39,8 +39,7 @@ class MessageSummaryModel: Decodable, ListDiffable, MessageSummary {
         time = try container.decode(Double.self, forKey: .time)
         unreadMessagesCount = try container.decode(Int.self, forKey: .unreadMessagesCount)
         photoURL = try container.decode(String.self, forKey: .photoURL)
-        let messageTypeInt = try container.decode(Int.self, forKey: .messageType)
-        messageType = MessageGroupType(rawValue: messageTypeInt) ?? .Request
+        messageType = try container.decode(MessageGroupType.self, forKey: .messageType)
     }
 
     func diffIdentifier() -> NSObjectProtocol {
