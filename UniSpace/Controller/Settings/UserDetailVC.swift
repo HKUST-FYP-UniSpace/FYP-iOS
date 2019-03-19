@@ -13,6 +13,7 @@ class UserDetailVC: MasterFormPopupVC {
 
     var userId: Int?
     private var user: UserModel?
+    private var editedUser: UserModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,9 @@ class UserDetailVC: MasterFormPopupVC {
     }
 
     @objc func doneButton(_ sender: UIButton) {
+        updateModel()
+        // TODO: api call
+        
         dismiss(animated: true, completion: nil)
     }
 
@@ -54,25 +58,46 @@ class UserDetailVC: MasterFormPopupVC {
     private func createForm() {
         form +++ Section("")
             <<< getImageRow(url: user?.photoURL, canChange: false)
+            <<< getLabelRow(id: nil, title: "User Type", displayValue: user?.userType.text)
             <<< getLabelRow(id: nil, title: "Username", displayValue: user?.username)
+            <<< getLabelRow(id: nil, title: "Email", displayValue: user?.email)
+
+        form +++ Section("Personal Information")
             <<< getLabelRow(id: nil, title: "Name", displayValue: user?.name)
             <<< getTextAreaRow(id: nil, placeholder: "self intro", defaultValue: user?.selfIntro, disable: true)
             <<< getLabelRow(id: nil, title: "Contact", displayValue: user?.contact)
-            <<< getLabelRow(id: nil, title: "Email", displayValue: user?.email)
             <<< getLabelRow(id: nil, title: "Gender", displayValue: user?.gender.description)
-            <<< getLabelRow(id: nil, title: "User Type", displayValue: user?.userType.text)
     }
 
     private func editForm() {
         form +++ Section("")
             <<< getImageRow(url: user?.photoURL, canChange: true)
-            <<< getTextRow(id: nil, title: "Username", defaultValue: user?.username)
-            <<< getTextRow(id: nil, title: "Name", defaultValue: user?.name)
-            <<< getTextAreaRow(id: nil, placeholder: "self intro", defaultValue: user?.selfIntro, disable: false)
-            <<< getTextRow(id: nil, title: "Contact", defaultValue: user?.contact)
-            <<< getTextRow(id: nil, title: "Email", defaultValue: user?.email)
-            <<< getTextRow(id: nil, title: "Gender", defaultValue: user?.gender.description)
-            <<< getTextRow(id: nil, title: "User Type", defaultValue: user?.userType.text)
+            <<< getLabelRow(id: nil, title: "User Type", displayValue: user?.userType.text)
+            <<< getLabelRow(id: nil, title: "Username", displayValue: user?.username)
+            <<< getLabelRow(id: nil, title: "Email", displayValue: user?.email)
+
+        form +++ Section("Personal Information")
+            <<< getTextRow(id: "name", title: "Name", defaultValue: user?.name)
+            <<< getTextAreaRow(id: "selfIntro", placeholder: "self intro", defaultValue: user?.selfIntro, disable: false)
+            <<< getTextRow(id: "contact", title: "Contact", defaultValue: user?.contact)
+            <<< getSingleSelectorRow(id: "gender", title: "Gender", defaultValue: user?.gender.description, selectorTitle: nil, options: Gender.allCases.map { $0.description })
+    }
+
+    private func updateModel() {
+        let model = UserModel()
+        if let row = form.rowBy(tag: "gender") as? ActionSheetRow<String> {
+            if let value = row.value {
+                if value == Gender.Male.description {
+                    model.gender = .Male
+                } else if value == Gender.Female.description {
+                    model.gender = .Female
+                }
+            }
+        }
+        if let row = form.rowBy(tag: "name") as? TextRow { model.name = row.value ?? "" }
+        if let row = form.rowBy(tag: "selfIntro") as? TextAreaRow { model.selfIntro = row.value ?? "" }
+        if let row = form.rowBy(tag: "contact") as? TextRow { model.contact = row.value ?? "" }
+        self.editedUser = model
     }
 
 }
