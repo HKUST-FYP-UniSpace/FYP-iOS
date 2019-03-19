@@ -60,11 +60,12 @@ extension FormViewController {
             }
     }
 
-    func getTextAreaRow(id: String?, placeholder: String?, defaultValue: String?) -> BaseRow {
+    func getTextAreaRow(id: String?, placeholder: String?, defaultValue: String?, disable: Condition = false) -> BaseRow {
         return TextAreaRow(id) {
             $0.placeholder = placeholder
             $0.textAreaHeight = .dynamic(initialTextViewHeight: 50)
             $0.value = defaultValue
+            $0.disabled = disable
             }
     }
 
@@ -139,6 +140,48 @@ extension FormViewController {
             }
             .onCellSelection { (cell, row) in
                 callback()
+        }
+    }
+
+    func getImageRow(url: String?, canChange: Bool) -> BaseRow {
+        return ChangeImageRow()
+            .cellSetup { (cell, row) in
+                guard let url = url else { return }
+                AlamofireService.shared.downloadImage(at: url, downloadProgress: nil) { (image, error) in
+                    cell.setImage(image)
+                }
+            }
+            .onCellSelection({ (cell, row) in
+                guard canChange else { return }
+                self.getPhoto(handlePopover: { (actionSheet) in
+                    if let popover = actionSheet.popoverPresentationController {
+                        popover.sourceView = self.tableView
+                        popover.sourceRect = self.tableView.convert(cell.contentView.frame, from: cell)
+                    }
+                    self.present(actionSheet, animated: true, completion: nil)
+                }, completion: { (image) in
+                    cell.setImage(image)
+                })
+            })
+    }
+
+    func getAddRow(title: String, additionRow: BaseRow) -> BaseRow {
+        return LabelRow() {
+            $0.title = title
+            }.cellSetup({ (cell, row) in
+                cell.imageView?.image = UIImage(named: "Inverted_plus")
+            })
+            .onCellSelection { _, row in
+                let cell = additionRow
+                let deleteAction = SwipeAction(style: .destructive, title: "Delete", handler: { (action, row, completionHandler) in
+                    row.section?.remove(at: row.indexPath!.row)
+                    completionHandler?(true)
+                })
+
+                cell.trailingSwipe.actions = [deleteAction]
+                cell.trailingSwipe.performsFirstActionWithFullSwipe = true
+                row.section?.insert(cell, at: row.indexPath!.row)
+                self.tableView.reloadData()
         }
     }
 }

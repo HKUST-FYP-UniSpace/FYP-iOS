@@ -15,7 +15,7 @@ extension TestService: AuthService {
     }
     
     func register(userType: UserType, username: String, name: String, email: String, password: String, completion: @escaping (UserModel?, Error?) -> Void) {
-        let user = TestUserModel(email: email, username: name, role: userType, verified: false, hasPreference: false).toUserModel()
+        let user = TestUserModel(email: email, username: username, name: name, role: userType, verified: false, hasPreference: false).toUserModel()
         DataStore.shared.user = user
         delay { completion(user, nil) }
     }

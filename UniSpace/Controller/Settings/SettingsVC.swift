@@ -28,17 +28,22 @@ class SettingsVC: FormViewController {
         }
     }
 
-    private func createForm(_ user: UserProfileModel?) {
+    private func createForm(_ user: UserModel?) {
         form +++ Section("")
             <<< UserInfoRow { row in
-                row.cell.nameLabel.text = user?.username
+                row.cell.nameLabel.text = user?.getNameAndUsername()
                 row.cell.preferenceLabel.text = user?.preference.getTextForm()
 
                 guard let url = user?.photoURL else { return }
                 AlamofireService.shared.downloadImage(at: url, downloadProgress: nil) { (image, error) in
                     row.cell.setImage(image)
                 }
-            }
+                }
+                .onCellSelection { (cell, row) in
+                    let vc = UserDetailVC()
+                    vc.userId = DataStore.shared.user?.id
+                    self.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+                }
 
             <<< LabelRow() {
                 $0.title = "Preference Settings"

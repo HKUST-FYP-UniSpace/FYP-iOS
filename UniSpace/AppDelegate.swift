@@ -23,10 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Test user
         let user = TestUserModel(email: "123@test.com",
-                                 username: "Test user",
+                                 username: "StarSpangledMan",
+                                 name: "Steve Rogers",
                                  role: .Tenant,
                                  verified: true,
                                  hasPreference: true)
+        user.photoURL = "https://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2016/08/steve-rogers.jpg?itok=PKuv3pPL"
         DataStore.shared.user = user.toUserModel()
         tryToLogin()
         return true

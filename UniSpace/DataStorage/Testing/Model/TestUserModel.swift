@@ -24,7 +24,7 @@ class TestUserModel: User {
     var createTime: Double
     var verified: Bool
     
-    required init(email: String, username: String, role: UserType, verified: Bool, hasPreference: Bool) {
+    required init(email: String, username: String, name: String, role: UserType, verified: Bool, hasPreference: Bool) {
         self.id = DataStore.shared.randomInt(length: 8)
         self.username = username
         self.preference = hasPreference ? TestPreferenceModel().toModel() : PreferenceModel()
@@ -32,7 +32,7 @@ class TestUserModel: User {
 
         self.contact = ""
         self.selfIntro = ""
-        self.name = ""
+        self.name = name
         self.email = email
         self.gender = .Male
         self.userType = role

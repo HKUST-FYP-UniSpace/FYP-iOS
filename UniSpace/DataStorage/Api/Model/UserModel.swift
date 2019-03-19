@@ -57,4 +57,11 @@ class UserModel: Decodable, User {
         verified = try container.decode(Bool.self, forKey: .verified)
     }
 
+    func getNameAndUsername() -> String {
+        if !name.isEmpty, !username.isEmpty {
+            return "\(name) (\(username))"
+        }
+        return name.isEmpty ? username : name
+    }
+
 }

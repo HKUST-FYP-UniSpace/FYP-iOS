@@ -25,12 +25,8 @@ extension DataStore {
     func existUsername(username: String, completion: @escaping (_ exist: Bool?, _ error: Error?) -> Void) {
         Service().existUsername(username: username, completion: completion)
     }
-
-    func getMyUserDetail(completion: @escaping (UserModel?, Error?) -> Void) {
-        Service().getMyUserDetail(completion: completion)
-    }
     
-    func getUserProfile(userId: Int? = nil, completion: @escaping (UserProfileModel?, Error?) -> ()) {
+    func getUserProfile(userId: Int? = nil, completion: @escaping (UserModel?, Error?) -> ()) {
         let id = (userId == nil) ? (DataStore.shared.user?.id ?? -1) : userId!
         Service().getUserProfile(userId: id, completion: completion)
     }

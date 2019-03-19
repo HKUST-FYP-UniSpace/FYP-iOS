@@ -29,6 +29,13 @@ enum Gender: Int, Codable, CaseIterable {
         case .Female: return "Girls only"
         }
     }
+
+    var description: String {
+        switch self {
+        case .Male: return "Male"
+        case .Female: return "Female"
+        }
+    }
 }
 
 class PreferenceOptions {

@@ -23,8 +23,8 @@ class TradeAddItemVC: MasterFormPopupVC {
 
     private func createForm() {
         form +++ Section("Images")
-            <<< createImageRow()
-            <<< createAddImageRow()
+            <<< getImageRow(url: nil, canChange: true)
+            <<< getAddRow(title: "Add Image", additionRow: getImageRow(url: nil, canChange: true))
 
         form +++ Section("Item Information")
             <<< getTextRow(id: "name", title: "Name", defaultValue: nil)
@@ -61,40 +61,5 @@ class TradeAddItemVC: MasterFormPopupVC {
             let price = Int(value.deletingPrefix("\(unit) ")) { model.price = price }
         self.model = model
     }
-
-    private func createImageRow() -> BaseRow {
-        return ChangeImageRow()
-            .onCellSelection({ (cell, row) in
-                self.getPhoto(handlePopover: { (actionSheet) in
-                    if let popover = actionSheet.popoverPresentationController {
-                        popover.sourceView = self.tableView
-                        popover.sourceRect = self.tableView.convert(cell.contentView.frame, from: cell)
-                    }
-                    self.present(actionSheet, animated: true, completion: nil)
-                }, completion: { (image) in
-                    cell.setImage(image)
-                })
-            })
-    }
-
-    private func createAddImageRow() -> BaseRow {
-        return LabelRow() {
-            $0.title = "Add Image"
-            }.cellSetup({ (cell, row) in
-                cell.imageView?.image = UIImage(named: "Inverted_plus")
-            })
-            .onCellSelection { _, row in
-                let cell = self.createImageRow()
-                let deleteAction = SwipeAction(style: .destructive, title: "Delete", handler: { (action, row, completionHandler) in
-                    row.section?.remove(at: row.indexPath!.row)
-                    completionHandler?(true)
-                })
-
-                cell.trailingSwipe.actions = [deleteAction]
-                cell.trailingSwipe.performsFirstActionWithFullSwipe = true
-                row.section?.insert(cell, at: row.indexPath!.row)
-                self.tableView.reloadData()
-        }
-    }
-
+    
 }
