@@ -30,6 +30,11 @@ extension FormViewController {
             $0.title = title
             $0.value = defaultValue
             $0.placeholder = "-"
+
+            if let defaultValue = defaultValue, !defaultValue.isEmpty {
+                $0.value = unit + " " + defaultValue
+                $0.placeholder = $0.value
+            }
             }
             .cellSetup { (cell, row) in
                 cell.textLabel?.lineBreakMode = .byWordWrapping
@@ -44,7 +49,7 @@ extension FormViewController {
                     row.value = ""
 
                 } else { // finish editing cell
-                    rowValue = rowValue.isEmpty ? "-" : (unit + " " + rowValue)
+                    rowValue = rowValue.isEmpty ? (row.placeholder ?? "-") : (unit + " " + rowValue)
                     row.placeholder = unit
 
                     let currentRowValue: String = rowValue.deletingPrefix("\(unit) ")
@@ -163,6 +168,25 @@ extension FormViewController {
                     cell.setImage(image)
                 })
             })
+    }
+
+    func getImageRows(urls: [String]?, canChange: Bool) -> [BaseRow] {
+        guard var urls = urls, !urls.isEmpty else { return [] }
+        var rows = [getImageRow(url: urls.removeFirst(), canChange: canChange)]
+        for url in urls {
+            let cell = self.getImageRow(url: "\(url)?image=\(Int.random(in: 0...1084))", canChange: canChange)
+            if canChange {
+                let deleteAction = SwipeAction(style: .destructive, title: "Delete", handler: { (action, row, completionHandler) in
+                    row.section?.remove(at: row.indexPath!.row)
+                    completionHandler?(true)
+                })
+
+                cell.trailingSwipe.actions = [deleteAction]
+                cell.trailingSwipe.performsFirstActionWithFullSwipe = true
+            }
+            rows.append(cell)
+        }
+        return rows
     }
 
     func getAddImageRow(title: String) -> BaseRow {

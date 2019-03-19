@@ -53,6 +53,7 @@ class TradeAddItemVC: MasterFormPopupVC {
     }
 
     private func updateModel() {
+        images.removeAll()
         let model = TradeFeaturedModel()
         for row in form.allRows {
             guard let imageRow = row as? ChangeImageRow, let image = imageRow.cell.getImage() else { continue }

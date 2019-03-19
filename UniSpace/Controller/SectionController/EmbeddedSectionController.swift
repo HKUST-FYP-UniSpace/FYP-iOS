@@ -68,6 +68,16 @@ final class EmbeddedSectionController: ListSectionController {
             }
             return
         }
+
+        if let data = data as? TradeSellingItemModel {
+            let vc = TradeSellingItemVC()
+            vc.itemId = data.id
+            DispatchQueue.main.async {
+                generator.notificationOccurred(.success)
+                self.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+            }
+            return
+        }
     }
 
     override func didUpdate(to object: Any) {

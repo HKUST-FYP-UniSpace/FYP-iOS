@@ -23,6 +23,7 @@
 		6D06245D2234FBD20046D06B /* TradePhotosSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D06245C2234FBD20046D06B /* TradePhotosSectionController.swift */; };
 		6D06246222350D160046D06B /* OwnerChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D06246122350D160046D06B /* OwnerChartVC.swift */; };
 		6D10545C22143A3E00B61CFC /* MasterFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D10545B22143A3E00B61CFC /* MasterFilterVC.swift */; };
+		6D28BDBB2241327D00F6E813 /* TradeSellingItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D28BDBA2241327D00F6E813 /* TradeSellingItemVC.swift */; };
 		6D2B8090223F7A9F006708FE /* OwnerTeamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B808F223F7A9F006708FE /* OwnerTeamVC.swift */; };
 		6D2B8092223FFF6F006708FE /* OwnerTeamsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B8091223FFF6F006708FE /* OwnerTeamsModel.swift */; };
 		6D2B8094224000FE006708FE /* TestOwnerHouseSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2B8093224000FE006708FE /* TestOwnerHouseSummaryModel.swift */; };
@@ -261,6 +262,7 @@
 		6D06245C2234FBD20046D06B /* TradePhotosSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradePhotosSectionController.swift; sourceTree = "<group>"; };
 		6D06246122350D160046D06B /* OwnerChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerChartVC.swift; sourceTree = "<group>"; };
 		6D10545B22143A3E00B61CFC /* MasterFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterFilterVC.swift; sourceTree = "<group>"; };
+		6D28BDBA2241327D00F6E813 /* TradeSellingItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeSellingItemVC.swift; sourceTree = "<group>"; };
 		6D2B808F223F7A9F006708FE /* OwnerTeamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerTeamVC.swift; sourceTree = "<group>"; };
 		6D2B8091223FFF6F006708FE /* OwnerTeamsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerTeamsModel.swift; sourceTree = "<group>"; };
 		6D2B8093224000FE006708FE /* TestOwnerHouseSummaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestOwnerHouseSummaryModel.swift; sourceTree = "<group>"; };
@@ -822,6 +824,7 @@
 			isa = PBXGroup;
 			children = (
 				6DC0DD7C22265159000BCA36 /* TradeAddItemVC.swift */,
+				6D28BDBA2241327D00F6E813 /* TradeSellingItemVC.swift */,
 				6DC9DDB2219FEE9C00A4B5DD /* TradeVC.swift */,
 				6D7EE8DD21E8E61A008D882F /* TradeFeaturedSectionController.swift */,
 				6D7EE8DF21E8E6C7008D882F /* TradeSellingItemsSectionController.swift */,
@@ -1563,6 +1566,7 @@
 				6D2B8094224000FE006708FE /* TestOwnerHouseSummaryModel.swift in Sources */,
 				6D30717321B27EA0008D0FA3 /* MasterTableVC.swift in Sources */,
 				6D891CBF221BD1FB00DEB9F4 /* MasterFormPopupVC.swift in Sources */,
+				6D28BDBB2241327D00F6E813 /* TradeSellingItemVC.swift in Sources */,
 				6D2BEDA8223167E4005FFEEE /* MessageConversationVC.swift in Sources */,
 				6DFE1DB7220ADE080012E8A2 /* HouseTeamSummary.swift in Sources */,
 				6DA9D4792205757F009464B6 /* HouseSuggestionModel.swift in Sources */,
