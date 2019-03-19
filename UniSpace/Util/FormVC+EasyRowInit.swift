@@ -165,14 +165,14 @@ extension FormViewController {
             })
     }
 
-    func getAddRow(title: String, additionRow: BaseRow) -> BaseRow {
+    func getAddImageRow(title: String) -> BaseRow {
         return LabelRow() {
             $0.title = title
             }.cellSetup({ (cell, row) in
                 cell.imageView?.image = UIImage(named: "Inverted_plus")
             })
             .onCellSelection { _, row in
-                let cell = additionRow
+                let cell = self.getImageRow(url: nil, canChange: true)
                 let deleteAction = SwipeAction(style: .destructive, title: "Delete", handler: { (action, row, completionHandler) in
                     row.section?.remove(at: row.indexPath!.row)
                     completionHandler?(true)
@@ -182,6 +182,28 @@ extension FormViewController {
                 cell.trailingSwipe.performsFirstActionWithFullSwipe = true
                 row.section?.insert(cell, at: row.indexPath!.row)
                 self.tableView.reloadData()
+        }
+    }
+
+    func getAddImageSectionRow(title: String, sectionTitle: String) -> BaseRow {
+        return LabelRow() {
+            $0.title = title
+            }.cellSetup({ (cell, row) in
+                cell.imageView?.image = UIImage(named: "Inverted_plus")
+            })
+            .onCellSelection { _, row in
+                let newSection = Section(sectionTitle)
+                newSection <<< self.getImageRow(url: nil, canChange: true)
+                newSection <<< LabelRow() {
+                    $0.title = "Delete"
+                    }.cellSetup({ (cell, row) in
+                        cell.imageView?.image = UIImage(named: "Inverted_minus")
+                    })
+                    .onCellSelection({ (cell, row) in
+                        self.form.remove(at: row.indexPath!.section)
+                    })
+
+                self.form.insert(newSection, at: row.indexPath!.section)
         }
     }
 }

@@ -24,7 +24,12 @@ class TradeAddItemVC: MasterFormPopupVC {
     private func createForm() {
         form +++ Section("Images")
             <<< getImageRow(url: nil, canChange: true)
-            <<< getAddRow(title: "Add Image", additionRow: getImageRow(url: nil, canChange: true))
+            // option 1: append downwards
+            <<< getAddImageRow(title: "Add Image")
+
+        // option 2: append a whole section downwards
+//        form +++ Section("Images")
+//            <<< getAddImageSectionRow(title: "Add Image", sectionTitle: "Images")
 
         form +++ Section("Item Information")
             <<< getTextRow(id: "name", title: "Name", defaultValue: nil)

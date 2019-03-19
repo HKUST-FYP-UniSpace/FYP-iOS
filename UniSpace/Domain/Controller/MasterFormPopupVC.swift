@@ -25,6 +25,7 @@ class MasterFormPopupVC: FormViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupTheme(theme: Color.theme, background: Color.white, withLine: false)
         navigationItem.largeTitleDisplayMode = .never
         tableView.tableFooterView = UIView()
