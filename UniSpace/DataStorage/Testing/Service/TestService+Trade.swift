@@ -28,6 +28,12 @@ extension TestService: TradeService {
         delay { completion(summaries, nil) }
     }
 
+    func getTradeHistory(userId: Int, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
+        var summaries: [TradeFeaturedModel]? = []
+        for _ in 0..<Int.random(in: (1..<5)) { summaries?.append(TestTradeFeaturedModel().toModel()) }
+        delay { completion(summaries, nil) }
+    }
+
     func getTradeList(userId: Int, filter: TradeFilterModel, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
         var summaries: [TradeFeaturedModel]? = []
         for _ in 0..<Int.random(in: (1..<30)) { summaries?.append(TestTradeFeaturedModel().toModel()) }

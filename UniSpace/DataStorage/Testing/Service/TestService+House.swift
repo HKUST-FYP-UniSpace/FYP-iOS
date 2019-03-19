@@ -22,6 +22,12 @@ extension TestService: HouseService {
         delay { completion(summaries, nil) }
     }
 
+    func getHouseHistory(userId: Int, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
+        var summaries: [HouseListModel]? = []
+        for _ in 0..<Int.random(in: (1..<5)) { summaries?.append(TestHouseListModel().toModel()) }
+        delay { completion(summaries, nil) }
+    }
+
     func getHouseList(userId: Int, filter: HouseFilterModel, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
         var summaries: [HouseListModel]? = []
         for _ in 0..<Int.random(in: (5..<30)) { summaries?.append(TestHouseListModel().toModel()) }

@@ -13,15 +13,14 @@ enum TradeListType {
     case Result
     case Featured
     case Saved
+    case History
 
     var text: String {
         switch self {
-        case .Result:
-            return "Result"
-        case .Featured:
-            return "Featured"
-        case .Saved:
-            return "Saved"
+        case .Result: return "Result"
+        case .Featured: return "Featured"
+        case .Saved: return "Saved"
+        case .History: return "Trade History"
         }
     }
 }
@@ -42,6 +41,7 @@ final class TradeListVC: SingleSectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = false
         if self.title == nil { self.title = type.text }
         guard type == .Result else { return }
         let filterItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterButton))
@@ -76,6 +76,8 @@ final class TradeListVC: SingleSectionViewController {
             DataStore.shared.getTradeFeatured(completion: completion)
         case .Saved:
             DataStore.shared.getTradeSaved(completion: completion)
+        case .History:
+            DataStore.shared.getTradeHistory(completion: completion)
         }
     }
 

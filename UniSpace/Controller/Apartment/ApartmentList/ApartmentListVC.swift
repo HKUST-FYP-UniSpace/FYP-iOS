@@ -12,13 +12,13 @@ import UIKit
 enum ApartmentListType {
     case Result
     case Saved
+    case History
 
     var text: String {
         switch self {
-        case .Result:
-            return "Result"
-        case .Saved:
-            return "Saved"
+        case .Result: return "Result"
+        case .Saved: return "Saved"
+        case .History: return "Apartment History"
         }
     }
 }
@@ -39,6 +39,7 @@ final class ApartmentListVC: SingleSectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = false
         self.title = type.text
         guard type == .Result else { return }
         let filterItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterButton))
@@ -69,6 +70,8 @@ final class ApartmentListVC: SingleSectionViewController {
             DataStore.shared.getHouseList(filter: filter, completion: completion)
         case .Saved:
             DataStore.shared.getHouseSaved(completion: completion)
+        case .History:
+            DataStore.shared.getHouseHistory(completion: completion)
         }
     }
 

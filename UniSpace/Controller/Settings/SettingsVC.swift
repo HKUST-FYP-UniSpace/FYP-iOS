@@ -63,7 +63,7 @@ class SettingsVC: FormViewController {
                     cell.textLabel?.textColor = Color.theme
                 }
                 .onCellSelection { (cell, row) in
-                    //
+                    self.navigationController?.pushViewController(ApartmentListVC(.History), animated: true)
             }
 
             <<< LabelRow() {
@@ -73,7 +73,7 @@ class SettingsVC: FormViewController {
                     cell.textLabel?.textColor = Color.theme
                 }
                 .onCellSelection { (cell, row) in
-                    //
+                    self.navigationController?.pushViewController(TradeListVC(.History), animated: true)
             }
 
             <<< LabelRow() {

@@ -33,6 +33,10 @@ extension AlamofireService: TradeService {
         }
     }
 
+    func getTradeHistory(userId: Int, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
+        //
+    }
+
     func getTradeList(userId: Int, filter: TradeFilterModel, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
         get(at: .getTradeList(filter: filter)).responseJSON { (res: DataResponse<Any>) in
             var result: [TradeFeaturedModel]? = nil

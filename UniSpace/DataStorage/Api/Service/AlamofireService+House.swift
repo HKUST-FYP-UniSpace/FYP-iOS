@@ -26,6 +26,10 @@ extension AlamofireService: HouseService {
         }
     }
 
+    func getHouseHistory(userId: Int, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
+        //
+    }
+
     func getHouseList(userId: Int, filter: HouseFilterModel, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
         get(at: .getHouseList(filter: filter)).responseJSON { (res: DataResponse<Any>) in
             var result: [HouseListModel]? = nil
