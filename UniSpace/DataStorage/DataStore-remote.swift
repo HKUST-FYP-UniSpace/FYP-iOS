@@ -83,6 +83,11 @@ extension DataStore {
         Service().bookmarkHouse(userId: userId, houseId: houseId, completion: completion)
     }
 
+    func addReview(review: HouseReviewModel, completion: SendRequestResult?) {
+        let userId = DataStore.shared.user?.id ?? -1
+        Service().addReview(userId: userId, review: review, completion: completion)
+    }
+
     func changePreference(userId: Int? = nil, preference: PreferenceModel, completion: SendRequestResult?) {
         let id = (userId == nil) ? (DataStore.shared.user?.id ?? -1) : userId!
         Service().changePreference(userId: id, preference: preference, completion: completion)

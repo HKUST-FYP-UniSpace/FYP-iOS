@@ -62,6 +62,10 @@ extension AlamofireService: HouseService {
         }
     }
 
+    func addReview(userId: Int, review: HouseReviewModel, completion: SendRequestResult?) {
+        // TODO
+    }
+
     func changePreference(userId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
         let params = getPreferenceParams(preference)
         post(at: .updatePreference(), params: params).responseJSON { (res: DataResponse<Any>) in

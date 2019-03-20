@@ -44,6 +44,7 @@ class ReviewVC: MasterFormPopupVC {
         }
         DataStore.shared.replyReivew(reviewId: review.id, comment: comment) { (msg, error) in
             guard !self.sendFailed(msg, error: error) else { return }
+            self.dismiss(animated: true, completion: nil)
         }
     }
 

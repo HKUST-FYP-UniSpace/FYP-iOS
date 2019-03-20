@@ -13,6 +13,7 @@ final class ReviewSectionController: ListSectionController, ListAdapterDataSourc
 
     var contentOffset: CGFloat = 0
     private var reviews: [HouseReviewModel] = []
+    private var isOwner: Bool = false
     private var cellSpacing: CGFloat = 10
 
     lazy var adapter: ListAdapter = {
@@ -43,6 +44,7 @@ final class ReviewSectionController: ListSectionController, ListAdapterDataSourc
             let cell = collectionContext?.dequeueReusableCell(of: TitleCell.self, for: self, at: index)
             if let cell = cell as? TitleCell {
                 cell.titleLabel.text = "Reviews"
+                if !isOwner { cell.setImage(UIImage(named: "Add")) }
                 return cell
             }
             fatalError()
@@ -60,11 +62,18 @@ final class ReviewSectionController: ListSectionController, ListAdapterDataSourc
     override func didUpdate(to object: Any) {
         if let model = object as? HouseViewModel {
             reviews = model.reviews
+            isOwner = false
         }
 
         if let model = object as? OwnerTeamsModel {
             reviews = model.reviews
+            isOwner = true
         }
+    }
+
+    override func didSelectItem(at index: Int) {
+        guard index == 0, !isOwner else { return }
+        adapter.viewController?.present(UINavigationController(rootViewController: AddReviewVC()), animated: true, completion: nil)
     }
 
     // MARK: ListAdapterDataSource

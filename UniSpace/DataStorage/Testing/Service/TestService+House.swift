@@ -57,6 +57,10 @@ extension TestService: HouseService {
         delay { completion?(nil, nil) }
     }
 
+    func addReview(userId: Int, review: HouseReviewModel, completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
+    }
+
     func changePreference(userId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
         delay { completion?(nil, nil) }
     }
