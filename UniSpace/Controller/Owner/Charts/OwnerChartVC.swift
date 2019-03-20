@@ -9,9 +9,42 @@
 import UIKit
 import Charts
 
-class ColoredLineChartViewController: MasterVC {
+fileprivate enum FilterOptions: Int, CaseIterable {
+    case Week = 0
+    case Month
+    case Year
 
+    var text: String {
+        switch self {
+        case .Week: return "This Week"
+        case .Month: return "This Month"
+        case .Year: return "This Year"
+        }
+    }
+
+    var description: String {
+        switch self {
+        case .Week: return "This Week: daily count"
+        case .Month: return "This Month: daily count"
+        case .Year: return "This Year: monthly count"
+        }
+    }
+
+    var dataCount: Int {
+        switch self {
+        case .Week: return 7
+        case .Month: return 30
+        case .Year: return 12
+        }
+    }
+}
+
+class ChartVC: MasterVC {
+
+    var id: Int?
+    var isHouse: Bool?
     var chartViews: [LineChartView]?
+    private var option: FilterOptions = .Week
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -32,20 +65,53 @@ class ColoredLineChartViewController: MasterVC {
         navigationController?.navigationBar.isHidden = false
         view.backgroundColor = .white
         title = "Stats"
+        let item = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterButton))
+        navigationItem.rightBarButtonItem = item
+        updateChart()
+    }
 
+    override func loadData() {
+        guard let id = id, let isHouse = isHouse else { return }
+        log.verbose("ChartVC", context: "isHouse: \(isHouse), id: \(id)")
+        updateChart()
+    }
+
+    @objc func filterButton(_ sender: UIButton) {
+        showActionSheet { (actionSheet) in
+            actionSheet.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+            self.present(actionSheet, animated: true, completion: nil)
+        }
+    }
+
+    private func updateChart() {
+        view.subviews.forEach { $0.removeFromSuperview() }
         chartViews = getChartViews()
         guard let chartViews = chartViews else { return }
         for chartView in chartViews {
-            let data = dataWithCount(12, range: 100)
+            let data = dataWithCount(option.dataCount, range: 100)
             data.setValueFont(.systemFont(ofSize: 10, weight: .light))
             setupChart(chartView, data: data)
         }
     }
 
+    private func showActionSheet(completion: @escaping (_ actionSheet: UIAlertController) -> ()) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        for option in FilterOptions.allCases {
+            actionSheet.addAction(UIAlertAction(title: option.text, style: .default, handler: { _ in
+                self.option = option
+                self.loadData()
+            }))
+        }
+
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        completion(actionSheet)
+    }
+
     private func setupChart(_ chart: LineChartView, data: LineChartData) {
         (data.getDataSetByIndex(0) as! LineChartDataSet).circleHoleColor = Color.theme
         (data.getDataSetByIndex(1) as! LineChartDataSet).circleHoleColor = .gray
-        chart.backgroundColor = .white
+        chart.backgroundColor = .clear
 
         chart.chartDescription?.enabled = true
 
@@ -67,7 +133,6 @@ class ColoredLineChartViewController: MasterVC {
         chart.leftAxis.enabled = false
         chart.rightAxis.enabled = false
         chart.xAxis.enabled = false
-//        setupXAxis(chart)
 
         chart.data = data
 //        chart.animate(xAxisDuration: 1)
@@ -75,13 +140,13 @@ class ColoredLineChartViewController: MasterVC {
 
 }
 
-extension ColoredLineChartViewController {
+extension ChartVC {
 
     private func getChartViews() -> [LineChartView] {
         var chartViews: [LineChartView] = []
         var lastSubBottomAnchor: NSLayoutYAxisAnchor? = nil
 
-        var descriptions: [String] = ["Views (this year)", "Bookmarks (this year)"]
+        var descriptions: [String] = ["Views (\(option.description))", "Bookmarks (\(option.description))"]
         for i in 0..<descriptions.count {
 
             let titleLabel = StandardLabel(color: Color.theme, size: 16, isBold: true)
@@ -106,20 +171,6 @@ extension ColoredLineChartViewController {
             lastSubBottomAnchor = chartView.bottomAnchor
         }
         return chartViews
-    }
-
-    private func setupXAxis(_  chart: LineChartView) {
-        let xvalues: [String] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-
-        chart.xAxis.valueFormatter = IndexAxisValueFormatter(values: xvalues)
-
-        let xAxis = chart.xAxis
-        xAxis.labelFont = .systemFont(ofSize: 14)
-        xAxis.labelTextColor = .darkGray
-        xAxis.drawAxisLineEnabled = false
-        xAxis.labelPosition = .bothSided
-        xAxis.axisMinimum = 0.0
-        xAxis.granularity = 1.0
     }
 
     private func dataWithCount(_ count: Int, range: Int) -> LineChartData {

@@ -31,6 +31,11 @@ extension DataStore {
         Service().getUserProfile(userId: id, completion: completion)
     }
 
+    func editUserProfile(userProfile: UserModel, image: UIImage, completion: SendRequestResult?) {
+        let userId = DataStore.shared.user?.id ?? -1
+        Service().editUserProfile(userId: userId, userProfile: userProfile, image: image, completion: completion)
+    }
+
     func getMessageSummaries(completion: @escaping ([MessageSummaryModel]?, Error?) -> ()) {
         let userId = DataStore.shared.user?.id ?? -1
         Service().getMessageSummaries(userId: userId, completion: completion)
@@ -127,6 +132,11 @@ extension DataStore {
         Service().createTradeItem(userId: userId, model: model, images: images, completion: completion)
     }
 
+    func editTradeItem(model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
+        let userId = DataStore.shared.user?.id ?? -1
+        Service().editTradeItem(userId: userId, model: model, images: images, completion: completion)
+    }
+
     func getTradeDetail(itemId: Int, completion: @escaping (TradeFeaturedModel?, Error?) -> Void) {
         Service().getTradeDetail(itemId: itemId, completion: completion)
     }
@@ -149,6 +159,11 @@ extension DataStore {
     func getOwnerTeamsSummary(houseId: Int, completion: @escaping (OwnerTeamsModel?, Error?) -> Void) {
         let userId = DataStore.shared.user?.id ?? -1
         Service().getOwnerTeamsSummary(userId: userId, houseId: houseId, completion: completion)
+    }
+
+    func replyReivew(reviewId: Int, comment: String, completion: SendRequestResult?) {
+        let userId = DataStore.shared.user?.id ?? -1
+        Service().replyReivew(userId: userId, reviewId: reviewId, comment: comment, completion: completion)
     }
     
 }

@@ -14,4 +14,6 @@ protocol OwnerService: class {
 
     func getOwnerTeamsSummary(userId: Int, houseId: Int, completion: @escaping (_ model: OwnerTeamsModel?, _ error: Error?) -> Void)
 
+    func replyReivew(userId: Int, reviewId: Int, comment: String, completion: SendRequestResult?)
+
 }

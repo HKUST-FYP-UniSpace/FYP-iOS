@@ -34,7 +34,7 @@ extension AlamofireService: TradeService {
     }
 
     func getTradeHistory(userId: Int, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
-        //
+        // TODO
     }
 
     func getTradeList(userId: Int, filter: TradeFilterModel, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
@@ -51,8 +51,12 @@ extension AlamofireService: TradeService {
             var result: ServerMessage? = nil
             if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
             completion?(result?.message, res.result.error)
-            // send image
+            // TODO: send image
         }
+    }
+
+    func editTradeItem(userId: Int, model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
+        // TODO
     }
 
     func getTradeDetail(itemId: Int, completion: @escaping (TradeFeaturedModel?, Error?) -> Void) {

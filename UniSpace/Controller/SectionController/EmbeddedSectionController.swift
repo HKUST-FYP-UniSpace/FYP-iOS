@@ -78,6 +78,12 @@ final class EmbeddedSectionController: ListSectionController {
             }
             return
         }
+
+        if let data = data as? HouseReviewModel {
+            let role = DataStore.shared.user?.userType ?? .Tenant
+            let vc = UINavigationController(rootViewController: ReviewVC(review: data, isOwner: role == .Owner))
+            self.viewController?.present(vc, animated: true, completion: nil)
+        }
     }
 
     override func didUpdate(to object: Any) {

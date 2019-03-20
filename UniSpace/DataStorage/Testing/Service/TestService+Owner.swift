@@ -29,4 +29,8 @@ extension TestService: OwnerService {
         delay { completion(model, nil) }
     }
 
+    func replyReivew(userId: Int, reviewId: Int, comment: String, completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
+    }
+
 }

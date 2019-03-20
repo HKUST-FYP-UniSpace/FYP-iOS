@@ -19,7 +19,11 @@ extension AlamofireService: OwnerService {
     }
 
     func getOwnerTeamsSummary(userId: Int, houseId: Int, completion: @escaping (OwnerTeamsModel?, Error?) -> Void) {
-        
+        // TODO
+    }
+
+    func replyReivew(userId: Int, reviewId: Int, comment: String, completion: SendRequestResult?) {
+        // TODO
     }
 
 }

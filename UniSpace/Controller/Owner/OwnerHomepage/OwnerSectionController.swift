@@ -130,8 +130,10 @@ final class OwnerSectionController: ListSectionController {
             log.debug("OwnerInfoCell")
 
         case 4:
-            log.debug("OwnerStatsCell")
-            adapter.viewController?.navigationController?.pushViewController(ColoredLineChartViewController(), animated: true)
+            let vc = ChartVC()
+            vc.id = model?.id
+            vc.isHouse = true
+            adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
 
         case 6:
             log.debug("OwnerTeamsCell")

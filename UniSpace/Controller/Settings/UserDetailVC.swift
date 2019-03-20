@@ -14,6 +14,7 @@ class UserDetailVC: MasterFormPopupVC {
     var userId: Int?
     private var user: UserModel?
     private var editedUser: UserModel?
+    private var image: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +34,14 @@ class UserDetailVC: MasterFormPopupVC {
 
     @objc func doneButton(_ sender: UIButton) {
         updateModel()
-        // TODO: api call
-        
-        dismiss(animated: true, completion: nil)
+        guard let editedUser = editedUser, let image = image else {
+            self.showAlert(title: "Please input all cells")
+            return
+        }
+        DataStore.shared.editUserProfile(userProfile: editedUser, image: image) { (msg, error) in
+            guard !self.sendFailed(msg, error: error) else { return }
+            self.dismiss(animated: true, completion: nil)
+        }        
     }
 
     private func addButton(isEdit: Bool) {
@@ -84,6 +90,12 @@ class UserDetailVC: MasterFormPopupVC {
     }
 
     private func updateModel() {
+        image = nil
+        for row in form.allRows {
+            guard let imageRow = row as? ChangeImageRow, let image = imageRow.cell.getImage() else { continue }
+            self.image = image
+        }
+
         let model = UserModel()
         if let row = form.rowBy(tag: "gender") as? ActionSheetRow<String> {
             if let value = row.value {

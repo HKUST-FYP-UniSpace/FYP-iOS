@@ -51,11 +51,13 @@ class TeamCreationVC: MasterFormPopupVC {
     }
 
     private func updateModel() {
-        let model = HouseTeamSummaryModel()
+        image = nil
         for row in form.allRows {
             guard let imageRow = row as? ChangeImageRow, let image = imageRow.cell.getImage() else { continue }
             self.image = image
         }
+
+        let model = HouseTeamSummaryModel()
         if let row = form.rowBy(tag: "name") as? TextRow, let value = row.value { model.title = value }
         if let row = form.rowBy(tag: "description") as? TextAreaRow, let value = row.value { model.description = value }
         if let row = form.rowBy(tag: "size") as? StepperRow, let value = row.value { model.groupSize = Int(value) }

@@ -6,12 +6,17 @@
 //  Copyright © 2018 KiKan Ng. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension TestService: GeneralService {
     
     func getUserProfile(userId: Int, completion: @escaping (UserModel?, Error?) -> Void) {
         delay { completion(DataStore.shared.user, nil) }
+    }
+
+    func editUserProfile(userId: Int, userProfile: UserModel, image: UIImage, completion: SendRequestResult?) {
+        DataStore.shared.user = userProfile
+        delay { completion?(nil, nil) }
     }
 
     func getMessageSummaries(userId: Int, completion: @escaping ([MessageSummaryModel]?, Error?) -> Void) {

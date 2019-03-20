@@ -6,11 +6,12 @@
 //  Copyright © 2018 KiKan Ng. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol GeneralService: class {
 
     func getUserProfile(userId: Int, completion: @escaping (_ user: UserModel?, _ error: Error?) -> Void)
+    func editUserProfile(userId: Int, userProfile: UserModel, image: UIImage, completion: SendRequestResult?)
     func getMessageSummaries(userId: Int, completion: @escaping (_ summaries: [MessageSummaryModel]?, _ error: Error?) -> Void)
     func getNotificationSummaries(userId: Int, completion: @escaping (_ summaries: [NotificationSummaryModel]?, _ error: Error?) -> Void)
     func getBlogSummaries(completion: @escaping (_ summaries: [BlogSummaryModel]?, _ error: Error?) -> Void)

@@ -27,7 +27,7 @@ extension AlamofireService: HouseService {
     }
 
     func getHouseHistory(userId: Int, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
-        //
+        // TODO
     }
 
     func getHouseList(userId: Int, filter: HouseFilterModel, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
@@ -77,7 +77,7 @@ extension AlamofireService: HouseService {
             var result: ServerMessage? = nil
             if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
             completion?(result?.message, res.result.error)
-            // send image
+            // TODO: send image
         }
     }
 

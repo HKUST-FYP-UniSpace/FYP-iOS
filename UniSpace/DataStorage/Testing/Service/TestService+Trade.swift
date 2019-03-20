@@ -44,6 +44,10 @@ extension TestService: TradeService {
         delay { completion?(nil, nil) }
     }
 
+    func editTradeItem(userId: Int, model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
+    }
+
     func getTradeDetail(itemId: Int, completion: @escaping (TradeFeaturedModel?, Error?) -> Void) {
         delay { completion(TestTradeFeaturedModel().toModel(), nil) }
     }

@@ -33,9 +33,14 @@ class TradeSellingItemVC: MasterFormPopupVC {
 
     @objc func doneButton(_ sender: UIButton) {
         updateModel()
-        // TODO: api call
-
-        dismiss(animated: true, completion: nil)
+        guard let editedSellingItem = editedSellingItem, !images.isEmpty else {
+            self.showAlert(title: "Please input all cells")
+            return
+        }
+        DataStore.shared.editTradeItem(model: editedSellingItem, images: images) { (msg, error) in
+            guard !self.sendFailed(msg, error: error) else { return }
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
     private func addButton(isEdit: Bool) {
@@ -70,6 +75,14 @@ class TradeSellingItemVC: MasterFormPopupVC {
         <<< getLabelRow(id: nil, title: "Location", displayValue: sellingItem?.location)
         <<< getLabelRow(id: nil, title: "Price", displayValue: price)
         <<< getTextAreaRow(id: nil, placeholder: "detail", defaultValue: sellingItem?.detail, disable: true)
+
+        form +++ Section("")
+            <<< getButtonRow(id: nil, title: "Stats", callback: {
+                let vc = ChartVC()
+                vc.id = self.itemId
+                vc.isHouse = false
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
     }
 
     private func editForm() {
@@ -92,12 +105,12 @@ class TradeSellingItemVC: MasterFormPopupVC {
 
     private func updateModel() {
         images.removeAll()
-        let model = TradeFeaturedModel()
         for row in form.allRows {
             guard let imageRow = row as? ChangeImageRow, let image = imageRow.cell.getImage() else { continue }
             images.append(image)
         }
-        
+
+        let model = TradeFeaturedModel()
         if let row = form.rowBy(tag: "title") as? TextRow { model.title = row.value ?? "" }
         if let row = form.rowBy(tag: "location") as? TextRow { model.location = row.value ?? "" }
         if let row = form.rowBy(tag: "price") as? TextRow,

@@ -18,6 +18,10 @@ extension AlamofireService: GeneralService {
         }
     }
 
+    func editUserProfile(userId: Int, userProfile: UserModel, image: UIImage, completion: SendRequestResult?) {
+        // TODO
+    }
+
     func getMessageSummaries(userId: Int, completion: @escaping ([MessageSummaryModel]?, Error?) -> Void) {
         get(at: .getMessageSummaries()).responseJSON { (res: DataResponse<Any>) in
             var result: [MessageSummaryModel]? = nil
