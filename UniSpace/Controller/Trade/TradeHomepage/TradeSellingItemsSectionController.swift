@@ -63,7 +63,10 @@ final class TradeSellingItemsSectionController: ListSectionController, ListAdapt
     }
 
     override func didSelectItem(at index: Int) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         guard index == 0 else { return }
+        generator.notificationOccurred(.success)
         adapter.viewController?.present(UINavigationController(rootViewController: TradeAddItemVC()), animated: true, completion: nil)
     }
 

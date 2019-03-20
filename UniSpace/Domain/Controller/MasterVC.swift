@@ -77,6 +77,7 @@ extension UIViewController {
 
     func sendFailed(_ message: String?, error: Error?) -> Bool {
         if message == nil && error == nil { return false }
+        UINotificationFeedbackGenerator().notificationOccurred(.warning)
         if let message = message { showAlert(title: message) }
         else if let error = error { showAlert(title: error.localizedDescription) }
         return true

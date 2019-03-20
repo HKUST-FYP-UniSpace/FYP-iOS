@@ -120,7 +120,10 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
 
 extension ApartmentTeamSummarySectionController: ButtonCellDelegate {
     func buttonCell(pressedButton sender: UIButton) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         guard let houseId = houseId else { return }
+        generator.notificationOccurred(.success)
         adapter.viewController?.present(UINavigationController(rootViewController: TeamCreationVC(houseId: houseId)), animated: true, completion: nil)
     }
 }

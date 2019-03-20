@@ -60,5 +60,15 @@ class DateManager: NSObject {
     func isToday(_ date: Date) -> Bool {
         return NSCalendar.current.isDateInToday(date)
     }
+
+    func numberOfDays(year: Int, month: Int) -> Int? {
+        guard year > 0 && month > 0 && month <= 12 else { return nil }
+        let dateComponents = DateComponents(year: year, month: month)
+        let calendar = Calendar.current
+        let date = calendar.date(from: dateComponents)!
+
+        let range = calendar.range(of: .day, in: .month, for: date)!
+        return range.count
+    }
     
 }

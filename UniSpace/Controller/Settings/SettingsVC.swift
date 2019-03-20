@@ -40,8 +40,11 @@ class SettingsVC: FormViewController {
                 }
                 }
                 .onCellSelection { (cell, row) in
+                    let generator = UINotificationFeedbackGenerator()
+                    generator.prepare()
                     let vc = UserDetailVC()
                     vc.userId = DataStore.shared.user?.id
+                    generator.notificationOccurred(.success)
                     self.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
                 }
 

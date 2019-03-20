@@ -26,12 +26,16 @@ extension AppDelegate {
         window?.rootViewController = rootController
         window?.makeKeyAndVisible()
 
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         guard user.verified else {
+            generator.notificationOccurred(.success)
             self.window?.rootViewController?.present(VerificationVC(), animated: true, completion: nil)
             return
         }
 
         guard user.preference.allSet() || user.userType == .Owner else {
+            generator.notificationOccurred(.success)
             self.window?.rootViewController?.present(UINavigationController(rootViewController: PreferenceVC()), animated: true, completion: nil)
             return
         }

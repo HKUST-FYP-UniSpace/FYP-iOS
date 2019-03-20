@@ -73,12 +73,16 @@ class ChartVC: MasterVC {
     override func loadData() {
         guard let id = id, let isHouse = isHouse else { return }
         log.verbose("ChartVC", context: "isHouse: \(isHouse), id: \(id)")
+        // TODO
         updateChart()
     }
 
     @objc func filterButton(_ sender: UIButton) {
         showActionSheet { (actionSheet) in
+            let generator = UINotificationFeedbackGenerator()
+            generator.prepare()
             actionSheet.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+            generator.notificationOccurred(.success)
             self.present(actionSheet, animated: true, completion: nil)
         }
     }

@@ -72,7 +72,10 @@ final class ReviewSectionController: ListSectionController, ListAdapterDataSourc
     }
 
     override func didSelectItem(at index: Int) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         guard index == 0, !isOwner else { return }
+        generator.notificationOccurred(.success)
         adapter.viewController?.present(UINavigationController(rootViewController: AddReviewVC()), animated: true, completion: nil)
     }
 

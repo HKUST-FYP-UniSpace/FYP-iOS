@@ -62,26 +62,23 @@ final class EmbeddedSectionController: ListSectionController {
             viewController?.navigationController?.pushViewController(vc, animated: true)
             let presentVC = TeamSummaryVC()
             presentVC.teamId = data.teamId
-            DispatchQueue.main.async {
-                generator.notificationOccurred(.success)
-                self.viewController?.present(UINavigationController(rootViewController: presentVC), animated: true, completion: nil)
-            }
+            generator.notificationOccurred(.success)
+            self.viewController?.present(UINavigationController(rootViewController: presentVC), animated: true, completion: nil)
             return
         }
 
         if let data = data as? TradeSellingItemModel {
             let vc = TradeSellingItemVC()
             vc.itemId = data.id
-            DispatchQueue.main.async {
-                generator.notificationOccurred(.success)
-                self.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
-            }
+            generator.notificationOccurred(.success)
+            self.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
             return
         }
 
         if let data = data as? HouseReviewModel {
             let role = DataStore.shared.user?.userType ?? .Tenant
             let vc = UINavigationController(rootViewController: ReviewVC(review: data, isOwner: role == .Owner))
+            generator.notificationOccurred(.success)
             self.viewController?.present(vc, animated: true, completion: nil)
         }
     }

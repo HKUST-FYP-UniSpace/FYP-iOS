@@ -697,13 +697,6 @@
 			path = DataStorage;
 			sourceTree = "<group>";
 		};
-		6D68F6CE21A7F10A00D31472 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		6D68F6CF21A7F13600D31472 /* Api */ = {
 			isa = PBXGroup;
 			children = (
@@ -903,7 +896,6 @@
 				6D68F6CA21A7F0C600D31472 /* Domain */,
 				6D68F6CD21A7F0EB00D31472 /* DataStorage */,
 				6DE5561521A3B60B00B23398 /* Util */,
-				6D68F6CE21A7F10A00D31472 /* Resources */,
 				6DC9DDAE219FEE9C00A4B5DD /* AppDelegate.swift */,
 				6DC9DDB7219FEE9E00A4B5DD /* Assets.xcassets */,
 				6DC9DDBC219FEE9E00A4B5DD /* Info.plist */,

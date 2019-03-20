@@ -58,10 +58,8 @@ final class ApartmentListVC: SingleSectionViewController {
         let vc = ApartmentFilterVC()
         vc.filter = filter
         vc.delegate = self
-        DispatchQueue.main.async {
-            generator.notificationOccurred(.success)
-            self.adapter.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
-        }
+        generator.notificationOccurred(.success)
+        self.adapter.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
     }
 
     override func loadData() {
