@@ -110,13 +110,29 @@ class TradeSellingItemVC: MasterFormPopupVC {
             images.append(image)
         }
 
-        let model = TradeFeaturedModel()
-        if let row = form.rowBy(tag: "title") as? TextRow { model.title = row.value ?? "" }
-        if let row = form.rowBy(tag: "location") as? TextRow { model.location = row.value ?? "" }
+        var name: String? = nil
+        var description: String? = nil
+        var location: String? = nil
+        var price: Int? = nil
+        if let row = form.rowBy(tag: "title") as? TextRow { name = row.value }
+        if let row = form.rowBy(tag: "detail") as? TextAreaRow { description = row.value }
+        if let row = form.rowBy(tag: "location") as? TextRow { location = row.value }
         if let row = form.rowBy(tag: "price") as? TextRow,
             let value = row.value,
-            let price = Int(value.deletingPrefix("\(unit) ")) { model.price = price }
-        if let row = form.rowBy(tag: "detail") as? TextAreaRow { model.detail = row.value ?? "" }
+            let obtainedPrice = Int(value.deletingPrefix("\(unit) ")) { price = obtainedPrice }
+
+        guard let updateName = name, !updateName.isEmpty,
+            let updateDescription = description, !updateDescription.isEmpty,
+            let updateLocation = location, !updateLocation.isEmpty,
+            let updatePrice = price else {
+                self.editedSellingItem = nil
+                return
+        }
+        let model = TradeFeaturedModel()
+        model.title = updateName
+        model.detail = updateDescription
+        model.location = updateLocation
+        model.price = updatePrice
         self.editedSellingItem = model
     }
 

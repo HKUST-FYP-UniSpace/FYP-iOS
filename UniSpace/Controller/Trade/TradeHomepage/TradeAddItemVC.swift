@@ -54,17 +54,34 @@ class TradeAddItemVC: MasterFormPopupVC {
 
     private func updateModel() {
         images.removeAll()
-        let model = TradeFeaturedModel()
         for row in form.allRows {
             guard let imageRow = row as? ChangeImageRow, let image = imageRow.cell.getImage() else { continue }
             images.append(image)
         }
-        if let row = form.rowBy(tag: "name") as? TextRow, let value = row.value { model.title = value }
-        if let row = form.rowBy(tag: "description") as? TextAreaRow, let value = row.value { model.detail = value }
-        if let row = form.rowBy(tag: "location") as? TextRow, let value = row.value { model.location = value }
+
+        var name: String? = nil
+        var description: String? = nil
+        var location: String? = nil
+        var price: Int? = nil
+        if let row = form.rowBy(tag: "name") as? TextRow { name = row.value }
+        if let row = form.rowBy(tag: "description") as? TextAreaRow { description = row.value }
+        if let row = form.rowBy(tag: "location") as? TextRow { location = row.value }
         if let row = form.rowBy(tag: "price") as? TextRow,
             let value = row.value,
-            let price = Int(value.deletingPrefix("\(unit) ")) { model.price = price }
+            let obtainedPrice = Int(value.deletingPrefix("\(unit) ")) { price = obtainedPrice }
+
+        guard let updateName = name, !updateName.isEmpty,
+            let updateDescription = description, !updateDescription.isEmpty,
+            let updateLocation = location, !updateLocation.isEmpty,
+            let updatePrice = price else {
+                self.model = nil
+                return
+        }
+        let model = TradeFeaturedModel()
+        model.title = updateName
+        model.detail = updateDescription
+        model.location = updateLocation
+        model.price = updatePrice
         self.model = model
     }
     

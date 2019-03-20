@@ -96,19 +96,35 @@ class UserDetailVC: MasterFormPopupVC {
             self.image = image
         }
 
-        let model = UserModel()
+        var name: String? = nil
+        var selfIntro: String? = nil
+        var contact: String? = nil
+        var gender: Gender? = nil
         if let row = form.rowBy(tag: "gender") as? ActionSheetRow<String> {
             if let value = row.value {
                 if value == Gender.Male.description {
-                    model.gender = .Male
+                    gender = .Male
                 } else if value == Gender.Female.description {
-                    model.gender = .Female
+                    gender = .Female
                 }
             }
         }
-        if let row = form.rowBy(tag: "name") as? TextRow { model.name = row.value ?? "" }
-        if let row = form.rowBy(tag: "selfIntro") as? TextAreaRow { model.selfIntro = row.value ?? "" }
-        if let row = form.rowBy(tag: "contact") as? TextRow { model.contact = row.value ?? "" }
+        if let row = form.rowBy(tag: "name") as? TextRow { name = row.value }
+        if let row = form.rowBy(tag: "selfIntro") as? TextAreaRow { selfIntro = row.value }
+        if let row = form.rowBy(tag: "contact") as? TextRow { contact = row.value }
+
+        guard let updateName = name,
+            let updateSelfIntro = selfIntro,
+            let updateContact = contact,
+            let updateGender = gender else {
+                self.editedUser = nil
+                return
+        }
+        let model = UserModel()
+        model.name = updateName
+        model.selfIntro = updateSelfIntro
+        model.contact = updateContact
+        model.gender = updateGender
         self.editedUser = model
     }
 

@@ -57,10 +57,23 @@ class TeamCreationVC: MasterFormPopupVC {
             self.image = image
         }
 
+        var name: String? = nil
+        var description: String? = nil
+        var size: Int? = nil
+        if let row = form.rowBy(tag: "name") as? TextRow { name = row.value }
+        if let row = form.rowBy(tag: "description") as? TextAreaRow { description = row.value }
+        if let row = form.rowBy(tag: "size") as? StepperRow, let value = row.value { size = Int(value) }
+
+        guard let updateName = name, !updateName.isEmpty,
+            let updateDescription = description, !updateDescription.isEmpty,
+            let updateSize = size else {
+                self.model = nil
+                return
+        }
         let model = HouseTeamSummaryModel()
-        if let row = form.rowBy(tag: "name") as? TextRow, let value = row.value { model.title = value }
-        if let row = form.rowBy(tag: "description") as? TextAreaRow, let value = row.value { model.description = value }
-        if let row = form.rowBy(tag: "size") as? StepperRow, let value = row.value { model.groupSize = Int(value) }
+        model.title = updateName
+        model.description = updateDescription
+        model.groupSize = updateSize
         self.model = model
     }
 

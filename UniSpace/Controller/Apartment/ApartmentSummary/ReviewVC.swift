@@ -61,7 +61,13 @@ class ReviewVC: MasterFormPopupVC {
     }
 
     private func updateModel() {
-        if let row = form.rowBy(tag: "comment") as? TextAreaRow, let value = row.value { comment = value }
+        var comment: String? = nil
+        if let row = form.rowBy(tag: "comment") as? TextAreaRow { comment = row.value }
+        guard let updateComment = comment, !updateComment.isEmpty else {
+            self.comment = nil
+            return
+        }
+        self.comment = comment
     }
 
 }

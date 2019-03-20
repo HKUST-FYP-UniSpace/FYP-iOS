@@ -50,8 +50,13 @@ class TradeSendMessageVC: MasterFormPopupVC {
     }
 
     private func updateModel() {
-        if let row = form.rowBy(tag: "message") as? TextAreaRow { self.message = row.value }
-
+        var message: String? = nil
+        if let row = form.rowBy(tag: "message") as? TextAreaRow { message = row.value }
+        guard let updateMessage = message, !updateMessage.isEmpty else {
+            self.message = nil
+            return
+        }
+        self.message = updateMessage
     }
 
 }
