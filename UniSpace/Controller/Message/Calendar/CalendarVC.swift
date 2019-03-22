@@ -135,8 +135,8 @@ extension CalendarVC {
 
     private func getMonthName(_ month: Int) -> String {
         var currentMonth = month
-        if currentMonth > 12 { currentMonth -= 12 }
-        if currentMonth < 1 { currentMonth += 12 }
+        while currentMonth > 12 { currentMonth -= 12 }
+        while currentMonth < 1 { currentMonth += 12 }
         return DateFormatter().monthSymbols[currentMonth - 1]
     }
 

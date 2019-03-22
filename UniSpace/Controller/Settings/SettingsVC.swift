@@ -116,7 +116,7 @@ class SettingsVC: FormViewController {
                     cell.textLabel?.textColor = .red
                 }
                 .onCellSelection { (cell, row) in
-                    //
+                    super.logout()
                 }
     }
     

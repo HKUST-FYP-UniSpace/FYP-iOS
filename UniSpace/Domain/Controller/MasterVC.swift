@@ -34,10 +34,6 @@ class MasterVC: UIViewController {
         }
     }
     
-    func logout() {
-        
-    }
-    
     func loginCompletion(user: UserModel?, error: Error?) {
         if user == nil {
             showAlert(title: error?.localizedDescription)
@@ -81,5 +77,11 @@ extension UIViewController {
         if let message = message { showAlert(title: message) }
         else if let error = error { showAlert(title: error.localizedDescription) }
         return true
+    }
+
+    func logout() {
+        DataStore.shared.user = nil
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.redirecting(nil)
     }
 }
