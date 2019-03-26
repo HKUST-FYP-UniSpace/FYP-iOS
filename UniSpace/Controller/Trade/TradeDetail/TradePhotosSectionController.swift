@@ -49,7 +49,7 @@ final class TradePhotosSectionController: ListSectionController, ListAdapterData
     // MARK: ListAdapterDataSource
 
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return photos.map { "\($0)?image=\(Int.random(in: 0...1084))" as ListDiffable }
+        return photos.map { $0 as ListDiffable }
     }
 
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {

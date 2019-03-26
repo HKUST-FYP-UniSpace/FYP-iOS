@@ -27,7 +27,10 @@ class TestTradeFeaturedModel: TradeFeatured {
         status = ["NEW", ""].randomElement()!
         detail = Lorem.sentence()
         isBookmarked = Bool.random()
-        photoURLs = Array(repeating: Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 0.75), count: Int.random(in: 2...10))
+        photoURLs = []
+        for _ in 0...Int.random(in: 2...10) {
+            photoURLs.append(Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 0.75))
+        }
     }
 
     func toModel() -> TradeFeaturedModel {

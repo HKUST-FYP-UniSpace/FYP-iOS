@@ -15,7 +15,10 @@ extension TestService: GeneralService {
     }
 
     func editUserProfile(userId: Int, userProfile: UserModel, image: UIImage, completion: SendRequestResult?) {
-        DataStore.shared.user = userProfile
+        DataStore.shared.user?.name = userProfile.name
+        DataStore.shared.user?.selfIntro = userProfile.selfIntro
+        DataStore.shared.user?.contact = userProfile.contact
+        DataStore.shared.user?.gender = userProfile.gender
         delay { completion?(nil, nil) }
     }
 

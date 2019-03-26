@@ -174,7 +174,7 @@ extension FormViewController {
         guard var urls = urls, !urls.isEmpty else { return [] }
         var rows = [getImageRow(url: urls.removeFirst(), canChange: canChange)]
         for url in urls {
-            let cell = self.getImageRow(url: "\(url)?image=\(Int.random(in: 0...1084))", canChange: canChange)
+            let cell = self.getImageRow(url: url, canChange: canChange)
             if canChange {
                 let deleteAction = SwipeAction(style: .destructive, title: "Delete", handler: { (action, row, completionHandler) in
                     row.section?.remove(at: row.indexPath!.row)

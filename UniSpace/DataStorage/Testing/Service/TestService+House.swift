@@ -62,6 +62,7 @@ extension TestService: HouseService {
     }
 
     func changePreference(userId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
+        DataStore.shared.user?.preference = preference
         delay { completion?(nil, nil) }
     }
 

@@ -29,7 +29,10 @@ class TestHouseListModel: HouseList {
         subtitle = Lorem.sentence()
         address = "8 Clear Water Road, Clear Water Bay, N.T."
         isBookmarked = Bool.random()
-        photoURLs = Array(repeating: Constants.dummyPhotoURL(Constants.cardWidth_L, ratio: 0.75), count: Int.random(in: 2...10))
+        photoURLs = []
+        for _ in 0...Int.random(in: 2...10) {
+            photoURLs.append(Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 0.75))
+        }
     }
 
     func toModel() -> HouseListModel {
