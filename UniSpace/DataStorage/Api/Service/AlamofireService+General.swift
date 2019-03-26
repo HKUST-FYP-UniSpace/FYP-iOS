@@ -23,7 +23,7 @@ extension AlamofireService: GeneralService {
     }
 
     func getMessageSummaries(userId: Int, completion: @escaping ([MessageSummaryModel]?, Error?) -> Void) {
-        get(at: .getMessageSummaries()).responseJSON { (res: DataResponse<Any>) in
+        get(at: .getMessageSummaries).responseJSON { (res: DataResponse<Any>) in
             var result: [MessageSummaryModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([MessageSummaryModel].self, from: data) }
             completion(result, res.result.error)
@@ -31,7 +31,7 @@ extension AlamofireService: GeneralService {
     }
 
     func getNotificationSummaries(userId: Int, completion: @escaping ([NotificationSummaryModel]?, Error?) -> Void) {
-        get(at: .getNotificationSummaries()).responseJSON { (res: DataResponse<Any>) in
+        get(at: .getNotificationSummaries).responseJSON { (res: DataResponse<Any>) in
             var result: [NotificationSummaryModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([NotificationSummaryModel].self, from: data) }
             completion(result, res.result.error)
@@ -39,7 +39,7 @@ extension AlamofireService: GeneralService {
     }
 
     func getBlogSummaries(completion: @escaping ([BlogSummaryModel]?, Error?) -> Void) {
-        get(at: .getBlogSummaries()).responseJSON { (res: DataResponse<Any>) in
+        get(at: .getBlogSummaries).responseJSON { (res: DataResponse<Any>) in
             var result: [BlogSummaryModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([BlogSummaryModel].self, from: data) }
             completion(result, res.result.error)

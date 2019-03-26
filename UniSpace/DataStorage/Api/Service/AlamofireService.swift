@@ -184,7 +184,7 @@ extension AlamofireService {
     }
 
     func sendLogs(_ url: URL, completion: SendRequestResult?) {
-        easyUpload(at: .sendLogs(), dataFormation: { (multipartFormData) in
+        easyUpload(at: .sendLogs, dataFormation: { (multipartFormData) in
             let filename = url.lastPathComponent
             if let log = try? Data(contentsOf: url) {
                 let name = url.deletingPathExtension().lastPathComponent

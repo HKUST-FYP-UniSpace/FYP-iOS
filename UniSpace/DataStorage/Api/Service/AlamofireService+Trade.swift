@@ -10,7 +10,7 @@ import Alamofire
 extension AlamofireService: TradeService {
 
     func getTradeFeatured(userId: Int, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
-        get(at: .getTradeFeatured()).responseJSON { (res: DataResponse<Any>) in
+        get(at: .getTradeFeatured).responseJSON { (res: DataResponse<Any>) in
             var result: [TradeFeaturedModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([TradeFeaturedModel].self, from: data) }
             completion(result, res.result.error)
@@ -18,7 +18,7 @@ extension AlamofireService: TradeService {
     }
 
     func getTradeSellingItems(userId: Int, completion: @escaping ([TradeSellingItemModel]?, Error?) -> Void) {
-        get(at: .getTradeSellingItems()).responseJSON { (res: DataResponse<Any>) in
+        get(at: .getTradeSellingItems).responseJSON { (res: DataResponse<Any>) in
             var result: [TradeSellingItemModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([TradeSellingItemModel].self, from: data) }
             completion(result, res.result.error)
@@ -26,7 +26,7 @@ extension AlamofireService: TradeService {
     }
 
     func getTradeSaved(userId: Int, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
-        get(at: .getTradeSaved()).responseJSON { (res: DataResponse<Any>) in
+        get(at: .getTradeSaved).responseJSON { (res: DataResponse<Any>) in
             var result: [TradeFeaturedModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([TradeFeaturedModel].self, from: data) }
             completion(result, res.result.error)
@@ -47,7 +47,7 @@ extension AlamofireService: TradeService {
 
     func createTradeItem(userId: Int, model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
         let params = getItemParams(model)
-        post(at: .updatePreference(), params: params).responseJSON { (res: DataResponse<Any>) in
+        post(at: .updatePreference, params: params).responseJSON { (res: DataResponse<Any>) in
             var result: ServerMessage? = nil
             if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
             completion?(result?.message, res.result.error)

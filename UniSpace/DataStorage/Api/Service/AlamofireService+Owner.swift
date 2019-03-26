@@ -11,7 +11,7 @@ import Alamofire
 extension AlamofireService: OwnerService {
 
     func getOwnerHouseSummary(userId: Int, completion: @escaping ([OwnerHouseSummaryModel]?, Error?) -> Void) {
-        get(at: .getOwnerStatsSummary()).responseJSON { (res: DataResponse<Any>) in
+        get(at: .getOwnerStatsSummary).responseJSON { (res: DataResponse<Any>) in
             var result: [OwnerHouseSummaryModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([OwnerHouseSummaryModel].self, from: data) }
             completion(result, res.result.error)

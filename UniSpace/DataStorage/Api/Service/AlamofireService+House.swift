@@ -11,7 +11,7 @@ import Alamofire
 extension AlamofireService: HouseService {
 
     func getHouseSuggestions(userId: Int, completion: @escaping ([HouseSuggestionModel]?, Error?) -> Void) {
-        get(at: .getHouseSuggestions()).responseJSON { (res: DataResponse<Any>) in
+        get(at: .getHouseSuggestions).responseJSON { (res: DataResponse<Any>) in
             var result: [HouseSuggestionModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([HouseSuggestionModel].self, from: data) }
             completion(result, res.result.error)
@@ -19,7 +19,7 @@ extension AlamofireService: HouseService {
     }
 
     func getHouseSaved(userId: Int, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
-        get(at: .getHouseSaved()).responseJSON { (res: DataResponse<Any>) in
+        get(at: .getHouseSaved).responseJSON { (res: DataResponse<Any>) in
             var result: [HouseListModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([HouseListModel].self, from: data) }
             completion(result, res.result.error)
@@ -68,7 +68,7 @@ extension AlamofireService: HouseService {
 
     func changePreference(userId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
         let params = getPreferenceParams(preference)
-        post(at: .updatePreference(), params: params).responseJSON { (res: DataResponse<Any>) in
+        post(at: .updatePreference, params: params).responseJSON { (res: DataResponse<Any>) in
             var result: ServerMessage? = nil
             if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
             completion?(result?.message, res.result.error)
@@ -77,7 +77,7 @@ extension AlamofireService: HouseService {
 
     func createTeam(userId: Int, houseId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
         let params = getTeamParams(model)
-        post(at: .updatePreference(), params: params).responseJSON { (res: DataResponse<Any>) in
+        post(at: .updatePreference, params: params).responseJSON { (res: DataResponse<Any>) in
             var result: ServerMessage? = nil
             if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
             completion?(result?.message, res.result.error)

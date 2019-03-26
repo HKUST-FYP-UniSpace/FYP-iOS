@@ -17,41 +17,41 @@ enum ApiRoute { case
     existUsername(username: String),
 
     // general
-    getMyUserDetail(),
+    getMyUserDetail,
     getUserProfile(userId: Int),
-    getMessageSummaries(),
-    getNotificationSummaries(),
-    getBlogSummaries(),
+    getMessageSummaries,
+    getNotificationSummaries,
+    getBlogSummaries,
     getBlogDetail(blogId: Int),
 
     // owner
-    getOwnerStatsSummary(),
+    getOwnerStatsSummary,
 
     // apartment
-    getHouseSuggestions(),
-    getHouseSaved(),
+    getHouseSuggestions,
+    getHouseSaved,
     getHouseList(filter: HouseFilterModel),
     getHouseView(houseId: Int),
     bookmarkHouse(houseId: Int),
-    updatePreference(),
+    updatePreference,
     getTeamView(teamId: Int),
     createTeam(houseId: Int),
     createTeamImage(teamId: Int),
     joinTeam(teamId: Int),
 
     // trade
-    getTradeFeatured(),
-    getTradeSellingItems(),
-    getTradeSaved(),
+    getTradeFeatured,
+    getTradeSellingItems,
+    getTradeSaved,
     getTradeList(filter: TradeFilterModel),
-    createTradeItem(),
+    createTradeItem,
     createTradeItemImage(itemId: Int),
     getTradeDetail(itemId: Int),
     bookmarkItem(itemId: Int),
     contactOwner(itemId: Int),
 
     // log
-    sendLogs()
+    sendLogs
     
     var path: String {
         switch self {
