@@ -6,14 +6,14 @@ target 'UniSpace' do
   use_frameworks!
 
   # Pods for UniSpace
-  pod 'Alamofire', '~> 4.7.3'
-  pod 'AlamofireImage', '~> 3.4.1'
-  pod 'Charts', '~> 3.2.1'
-  pod 'Eureka', '~> 4.3.1'
-  pod 'IGListKit', '~> 3.4.0'
-  pod 'KeychainAccess', '~> 3.1.2'
-  pod 'MessageKit', '~> 2.0.0'
-  pod 'RealmSwift', '~> 3.13.1'
+  pod 'Alamofire'
+  pod 'AlamofireImage'
+  pod 'Charts'
+  pod 'Eureka'
+  pod 'IGListKit'
+  pod 'KeychainAccess'
+  pod 'MessageKit'
+  pod 'RealmSwift'
 
   target 'UniSpaceTests' do
     inherit! :search_paths
