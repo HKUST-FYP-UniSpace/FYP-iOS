@@ -204,7 +204,8 @@ extension FormViewController {
 
                 cell.trailingSwipe.actions = [deleteAction]
                 cell.trailingSwipe.performsFirstActionWithFullSwipe = true
-                row.section?.insert(cell, at: row.indexPath!.row)
+                let rowNumber = row.indexPath!.row
+                row.section?.insert(cell, at: rowNumber)
                 self.tableView.reloadData()
         }
     }
