@@ -16,7 +16,7 @@ class UserModel: Decodable, User {
     var selfIntro: String = ""
     var name: String = ""
     var email: String = ""
-    var gender: Gender = .Male
+    var gender: Gender? = nil
     var userType: UserType = .Tenant
     var isActive: Bool = false
     var createTime: Double = 0
@@ -42,19 +42,21 @@ class UserModel: Decodable, User {
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
-        username = try container.decode(String.self, forKey: .username)
-        preference = try container.decode(PreferenceModel.self, forKey: .preference)
-        photoURL = try container.decode(String.self, forKey: .photoURL)
-        contact = try container.decode(String.self, forKey: .contact)
-        selfIntro = try container.decode(String.self, forKey: .selfIntro)
-        name = try container.decode(String.self, forKey: .name)
-        email = try container.decode(String.self, forKey: .email)
-        gender = try container.decode(Gender.self, forKey: .gender)
-        userType = try container.decode(UserType.self, forKey: .role)
-        isActive = try container.decode(Bool.self, forKey: .isActive)
-        createTime = try container.decode(Double.self, forKey: .createTime)
-        verified = try container.decode(Bool.self, forKey: .verified)
+        if let id = try? container.decode(Int.self, forKey: .id) { self.id = id }
+        if let username = try? container.decode(String.self, forKey: .username) { self.username = username }
+        if let preference = try? container.decode(PreferenceModel.self, forKey: .preference) { self.preference = preference }
+        if let photoURL = try? container.decode(String.self, forKey: .photoURL) { self.photoURL = photoURL }
+        if let contact = try? container.decode(String.self, forKey: .contact) { self.contact = contact }
+        if let selfIntro = try? container.decode(String.self, forKey: .selfIntro) { self.selfIntro = selfIntro }
+        if let name = try? container.decode(String.self, forKey: .name) { self.name = name }
+        if let email = try? container.decode(String.self, forKey: .email) { self.email = email }
+        if let gender = try? container.decode(Gender.self, forKey: .gender) { self.gender = gender }
+        if let userType = try? container.decode(UserType.self, forKey: .role) { self.userType = userType }
+        if let isActive = try? container.decode(Bool.self, forKey: .isActive) { self.isActive = isActive }
+        if let createTime = try? container.decode(Double.self, forKey: .createTime) { self.createTime = createTime }
+        if let verified = try? container.decode(Bool.self, forKey: .verified) { self.verified = verified }
+
+        dump(self)
     }
 
     func getNameAndUsername() -> String {

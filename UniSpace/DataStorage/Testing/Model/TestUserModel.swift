@@ -18,7 +18,7 @@ class TestUserModel: User {
     var selfIntro: String
     var name: String
     var email: String
-    var gender: Gender
+    var gender: Gender?
     var userType: UserType
     var isActive: Bool
     var createTime: Double
@@ -34,7 +34,6 @@ class TestUserModel: User {
         self.selfIntro = ""
         self.name = name
         self.email = email
-        self.gender = .Male
         self.userType = role
         self.isActive = true
         self.createTime = DateManager.shared.getCurrentDate().timeIntervalSince1970

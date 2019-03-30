@@ -42,7 +42,7 @@ extension AppDelegate {
     }
     
     func addUserCredential() {
-        DataStore.shared.savePref(.username, value: "register")
+        DataStore.shared.savePref(.username, value: "server6")
         DataStore.shared.savePref(.password, value: "12345678aa")
     }
     

@@ -72,7 +72,7 @@ class UserDetailVC: MasterFormPopupVC {
             <<< getLabelRow(id: nil, title: "Name", displayValue: user?.name)
             <<< getTextAreaRow(id: nil, placeholder: "self intro", defaultValue: user?.selfIntro, disable: true)
             <<< getLabelRow(id: nil, title: "Contact", displayValue: user?.contact)
-            <<< getLabelRow(id: nil, title: "Gender", displayValue: user?.gender.description)
+            <<< getLabelRow(id: nil, title: "Gender", displayValue: user?.gender?.description)
     }
 
     private func editForm() {
@@ -86,7 +86,7 @@ class UserDetailVC: MasterFormPopupVC {
             <<< getTextRow(id: "name", title: "Name", defaultValue: user?.name)
             <<< getTextAreaRow(id: "selfIntro", placeholder: "self intro", defaultValue: user?.selfIntro, disable: false)
             <<< getTextRow(id: "contact", title: "Contact", defaultValue: user?.contact)
-            <<< getSingleSelectorRow(id: "gender", title: "Gender", defaultValue: user?.gender.description, selectorTitle: nil, options: Gender.allCases.map { $0.description })
+            <<< getSingleSelectorRow(id: "gender", title: "Gender", defaultValue: user?.gender?.description, selectorTitle: nil, options: Gender.allCases.map { $0.description })
     }
 
     private func updateModel() {

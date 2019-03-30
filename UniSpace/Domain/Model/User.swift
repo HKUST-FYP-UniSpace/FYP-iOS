@@ -19,7 +19,7 @@ protocol User: UserProfile {
     var selfIntro: String { get set }
     var name: String { get set }
     var email: String { get set }
-    var gender: Gender { get set }
+    var gender: Gender? { get set }
     var userType: UserType { get set }
     var isActive: Bool { get set }
     var createTime: Double { get set }
