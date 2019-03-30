@@ -142,6 +142,10 @@ extension DataStore {
         Service().editTradeItem(userId: userId, model: model, images: images, completion: completion)
     }
 
+    func getTradeItemData(itemId: Int, filter: ChartFilterOptions, completion: @escaping (ChartsDataModel?, Error?) -> Void) {
+        Service().getTradeItemData(itemId: itemId, filter: filter, completion: completion)
+    }
+
     func getTradeDetail(itemId: Int, completion: @escaping (TradeFeaturedModel?, Error?) -> Void) {
         Service().getTradeDetail(itemId: itemId, completion: completion)
     }
@@ -169,6 +173,10 @@ extension DataStore {
     func replyReivew(reviewId: Int, comment: String, completion: SendRequestResult?) {
         let userId = DataStore.shared.user?.id ?? -1
         Service().replyReivew(userId: userId, reviewId: reviewId, comment: comment, completion: completion)
+    }
+
+    func getHouseData(houseId: Int, filter: ChartFilterOptions, completion: @escaping (ChartsDataModel?, Error?) -> Void) {
+        Service().getHouseData(houseId: houseId, filter: filter, completion: completion)
     }
     
 }

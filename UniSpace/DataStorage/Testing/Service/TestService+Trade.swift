@@ -48,6 +48,19 @@ extension TestService: TradeService {
         delay { completion?(nil, nil) }
     }
 
+    func getTradeItemData(itemId: Int, filter: ChartFilterOptions, completion: @escaping (ChartsDataModel?, Error?) -> Void) {
+        let data: ChartsDataModel? = ChartsDataModel()
+        for i in 0..<filter.dataCount {
+            let newData = TestChartDataModel()
+            newData.setup(order: i)
+
+            data?.targetPerformance.append(newData.toModel())
+            newData.reRandomize()
+            data?.othersPerformance.append(newData.toModel())
+        }
+        delay { completion(data, nil) }
+    }
+
     func getTradeDetail(itemId: Int, completion: @escaping (TradeFeaturedModel?, Error?) -> Void) {
         delay { completion(TestTradeFeaturedModel().toModel(), nil) }
     }

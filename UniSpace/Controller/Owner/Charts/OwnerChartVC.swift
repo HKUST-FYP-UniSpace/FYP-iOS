@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-fileprivate enum FilterOptions: Int, CaseIterable {
+enum ChartFilterOptions: Int, CaseIterable {
     case Week = 0
     case Month
     case Year
@@ -32,9 +32,9 @@ fileprivate enum FilterOptions: Int, CaseIterable {
 
     var dataCount: Int {
         switch self {
-        case .Week: return 7
-        case .Month: return 30
-        case .Year: return 12
+        case .Week: return 7+1
+        case .Month: return 30+1
+        case .Year: return 12+1
         }
     }
 }
@@ -44,7 +44,8 @@ class ChartVC: MasterVC {
     var id: Int?
     var isHouse: Bool?
     var chartViews: [LineChartView]?
-    private var option: FilterOptions = .Week
+    private var option: ChartFilterOptions = .Week
+    private var data: ChartsDataModel?
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -72,9 +73,11 @@ class ChartVC: MasterVC {
 
     override func loadData() {
         guard let id = id, let isHouse = isHouse else { return }
-        log.verbose("ChartVC", context: "isHouse: \(isHouse), id: \(id)")
-        // TODO
-        updateChart()
+        if isHouse {
+            DataStore.shared.getHouseData(houseId: id, filter: option, completion: completion)
+        } else {
+            DataStore.shared.getTradeItemData(itemId: id, filter: option, completion: completion)
+        }
     }
 
     @objc func filterButton(_ sender: UIButton) {
@@ -87,12 +90,17 @@ class ChartVC: MasterVC {
         }
     }
 
+    private func completion(data: ChartsDataModel?, error: Error?) {
+        self.data = data
+        updateChart()
+    }
+    
     private func updateChart() {
         view.subviews.forEach { $0.removeFromSuperview() }
         chartViews = getChartViews()
         guard let chartViews = chartViews else { return }
         for chartView in chartViews {
-            let data = dataWithCount(option.dataCount, range: 100)
+            let data = dataWithCount(option.dataCount)
             data.setValueFont(.systemFont(ofSize: 10, weight: .light))
             setupChart(chartView, data: data)
         }
@@ -101,7 +109,7 @@ class ChartVC: MasterVC {
     private func showActionSheet(completion: @escaping (_ actionSheet: UIAlertController) -> ()) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        for option in FilterOptions.allCases {
+        for option in ChartFilterOptions.allCases {
             actionSheet.addAction(UIAlertAction(title: option.text, style: .default, handler: { _ in
                 self.option = option
                 self.loadData()
@@ -123,7 +131,7 @@ class ChartVC: MasterVC {
         chart.setScaleEnabled(true)
         chart.pinchZoomEnabled = true
         chart.drawBordersEnabled = false
-        chart.setViewPortOffsets(left: 10, top: 0, right: 10, bottom: 0)
+        chart.setViewPortOffsets(left: Spacing.normal, top: 0, right: Spacing.normal, bottom: 0)
 
         let l = chart.legend
         l.form = .line
@@ -177,15 +185,18 @@ extension ChartVC {
         return chartViews
     }
 
-    private func dataWithCount(_ count: Int, range: Int) -> LineChartData {
-        let yVals1 = (0..<count).map { i -> ChartDataEntry in
-            let val = Int.random(in: 0...range)
-            return ChartDataEntry(x: Double(i), y: Double(val))
-        }
-
-        let yVals2 = (0..<count).map { i -> ChartDataEntry in
-            let val = Int.random(in: 0...range)
-            return ChartDataEntry(x: Double(i), y: Double(val))
+    private func dataWithCount(_ count: Int) -> LineChartData {
+        var yVals1: [ChartDataEntry]? = nil
+        var yVals2: [ChartDataEntry]? = nil
+        if let data = data {
+            yVals1 = []
+            for val in data.targetPerformance {
+                yVals1?.append(ChartDataEntry(x: val.x, y: val.y))
+            }
+            yVals2 = []
+            for val in data.othersPerformance {
+                yVals2?.append(ChartDataEntry(x: val.x, y: val.y))
+            }
         }
 
         let set1 = LineChartDataSet(values: yVals1, label: "Your Performance")
