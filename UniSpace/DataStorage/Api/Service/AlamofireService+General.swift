@@ -38,6 +38,10 @@ extension AlamofireService: GeneralService {
         }
     }
 
+    func getCalendarSummaries(userId: Int, year: Int, month: Int, completion: @escaping ([CalendarDataListModel]?, Error?) -> Void) {
+        // TODO
+    }
+
     func getBlogSummaries(completion: @escaping ([BlogSummaryModel]?, Error?) -> Void) {
         get(at: .getBlogSummaries).responseJSON { (res: DataResponse<Any>) in
             var result: [BlogSummaryModel]? = nil

@@ -33,8 +33,8 @@ extension TestService: OwnerService {
         delay { completion?(nil, nil) }
     }
 
-    func getHouseData(houseId: Int, filter: ChartFilterOptions, completion: @escaping (ChartsDataModel?, Error?) -> Void) {
-        let data: ChartsDataModel? = ChartsDataModel()
+    func getHouseData(houseId: Int, filter: ChartFilterOptions, completion: @escaping (ChartDataListModel?, Error?) -> Void) {
+        let data: ChartDataListModel? = ChartDataListModel()
         for i in 0..<filter.dataCount {
             let newData = TestChartDataModel()
             newData.setup(order: i)

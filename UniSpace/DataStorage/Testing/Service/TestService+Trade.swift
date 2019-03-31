@@ -48,8 +48,8 @@ extension TestService: TradeService {
         delay { completion?(nil, nil) }
     }
 
-    func getTradeItemData(itemId: Int, filter: ChartFilterOptions, completion: @escaping (ChartsDataModel?, Error?) -> Void) {
-        let data: ChartsDataModel? = ChartsDataModel()
+    func getTradeItemData(itemId: Int, filter: ChartFilterOptions, completion: @escaping (ChartDataListModel?, Error?) -> Void) {
+        let data: ChartDataListModel? = ChartDataListModel()
         for i in 0..<filter.dataCount {
             let newData = TestChartDataModel()
             newData.setup(order: i)

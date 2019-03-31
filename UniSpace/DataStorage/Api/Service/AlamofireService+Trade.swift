@@ -59,7 +59,7 @@ extension AlamofireService: TradeService {
         // TODO
     }
 
-    func getTradeItemData(itemId: Int, filter: ChartFilterOptions, completion: @escaping (ChartsDataModel?, Error?) -> Void) {
+    func getTradeItemData(itemId: Int, filter: ChartFilterOptions, completion: @escaping (ChartDataListModel?, Error?) -> Void) {
         // TODO
     }
 

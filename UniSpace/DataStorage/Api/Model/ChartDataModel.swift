@@ -23,7 +23,7 @@ class ChartDataModel: Decodable, Equatable, ChartData {
 
 }
 
-class ChartsDataModel: Decodable {
+class ChartDataListModel: Decodable {
 
     var targetPerformance: [ChartDataModel] = []
     var othersPerformance: [ChartDataModel] = []

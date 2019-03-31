@@ -46,6 +46,11 @@ extension DataStore {
         Service().getNotificationSummaries(userId: userId, completion: completion)
     }
 
+    func getCalendarSummaries(year: Int, month: Int, completion: @escaping ([CalendarDataListModel]?, Error?) -> Void) {
+        let userId = DataStore.shared.user?.id ?? -1
+        Service().getCalendarSummaries(userId: userId, year: year, month: month, completion: completion)
+    }
+
     func getBlogSummaries(completion: @escaping (_ summaries: [BlogSummaryModel]?, _ error: Error?) -> ()) {
         Service().getBlogSummaries(completion: completion)
     }
@@ -142,7 +147,7 @@ extension DataStore {
         Service().editTradeItem(userId: userId, model: model, images: images, completion: completion)
     }
 
-    func getTradeItemData(itemId: Int, filter: ChartFilterOptions, completion: @escaping (ChartsDataModel?, Error?) -> Void) {
+    func getTradeItemData(itemId: Int, filter: ChartFilterOptions, completion: @escaping (ChartDataListModel?, Error?) -> Void) {
         Service().getTradeItemData(itemId: itemId, filter: filter, completion: completion)
     }
 
@@ -175,7 +180,7 @@ extension DataStore {
         Service().replyReivew(userId: userId, reviewId: reviewId, comment: comment, completion: completion)
     }
 
-    func getHouseData(houseId: Int, filter: ChartFilterOptions, completion: @escaping (ChartsDataModel?, Error?) -> Void) {
+    func getHouseData(houseId: Int, filter: ChartFilterOptions, completion: @escaping (ChartDataListModel?, Error?) -> Void) {
         Service().getHouseData(houseId: houseId, filter: filter, completion: completion)
     }
     

@@ -39,6 +39,19 @@ extension TestService: GeneralService {
         delay { completion(summaries, nil) }
     }
 
+    func getCalendarSummaries(userId: Int, year: Int, month: Int, completion: @escaping ([CalendarDataListModel]?, Error?) -> Void) {
+        var summaries: [CalendarDataListModel]? = []
+        for _ in 3...7 {
+            let summary = CalendarDataListModel()
+            repeat {
+                summary.date = Int.random(in: 1...31)
+            } while (summaries?.contains(where: { $0.date == summary.date }) ?? false)
+            for _ in 1...Int.random(in: 1...4) { summary.data.append(TestCalendarDataModel().toModel()) }
+            summaries?.append(summary)
+        }
+        delay { completion(summaries, nil) }
+    }
+
     func getBlogSummaries(completion: @escaping ([BlogSummaryModel]?, Error?) -> Void) {
         var summaries: [BlogSummaryModel]? = []
         for _ in 0..<Int.random(in: (1..<5)) { summaries?.append(TestBlogSummaryModel().toModel()) }

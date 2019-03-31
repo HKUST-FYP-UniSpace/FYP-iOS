@@ -16,6 +16,6 @@ protocol OwnerService: class {
 
     func replyReivew(userId: Int, reviewId: Int, comment: String, completion: SendRequestResult?)
 
-    func getHouseData(houseId: Int, filter: ChartFilterOptions, completion: @escaping (_ data: ChartsDataModel?, _ error: Error?) -> Void)
+    func getHouseData(houseId: Int, filter: ChartFilterOptions, completion: @escaping (_ data: ChartDataListModel?, _ error: Error?) -> Void)
 
 }

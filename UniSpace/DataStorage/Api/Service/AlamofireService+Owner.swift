@@ -26,7 +26,7 @@ extension AlamofireService: OwnerService {
         // TODO
     }
 
-    func getHouseData(houseId: Int, filter: ChartFilterOptions, completion: @escaping (ChartsDataModel?, Error?) -> Void) {
+    func getHouseData(houseId: Int, filter: ChartFilterOptions, completion: @escaping (ChartDataListModel?, Error?) -> Void) {
         // TODO
     }
 

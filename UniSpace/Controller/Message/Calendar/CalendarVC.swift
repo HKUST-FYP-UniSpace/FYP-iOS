@@ -89,24 +89,22 @@ final class CalendarVC: MasterVC, ListAdapterDataSource {
 
         guard let days = DateManager.shared.numberOfDays(year: currentYear, month: currentMonth) else { return }
         let name = getMonthName(currentMonth) + " \(currentYear)"
-        let month = Month(
-            name: name,
-            days: days,
-            appointments: [
-                2: ["Hair"],
-                4: ["Nails"],
-                7: ["Doctor appt", "Pick up groceries"],
-                12: ["Call back the cable company", "Find a babysitter"],
-                13: ["Dinner at The Smith"],
-                17: ["Buy running shoes", "Buy a fitbit", "Start running"],
-                20: ["Call mom"],
-                21: ["Contribute to IGListKit"],
-                25: ["Interview"],
-                26: ["Quit running", "Buy ice cream"]
-            ]
-        )
-        months = [month]
-        adapter.reloadData(completion: nil)
+        DataStore.shared.getCalendarSummaries(year: currentYear, month: currentMonth) { (models, error) in
+            guard let models = models else { return }
+            var appointments: [Int: [NSString]] = [:]
+            for model in models {
+                var details: [NSString] = []
+                let modelData = model.data.sorted(by: { $0.startTime < $1.startTime })
+                for data in modelData {
+                    let info = "\(data.startTime) \(data.appointment)"
+                    details.append(info as NSString)
+                }
+                appointments[model.date] = details
+            }
+
+            self.months = [Month(name: name, days: days, appointments: appointments)]
+            self.adapter.reloadData(completion: nil)
+        }
     }
 
     override func viewDidLayoutSubviews() {

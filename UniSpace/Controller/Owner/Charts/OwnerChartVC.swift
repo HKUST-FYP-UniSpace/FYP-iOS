@@ -45,7 +45,7 @@ class ChartVC: MasterVC {
     var isHouse: Bool?
     var chartViews: [LineChartView]?
     private var option: ChartFilterOptions = .Week
-    private var data: ChartsDataModel?
+    private var data: ChartDataListModel?
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -90,7 +90,7 @@ class ChartVC: MasterVC {
         }
     }
 
-    private func completion(data: ChartsDataModel?, error: Error?) {
+    private func completion(data: ChartDataListModel?, error: Error?) {
         self.data = data
         updateChart()
     }
