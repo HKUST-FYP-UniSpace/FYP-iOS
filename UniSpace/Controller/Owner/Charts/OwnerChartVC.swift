@@ -39,6 +39,18 @@ enum ChartFilterOptions: Int, CaseIterable {
     }
 }
 
+fileprivate enum ChartType: Int, CaseIterable {
+    case Views = 0
+    case Bookmarks
+
+    var description: String {
+        switch self {
+        case .Views: return "Views"
+        case .Bookmarks: return "Bookmarks"
+        }
+    }
+}
+
 class ChartVC: MasterVC {
 
     var id: Int?
@@ -99,8 +111,9 @@ class ChartVC: MasterVC {
         view.subviews.forEach { $0.removeFromSuperview() }
         chartViews = getChartViews()
         guard let chartViews = chartViews else { return }
-        for chartView in chartViews {
-            let data = dataWithCount(option.dataCount)
+        for (i, chartView) in chartViews.enumerated() {
+            guard let type = ChartType(rawValue: i) else { continue }
+            let data = dataWithCount(option.dataCount, type: type)
             data.setValueFont(.systemFont(ofSize: 10, weight: .light))
             setupChart(chartView, data: data)
         }
@@ -158,7 +171,8 @@ extension ChartVC {
         var chartViews: [LineChartView] = []
         var lastSubBottomAnchor: NSLayoutYAxisAnchor? = nil
 
-        var descriptions: [String] = ["Views (\(option.description))", "Bookmarks (\(option.description))"]
+
+        var descriptions: [String] = ChartType.allCases.map { "\($0.description) \(option.description)" }
         for i in 0..<descriptions.count {
 
             let titleLabel = StandardLabel(color: Color.theme, size: 16, isBold: true)
@@ -185,16 +199,16 @@ extension ChartVC {
         return chartViews
     }
 
-    private func dataWithCount(_ count: Int) -> LineChartData {
+    private func dataWithCount(_ count: Int, type: ChartType) -> LineChartData {
         var yVals1: [ChartDataEntry]? = nil
         var yVals2: [ChartDataEntry]? = nil
         if let data = data {
             yVals1 = []
-            for val in data.targetPerformance {
+            for val in (type == .Views ? data.targetViews : data.targetBookmarks) {
                 yVals1?.append(ChartDataEntry(x: val.x, y: val.y))
             }
             yVals2 = []
-            for val in data.othersPerformance {
+            for val in (type == .Views ? data.othersViews : data.othersBookmarks) {
                 yVals2?.append(ChartDataEntry(x: val.x, y: val.y))
             }
         }

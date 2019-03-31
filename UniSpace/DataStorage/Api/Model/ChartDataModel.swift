@@ -25,8 +25,10 @@ class ChartDataModel: Decodable, Equatable, ChartData {
 
 class ChartDataListModel: Decodable {
 
-    var targetPerformance: [ChartDataModel] = []
-    var othersPerformance: [ChartDataModel] = []
+    var targetViews: [ChartDataModel] = []
+    var othersViews: [ChartDataModel] = []
+    var targetBookmarks: [ChartDataModel] = []
+    var othersBookmarks: [ChartDataModel] = []
 
     init() {}
 

@@ -83,7 +83,6 @@ final class CalendarVC: MasterVC, ListAdapterDataSource {
     }
 
     override func loadData() {
-        // TODO
         let currentYear = getYear(date)
         let currentMonth = getMonth(date)
 

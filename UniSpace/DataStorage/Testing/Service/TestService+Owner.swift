@@ -38,10 +38,13 @@ extension TestService: OwnerService {
         for i in 0..<filter.dataCount {
             let newData = TestChartDataModel()
             newData.setup(order: i)
-
-            data?.targetPerformance.append(newData.toModel())
+            data?.targetViews.append(newData.toModel())
             newData.reRandomize()
-            data?.othersPerformance.append(newData.toModel())
+            data?.othersViews.append(newData.toModel())
+            newData.reRandomize()
+            data?.targetBookmarks.append(newData.toModel())
+            newData.reRandomize()
+            data?.othersBookmarks.append(newData.toModel())
         }
         delay { completion(data, nil) }
     }
