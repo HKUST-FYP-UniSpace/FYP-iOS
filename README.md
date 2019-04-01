@@ -1,4 +1,4 @@
-![UniSpace logo](./UniSpace/Assets.xcassets/Fake_icon.imageset/UniSpace logo.png)
+[UniSpace logo](./UniSpace/Assets.xcassets/Fake_icon.imageset/UniSpace logo.png)
 # FYP-iOS
 
 > Commission-free mobile platform with algorithm-based suggestions
