@@ -1,7 +1,7 @@
 <p align="center">
-<img width="200" height="200" src="https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/UniSpace/Assets.xcassets/Fake_icon.imageset/UniSpace%20logo.png">
-UniSpace
+<img width="100" height="100" src="https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/UniSpace/Assets.xcassets/Fake_icon.imageset/UniSpace%20logo.png">
 </p>
+
 # FYP-iOS
 
 > Commission-free mobile platform with algorithm-based suggestions
