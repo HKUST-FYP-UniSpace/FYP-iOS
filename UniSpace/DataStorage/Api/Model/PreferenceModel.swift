@@ -13,7 +13,7 @@ class PreferenceModel: Decodable, ListDiffable, Preference {
 
     var id: Int = 0
     var gender: Gender? = nil
-    var petFree: Bool? = nil
+    var petFree: Bool? = false
     var timeInHouse: String? = nil
     var personalities: [String]? = nil
     var interests: [String]? = nil

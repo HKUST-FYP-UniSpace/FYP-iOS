@@ -36,6 +36,7 @@ extension HavePhotos {
     }
 }
 
+// TODO: Advance PhotoShowable
 //protocol PhotoURL {
 //    var S: String? { get set }
 //    var M: String? { get set }

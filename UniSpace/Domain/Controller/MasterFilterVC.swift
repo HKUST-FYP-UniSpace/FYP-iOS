@@ -16,7 +16,8 @@ class MasterFilterVC: MasterFormPopupVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "What are you looking for?"
-        navigationItem.rightBarButtonItem = setupSwtichModeButton()
+        // TODO: Advance filter
+//        navigationItem.rightBarButtonItem = setupSwtichModeButton()
         setupSimpleFilter()
     }
 

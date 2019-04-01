@@ -1,12 +1,19 @@
+![UniSpace logo](./UniSpace/Assets.xcassets/Fake_icon.imageset/UniSpace logo.png)
 # FYP-iOS
 
-> This is the iOS application for our project
+> Commission-free mobile platform with algorithm-based suggestions
+
+**UniSpace**, is particularly designed for university students. It is a commission-free mobile platform to help students find off-campus accommodations without going through real estate agents. It provides choices and suggestions for the students to select both their preferred locations and roommates for the rental and trade unwanted furniture and daily necessities to achieve environmentally friendly.
 
 The initiative of this project is to provide university students with a more convenient way to form rental-related deals in a bid to unload their housing burden. The ultimate vision is to create a one-stop shop for the university community to communicate regarding their accommodation needs and quickly access solutions of to their needs.
 
 ## Features
 
-- Feature 1
+- Upload rental information (House owners)
+- Search and filter system (Tenants)
+- Roommate matching system (Tenants)
+- Trading system (House owners and tenants)
+- Live chat room (All users)
 
 ## Requirements
 

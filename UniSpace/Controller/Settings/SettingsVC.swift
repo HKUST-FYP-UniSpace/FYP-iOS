@@ -60,13 +60,21 @@ class SettingsVC: FormViewController {
                 }
 
             <<< LabelRow() {
-                $0.title = "Apartment History"
+                let role = user?.userType ?? .Tenant
+                $0.title = role == .Tenant ? "Apartment History" : "Tenant History"
                 }
                 .cellUpdate { (cell, row) in
                     cell.textLabel?.textColor = Color.theme
                 }
                 .onCellSelection { (cell, row) in
-                    self.navigationController?.pushViewController(ApartmentListVC(.History), animated: true)
+                    let role = user?.userType ?? .Tenant
+                    switch role {
+                    case .Tenant:
+                        self.navigationController?.pushViewController(ApartmentListVC(.History), animated: true)
+                    case .Owner:
+                        // TODO
+                        self.showAlert(title: "Method not implemented")
+                    }
             }
 
             <<< LabelRow() {
@@ -86,7 +94,8 @@ class SettingsVC: FormViewController {
                     cell.textLabel?.textColor = Color.theme
                 }
                 .onCellSelection { (cell, row) in
-                    //
+                    // TODO
+                    self.showAlert(title: "Method not implemented")
             }
 
             <<< SwitchRow() {
@@ -106,7 +115,8 @@ class SettingsVC: FormViewController {
                     cell.textLabel?.textColor = Color.theme
                 }
                 .onCellSelection { (cell, row) in
-                    //
+                    // TODO
+                    self.showAlert(title: "Method not implemented")
                 }
 
             <<< LabelRow() {
