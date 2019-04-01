@@ -1,4 +1,4 @@
-[UniSpace logo](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/UniSpace/Assets.xcassets/Fake_icon.imageset/UniSpace%20logo.png)
+![UniSpace logo](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/UniSpace/Assets.xcassets/Fake_icon.imageset/UniSpace%20logo.png)
 # FYP-iOS
 
 > Commission-free mobile platform with algorithm-based suggestions
