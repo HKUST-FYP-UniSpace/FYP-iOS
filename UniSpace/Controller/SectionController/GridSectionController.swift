@@ -27,7 +27,7 @@ final class GridSectionController: ListSectionController {
 
         self.minimumInteritemSpacing = 20
         self.minimumLineSpacing = 20
-        self.inset = UIEdgeInsets(top: 0, left: cellSpacing, bottom: 0, right: cellSpacing)
+        self.inset = UIEdgeInsets(top: 0, left: cellSpacing, bottom: 0, right: cellSpacing * 1.5)
         workingRangeDelegate = self
     }
 
