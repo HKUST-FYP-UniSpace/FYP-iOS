@@ -19,6 +19,9 @@ class TestHouseListModel: HouseList {
     var address: String
     var isBookmarked: Bool
     var photoURLs: [String]
+    var rooms: Int
+    var beds: Int
+    var toilets: Int
 
     required init() {
         id = DataStore.shared.randomInt(length: 8)
@@ -33,6 +36,9 @@ class TestHouseListModel: HouseList {
         for _ in 0...Int.random(in: 2...10) {
             photoURLs.append(Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 0.75))
         }
+        rooms = Int.random(in: 1..<6)
+        beds = Int.random(in: 1..<6)
+        toilets = Int.random(in: 1..<6)
     }
 
     func toModel() -> HouseListModel {
@@ -46,6 +52,9 @@ class TestHouseListModel: HouseList {
         model.subtitle = subtitle
         model.isBookmarked = isBookmarked
         model.photoURLs = photoURLs
+        model.rooms = rooms
+        model.beds = beds
+        model.toilets = toilets
         return model
     }
 }

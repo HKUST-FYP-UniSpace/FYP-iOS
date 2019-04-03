@@ -11,6 +11,7 @@ import UIKit
 
 enum RowSectionType {
     case HouseSummary
+    case HouseDetail
     case HouseSummaryTeam
     case TeamDescription
     case TeamMembers
@@ -31,7 +32,8 @@ final class RowSectionController: ListSectionController {
     override func sizeForItem(at index: Int) -> CGSize {
         var height: CGFloat {
             switch type {
-            case .HouseSummary: return collectionContext!.containerSize.width * 0.75 + 170
+            case .HouseSummary: return 170
+            case .HouseDetail: return 130
             case .HouseSummaryTeam: return 100
             case .TeamDescription: return 100
             case .TeamMembers: return 80
@@ -46,6 +48,8 @@ final class RowSectionController: ListSectionController {
         switch type {
         case .HouseSummary:
             return getHouseSummaryCell(at: index)
+        case .HouseDetail:
+            return getHouseDetailCell(at: index)
         case .HouseSummaryTeam:
             return getHouseSummaryTeamCell(at: index)
         case .TeamDescription:
@@ -90,11 +94,17 @@ final class RowSectionController: ListSectionController {
         cell.priceLabel.text = "$\(titleView.price.addComma()!) pcm"
         cell.sizeLabel.text = "\(titleView.size.addComma()!) sq. ft."
         cell.subtitleLabel.text = titleView.subtitle
+        return cell
+    }
 
-        guard let url = titleView.getFirstPhotoURL() else { return cell }
-        AlamofireService.shared.downloadImage(at: url, downloadProgress: nil) { (image, error) in
-            cell.setImage(image)
-        }
+    private func getHouseDetailCell(at index: Int) -> UICollectionViewCell {
+        guard let cell = collectionContext?.dequeueReusableCell(of: HouseDetailCell.self, for: self, at: index) as? HouseDetailCell, let object = object as? HouseViewModel, let titleView = object.titleView else { fatalError() }
+        cell.roomsTitleLabel.text = "Number of Rooms"
+        cell.roomsLabel.text = "\(titleView.rooms)"
+        cell.bedsTitleLabel.text = "Number of Beds"
+        cell.bedsLabel.text = "\(titleView.beds)"
+        cell.toiletsTitleLabel.text = "Number of Toilets"
+        cell.toiletsLabel.text = "\(titleView.toilets)"
         return cell
     }
 

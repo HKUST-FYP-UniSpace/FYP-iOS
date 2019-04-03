@@ -1,5 +1,5 @@
 //
-//  TradePhotosSectionController.swift
+//  PhotosSectionController.swift
 //  UniSpace
 //
 //  Created by KiKan Ng on 10/3/2019.
@@ -9,7 +9,7 @@
 import IGListKit
 import UIKit
 
-final class TradePhotosSectionController: ListSectionController, ListAdapterDataSource {
+final class PhotosSectionController: ListSectionController, ListAdapterDataSource {
 
     var contentOffset: CGFloat = 0
     private var photos: [String] = []
@@ -42,8 +42,13 @@ final class TradePhotosSectionController: ListSectionController, ListAdapterData
     }
 
     override func didUpdate(to object: Any) {
-        let model = object as? TradeFeaturedModel
-        photos = model?.photoURLs ?? []
+        if let model = object as? TradeFeaturedModel {
+            photos = model.photoURLs
+        }
+
+        if let model = object as? HouseViewModel {
+            photos = model.titleView?.photoURLs ?? []
+        }
     }
 
     // MARK: ListAdapterDataSource
@@ -63,7 +68,7 @@ final class TradePhotosSectionController: ListSectionController, ListAdapterData
 
 }
 
-extension TradePhotosSectionController: UIScrollViewDelegate {
+extension PhotosSectionController: UIScrollViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard let collectionView = scrollView as? UICollectionView else { return }
         collectionView.snapToCell(velocity: velocity, targetOffset: targetContentOffset, spacing: 0)

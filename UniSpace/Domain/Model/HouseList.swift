@@ -19,5 +19,8 @@ protocol HouseList: HavePhotos {
     var address: String { get set }
     var isBookmarked: Bool { get set }
     var photoURLs: [String] { get set }
+    var rooms: Int { get set }
+    var beds: Int { get set }
+    var toilets: Int { get set }
 
 }

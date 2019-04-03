@@ -8,10 +8,8 @@
 
 import UIKit
 
-final class HouseSummaryCell: UICollectionViewCell, ImageSettable {
+final class HouseSummaryCell: UICollectionViewCell {
 
-    fileprivate let imageView = StandardImageView(hasBackground: true)
-    fileprivate let activityView = StandardActivityView()
     let titleLabel = StandardLabel(color: .darkGray, size: 18, isBold: true)
     let priceLabel = StandardLabel(color: .lightGray, size: 16, isBold: false)
     let sizeLabel = StandardLabel(color: .lightGray, size: 16, isBold: false, align: .right)
@@ -20,18 +18,10 @@ final class HouseSummaryCell: UICollectionViewCell, ImageSettable {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let views = [imageView, activityView, titleLabel, priceLabel, sizeLabel, subtitleLabel, starRatings]
+        let views = [titleLabel, priceLabel, sizeLabel, subtitleLabel, starRatings]
         for view in views { contentView.addSubview(view) }
 
-        imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        imageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        imageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.75).isActive = true
-
-        activityView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
-        activityView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
-
-        titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: Spacing.normal).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Spacing.normal).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: Spacing.normal).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -Spacing.normal).isActive = true
 
@@ -53,15 +43,6 @@ final class HouseSummaryCell: UICollectionViewCell, ImageSettable {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    func setImage(_ image: UIImage?) {
-        imageView.image = image
-        if image != nil {
-            activityView.stopAnimating()
-        } else {
-            activityView.startAnimating()
-        }
     }
 
     func setStarRating(rating: Int) {
