@@ -16,7 +16,7 @@ final class UserInfoRow: Row<UserInfoCell>, RowType {
     }
 }
 
-class UserInfoCell: Cell<UserProfileModel>, CellType, ImageSettable {
+class UserInfoCell: Cell<UserModel>, CellType, ImageSettable {
 
     var nameLabel: StandardLabel
     var preferenceLabel: StandardLabel

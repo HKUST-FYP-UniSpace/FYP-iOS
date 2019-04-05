@@ -6,7 +6,7 @@
 //  Copyright © 2018 KiKan Ng. All rights reserved.
 //
 
-class UserModel: Decodable, User {
+class UserModel: Decodable, Equatable, User {
 
     var id: Int = 0
     var username: String = ""
@@ -55,6 +55,10 @@ class UserModel: Decodable, User {
         if let isActive = try? container.decode(Bool.self, forKey: .isActive) { self.isActive = isActive }
         if let createTime = try? container.decode(Double.self, forKey: .createTime) { self.createTime = createTime }
         if let verified = try? container.decode(Bool.self, forKey: .verified) { self.verified = verified }
+    }
+
+    static func ==(lhs: UserModel, rhs: UserModel) -> Bool {
+        return lhs.id == rhs.id
     }
 
     func getNameAndUsername() -> String {
