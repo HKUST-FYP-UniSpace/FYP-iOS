@@ -25,8 +25,8 @@ class UserInfoCell: Cell<UserProfileModel>, CellType, ImageSettable {
     private let imageHeight: CGFloat = 100
 
     required init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        nameLabel = StandardLabel(color: .darkGray, size: 18, isBold: true)
-        preferenceLabel = StandardLabel(color: .darkGray, size: 14, isBold: false)
+        nameLabel = StandardLabel(color: .darkGray, size: 18, isBold: true, align: .center)
+        preferenceLabel = StandardLabel(color: .darkGray, size: 14, isBold: false, align: .center)
         photoView = StandardImageView(cornerRadius: imageHeight / 2, hasBackground: true)
 
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -53,10 +53,12 @@ class UserInfoCell: Cell<UserProfileModel>, CellType, ImageSettable {
         photoView.widthAnchor.constraint(equalToConstant: imageHeight).isActive = true
 
         nameLabel.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: Spacing.wide).isActive = true
-        nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: Spacing.wide).isActive = true
+        nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -Spacing.wide).isActive = true
 
         preferenceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Spacing.normal).isActive = true
-        preferenceLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        preferenceLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: Spacing.wide).isActive = true
+        preferenceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -Spacing.wide).isActive = true
 
         for view in views { view.sizeToFit() }
     }

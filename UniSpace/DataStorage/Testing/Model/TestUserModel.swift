@@ -30,8 +30,8 @@ class TestUserModel: User {
         self.preference = hasPreference ? TestPreferenceModel().toModel() : PreferenceModel()
         self.photoURL = Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 1)
 
-        self.contact = ""
-        self.selfIntro = ""
+        self.contact = "12345678"
+        self.selfIntro = Lorem.paragraph()
         self.name = name
         self.email = email
         self.userType = role

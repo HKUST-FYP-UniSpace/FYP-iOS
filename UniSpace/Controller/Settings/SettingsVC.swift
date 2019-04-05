@@ -29,13 +29,18 @@ class SettingsVC: FormViewController {
     }
 
     private func createForm(_ user: UserModel?) {
+        guard let user = user else { return }
+        _ = user.userType == .Owner ? createOwnerForm(user) : createTenantForm(user)
+    }
+
+    private func createOwnerForm(_ user: UserModel) {
         form +++ Section("")
             <<< UserInfoRow { row in
-                row.cell.nameLabel.text = user?.getNameAndUsername()
-                row.cell.preferenceLabel.text = user?.preference.getTextForm()
+                row.cell.nameLabel.text = user.getNameAndUsername()
+                let preferenceText = user.preference.getTextForm()
+                row.cell.preferenceLabel.text = preferenceText.isEmpty ? user.selfIntro : preferenceText
 
-                guard let url = user?.photoURL else { return }
-                AlamofireService.shared.downloadImage(at: url, downloadProgress: nil) { (image, error) in
+                AlamofireService.shared.downloadImage(at: user.photoURL, downloadProgress: nil) { (image, error) in
                     row.cell.setImage(image)
                 }
                 }
@@ -46,7 +51,79 @@ class SettingsVC: FormViewController {
                     vc.userId = DataStore.shared.user?.id
                     generator.notificationOccurred(.success)
                     self.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+            }
+
+            <<< LabelRow() {
+                $0.title = "Tenant History"
                 }
+                .cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = Color.theme
+                }
+                .onCellSelection { (cell, row) in
+                    // TODO
+                    self.showAlert(title: "Method not implemented")
+            }
+
+            <<< LabelRow() {
+                $0.title = "Trade History"
+                }
+                .cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = Color.theme
+                }
+                .onCellSelection { (cell, row) in
+                    self.navigationController?.pushViewController(TradeListVC(.History), animated: true)
+            }
+
+            <<< SwitchRow() {
+                $0.title = "Notification"
+                $0.value = true
+                }
+                .cellSetup { (cell, row) in
+                    cell.switchControl.onTintColor = Color.theme
+                }
+                .onChange { (row) in
+            }
+
+            <<< LabelRow() {
+                $0.title = "Rules and Regulations"
+                }
+                .cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = Color.theme
+                }
+                .onCellSelection { (cell, row) in
+                    // TODO
+                    self.showAlert(title: "Method not implemented")
+            }
+
+            <<< LabelRow() {
+                $0.title = "Sign Out"
+                }
+                .cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = .red
+                }
+                .onCellSelection { (cell, row) in
+                    super.logout()
+        }
+    }
+
+    private func createTenantForm(_ user: UserModel) {
+        form +++ Section("")
+            <<< UserInfoRow { row in
+                row.cell.nameLabel.text = user.getNameAndUsername()
+                row.cell.preferenceLabel.text = user.preference.getTextForm()
+
+                AlamofireService.shared.downloadImage(at: user.photoURL, downloadProgress: nil) { (image, error) in
+                    row.cell.setImage(image)
+                }
+                }
+                .onCellSelection { (cell, row) in
+                    let generator = UINotificationFeedbackGenerator()
+                    generator.prepare()
+                    let vc = UserDetailVC()
+                    vc.userId = DataStore.shared.user?.id
+                    generator.notificationOccurred(.success)
+                    self.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+            }
 
             <<< LabelRow() {
                 $0.title = "Preference Settings"
@@ -57,24 +134,16 @@ class SettingsVC: FormViewController {
                 .onCellSelection { (cell, row) in
                     UINotificationFeedbackGenerator().notificationOccurred(.success)
                     self.present(UINavigationController(rootViewController: PreferenceVC()), animated: true, completion: nil)
-                }
+            }
 
             <<< LabelRow() {
-                let role = user?.userType ?? .Tenant
-                $0.title = role == .Tenant ? "Apartment History" : "Tenant History"
+                $0.title = "Apartment History"
                 }
                 .cellUpdate { (cell, row) in
                     cell.textLabel?.textColor = Color.theme
                 }
                 .onCellSelection { (cell, row) in
-                    let role = user?.userType ?? .Tenant
-                    switch role {
-                    case .Tenant:
-                        self.navigationController?.pushViewController(ApartmentListVC(.History), animated: true)
-                    case .Owner:
-                        // TODO
-                        self.showAlert(title: "Method not implemented")
-                    }
+                    self.navigationController?.pushViewController(ApartmentListVC(.History), animated: true)
             }
 
             <<< LabelRow() {
@@ -106,7 +175,7 @@ class SettingsVC: FormViewController {
                     cell.switchControl.onTintColor = Color.theme
                 }
                 .onChange { (row) in
-                }
+            }
 
             <<< LabelRow() {
                 $0.title = "Rules and Regulations"
@@ -117,7 +186,7 @@ class SettingsVC: FormViewController {
                 .onCellSelection { (cell, row) in
                     // TODO
                     self.showAlert(title: "Method not implemented")
-                }
+            }
 
             <<< LabelRow() {
                 $0.title = "Sign Out"
@@ -127,7 +196,7 @@ class SettingsVC: FormViewController {
                 }
                 .onCellSelection { (cell, row) in
                     super.logout()
-                }
+        }
     }
     
 }
