@@ -24,6 +24,44 @@ class HouseListModel: Decodable, ListDiffable, HouseList {
     var beds: Int = 0
     var toilets: Int = 0
 
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case price
+        case size
+        case starRating
+        case subtitle
+        case address
+        case isBookmarked
+        case photoURLs
+        case rooms
+        case beds
+        case toilets
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        decode(container, &id, type: Int.self, forKey: .id)
+        decode(container, &title, type: String.self, forKey: .title)
+        decode(container, &price, type: Int.self, forKey: .price)
+        decode(container, &size, type: Int.self, forKey: .size)
+        decode(container, &starRating, type: Double.self, forKey: .starRating)
+        decode(container, &subtitle, type: String.self, forKey: .subtitle)
+        decode(container, &address, type: String.self, forKey: .address)
+        decode(container, &isBookmarked, type: Bool.self, forKey: .isBookmarked)
+        decode(container, &photoURLs, type: [String].self, forKey: .photoURLs)
+        decode(container, &rooms, type: Int.self, forKey: .rooms); rooms = Int.random(in: 1...6)
+        decode(container, &beds, type: Int.self, forKey: .beds); beds = Int.random(in: 1...6)
+        decode(container, &toilets, type: Int.self, forKey: .toilets); toilets = Int.random(in: 1...6)
+    }
+
+    private func decode<T>(_ container: KeyedDecodingContainer<CodingKeys>, _ variable: inout T, type: T.Type, forKey key: CodingKeys) where T: Decodable {
+        if let _variable = try? container.decode(type, forKey: key) {
+            variable = _variable
+        }
+    }
+
     init() {}
 
     func diffIdentifier() -> NSObjectProtocol {

@@ -11,7 +11,7 @@ import IGListKit
 
 class HouseViewModel: Decodable, ListDiffable {
 
-    var id: Int
+    var id: Int = DataStore.shared.randomInt(length: 8)
     var titleView: HouseListModel?
     var teams: [HouseTeamSummaryModel]
     var reviews: [HouseReviewModel]

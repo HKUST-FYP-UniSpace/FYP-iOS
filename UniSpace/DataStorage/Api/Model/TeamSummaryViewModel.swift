@@ -11,7 +11,7 @@ import IGListKit
 
 class TeamSummaryViewModel: Decodable, ListDiffable {
 
-    var id: Int
+    var id: Int = DataStore.shared.randomInt(length: 8)
     var teamView: HouseTeamSummaryModel?
     var teamMembers: [TeamMemberModel]
 

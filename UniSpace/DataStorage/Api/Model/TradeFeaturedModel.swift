@@ -20,6 +20,35 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
     var isBookmarked: Bool = false
     var photoURLs: [String] = []
 
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case location
+        case price
+        case status
+        case detail
+        case isBookmarked
+        case photoURLs
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        decode(container, &id, type: Int.self, forKey: .id)
+        decode(container, &title, type: String.self, forKey: .title)
+        decode(container, &location, type: String.self, forKey: .location)
+        decode(container, &price, type: Int.self, forKey: .price)
+        decode(container, &status, type: String.self, forKey: .status)
+        decode(container, &detail, type: String.self, forKey: .detail)
+        decode(container, &isBookmarked, type: Bool.self, forKey: .isBookmarked)
+        decode(container, &photoURLs, type: [String].self, forKey: .photoURLs)
+    }
+
+    private func decode<T>(_ container: KeyedDecodingContainer<CodingKeys>, _ variable: inout T, type: T.Type, forKey key: CodingKeys) where T: Decodable {
+        if let _variable = try? container.decode(type, forKey: key) {
+            variable = _variable
+        }
+    }
+
     init() {}
 
     func diffIdentifier() -> NSObjectProtocol {

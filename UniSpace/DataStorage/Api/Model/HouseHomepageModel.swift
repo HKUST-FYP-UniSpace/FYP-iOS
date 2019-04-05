@@ -11,7 +11,7 @@ import IGListKit
 
 class HouseHomepageModel: ListDiffable {
 
-    var id: Int
+    var id: Int = DataStore.shared.randomInt(length: 8)
     var suggestions: [HouseSuggestionModel] = []
     var saved: [HouseListModel] = []
 

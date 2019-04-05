@@ -19,8 +19,6 @@ class MessageSummaryModel: Decodable, ListDiffable, MessageSummary {
     var photoURL: String = ""
     var messageType: MessageGroupType = .Request
 
-    init() {}
-
     enum CodingKeys: String, CodingKey {
         case id
         case title
@@ -33,14 +31,22 @@ class MessageSummaryModel: Decodable, ListDiffable, MessageSummary {
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
-        title = try container.decode(String.self, forKey: .title)
-        subtitle = try container.decode(String.self, forKey: .subtitle)
-        time = try container.decode(Double.self, forKey: .time)
-        unreadMessagesCount = try container.decode(Int.self, forKey: .unreadMessagesCount)
-        photoURL = try container.decode(String.self, forKey: .photoURL)
-        messageType = try container.decode(MessageGroupType.self, forKey: .messageType)
+        id = DataStore.shared.randomInt(length: 8)
+        decode(container, &title, type: String.self, forKey: .title)
+        decode(container, &subtitle, type: String.self, forKey: .subtitle)
+        decode(container, &time, type: Double.self, forKey: .time)
+        decode(container, &unreadMessagesCount, type: Int.self, forKey: .unreadMessagesCount)
+        decode(container, &photoURL, type: String.self, forKey: .photoURL)
+        decode(container, &messageType, type: MessageGroupType.self, forKey: .messageType)
     }
+
+    private func decode<T>(_ container: KeyedDecodingContainer<CodingKeys>, _ variable: inout T, type: T.Type, forKey key: CodingKeys) where T: Decodable {
+        if let _variable = try? container.decode(type, forKey: key) {
+            variable = _variable
+        }
+    }
+
+    init() {}
 
     func diffIdentifier() -> NSObjectProtocol {
         return id as NSObjectProtocol

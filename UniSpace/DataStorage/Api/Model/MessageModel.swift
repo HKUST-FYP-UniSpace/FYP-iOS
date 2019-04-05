@@ -16,6 +16,27 @@ class MessageModel: Decodable, ListDiffable, Message {
     var message: String = ""
     var time: Double = 0
 
+    enum CodingKeys: String, CodingKey {
+        case id
+        case senderId
+        case message
+        case time
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        decode(container, &id, type: Int.self, forKey: .id)
+        decode(container, &senderId, type: Int.self, forKey: .senderId)
+        decode(container, &message, type: String.self, forKey: .message)
+        decode(container, &time, type: Double.self, forKey: .time)
+    }
+
+    private func decode<T>(_ container: KeyedDecodingContainer<CodingKeys>, _ variable: inout T, type: T.Type, forKey key: CodingKeys) where T: Decodable {
+        if let _variable = try? container.decode(type, forKey: key) {
+            variable = _variable
+        }
+    }
+    
     init() {}
 
     func diffIdentifier() -> NSObjectProtocol {

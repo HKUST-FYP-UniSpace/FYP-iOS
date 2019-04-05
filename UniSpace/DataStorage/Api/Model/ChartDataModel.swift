@@ -15,6 +15,27 @@ class ChartDataModel: Decodable, Equatable, ChartData {
     var x: Double = 0
     var y: Double = 0
 
+    enum CodingKeys: String, CodingKey {
+        case order
+        case time
+        case x
+        case y
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        decode(container, &order, type: Int.self, forKey: .order)
+        decode(container, &time, type: Double.self, forKey: .time)
+        decode(container, &x, type: Double.self, forKey: .x)
+        decode(container, &y, type: Double.self, forKey: .y)
+    }
+
+    private func decode<T>(_ container: KeyedDecodingContainer<CodingKeys>, _ variable: inout T, type: T.Type, forKey key: CodingKeys) where T: Decodable {
+        if let _variable = try? container.decode(type, forKey: key) {
+            variable = _variable
+        }
+    }
+
     init() {}
 
     static func == (lhs: ChartDataModel, rhs: ChartDataModel) -> Bool {

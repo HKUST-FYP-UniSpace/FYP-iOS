@@ -11,7 +11,7 @@ import IGListKit
 
 class TradeHomepageModel: ListDiffable {
 
-    var id: Int
+    var id: Int = DataStore.shared.randomInt(length: 8)
     var featured: [TradeFeaturedModel] = []
     var sellingItems: [TradeSellingItemModel] = []
     var saved: [TradeFeaturedModel] = []

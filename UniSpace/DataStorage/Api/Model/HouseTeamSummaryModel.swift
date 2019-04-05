@@ -21,6 +21,37 @@ class HouseTeamSummaryModel: Decodable, ListDiffable, HouseTeamSummary {
     var occupiedCount: Int = 0
     var photoURL: String = ""
 
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case price
+        case duration
+        case preference
+        case description
+        case groupSize
+        case occupiedCount
+        case photoURL
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        decode(container, &id, type: Int.self, forKey: .id)
+        decode(container, &title, type: String.self, forKey: .title)
+        decode(container, &price, type: Int.self, forKey: .price)
+        decode(container, &duration, type: String.self, forKey: .duration)
+        decode(container, &preference, type: PreferenceModel.self, forKey: .preference)
+        decode(container, &description, type: String.self, forKey: .description)
+        decode(container, &groupSize, type: Int.self, forKey: .groupSize)
+        decode(container, &occupiedCount, type: Int.self, forKey: .occupiedCount)
+        decode(container, &photoURL, type: String.self, forKey: .photoURL)
+    }
+
+    private func decode<T>(_ container: KeyedDecodingContainer<CodingKeys>, _ variable: inout T, type: T.Type, forKey key: CodingKeys) where T: Decodable {
+        if let _variable = try? container.decode(type, forKey: key) {
+            variable = _variable
+        }
+    }
+
     init() {}
 
     func diffIdentifier() -> NSObjectProtocol {
