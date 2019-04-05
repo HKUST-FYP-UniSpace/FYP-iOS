@@ -13,6 +13,7 @@ class TestTradeFeaturedModel: TradeFeatured {
     var id: Int
     var title: String
     var location: String
+    var transactionType: String
     var price: Int
     var status: String
     var detail: String
@@ -23,6 +24,7 @@ class TestTradeFeaturedModel: TradeFeatured {
         id = DataStore.shared.randomInt(length: 8)
         title = Lorem.words().capitalized
         location = "Discovery Park, Tsuen Wan"
+        transactionType = "out"
         price = Int.random(in: 20..<100) * 100
         status = ["NEW", ""].randomElement()!
         detail = Lorem.sentence()
@@ -38,6 +40,7 @@ class TestTradeFeaturedModel: TradeFeatured {
         model.id = id
         model.title = title
         model.location = location
+        model.transactionType = transactionType
         model.price = price
         model.status = status
         model.detail = detail

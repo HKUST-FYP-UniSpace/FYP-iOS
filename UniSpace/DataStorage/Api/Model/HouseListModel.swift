@@ -51,6 +51,9 @@ class HouseListModel: Decodable, ListDiffable, HouseList {
         decode(container, &address, type: String.self, forKey: .address)
         decode(container, &isBookmarked, type: Bool.self, forKey: .isBookmarked)
         decode(container, &photoURLs, type: [String].self, forKey: .photoURLs)
+        for _ in 0...Int.random(in: 2...10) {
+            photoURLs.append(Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 0.75))
+        }
         decode(container, &rooms, type: Int.self, forKey: .rooms); rooms = Int.random(in: 1...6)
         decode(container, &beds, type: Int.self, forKey: .beds); beds = Int.random(in: 1...6)
         decode(container, &toilets, type: Int.self, forKey: .toilets); toilets = Int.random(in: 1...6)

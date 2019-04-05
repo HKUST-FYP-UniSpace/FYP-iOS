@@ -85,7 +85,7 @@ final class TradeListVC: SingleSectionViewController {
             cell.titleLabel.text = object.title
             cell.locationLabel.text = object.location
             cell.priceLabel.text = "$\(object.price.addComma()!)"
-            cell.statusLabel.text = object.status
+            cell.statusLabel.text = self.type == .History ? object.transactionType.uppercased() : object.status
             cell.subtitleLabel.text = object.detail
 
             guard let url = object.getFirstPhotoURL() else { return }

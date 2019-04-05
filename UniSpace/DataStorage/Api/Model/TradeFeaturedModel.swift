@@ -14,6 +14,7 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
     var id: Int = 0
     var title: String = ""
     var location: String = ""
+    var transactionType: String = ""
     var price: Int = 0
     var status: String = ""
     var detail: String = ""
@@ -24,9 +25,10 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
         case id
         case title
         case location
+        case transactionType
         case price
         case status
-        case detail
+        case detail = "description"
         case isBookmarked
         case photoURLs
     }
@@ -35,7 +37,8 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         decode(container, &id, type: Int.self, forKey: .id)
         decode(container, &title, type: String.self, forKey: .title)
-        decode(container, &location, type: String.self, forKey: .location)
+        decode(container, &location, type: String.self, forKey: .location); location = "Discovery Park, Tsuen Wan"
+        decode(container, &transactionType, type: String.self, forKey: .transactionType)
         decode(container, &price, type: Int.self, forKey: .price)
         decode(container, &status, type: String.self, forKey: .status)
         decode(container, &detail, type: String.self, forKey: .detail)

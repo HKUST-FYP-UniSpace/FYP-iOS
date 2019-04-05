@@ -67,13 +67,13 @@ final class GridSectionController: ListSectionController {
     }
 
     override func didSelectItem(at index: Int) {
-        if let data = data?[0] as? HouseListModel {
+        if let data = data?[index] as? HouseListModel {
             let vc = ApartmentSummaryVC()
             vc.houseId = data.id
             viewController?.navigationController?.pushViewController(vc, animated: true)
             return
         }
-        if let data = data?[0] as? TradeFeaturedModel {
+        if let data = data?[index] as? TradeFeaturedModel {
             let vc = TradeDetailVC()
             vc.tradeItemId = data.id
             viewController?.navigationController?.pushViewController(vc, animated: true)

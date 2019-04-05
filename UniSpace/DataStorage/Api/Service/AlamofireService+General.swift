@@ -24,6 +24,7 @@ extension AlamofireService: GeneralService {
         params["selfIntro"] = userProfile.selfIntro
         params["contact"] = userProfile.contact
         params["gender"] = userProfile.gender?.rawValue ?? Gender.Male.rawValue
+        params["photoURL"] = image
         post(at: .getUserProfile, params: params).responseJSON { (res: DataResponse<Any>) in
             var result: UserModel? = nil
             if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }

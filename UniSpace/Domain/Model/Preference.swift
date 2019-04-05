@@ -19,9 +19,9 @@ protocol Preference {
 
 }
 
-enum Gender: Int, Codable, CaseIterable {
-    case Male = 0
-    case Female
+enum Gender: String, Codable, CaseIterable {
+    case Male = "M"
+    case Female = "F"
 
     var text: String {
         switch self {

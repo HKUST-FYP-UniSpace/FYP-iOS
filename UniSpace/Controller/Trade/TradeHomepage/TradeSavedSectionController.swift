@@ -31,7 +31,8 @@ final class TradeSavedSectionController: ListSectionController, ListAdapterDataS
         case 0:
             return CGSize(width: collectionContext!.containerSize.width, height: 60)
         case 1:
-            let count = model?.saved.count ?? 0
+            var count = model?.saved.count ?? 0
+            count = count > 4 ? 4: count
             let factor = ceil(CGFloat(count) / 2)
             return CGSize(width: collectionContext!.containerSize.width, height: 210 * factor)
         case 2:

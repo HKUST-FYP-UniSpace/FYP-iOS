@@ -38,7 +38,11 @@ class HouseTeamSummaryModel: Decodable, ListDiffable, HouseTeamSummary {
         decode(container, &id, type: Int.self, forKey: .id)
         decode(container, &title, type: String.self, forKey: .title)
         decode(container, &price, type: Int.self, forKey: .price)
-        decode(container, &duration, type: String.self, forKey: .duration)
+
+        var durationYear = 0
+        decode(container, &durationYear, type: Int.self, forKey: .duration)
+        duration = durationYear == 1 ? "1 year" : "\(durationYear) years"
+        
         decode(container, &preference, type: PreferenceModel.self, forKey: .preference)
         decode(container, &description, type: String.self, forKey: .description)
         decode(container, &groupSize, type: Int.self, forKey: .groupSize)

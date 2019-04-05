@@ -43,7 +43,7 @@ extension AppDelegate {
     
     func addUserCredential() {
         // Alamofire Service
-        DataStore.shared.savePref(.username, value: "server6")
+        DataStore.shared.savePref(.username, value: "server")
         DataStore.shared.savePref(.password, value: "12345678aa")
 
         // Test Service

@@ -13,6 +13,7 @@ protocol TradeFeatured: HavePhotos {
     var id: Int { get set }
     var title: String { get set }
     var location: String { get set }
+    var transactionType: String { get set }
     var price: Int { get set }
     var status: String { get set }
     var detail: String { get set }

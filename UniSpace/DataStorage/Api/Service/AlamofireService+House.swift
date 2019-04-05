@@ -89,14 +89,29 @@ extension AlamofireService: HouseService {
 
     func createTeam(houseId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
         let params = getTeamParams(model)
-        post(at: .updatePreference, params: params).responseJSON { (res: DataResponse<Any>) in
+        post(at: .createTeam(houseId: houseId), params: params).responseJSON { (res: DataResponse<Any>) in
             var result: Int? = nil
             if let data = res.result.value { result = self.transform(from: data, type: Int.self) }
             guard let teamId = result else {
                 completion?(nil, ServerError.UnknownClassType(object: "Team ID"))
                 return
             }
-            self.joinTeam(teamId: teamId, completion: completion)
+            self.createTeamImage(teamId: teamId, image: image, completion: completion)
+        }
+    }
+
+    private func createTeamImage(teamId: Int, image: UIImage, completion: SendRequestResult?) {
+        var params = Parameters()
+        params["teamId"] = teamId
+        params["image"] = image
+        post(at: .createTeamImage(teamId: teamId), params: params).responseJSON { (res: DataResponse<Any>) in
+            var result: Bool? = nil
+            if let data = res.result.value { result = self.transform(from: data, type: Bool.self) }
+            guard let _ = result else {
+                completion?(nil, ServerError.UnknownClassType(object: "Result"))
+                return
+            }
+            completion?(nil, nil)
         }
     }
 

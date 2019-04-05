@@ -178,8 +178,8 @@ extension EmbeddedSectionController {
         guard let cell = collectionContext?.dequeueReusableCell(of: HouseReviewCell.self, for: self, at: index) as? HouseReviewCell, let data = data, let cellData = data as? HouseReviewModel else {
             fatalError()
         }
-        cell.usernameLabel.text = cellData.username
-        cell.titleLabel.text = cellData.title
+//        cell.usernameLabel.text = cellData.username
+        cell.titleLabel.text = cellData.username
         cell.dateLabel.text = cellData.readableDate()
         cell.detailLabel.text = cellData.detail
         cell.setStarRating(rating: cellData.starRating)
