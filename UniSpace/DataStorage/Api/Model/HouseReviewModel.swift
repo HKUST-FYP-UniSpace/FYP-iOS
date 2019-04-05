@@ -16,7 +16,7 @@ class HouseReviewModel: Decodable, ListDiffable, HouseReview {
     var title: String = ""
     var date: Double = 0
     var detail: String = ""
-    var starRating: Int = 0
+    var starRating: Double = 0
     var ownerId: Int = 0
     var ownerComment: String = ""
     var photoURL: String = ""

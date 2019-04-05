@@ -63,7 +63,7 @@ final class OwnerTeamsCell: UICollectionViewCell {
         separator.frame = CGRect(x: left, y: 0, width: bounds.width - left, height: height)
     }
 
-    func setStarRating(rating: Int) {
+    func setStarRating(rating: Double) {
         starRatings.setStarRating(rating: rating)
     }
 

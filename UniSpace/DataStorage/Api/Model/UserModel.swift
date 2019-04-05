@@ -21,8 +21,6 @@ class UserModel: Decodable, Equatable, User {
     var isActive: Bool = false
     var createTime: Double = 0
     var verified: Bool = false
-    
-    init() {}
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -42,20 +40,28 @@ class UserModel: Decodable, Equatable, User {
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let id = try? container.decode(Int.self, forKey: .id) { self.id = id }
-        if let username = try? container.decode(String.self, forKey: .username) { self.username = username }
-        if let preference = try? container.decode(PreferenceModel.self, forKey: .preference) { self.preference = preference }
-        if let photoURL = try? container.decode(String.self, forKey: .photoURL) { self.photoURL = photoURL }
-        if let contact = try? container.decode(String.self, forKey: .contact) { self.contact = contact }
-        if let selfIntro = try? container.decode(String.self, forKey: .selfIntro) { self.selfIntro = selfIntro }
-        if let name = try? container.decode(String.self, forKey: .name) { self.name = name }
-        if let email = try? container.decode(String.self, forKey: .email) { self.email = email }
-        if let gender = try? container.decode(Gender.self, forKey: .gender) { self.gender = gender }
-        if let userType = try? container.decode(UserType.self, forKey: .role) { self.userType = userType }
-        if let isActive = try? container.decode(Bool.self, forKey: .isActive) { self.isActive = isActive }
-        if let createTime = try? container.decode(Double.self, forKey: .createTime) { self.createTime = createTime }
-        if let verified = try? container.decode(Bool.self, forKey: .verified) { self.verified = verified }
+        decode(container, &id, type: Int.self, forKey: .id)
+        decode(container, &username, type: String.self, forKey: .username)
+        decode(container, &preference, type: PreferenceModel.self, forKey: .preference)
+        decode(container, &photoURL, type: String.self, forKey: .photoURL)
+        decode(container, &contact, type: String.self, forKey: .contact)
+        decode(container, &selfIntro, type: String.self, forKey: .selfIntro)
+        decode(container, &name, type: String.self, forKey: .name)
+        decode(container, &email, type: String.self, forKey: .email)
+        decode(container, &gender, type: Gender?.self, forKey: .gender)
+        decode(container, &userType, type: UserType.self, forKey: .role)
+        decode(container, &isActive, type: Bool.self, forKey: .isActive)
+        decode(container, &createTime, type: Double.self, forKey: .createTime)
+        decode(container, &verified, type: Bool.self, forKey: .verified)
     }
+
+    private func decode<T>(_ container: KeyedDecodingContainer<CodingKeys>, _ variable: inout T, type: T.Type, forKey key: CodingKeys) where T: Decodable {
+        if let _variable = try? container.decode(type, forKey: key) {
+            variable = _variable
+        }
+    }
+
+    init() {}
 
     static func ==(lhs: UserModel, rhs: UserModel) -> Bool {
         return lhs.id == rhs.id

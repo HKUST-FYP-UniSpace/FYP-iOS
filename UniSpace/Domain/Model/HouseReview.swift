@@ -15,7 +15,7 @@ protocol HouseReview: HavePhoto {
     var title: String { get set }
     var date: Double { get set }
     var detail: String { get set }
-    var starRating: Int { get set }
+    var starRating: Double { get set }
 
     var ownerId: Int { get set }
     var ownerComment: String { get set }

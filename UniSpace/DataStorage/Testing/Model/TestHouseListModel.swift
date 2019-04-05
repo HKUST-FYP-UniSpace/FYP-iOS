@@ -14,7 +14,7 @@ class TestHouseListModel: HouseList {
     var title: String
     var price: Int
     var size: Int
-    var starRating: Int
+    var starRating: Double
     var subtitle: String
     var address: String
     var isBookmarked: Bool
@@ -28,7 +28,7 @@ class TestHouseListModel: HouseList {
         title = "Clear Water Bay Deluxe"
         price = Int.random(in: 50..<200) * 100
         size = Int.random(in: 500..<1500)
-        starRating = Int.random(in: 0..<6)
+        starRating = Double.random(in: 0..<6)
         subtitle = Lorem.sentence()
         address = "8 Clear Water Road, Clear Water Bay, N.T."
         isBookmarked = Bool.random()

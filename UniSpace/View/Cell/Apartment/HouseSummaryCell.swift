@@ -45,7 +45,7 @@ final class HouseSummaryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setStarRating(rating: Int) {
+    func setStarRating(rating: Double) {
         starRatings.setStarRating(rating: rating)
     }
 

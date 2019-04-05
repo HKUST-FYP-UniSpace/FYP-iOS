@@ -24,7 +24,7 @@ class AddReviewVC: MasterFormPopupVC {
         let date = DateManager.shared.getCurrentDate()
         form +++ Section("")
             <<< getLabelRow(id: nil, title: "Date", displayValue: DateManager.shared.convertToDateFormat(date: date))
-            <<< getStepperRow(id: "ratings", title: "Ratings", defaultValue: 5, max: 5, min: 0, step: 1, displayWithText: "")
+            <<< getStepperRow(id: "ratings", title: "Ratings", defaultValue: 5, max: 5, min: 0, step: 0.5, displayWithText: "")
             <<< getTextAreaRow(id: "title", placeholder: "feedback title", defaultValue: nil)
             <<< getTextAreaRow(id: "detail", placeholder: "feedback detail", defaultValue: nil)
 
@@ -43,10 +43,10 @@ class AddReviewVC: MasterFormPopupVC {
     }
 
     private func updateModel() {
-        var ratings: Int? = nil
+        var ratings: Double? = nil
         var title: String? = nil
         var detail: String? = nil
-        if let row = form.rowBy(tag: "ratings") as? StepperRow, let rowValue = row.value { ratings = Int(rowValue) }
+        if let row = form.rowBy(tag: "ratings") as? StepperRow, let rowValue = row.value { ratings = rowValue }
         if let row = form.rowBy(tag: "title") as? TextAreaRow { title = row.value }
         if let row = form.rowBy(tag: "detail") as? TextAreaRow { detail = row.value }
 

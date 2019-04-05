@@ -66,7 +66,7 @@ final class HouseSavedCell: UICollectionViewCell, ImageSettable {
         }
     }
 
-    func setStarRating(rating: Int) {
+    func setStarRating(rating: Double) {
         starRatings.setStarRating(rating: rating)
     }
 

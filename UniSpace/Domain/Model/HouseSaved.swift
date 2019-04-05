@@ -14,7 +14,7 @@ protocol HouseSaved: HavePhoto {
     var title: String { get set }
     var price: Int { get set }
     var size: Int { get set }
-    var starRating: Int { get set }
+    var starRating: Double { get set }
     var photoURL: String { get set }
 
 }

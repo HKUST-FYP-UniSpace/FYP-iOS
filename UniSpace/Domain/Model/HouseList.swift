@@ -14,7 +14,7 @@ protocol HouseList: HavePhotos {
     var title: String { get set }
     var price: Int { get set }
     var size: Int { get set }
-    var starRating: Int { get set }
+    var starRating: Double { get set }
     var subtitle: String { get set }
     var address: String { get set }
     var isBookmarked: Bool { get set }

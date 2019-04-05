@@ -18,7 +18,7 @@ class TestOwnerHouseSummaryModel: OwnerHouseSummary {
     var size: Int
     var numberOfViews: Int
     var numberOfBookmarks: Int
-    var starRating: Int
+    var starRating: Double
     var arrangingTeamCount: Int
     var formingTeamCount: Int
     var houseStatus: HouseStatus
@@ -32,7 +32,7 @@ class TestOwnerHouseSummaryModel: OwnerHouseSummary {
         size = Int.random(in: 500..<1500)
         numberOfViews = Int.random(in: 500..<3000)
         numberOfBookmarks = Int.random(in: 100..<1000)
-        starRating = Int.random(in: 0..<6)
+        starRating = Double.random(in: 0..<6)
         arrangingTeamCount = Int.random(in: 0..<10)
         formingTeamCount = Int.random(in: 0..<10)
         houseStatus = HouseStatus.allCases.randomElement()!

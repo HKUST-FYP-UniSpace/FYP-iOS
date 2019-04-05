@@ -15,7 +15,7 @@ class HouseListModel: Decodable, ListDiffable, HouseList {
     var title: String = ""
     var price: Int = 0
     var size: Int = 0
-    var starRating: Int = 0
+    var starRating: Double = 0
     var subtitle: String = ""
     var address: String = ""
     var isBookmarked: Bool = false

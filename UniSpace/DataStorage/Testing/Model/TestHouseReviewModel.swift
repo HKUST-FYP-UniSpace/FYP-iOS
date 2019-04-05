@@ -15,7 +15,7 @@ class TestHouseReviewModel: HouseReview {
     var title: String
     var date: Double
     var detail: String
-    var starRating: Int
+    var starRating: Double
     var ownerId: Int
     var ownerComment: String
     var photoURL: String
@@ -26,7 +26,7 @@ class TestHouseReviewModel: HouseReview {
         title = ["Team Awesome", "Warmest team you can find", "Funny Rommies!"].randomElement()!
         date = DateManager.shared.randomTime(30)
         detail = Lorem.paragraph()
-        starRating = Int.random(in: 0..<6)
+        starRating = Double.random(in: 0..<6)
         ownerId = DataStore.shared.randomInt(length: 8)
         ownerComment = Lorem.paragraph()
         photoURL = Constants.dummyPhotoURL(Constants.cardWidth_S, ratio: 0.75)

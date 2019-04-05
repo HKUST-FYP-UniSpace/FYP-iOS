@@ -94,7 +94,7 @@ final class HouseReviewCell: UICollectionViewCell, ImageSettable {
         imageView.setBackground(hasBackground: image == nil)
     }
 
-    func setStarRating(rating: Int) {
+    func setStarRating(rating: Double) {
         starRatings.setStarRating(rating: rating)
     }
 

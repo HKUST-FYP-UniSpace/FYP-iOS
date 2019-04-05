@@ -39,10 +39,11 @@ class StarRatingsView: UIView {
         sizeToFit()
     }
 
-    func setStarRating(rating: Int) {
+    func setStarRating(rating: Double) {
+        let ratingInt = Int(ceil(rating))
         let stars = [star1ImageView, star2ImageView, star3ImageView, star4ImageView, star5ImageView]
         for (index, star) in stars.enumerated() {
-            star.image = index < rating ? UIImage(named: "Star") : UIImage(named: "Star_gray")
+            star.image = index < ratingInt ? UIImage(named: "Star") : UIImage(named: "Star_gray")
         }
     }
 
