@@ -38,7 +38,7 @@ final class ApartmentSummaryVC: MasterVC, ListAdapterDataSource, Bookmarkable {
         self.isBookmarked = !self.isBookmarked
         self.navigationItem.rightBarButtonItem = self.createBookmark(isBookmarked: self.isBookmarked)
         generator.notificationOccurred(.success)
-        DataStore.shared.bookmarkHouse(houseId: houseId) { (msg, error) in
+        DataStore.shared.bookmarkHouse(houseId: houseId, bookmarked: self.isBookmarked) { (msg, error) in
             guard !self.sendFailed(msg, error: error) else { return }
         }
     }

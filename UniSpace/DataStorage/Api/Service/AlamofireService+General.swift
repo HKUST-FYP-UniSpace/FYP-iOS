@@ -11,18 +11,28 @@ import Alamofire
 extension AlamofireService: GeneralService {
     
     func getUserProfile(userId: Int, completion: @escaping (UserModel?, Error?) -> Void) {
-        get(at: .getUserProfile(userId: userId)).responseJSON { (res: DataResponse<Any>) in
+        get(at: .getUserProfile).responseJSON { (res: DataResponse<Any>) in
             var result: UserModel? = nil
             if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }
             completion(result, res.result.error)
         }
     }
 
-    func editUserProfile(userId: Int, userProfile: UserModel, image: UIImage, completion: SendRequestResult?) {
-        // TODO
+    func editUserProfile(userProfile: UserModel, image: UIImage, completion: SendRequestResult?) {
+        var params = Parameters()
+        params["name"] = userProfile.name
+        params["selfIntro"] = userProfile.selfIntro
+        params["contact"] = userProfile.contact
+        params["gender"] = userProfile.gender?.rawValue ?? Gender.Male.rawValue
+        post(at: .getUserProfile, params: params).responseJSON { (res: DataResponse<Any>) in
+            var result: UserModel? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }
+            if let result = result { DataStore.shared.user = result }
+            completion?(nil, res.result.error)
+        }
     }
 
-    func getMessageSummaries(userId: Int, completion: @escaping ([MessageSummaryModel]?, Error?) -> Void) {
+    func getMessageSummaries(completion: @escaping ([MessageSummaryModel]?, Error?) -> Void) {
         get(at: .getMessageSummaries).responseJSON { (res: DataResponse<Any>) in
             var result: [MessageSummaryModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([MessageSummaryModel].self, from: data) }
@@ -30,7 +40,7 @@ extension AlamofireService: GeneralService {
         }
     }
 
-    func getNotificationSummaries(userId: Int, completion: @escaping ([NotificationSummaryModel]?, Error?) -> Void) {
+    func getNotificationSummaries(completion: @escaping ([NotificationSummaryModel]?, Error?) -> Void) {
         get(at: .getNotificationSummaries).responseJSON { (res: DataResponse<Any>) in
             var result: [NotificationSummaryModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([NotificationSummaryModel].self, from: data) }
@@ -38,8 +48,12 @@ extension AlamofireService: GeneralService {
         }
     }
 
-    func getCalendarSummaries(userId: Int, year: Int, month: Int, completion: @escaping ([CalendarDataListModel]?, Error?) -> Void) {
-        // TODO
+    func getCalendarSummaries(year: Int, month: Int, completion: @escaping ([CalendarDataListModel]?, Error?) -> Void) {
+        get(at: .getCalendarSummaries).responseJSON { (res: DataResponse<Any>) in
+            var result: [CalendarDataListModel]? = nil
+            if let data = res.data { result = try? JSONDecoder().decode([CalendarDataListModel].self, from: data) }
+            completion(result, res.result.error)
+        }
     }
 
     func getBlogSummaries(completion: @escaping ([BlogSummaryModel]?, Error?) -> Void) {

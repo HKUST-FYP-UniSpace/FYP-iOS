@@ -10,14 +10,14 @@ import Foundation
 
 extension TestService: OwnerService {
 
-    func getOwnerHouseSummary(userId: Int, completion: @escaping ([OwnerHouseSummaryModel]?, Error?) -> Void) {
+    func getOwnerHouseSummary(completion: @escaping ([OwnerHouseSummaryModel]?, Error?) -> Void) {
         var summaries: [OwnerHouseSummaryModel]? = []
         for _ in 0..<Int.random(in: (1..<5)) { summaries?.append(TestOwnerHouseSummaryModel().toModel()) }
         summaries?.sort(by: { $0.createTime > $1.createTime })
         delay { completion(summaries, nil) }
     }
 
-    func getOwnerTeamsSummary(userId: Int, houseId: Int, completion: @escaping (OwnerTeamsModel?, Error?) -> Void) {
+    func getOwnerTeamsSummary(houseId: Int, completion: @escaping (OwnerTeamsModel?, Error?) -> Void) {
         var arrangingTeams: [HouseTeamSummaryModel] = []
         var formingTeams: [HouseTeamSummaryModel] = []
         var reviews: [HouseReviewModel] = []
@@ -29,7 +29,7 @@ extension TestService: OwnerService {
         delay { completion(model, nil) }
     }
 
-    func replyReivew(userId: Int, reviewId: Int, comment: String, completion: SendRequestResult?) {
+    func replyReivew(reviewId: Int, comment: String, completion: SendRequestResult?) {
         delay { completion?(nil, nil) }
     }
 

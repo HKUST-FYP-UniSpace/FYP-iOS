@@ -14,7 +14,7 @@ extension TestService: GeneralService {
         delay { completion(DataStore.shared.user, nil) }
     }
 
-    func editUserProfile(userId: Int, userProfile: UserModel, image: UIImage, completion: SendRequestResult?) {
+    func editUserProfile(userProfile: UserModel, image: UIImage, completion: SendRequestResult?) {
         DataStore.shared.user?.name = userProfile.name
         DataStore.shared.user?.selfIntro = userProfile.selfIntro
         DataStore.shared.user?.contact = userProfile.contact
@@ -22,14 +22,14 @@ extension TestService: GeneralService {
         delay { completion?(nil, nil) }
     }
 
-    func getMessageSummaries(userId: Int, completion: @escaping ([MessageSummaryModel]?, Error?) -> Void) {
+    func getMessageSummaries(completion: @escaping ([MessageSummaryModel]?, Error?) -> Void) {
         var summaries: [MessageSummaryModel]? = []
         for _ in 0..<Int.random(in: (5..<30)) { summaries?.append(TestMessageSummaryModel().toModel()) }
         summaries?.sort(by: { $0.time > $1.time })
         delay { completion(summaries, nil) }
     }
 
-    func getNotificationSummaries(userId: Int, completion: @escaping ([NotificationSummaryModel]?, Error?) -> Void) {
+    func getNotificationSummaries(completion: @escaping ([NotificationSummaryModel]?, Error?) -> Void) {
         var summaries: [NotificationSummaryModel]? = []
         summaries?.append(TestNotificationSummaryModel(title: "Derek K. responds to your team request", subtitle: "Welcome buddy!").toModel())
         summaries?.append(TestNotificationSummaryModel(title: "Jessi J. replied to your comment", subtitle: "Looking good man!!").toModel())
@@ -39,7 +39,7 @@ extension TestService: GeneralService {
         delay { completion(summaries, nil) }
     }
 
-    func getCalendarSummaries(userId: Int, year: Int, month: Int, completion: @escaping ([CalendarDataListModel]?, Error?) -> Void) {
+    func getCalendarSummaries(year: Int, month: Int, completion: @escaping ([CalendarDataListModel]?, Error?) -> Void) {
         var summaries: [CalendarDataListModel]? = []
         for _ in 3...7 {
             let summary = CalendarDataListModel()

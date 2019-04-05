@@ -11,17 +11,14 @@ import Alamofire
 extension AlamofireService: AuthService {
     
     func authorize(completion: @escaping (UserModel?, Error?) -> Void) {
-        post(at: .authorize, params: getCredentials()).responseJSON { (res: DataResponse<Any>) in
-            var result: UserModel? = nil
-            if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }
-//            result = TestUserModel(email: "register@gmail.com",
-//                                   username: "register",
-//                                   role: .Tenant,
-//                                   verified: true,
-//                                   hasPreference: false).toUserModel()
-            DataStore.shared.user = result
-            completion(result, res.result.error)
-        }
+//        post(at: .authorize, params: getCredentials()).responseJSON { (res: DataResponse<Any>) in
+//            var result: UserModel? = nil
+//            if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }
+//            DataStore.shared.user = result
+//            completion(result, res.result.error)
+//        }
+        DataStore.shared.user?.id = 1
+        completion(DataStore.shared.user, nil)
     }
     
     func register(userType: UserType, username: String, name: String, email: String, password: String, completion: @escaping (UserModel?, Error?) -> Void) {
@@ -33,21 +30,32 @@ extension AlamofireService: AuthService {
         }
     }
     
-    func verify(userId: Int, code: String, completion: @escaping (UserModel?, Error?) -> Void) {
+    func verify(code: String, completion: @escaping (UserModel?, Error?) -> Void) {
         var params = Parameters()
         params["code"] = code
-        post(at: .verify(userId: userId), params: params).responseJSON { (res: DataResponse<Any>) in
-            var result: UserModel? = nil
-            if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }
-            completion(result, res.result.error)
+        post(at: .verify, params: params).responseJSON { (res: DataResponse<Any>) in
+            var result: Bool? = nil
+            if let data = res.result.value { result = self.transform(from: data, type: Bool.self) }
+            guard let isVerified = result else {
+                completion(nil, ServerError.UnknownClassType(object: "Verify"))
+                return
+            }
+            DataStore.shared.user?.verified = isVerified
+            completion(DataStore.shared.user, res.result.error)
         }
     }
 
     func existUsername(username: String, completion: @escaping (Bool?, Error?) -> Void) {
-        post(at: .existUsername(username: username)).responseJSON { (res: DataResponse<Any>) in
+        var params = Parameters()
+        params["username"] = username
+        post(at: .existUsername, params: params).responseJSON { (res: DataResponse<Any>) in
             var result: Bool? = nil
-            if let data = res.data { result = try? JSONDecoder().decode(Bool.self, from: data) }
-            completion(result, res.result.error)
+            if let data = res.result.value { result = self.transform(from: data, type: Bool.self) }
+            guard let isExists = result else {
+                completion(nil, ServerError.UnknownClassType(object: "Exist"))
+                return
+            }
+            completion(isExists, res.result.error)
         }
     }
     

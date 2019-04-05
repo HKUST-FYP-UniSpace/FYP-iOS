@@ -14,8 +14,7 @@ protocol AuthService: class {
     
     func register(userType: UserType, username: String, name: String, email: String, password: String, completion: @escaping (_ user: UserModel?, _ error: Error?) -> Void)
     
-    //  or no userId is needed bc of the token
-    func verify(userId: Int, code: String, completion: @escaping (_ user: UserModel?, _ error: Error?) -> Void)
+    func verify(code: String, completion: @escaping (_ user: UserModel?, _ error: Error?) -> Void)
 
     func existUsername(username: String, completion: @escaping (_ exist: Bool?, _ error: Error?) -> Void)
     

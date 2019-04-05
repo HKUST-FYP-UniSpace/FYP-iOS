@@ -13,14 +13,16 @@ enum ApiRoute { case
     // auth
     authorize,
     register,
-    verify(userId: Int),
-    existUsername(username: String),
+    verify,
+    existUsername,
 
     // general
     getMyUserDetail,
-    getUserProfile(userId: Int),
+    getUserProfile,
+    editUserProfile,
     getMessageSummaries,
     getNotificationSummaries,
+    getCalendarSummaries,
     getBlogSummaries,
     getBlogDetail(blogId: Int),
 
@@ -32,8 +34,10 @@ enum ApiRoute { case
     getHouseSaved,
     getHouseList(filter: HouseFilterModel),
     getHouseView(houseId: Int),
+    getHouseHistory,
     bookmarkHouse(houseId: Int),
     updatePreference,
+    updateTeamPreference(teamId: Int),
     getTeamView(teamId: Int),
     createTeam(houseId: Int),
     createTeamImage(teamId: Int),
@@ -44,6 +48,7 @@ enum ApiRoute { case
     getTradeSellingItems,
     getTradeSaved,
     getTradeList(filter: TradeFilterModel),
+    getTradeHistory,
     createTradeItem,
     createTradeItemImage(itemId: Int),
     getTradeDetail(itemId: Int),
@@ -54,6 +59,7 @@ enum ApiRoute { case
     sendLogs
     
     var path: String {
+        let userId = DataStore.shared.user?.id ?? -1
         switch self {
         case .authorize:
             return "users/login"
@@ -61,17 +67,20 @@ enum ApiRoute { case
         case .register:
             return "users/register"
 
-        case .verify(let userId):
+        case .verify:
             return "users/verify/\(userId)"
 
-//        case .existUsername(let username):
-//            return ""
-//
+        case .existUsername:
+            return "users/check/username"
+
 //        case .getMyUserDetail:
 //            return ""
 
-        case .getUserProfile(let userId):
+        case .getUserProfile:
             return "users/profile/\(userId)"
+
+        case .editUserProfile:
+            return "users/profile/\(userId)/edit"
 
 //        case .getMessageSummaries:
 //            return ""
@@ -79,11 +88,14 @@ enum ApiRoute { case
 //        case .getNotificationSummaries:
 //            return ""
 //
-//        case .getBlogSummaries:
-//             return ""
+//        case .getCalendarSummaries:
+//            return ""
+
+        case .getBlogSummaries:
+             return "blog/summary"
 
         case .getBlogDetail(let blogId):
-            return "blog/\(blogId)"
+            return "blog/\(blogId)/detail"
 
 //        case .getOwnerStatsSummary:
 //            return ""
@@ -92,57 +104,66 @@ enum ApiRoute { case
 //            return ""
 
         case .getHouseSaved:
-            return "houseBookmark"
+            return "house/\(userId)/saved"
 
         case .getHouseList(let filter):
             log.info("House Filter not handled", context: "\(filter)")
-            return "house"
+            return "house/\(userId)/index"
 
         case .getHouseView(let houseId):
-            return "house/\(houseId)"
+            return "house/\(userId)/houseView/\(houseId)"
 
-        case .bookmarkHouse(let houseId):
-            return "houseBookmark/\(houseId)"
+        case .getHouseHistory:
+            return "house/\(userId)/history"
 
-//        case .updatePreference:
-//            return ""
-//
-//        case .getTeamView(let teamId):
-//            return ""
-//
-//        case .createTeam(let houseId):
-//            return ""
-//
-//        case .createTeamImage(let teamId):
-//            return ""
-//
-//        case .joinTeam(let teamId):
-//            return ""
-//
+        case .bookmarkHouse( _):
+            return "houseBookmark"
+
+        case .updatePreference:
+            return "users/preference/\(userId)/edit"
+
+        case .updateTeamPreference(let teamId):
+            return "housePostGroup/\(teamId)/preference"
+
+        case .getTeamView(let teamId):
+            return "housePostGroup/\(teamId)"
+
+        case .createTeam( _):
+            return "housePostGroup"
+
+        case .createTeamImage( _):
+            return "housePostGroup/image/upload"
+
+        case .joinTeam(let teamId):
+            return "housePostGroup/\(teamId)/join"
+
 //        case .getTradeFeatured:
 //            return ""
-//
-//        case .getTradeSellingItems:
-//            return ""
+
+        case .getTradeSellingItems:
+            return "trade/\(userId)/selling"
 
         case .getTradeSaved:
-            return "tradeBookmark"
+            return "trade/\(userId)/bookmarked"
 
         case .getTradeList(let filter):
             log.info("Trade Filter not handled", context: "\(filter)")
             return "trade"
 
+        case .getTradeHistory:
+            return "trade/\(userId)/history"
+
         case .createTradeItem:
             return "trade"
 
-//        case .createTradeItemImage(let itemId):
-//            return ""
+        case .createTradeItemImage( _):
+            return "trade/image/upload"
 
         case .getTradeDetail(let itemId):
-            return "trade/\(itemId)"
+            return "trade/\(userId)/trade/\(itemId)"
 
-        case .bookmarkItem(let itemId):
-            return "tradeBookmark/\(itemId)"
+        case .bookmarkItem( _):
+            return "tradeBookmark"
 
 //        case .contactOwner(let itemId):
 //            return ""

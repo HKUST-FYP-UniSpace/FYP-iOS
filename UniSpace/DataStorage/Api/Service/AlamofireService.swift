@@ -12,6 +12,19 @@ import AlamofireImage
 typealias DownloadProgress = (_ fractionCompleted: String) -> Void
 typealias SendRequestResult = (String?, Error?) -> Void
 
+enum ServerError: LocalizedError {
+    case UnknownClassType(object: String)
+
+    var errorDescription: String? {
+        get {
+            switch self {
+            case .UnknownClassType(let object):
+                return "Not appropriate \(object)"
+            }
+        }
+    }
+}
+
 class AlamofireService: NSObject {
 
     public static let shared:AlamofireService = AlamofireService()
@@ -170,17 +183,10 @@ extension AlamofireService {
         }
     }
 
-    func transformToDicts(from: Any?) -> [Dictionary<String, Any>] {
-        let lists = from as? Dictionary<String, Any>
-        var result: [Dictionary<String, Any>]?
-
-        if let lists = lists {
-            for list in lists {
-                result = list.value as? [Dictionary<String, Any>]
-            }
-        }
-
-        return result ?? []
+    func transform<T>(from: Any?, type: T.Type) -> T? {
+        guard let lists = from as? Dictionary<String, Any>, !lists.isEmpty else { return nil }
+        for list in lists { return list.value as? T }
+        return nil
     }
 
     func sendLogs(_ url: URL, completion: SendRequestResult?) {

@@ -9,26 +9,26 @@
 import UIKit
 
 extension TestService: HouseService {
-    
-    func getHouseSuggestions(userId: Int, completion: @escaping ([HouseSuggestionModel]?, Error?) -> Void) {
+
+    func getHouseSuggestions(completion: @escaping ([HouseSuggestionModel]?, Error?) -> Void) {
         var summaries: [HouseSuggestionModel]? = []
         for _ in 0..<Int.random(in: (2..<10)) { summaries?.append(TestHouseSuggestionModel().toModel()) }
         delay { completion(summaries, nil) }
     }
 
-    func getHouseSaved(userId: Int, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
+    func getHouseSaved(completion: @escaping ([HouseListModel]?, Error?) -> Void) {
         var summaries: [HouseListModel]? = []
         for _ in 0..<Int.random(in: (1..<5)) { summaries?.append(TestHouseListModel().toModel()) }
         delay { completion(summaries, nil) }
     }
 
-    func getHouseHistory(userId: Int, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
+    func getHouseHistory(completion: @escaping ([HouseListModel]?, Error?) -> Void) {
         var summaries: [HouseListModel]? = []
         for _ in 0..<Int.random(in: (1..<5)) { summaries?.append(TestHouseListModel().toModel()) }
         delay { completion(summaries, nil) }
     }
 
-    func getHouseList(userId: Int, filter: HouseFilterModel, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
+    func getHouseList(filter: HouseFilterModel, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
         var summaries: [HouseListModel]? = []
         for _ in 0..<Int.random(in: (5..<30)) { summaries?.append(TestHouseListModel().toModel()) }
         delay { completion(summaries, nil) }
@@ -53,24 +53,28 @@ extension TestService: HouseService {
         delay { completion(model, nil) }
     }
 
-    func bookmarkHouse(userId: Int, houseId: Int, completion: SendRequestResult?) {
+    func bookmarkHouse(houseId: Int, bookmarked: Bool, completion: SendRequestResult?) {
         delay { completion?(nil, nil) }
     }
 
-    func addReview(userId: Int, review: HouseReviewModel, completion: SendRequestResult?) {
+    func addReview(review: HouseReviewModel, completion: SendRequestResult?) {
         delay { completion?(nil, nil) }
     }
 
-    func changePreference(userId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
+    func changePreference(preference: PreferenceModel, completion: SendRequestResult?) {
         DataStore.shared.user?.preference = preference
         delay { completion?(nil, nil) }
     }
 
-    func createTeam(userId: Int, houseId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
+    func changeTeamPreference(teamId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
         delay { completion?(nil, nil) }
     }
 
-    func joinTeam(userId: Int, teamId: Int, completion: SendRequestResult?) {
+    func createTeam(houseId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
+    }
+
+    func joinTeam(teamId: Int, completion: SendRequestResult?) {
         delay { completion?(nil, nil) }
     }
 

@@ -38,7 +38,7 @@ final class TradeDetailVC: MasterVC, ListAdapterDataSource, Bookmarkable {
         self.isBookmarked = !self.isBookmarked
         self.navigationItem.rightBarButtonItem = self.createBookmark(isBookmarked: self.isBookmarked)
         generator.notificationOccurred(.success)
-        DataStore.shared.bookmarkItem(itemId: tradeItemId) { (msg, error) in
+        DataStore.shared.bookmarkItem(itemId: tradeItemId, bookmarked: self.isBookmarked) { (msg, error) in
             guard !self.sendFailed(msg, error: error) else { return }
         }
     }

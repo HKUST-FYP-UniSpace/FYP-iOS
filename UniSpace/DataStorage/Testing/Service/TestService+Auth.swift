@@ -20,7 +20,7 @@ extension TestService: AuthService {
         delay { completion(user, nil) }
     }
     
-    func verify(userId: Int, code: String, completion: @escaping (UserModel?, Error?) -> Void) {
+    func verify(code: String, completion: @escaping (UserModel?, Error?) -> Void) {
         DataStore.shared.user?.verified = true
         delay { completion(DataStore.shared.user, nil) }
     }

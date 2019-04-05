@@ -55,8 +55,6 @@ class UserModel: Decodable, User {
         if let isActive = try? container.decode(Bool.self, forKey: .isActive) { self.isActive = isActive }
         if let createTime = try? container.decode(Double.self, forKey: .createTime) { self.createTime = createTime }
         if let verified = try? container.decode(Bool.self, forKey: .verified) { self.verified = verified }
-
-        dump(self)
     }
 
     func getNameAndUsername() -> String {

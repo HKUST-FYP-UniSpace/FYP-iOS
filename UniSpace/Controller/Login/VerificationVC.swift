@@ -39,7 +39,7 @@ class VerificationVC: MasterLoginVC {
     @objc func handleVerify() {
         view.endEditing(true)
         UINotificationFeedbackGenerator().notificationOccurred(.success)
-        guard let id = DataStore.shared.user?.id, let code = codeTextField.text else {
+        guard let code = codeTextField.text else {
             showAlert(title: "Please input the code")
             return
         }
@@ -49,7 +49,7 @@ class VerificationVC: MasterLoginVC {
             return
         }
         
-        DataStore.shared.verify(userId: id, code: code) { (user, error) in
+        DataStore.shared.verify(code: code) { (user, error) in
             guard user != nil else {
                 self.showAlert(title: "Wrong code")
                 return

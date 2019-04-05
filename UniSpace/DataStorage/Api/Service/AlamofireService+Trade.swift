@@ -9,7 +9,7 @@ import Alamofire
 
 extension AlamofireService: TradeService {
 
-    func getTradeFeatured(userId: Int, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
+    func getTradeFeatured(completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
         get(at: .getTradeFeatured).responseJSON { (res: DataResponse<Any>) in
             var result: [TradeFeaturedModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([TradeFeaturedModel].self, from: data) }
@@ -17,7 +17,7 @@ extension AlamofireService: TradeService {
         }
     }
 
-    func getTradeSellingItems(userId: Int, completion: @escaping ([TradeSellingItemModel]?, Error?) -> Void) {
+    func getTradeSellingItems(completion: @escaping ([TradeSellingItemModel]?, Error?) -> Void) {
         get(at: .getTradeSellingItems).responseJSON { (res: DataResponse<Any>) in
             var result: [TradeSellingItemModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([TradeSellingItemModel].self, from: data) }
@@ -25,7 +25,7 @@ extension AlamofireService: TradeService {
         }
     }
 
-    func getTradeSaved(userId: Int, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
+    func getTradeSaved(completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
         get(at: .getTradeSaved).responseJSON { (res: DataResponse<Any>) in
             var result: [TradeFeaturedModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([TradeFeaturedModel].self, from: data) }
@@ -33,11 +33,15 @@ extension AlamofireService: TradeService {
         }
     }
 
-    func getTradeHistory(userId: Int, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
-        // TODO
+    func getTradeHistory(completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
+        get(at: .getTradeHistory).responseJSON { (res: DataResponse<Any>) in
+            var result: [TradeFeaturedModel]? = nil
+            if let data = res.data { result = try? JSONDecoder().decode([TradeFeaturedModel].self, from: data) }
+            completion(result, res.result.error)
+        }
     }
 
-    func getTradeList(userId: Int, filter: TradeFilterModel, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
+    func getTradeList(filter: TradeFilterModel, completion: @escaping ([TradeFeaturedModel]?, Error?) -> Void) {
         get(at: .getTradeList(filter: filter)).responseJSON { (res: DataResponse<Any>) in
             var result: [TradeFeaturedModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([TradeFeaturedModel].self, from: data) }
@@ -45,7 +49,7 @@ extension AlamofireService: TradeService {
         }
     }
 
-    func createTradeItem(userId: Int, model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
+    func createTradeItem(model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
         let params = getItemParams(model)
         post(at: .updatePreference, params: params).responseJSON { (res: DataResponse<Any>) in
             var result: ServerMessage? = nil
@@ -55,7 +59,7 @@ extension AlamofireService: TradeService {
         }
     }
 
-    func editTradeItem(userId: Int, model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
+    func editTradeItem(model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
         // TODO
     }
 
@@ -71,15 +75,19 @@ extension AlamofireService: TradeService {
         }
     }
 
-    func bookmarkItem(userId: Int, itemId: Int, completion: SendRequestResult?) {
-        post(at: .bookmarkItem(itemId: itemId)).responseJSON { (res: DataResponse<Any>) in
+    func bookmarkItem(itemId: Int, bookmarked: Bool, completion: SendRequestResult?) {
+        var params = Parameters()
+        params["userId"] = DataStore.shared.user?.id
+        params["itemId"] = itemId
+        params["bookmarked"] = bookmarked
+        post(at: .bookmarkItem(itemId: itemId), params: params).responseJSON { (res: DataResponse<Any>) in
             var result: ServerMessage? = nil
             if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
             completion?(result?.message, res.result.error)
         }
     }
 
-    func contactOwner(userId: Int, itemId: Int, message: String, completion: SendRequestResult?) {
+    func contactOwner(itemId: Int, message: String, completion: SendRequestResult?) {
         let params = getContactOwnerParams(message)
         post(at: .contactOwner(itemId: itemId), params: params).responseJSON { (res: DataResponse<Any>) in
             var result: ServerMessage? = nil
@@ -92,6 +100,15 @@ extension AlamofireService: TradeService {
 
 extension AlamofireService {
     private func getItemParams(_ model: TradeFeaturedModel) -> Parameters {
+        var params = Parameters()
+        params["userId"] = DataStore.shared.user?.id
+        params["name"] = model.title
+        params["price"] = model.price
+        params["description"] = model.detail
+        // TODO
+        params["quantity"] = 1
+        params["trade_category_id"] = 1
+        params["trade_condition_type_id"] = 1
         return Parameters()
     }
 

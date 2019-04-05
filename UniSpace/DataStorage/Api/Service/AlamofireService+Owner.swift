@@ -10,7 +10,7 @@ import Alamofire
 
 extension AlamofireService: OwnerService {
 
-    func getOwnerHouseSummary(userId: Int, completion: @escaping ([OwnerHouseSummaryModel]?, Error?) -> Void) {
+    func getOwnerHouseSummary(completion: @escaping ([OwnerHouseSummaryModel]?, Error?) -> Void) {
         get(at: .getOwnerStatsSummary).responseJSON { (res: DataResponse<Any>) in
             var result: [OwnerHouseSummaryModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([OwnerHouseSummaryModel].self, from: data) }
@@ -18,11 +18,11 @@ extension AlamofireService: OwnerService {
         }
     }
 
-    func getOwnerTeamsSummary(userId: Int, houseId: Int, completion: @escaping (OwnerTeamsModel?, Error?) -> Void) {
+    func getOwnerTeamsSummary(houseId: Int, completion: @escaping (OwnerTeamsModel?, Error?) -> Void) {
         // TODO
     }
 
-    func replyReivew(userId: Int, reviewId: Int, comment: String, completion: SendRequestResult?) {
+    func replyReivew(reviewId: Int, comment: String, completion: SendRequestResult?) {
         // TODO
     }
 

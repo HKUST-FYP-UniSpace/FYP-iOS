@@ -10,7 +10,7 @@ import Alamofire
 
 extension AlamofireService: HouseService {
 
-    func getHouseSuggestions(userId: Int, completion: @escaping ([HouseSuggestionModel]?, Error?) -> Void) {
+    func getHouseSuggestions(completion: @escaping ([HouseSuggestionModel]?, Error?) -> Void) {
         get(at: .getHouseSuggestions).responseJSON { (res: DataResponse<Any>) in
             var result: [HouseSuggestionModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([HouseSuggestionModel].self, from: data) }
@@ -18,7 +18,7 @@ extension AlamofireService: HouseService {
         }
     }
 
-    func getHouseSaved(userId: Int, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
+    func getHouseSaved(completion: @escaping ([HouseListModel]?, Error?) -> Void) {
         get(at: .getHouseSaved).responseJSON { (res: DataResponse<Any>) in
             var result: [HouseListModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([HouseListModel].self, from: data) }
@@ -26,11 +26,15 @@ extension AlamofireService: HouseService {
         }
     }
 
-    func getHouseHistory(userId: Int, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
-        // TODO
+    func getHouseHistory(completion: @escaping ([HouseListModel]?, Error?) -> Void) {
+        get(at: .getHouseHistory).responseJSON { (res: DataResponse<Any>) in
+            var result: [HouseListModel]? = nil
+            if let data = res.data { result = try? JSONDecoder().decode([HouseListModel].self, from: data) }
+            completion(result, res.result.error)
+        }
     }
 
-    func getHouseList(userId: Int, filter: HouseFilterModel, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
+    func getHouseList(filter: HouseFilterModel, completion: @escaping ([HouseListModel]?, Error?) -> Void) {
         get(at: .getHouseList(filter: filter)).responseJSON { (res: DataResponse<Any>) in
             var result: [HouseListModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([HouseListModel].self, from: data) }
@@ -54,19 +58,23 @@ extension AlamofireService: HouseService {
         }
     }
 
-    func bookmarkHouse(userId: Int, houseId: Int, completion: SendRequestResult?) {
-        post(at: .bookmarkHouse(houseId: houseId)).responseJSON { (res: DataResponse<Any>) in
+    func bookmarkHouse(houseId: Int, bookmarked: Bool, completion: SendRequestResult?) {
+        var params = Parameters()
+        params["userId"] = DataStore.shared.user?.id
+        params["houseId"] = houseId
+        params["bookmarked"] = bookmarked
+        post(at: .bookmarkHouse(houseId: houseId), params: params).responseJSON { (res: DataResponse<Any>) in
             var result: ServerMessage? = nil
             if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
             completion?(result?.message, res.result.error)
         }
     }
 
-    func addReview(userId: Int, review: HouseReviewModel, completion: SendRequestResult?) {
+    func addReview(review: HouseReviewModel, completion: SendRequestResult?) {
         // TODO
     }
 
-    func changePreference(userId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
+    func changePreference(preference: PreferenceModel, completion: SendRequestResult?) {
         let params = getPreferenceParams(preference)
         post(at: .updatePreference, params: params).responseJSON { (res: DataResponse<Any>) in
             var result: ServerMessage? = nil
@@ -75,21 +83,35 @@ extension AlamofireService: HouseService {
         }
     }
 
-    func createTeam(userId: Int, houseId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
+    func changeTeamPreference(teamId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
+        // TODO
+    }
+
+    func createTeam(houseId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
         let params = getTeamParams(model)
         post(at: .updatePreference, params: params).responseJSON { (res: DataResponse<Any>) in
-            var result: ServerMessage? = nil
-            if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
-            completion?(result?.message, res.result.error)
-            // TODO: send image
+            var result: Int? = nil
+            if let data = res.result.value { result = self.transform(from: data, type: Int.self) }
+            guard let teamId = result else {
+                completion?(nil, ServerError.UnknownClassType(object: "Team ID"))
+                return
+            }
+            self.joinTeam(teamId: teamId, completion: completion)
         }
     }
 
-    func joinTeam(userId: Int, teamId: Int, completion: SendRequestResult?) {
-        post(at: .joinTeam(teamId: teamId)).responseJSON { (res: DataResponse<Any>) in
-            var result: ServerMessage? = nil
-            if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
-            completion?(result?.message, res.result.error)
+    func joinTeam(teamId: Int, completion: SendRequestResult?) {
+        var params = Parameters()
+        params["userId"] = DataStore.shared.user?.id
+        post(at: .joinTeam(teamId: teamId), params: params).responseJSON { (res: DataResponse<Any>) in
+            var result: Bool? = nil
+            if let data = res.result.value { result = self.transform(from: data, type: Bool.self) }
+            guard let isSuccess = result else {
+                completion?(nil, ServerError.UnknownClassType(object: "Result"))
+                return
+            }
+            let msg: String? = (isSuccess ? nil : "Unable to join")
+            completion?(msg, res.result.error)
         }
     }
 
@@ -97,7 +119,14 @@ extension AlamofireService: HouseService {
 
 extension AlamofireService {
     private func getPreferenceParams(_ preference: PreferenceModel) -> Parameters {
-        return Parameters()
+        var params = Parameters()
+        params["gender"] = preference.gender?.rawValue
+        params["petFree"] = preference.petFree
+        params["timeInHouse"] = preference.timeInHouse
+        params["personalities"] = preference.personalities
+        params["interests"] = preference.interests
+        dump(params)
+        return params
     }
 
     private func getTeamParams(_ model: HouseTeamSummaryModel) -> Parameters {
