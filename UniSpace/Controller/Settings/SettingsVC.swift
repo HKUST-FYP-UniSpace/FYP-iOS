@@ -189,6 +189,32 @@ class SettingsVC: FormViewController {
             }
 
             <<< LabelRow() {
+                $0.title = "Show Local Tenant View (for development)"
+                }
+                .cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = UIColor(r: 25, g: 133, b: 132)
+                }
+                .onCellSelection { (cell, row) in
+                    DataStore.shared.changeService(.Local)
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.addUserCredential(.Local, role: .Tenant)
+                    appDelegate.tryToLogin()
+            }
+
+            <<< LabelRow() {
+                $0.title = "Show Local Owner View (for development)"
+                }
+                .cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = UIColor(r: 25, g: 133, b: 132)
+                }
+                .onCellSelection { (cell, row) in
+                    DataStore.shared.changeService(.Local)
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.addUserCredential(.Local, role: .Owner)
+                    appDelegate.tryToLogin()
+            }
+
+            <<< LabelRow() {
                 $0.title = "Sign Out"
                 }
                 .cellUpdate { (cell, row) in

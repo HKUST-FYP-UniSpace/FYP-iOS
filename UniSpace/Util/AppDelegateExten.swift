@@ -41,20 +41,21 @@ extension AppDelegate {
         }
     }
     
-    func addUserCredential() {
-        // Alamofire Service
-        DataStore.shared.savePref(.username, value: "server")
-        DataStore.shared.savePref(.password, value: "12345678aa")
-
-        // Test Service
-        let user = TestUserModel(email: "123@test.com",
-                                 username: "StarSpangledMan",
-                                 name: "Steve Rogers",
-                                 role: .Tenant,
-                                 verified: true,
-                                 hasPreference: true)
-        user.photoURL = "https://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2016/08/steve-rogers.jpg?itok=PKuv3pPL"
-        DataStore.shared.user = user.toUserModel()
+    func addUserCredential(_ service: Service, role: UserType) {
+        switch service {
+        case .Alamofire:
+            DataStore.shared.savePref(.username, value: "server")
+            DataStore.shared.savePref(.password, value: "12345678aa")
+        case .Local:
+            let user = TestUserModel(email: "123@test.com",
+                                     username: "StarSpangledMan",
+                                     name: "Steve Rogers",
+                                     role: role,
+                                     verified: true,
+                                     hasPreference: true)
+            user.photoURL = "https://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2016/08/steve-rogers.jpg?itok=PKuv3pPL"
+            DataStore.shared.user = user.toUserModel()
+        }
     }
     
     func tryToLogin() {

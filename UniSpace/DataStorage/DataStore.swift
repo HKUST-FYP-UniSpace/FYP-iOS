@@ -8,17 +8,26 @@
 
 import Foundation
 
+enum Service {
+    case Alamofire
+    case Local
+}
+
 class DataStore: NSObject {
     
     public static let shared: DataStore = DataStore()
-    
+    private var currentService: Service = .Local
+
     private override init() {
         super.init()
     }
+
+    func changeService(_ service: Service) {
+        self.currentService = service
+    }
     
     func Service() -> AuthService & GeneralService & OwnerService & HouseService & TradeService {
-        return AlamofireService.shared
-//        return true ? TestService.shared : AlamofireService.shared
+        return currentService == .Local ? TestService.shared : AlamofireService.shared
     }
     
     var user: UserModel?
