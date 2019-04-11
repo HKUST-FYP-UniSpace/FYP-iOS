@@ -9,7 +9,7 @@
 import Foundation
 import IGListKit
 
-class PreferenceModel: Decodable, ListDiffable, Preference {
+class PreferenceModel: Codable, ListDiffable, Preference {
 
     var id: Int = DataStore.shared.randomInt(length: 8)
     var gender: Gender? = nil
@@ -54,8 +54,7 @@ class PreferenceModel: Decodable, ListDiffable, Preference {
     }
 
     func allSet() -> Bool {
-        return petFree != nil
-            && timeInHouse != nil
+        return timeInHouse != nil
             && personalities != nil
             && interests != nil
     }

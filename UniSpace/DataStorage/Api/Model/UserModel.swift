@@ -50,9 +50,13 @@ class UserModel: Decodable, Equatable, User {
         decode(container, &email, type: String.self, forKey: .email)
         decode(container, &gender, type: Gender?.self, forKey: .gender)
         decode(container, &userType, type: UserType.self, forKey: .role)
-        decode(container, &isActive, type: Bool.self, forKey: .isActive)
+        var isActiveInt: Int = 0
+        decode(container, &isActiveInt, type: Int.self, forKey: .isActive)
+        isActive = isActiveInt == 1
         decode(container, &createTime, type: Double.self, forKey: .createTime)
-        decode(container, &verified, type: Bool.self, forKey: .verified)
+        var isVerifiedInt: Int = 0
+        decode(container, &isVerifiedInt, type: Int.self, forKey: .verified)
+        verified = isVerifiedInt == 1
     }
 
     private func decode<T>(_ container: KeyedDecodingContainer<CodingKeys>, _ variable: inout T, type: T.Type, forKey key: CodingKeys) where T: Decodable {

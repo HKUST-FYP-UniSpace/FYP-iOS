@@ -24,7 +24,7 @@ class AddReviewVC: MasterFormPopupVC {
         let date = DateManager.shared.getCurrentDate()
         form +++ Section("")
             <<< getLabelRow(id: nil, title: "Date", displayValue: DateManager.shared.convertToDateFormat(date: date))
-            <<< getStepperRow(id: "ratings", title: "Ratings", defaultValue: 5, max: 5, min: 0, step: 0.5, displayWithText: "")
+            <<< getStepperRow(id: "ratings", title: "Ratings", defaultValue: 5, max: 5, min: 0, step: 1, displayWithText: "")
             <<< getTextAreaRow(id: "title", placeholder: "feedback title", defaultValue: nil)
             <<< getTextAreaRow(id: "detail", placeholder: "feedback detail", defaultValue: nil)
 

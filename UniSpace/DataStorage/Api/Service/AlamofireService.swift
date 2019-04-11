@@ -14,12 +14,15 @@ typealias SendRequestResult = (String?, Error?) -> Void
 
 enum ServerError: LocalizedError {
     case UnknownClassType(object: String)
+    case ImageFormatError(format: String)
 
     var errorDescription: String? {
         get {
             switch self {
             case .UnknownClassType(let object):
                 return "Not appropriate \(object)"
+            case .ImageFormatError(let format):
+                return "Can't convert to \(format) format"
             }
         }
     }
@@ -33,6 +36,11 @@ class AlamofireService: NSObject {
 
     var headers: [String: String] = [
         "Content-Type": "application/json",
+        "Accept": "application/json"
+    ]
+
+    var uploadHeaders: [String: String] = [
+        "Content-Type": "multipart/form-data",
         "Accept": "application/json"
     ]
 
@@ -65,22 +73,18 @@ class AlamofireService: NSObject {
         return response
     }
 
-    func easyUpload(at route: ApiRoute, dataFormation: @escaping (_ multipartFormData: MultipartFormData) -> (), completion: @escaping (_ serverMessage: ServerMessage?, _ error: Error?) -> Void) {
+    func easyUpload(at route: ApiRoute, dataFormation: @escaping (_ multipartFormData: MultipartFormData) -> (), completion: @escaping (_ res: DataResponse<Any>) -> Void) {
         upload(at: route, dataFormation: dataFormation) { (dataRequest, error) in
             if let dataRequest = dataRequest {
                 dataRequest.responseJSON(completionHandler: { (res) in
-                    var result: ServerMessage? = nil
-                    if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
-                    completion(result, res.result.error)
+                    completion(res)
                 })
-            } else {
-                completion(nil, error)
             }
         }
     }
 
     private func upload(at route: ApiRoute, dataFormation: @escaping (_ multipartFormData: MultipartFormData) -> (), completion: @escaping (_ dataRequest: DataRequest?, _ error: Error?) -> Void) {
-        manager.upload(multipartFormData: dataFormation, to: route.url()) { (encodingResult) in
+        manager.upload(multipartFormData: dataFormation, to: route.url(), method: .post, headers: uploadHeaders) { (encodingResult) in
             switch encodingResult {
             case .success(let upload, _, _):
                 let response = upload.validate()
@@ -198,8 +202,8 @@ extension AlamofireService {
             } else {
                 log.error("File read error", context: filename)
             }
-        }) { (message, error) in
-            completion?(message?.message, error)
+        }) { (res) in
+            completion?(nil, res.result.error)
         }
     }
 

@@ -11,14 +11,15 @@ import Alamofire
 extension AlamofireService: AuthService {
     
     func authorize(completion: @escaping (UserModel?, Error?) -> Void) {
-//        post(at: .authorize, params: getCredentials()).responseJSON { (res: DataResponse<Any>) in
-//            var result: UserModel? = nil
-//            if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }
-//            DataStore.shared.user = result
-//            completion(result, res.result.error)
-//        }
-        DataStore.shared.user?.id = 1
-        completion(DataStore.shared.user, nil)
+        post(at: .authorize, params: getCredentials()).responseJSON { (res: DataResponse<Any>) in
+            var result: UserModel? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }
+            DataStore.shared.user = result
+            completion(result, res.result.error)
+        }
+// Test
+//        DataStore.shared.user?.id = 1
+//        completion(DataStore.shared.user, nil)
     }
     
     func register(userType: UserType, username: String, name: String, email: String, password: String, completion: @escaping (UserModel?, Error?) -> Void) {

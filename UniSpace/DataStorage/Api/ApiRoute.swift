@@ -99,9 +99,9 @@ enum ApiRoute { case
 
 //        case .getOwnerStatsSummary:
 //            return ""
-//
-//        case .getHouseSuggestions:
-//            return ""
+
+        case .getHouseSuggestions:
+            return "house/\(userId)/suggestion"
 
         case .getHouseSaved:
             return "house/\(userId)/saved"

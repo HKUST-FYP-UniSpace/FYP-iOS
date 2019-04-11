@@ -96,6 +96,11 @@ final class TeamMemberSectionController: ListSectionController, ListAdapterDataS
 
 extension TeamMemberSectionController: ButtonCellDelegate {
     func buttonCell(pressedButton sender: UIButton) {
+        guard let myId = DataStore.shared.user?.id, let models = models, !models.contains(where: { $0.id == myId }) else {
+            adapter.viewController?.showAlert(title: "You are already in the group")
+            return
+        }
+
         guard let teamId = teamId else { return }
         DataStore.shared.joinTeam(teamId: teamId) { (msg, error) in
             guard let vc = self.adapter.viewController, !vc.sendFailed(msg, error: error) else { return }

@@ -24,11 +24,19 @@ extension AlamofireService: GeneralService {
         params["selfIntro"] = userProfile.selfIntro
         params["contact"] = userProfile.contact
         params["gender"] = userProfile.gender?.rawValue ?? Gender.Male.rawValue
-        params["photoURL"] = image
-        post(at: .getUserProfile, params: params).responseJSON { (res: DataResponse<Any>) in
-            var result: UserModel? = nil
-            if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }
-            if let result = result { DataStore.shared.user = result }
+
+        easyUpload(
+            at: .editUserProfile,
+            dataFormation: { (multipartFormData) in
+                guard let imageData = image.jpegData(compressionQuality: 0.1) else {
+                    completion?(nil, ServerError.ImageFormatError(format: "jpeg"))
+                    return
+                }
+                multipartFormData.append(imageData, withName: "photoURL", fileName: "photoURL.jpeg", mimeType: "image/jpeg")
+                for (key, value) in params {
+                    multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
+                }
+        }) { (res: DataResponse<Any>) in
             completion?(nil, res.result.error)
         }
     }

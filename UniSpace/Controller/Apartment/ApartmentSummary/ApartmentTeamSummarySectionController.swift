@@ -89,7 +89,7 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
         switch type {
         case .Teams:
             let object = object as? HouseViewModel
-            houseId = object?.id
+            houseId = object?.titleView?.id
             models = object?.teams
 
         case .ArrangingTeams:

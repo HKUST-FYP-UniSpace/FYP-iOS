@@ -67,7 +67,7 @@ class PreferenceVC: MasterFormPopupVC {
             <<< getMultipleSelectorRow(id: "interests", title: "Interests", defaultValue: preference?.interests, selectorTitle: nil, options: PreferenceOptions.interests)
 
         form +++ Section("")
-            <<< getButtonRow(id: nil, title: "Search", callback: {
+            <<< getButtonRow(id: nil, title: "Set", callback: {
                 self.updateModel()
                 guard let model = self.model, model.allSet() else {
                     self.showAlert(title: "Please finish the form")
