@@ -85,7 +85,7 @@ extension AlamofireService: HouseService {
 
     func changeTeamPreference(teamId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
         let params = getPreferenceParams(preference)
-        post(at: .updateTeamPreference(teamId: teamId), params: params).responseJSON { (res: DataResponse<Any>) in
+        put(at: .updateTeamPreference(teamId: teamId), params: params).responseJSON { (res: DataResponse<Any>) in
             var result: ServerMessage? = nil
             if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
             completion?(result?.message, res.result.error)
@@ -94,39 +94,18 @@ extension AlamofireService: HouseService {
 
     func createTeam(houseId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
         let params = getTeamParams(houseId, model: model)
-//        post(at: .createTeam(houseId: houseId), params: params).responseJSON { (res: DataResponse<Any>) in
-//            self.debugResponse(res)
-//            var result: Int? = nil
-//            if let data = res.result.value { result = self.transform(from: data, type: Int.self) }
-//            guard let teamId = result else {
-//                completion?(nil, ServerError.UnknownClassType(object: "Team ID"))
-//                return
-//            }
-//            self.createTeamImage(teamId: teamId, image: image, completion: completion)
-//        }
-
-        easyUpload(
-            at: .createTeam(houseId: houseId),
-            dataFormation: { (multipartFormData) in
-                if let preference = try? JSONEncoder().encode(model.preference) {
-                    multipartFormData.append(preference, withName: "preference")
-                }
-                for (key, value) in params {
-                    multipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
-                }
-        }) { (res: DataResponse<Any>) in
-            self.debugResponse(res)
+        post(at: .createTeam(houseId: houseId), params: params).responseJSON { (res: DataResponse<Any>) in
             var result: Int? = nil
             if let data = res.result.value { result = self.transform(from: data, type: Int.self) }
             guard let teamId = result else {
                 completion?(nil, ServerError.UnknownClassType(object: "Team ID"))
                 return
             }
-            self.createTeamImage(teamId: teamId, image: image, completion: completion)
+            self.createTeamImage(teamId: teamId, preference: model.preference, image: image, completion: completion)
         }
     }
 
-    private func createTeamImage(teamId: Int, image: UIImage, completion: SendRequestResult?) {
+    private func createTeamImage(teamId: Int, preference: PreferenceModel, image: UIImage, completion: SendRequestResult?) {
         easyUpload(
             at: .createTeamImage(teamId: teamId),
             dataFormation: { (multipartFormData) in
@@ -143,7 +122,7 @@ extension AlamofireService: HouseService {
                 completion?(nil, ServerError.UnknownClassType(object: "Result"))
                 return
             }
-            completion?(nil, res.result.error)
+            self.changeTeamPreference(teamId: teamId, preference: preference, completion: completion)
         }
     }
 
@@ -184,7 +163,6 @@ extension AlamofireService {
         params["groupSize"] = model.groupSize
         params["duration"] = 1
         params["image_url"] = "www.google.com"
-        params["preference"] = model.preference
         return params
     }
 }

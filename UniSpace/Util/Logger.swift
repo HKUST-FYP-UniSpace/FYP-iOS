@@ -69,7 +69,7 @@ public struct Logger {
         }
         logs.sort(by: { $0.lastPathComponent < $1.lastPathComponent })
 
-        let logFileToServer = homeDir.appendingPathComponent("pentagon-mobile.log")
+        let logFileToServer = homeDir.appendingPathComponent("unispace-mobile.log")
         do {
             try FileManager.default.merge(files: logs, to: logFileToServer)
             AlamofireService.shared.sendLogs(logFileToServer) { (_, error) in
