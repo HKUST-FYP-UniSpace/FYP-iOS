@@ -9,6 +9,13 @@
 import UIKit
 import Eureka
 
+extension String {
+    init?(_ value: Int?) {
+        guard let value = value else { return nil }
+        self.init(value)
+    }
+}
+
 extension FormViewController {
     func getLabelRow(id: String?, title: String?, displayValue: String?) -> BaseRow {
         return LabelRow(id) {

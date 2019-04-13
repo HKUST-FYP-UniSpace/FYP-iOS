@@ -66,6 +66,13 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
+    func showAlert(title: String?, msg: String? = nil, completion: @escaping ((Bool) -> Void)) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in completion(true) }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in completion(false) }))
+        present(alert, animated: true, completion: nil)
+    }
+
     func getPhoto(handlePopover: @escaping (_ actionSheet: UIAlertController) -> (), completion: @escaping (_ image: UIImage) -> ()) {
         CameraHandler.shared.showActionSheet(vc: self, completion: handlePopover)
         CameraHandler.shared.imagePickedBlock = completion

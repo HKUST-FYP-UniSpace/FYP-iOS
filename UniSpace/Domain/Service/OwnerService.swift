@@ -18,4 +18,10 @@ protocol OwnerService: class {
 
     func getHouseData(houseId: Int, filter: ChartFilterOptions, completion: @escaping (_ data: ChartDataListModel?, _ error: Error?) -> Void)
 
+    func createHouse(model: HouseListModel, images: [UIImage], completion: SendRequestResult?)
+
+    func editHouse(model: HouseListModel, images: [UIImage], completion: SendRequestResult?)
+
+    func changeHouseStatus(houseId: Int, status: HouseStatus, completion: SendRequestResult?)
+
 }

@@ -158,5 +158,17 @@ extension DataStore {
     func getHouseData(houseId: Int, filter: ChartFilterOptions, completion: @escaping (ChartDataListModel?, Error?) -> Void) {
         Service().getHouseData(houseId: houseId, filter: filter, completion: completion)
     }
+
+    func createHouse(model: HouseListModel, images: [UIImage], completion: SendRequestResult?) {
+        Service().createHouse(model: model, images: images, completion: completion)
+    }
+
+    func editHouse(model: HouseListModel, images: [UIImage], completion: SendRequestResult?) {
+        Service().editHouse(model: model, images: images, completion: completion)
+    }
+
+    func changeHouseStatus(houseId: Int, status: HouseStatus, completion: SendRequestResult?) {
+        Service().changeHouseStatus(houseId: houseId, status: status, completion: completion)
+    }
     
 }

@@ -39,6 +39,17 @@ enum HouseStatus: Int, Codable, CaseIterable {
     case Archive
     case Rent
 
+    init?(text: String?) {
+        guard let text = text else { return nil }
+        switch text {
+        case HouseStatus.Hide.text: self = .Hide
+        case HouseStatus.Reveal.text: self = .Reveal
+        case HouseStatus.Archive.text: self = .Archive
+        case HouseStatus.Rent.text: self = .Rent
+        default: return nil
+        }
+    }
+
     var text: String {
         switch self {
         case .Hide: return "Hide"

@@ -25,16 +25,18 @@ final class OwnerVC: MasterVC, ListAdapterDataSource {
         view.addSubview(collectionView)
         adapter.collectionView = collectionView
         adapter.dataSource = self
-    }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
+        let addItem = UIBarButtonItem(image: UIImage(named: "Add"), style: .plain, target: self, action: #selector(addButton))
+        navigationItem.rightBarButtonItem = addItem
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
+    }
+
+    @objc func addButton(_ sender: UIButton) {
+        log.debug("Add button clicked")
     }
 
     override func loadData() {

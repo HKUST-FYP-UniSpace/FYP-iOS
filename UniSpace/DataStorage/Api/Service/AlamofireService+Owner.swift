@@ -30,4 +30,16 @@ extension AlamofireService: OwnerService {
         // TODO
     }
 
+    func createHouse(model: HouseListModel, images: [UIImage], completion: SendRequestResult?) {
+        // TODO
+    }
+
+    func editHouse(model: HouseListModel, images: [UIImage], completion: SendRequestResult?) {
+        // TODO
+    }
+
+    func changeHouseStatus(houseId: Int, status: HouseStatus, completion: SendRequestResult?) {
+        // TODO
+    }
+
 }

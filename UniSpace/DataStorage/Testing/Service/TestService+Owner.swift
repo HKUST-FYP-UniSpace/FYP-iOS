@@ -6,7 +6,7 @@
 //  Copyright © 2019 KiKan Ng. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension TestService: OwnerService {
 
@@ -47,6 +47,18 @@ extension TestService: OwnerService {
             data?.othersBookmarks.append(newData.toModel())
         }
         delay { completion(data, nil) }
+    }
+
+    func createHouse(model: HouseListModel, images: [UIImage], completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
+    }
+
+    func editHouse(model: HouseListModel, images: [UIImage], completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
+    }
+
+    func changeHouseStatus(houseId: Int, status: HouseStatus, completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
     }
 
 }
