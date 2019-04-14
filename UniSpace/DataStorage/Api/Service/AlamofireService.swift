@@ -150,6 +150,7 @@ extension AlamofireService {
             let method = method?.rawValue ?? "UPLOAD"
             log.verbose("\(method) \(response.response?.statusCode ?? 0)", context: "Request: \(route.url())")
             self.serverResponse(response)
+            self.debugResponse(response)
         }
     }
 

@@ -51,7 +51,7 @@ extension AppDelegate {
                                      username: "StarSpangledMan",
                                      name: "Steve Rogers",
                                      role: role,
-                                     verified: false,
+                                     verified: true,
                                      hasPreference: true)
             user.photoURL = "https://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2016/08/steve-rogers.jpg?itok=PKuv3pPL"
             DataStore.shared.user = user.toUserModel()

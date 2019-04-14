@@ -42,7 +42,6 @@
 		6D30716D21B27C7A008D0FA3 /* MasterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D30716C21B27C7A008D0FA3 /* MasterVC.swift */; };
 		6D30716F21B27DEF008D0FA3 /* MasterPopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D30716E21B27DEF008D0FA3 /* MasterPopupVC.swift */; };
 		6D30717121B27E40008D0FA3 /* MasterLandingPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D30717021B27E40008D0FA3 /* MasterLandingPageVC.swift */; };
-		6D30717321B27EA0008D0FA3 /* MasterTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D30717221B27EA0008D0FA3 /* MasterTableVC.swift */; };
 		6D3CBF3A2217E252007EC89D /* UserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3CBF392217E252007EC89D /* UserInfoCell.swift */; };
 		6D3F0AD021E064CF00B2A289 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F0ACF21E064CF00B2A289 /* Logger.swift */; };
 		6D3F0AD221E0652700B2A289 /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F0AD121E0652700B2A289 /* Collection+Safe.swift */; };
@@ -127,6 +126,8 @@
 		6D9CF6582262579900C520CE /* OwnerAddHouseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9CF6572262579900C520CE /* OwnerAddHouseVC.swift */; };
 		6D9CF65D2262C94400C520CE /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9CF65C2262C94400C520CE /* RealmService.swift */; };
 		6D9CF65F2262CA0100C520CE /* RealmMessageGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9CF65E2262CA0100C520CE /* RealmMessageGroup.swift */; };
+		6D9CF66122638B3200C520CE /* LogsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9CF66022638B3200C520CE /* LogsVC.swift */; };
+		6D9CF66322638D7A00C520CE /* LogDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9CF66222638D7A00C520CE /* LogDetailVC.swift */; };
 		6DA035312202C48900258359 /* SingleSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA035302202C48900258359 /* SingleSectionViewController.swift */; };
 		6DA9D46122043DCC009464B6 /* MessageSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9D46022043DCC009464B6 /* MessageSummary.swift */; };
 		6DA9D46322043E51009464B6 /* BlogSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9D46222043E51009464B6 /* BlogSummary.swift */; };
@@ -291,7 +292,6 @@
 		6D30716C21B27C7A008D0FA3 /* MasterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterVC.swift; sourceTree = "<group>"; };
 		6D30716E21B27DEF008D0FA3 /* MasterPopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPopupVC.swift; sourceTree = "<group>"; };
 		6D30717021B27E40008D0FA3 /* MasterLandingPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterLandingPageVC.swift; sourceTree = "<group>"; };
-		6D30717221B27EA0008D0FA3 /* MasterTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTableVC.swift; sourceTree = "<group>"; };
 		6D3CBF392217E252007EC89D /* UserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCell.swift; sourceTree = "<group>"; };
 		6D3F0ACF21E064CF00B2A289 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		6D3F0AD121E0652700B2A289 /* Collection+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
@@ -376,6 +376,8 @@
 		6D9CF6572262579900C520CE /* OwnerAddHouseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerAddHouseVC.swift; sourceTree = "<group>"; };
 		6D9CF65C2262C94400C520CE /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		6D9CF65E2262CA0100C520CE /* RealmMessageGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMessageGroup.swift; sourceTree = "<group>"; };
+		6D9CF66022638B3200C520CE /* LogsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsVC.swift; sourceTree = "<group>"; };
+		6D9CF66222638D7A00C520CE /* LogDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDetailVC.swift; sourceTree = "<group>"; };
 		6DA035302202C48900258359 /* SingleSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSectionViewController.swift; sourceTree = "<group>"; };
 		6DA9D46022043DCC009464B6 /* MessageSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSummary.swift; sourceTree = "<group>"; };
 		6DA9D46222043E51009464B6 /* BlogSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogSummary.swift; sourceTree = "<group>"; };
@@ -610,7 +612,6 @@
 				6DE5563921A40B5E00B23398 /* MasterLoginVC.swift */,
 				6D30716E21B27DEF008D0FA3 /* MasterPopupVC.swift */,
 				6D30717021B27E40008D0FA3 /* MasterLandingPageVC.swift */,
-				6D30717221B27EA0008D0FA3 /* MasterTableVC.swift */,
 				6D10545B22143A3E00B61CFC /* MasterFilterVC.swift */,
 				6D891CBE221BD1FB00DEB9F4 /* MasterFormPopupVC.swift */,
 			);
@@ -1137,6 +1138,8 @@
 			isa = PBXGroup;
 			children = (
 				6DE5562C21A3E83600B23398 /* SettingsVC.swift */,
+				6D9CF66022638B3200C520CE /* LogsVC.swift */,
+				6D9CF66222638D7A00C520CE /* LogDetailVC.swift */,
 				6D2B80952240B7C1006708FE /* UserDetailVC.swift */,
 				6D891CBA221BCD7800DEB9F4 /* PreferenceVC.swift */,
 			);
@@ -1535,6 +1538,7 @@
 				6D563B7421E0911F00E2E10D /* SuggestionSectionController.swift in Sources */,
 				6D9CF6562261B46800C520CE /* OwnerHouseInfoVC.swift in Sources */,
 				6DA9D49722058793009464B6 /* HouseHomepageModel.swift in Sources */,
+				6D9CF66122638B3200C520CE /* LogsVC.swift in Sources */,
 				6D563B6821E074E000E2E10D /* EmbeddedSectionController.swift in Sources */,
 				6D486DFC22310375005D2946 /* HouseReviewModel.swift in Sources */,
 				6DA9D48322057A4E009464B6 /* TestTradeSellingItemModel.swift in Sources */,
@@ -1557,6 +1561,7 @@
 				6D98246321AD272000BAF80D /* DataStore-local.swift in Sources */,
 				6D891CBB221BCD7800DEB9F4 /* PreferenceVC.swift in Sources */,
 				6DFE1DC5220C33850012E8A2 /* RowSectionController.swift in Sources */,
+				6D9CF66322638D7A00C520CE /* LogDetailVC.swift in Sources */,
 				6D486DF62230F63B005D2946 /* HouseReviewCell.swift in Sources */,
 				6DFE1DC3220C31A60012E8A2 /* SectionHeaderCell.swift in Sources */,
 				6D52818521EF1368007A4508 /* MessageCell.swift in Sources */,
@@ -1614,7 +1619,6 @@
 				6DA9D48B22057C08009464B6 /* HouseService.swift in Sources */,
 				6D2BEDB522316AA7005FFEEE /* UIViewController+updateTitleView.swift in Sources */,
 				6D2B8094224000FE006708FE /* TestOwnerHouseSummaryModel.swift in Sources */,
-				6D30717321B27EA0008D0FA3 /* MasterTableVC.swift in Sources */,
 				6D891CBF221BD1FB00DEB9F4 /* MasterFormPopupVC.swift in Sources */,
 				6D28BDBB2241327D00F6E813 /* TradeSellingItemVC.swift in Sources */,
 				6D2BEDA8223167E4005FFEEE /* MessageConversationVC.swift in Sources */,
