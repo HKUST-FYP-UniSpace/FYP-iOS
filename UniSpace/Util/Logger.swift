@@ -96,7 +96,7 @@ extension Logger {
     }
 
     private func enableServerLogging(_ type: LogType, _ header: CustomStringConvertible, _ context: CustomStringConvertible?, _ file: String, _ function: String) {
-        let log = getServerLog(type, header, context, file, function)
+        let log = getLocalLog(type, header, context, file, function)
         toLogFile(log)
     }
 
