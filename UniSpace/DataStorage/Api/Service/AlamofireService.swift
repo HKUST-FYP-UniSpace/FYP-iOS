@@ -208,3 +208,37 @@ extension AlamofireService {
     }
 
 }
+
+// for debug
+extension AlamofireService {
+    func dataToJSON(_ data: Data?) -> Any? {
+        guard let data = data, JSONSerialization.isValidJSONObject(data) else {
+            print("Invalid JSON object")
+            return nil
+        }
+        if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String : Any]] {
+            return json
+        }
+        if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] {
+            return json
+        }
+        return nil
+    }
+
+    func prettyPrintJSON(_ json: Any?) {
+        guard let json = json else { return }
+        if let json = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
+            print(String(data: json, encoding: .utf8)!)
+        }
+    }
+
+    func debugResponse(_ res: DataResponse<Any>) {
+        if let data = res.request?.httpBody, let bug = String(data: data, encoding: .utf8) {
+            log.debug("Request Body", context: bug)
+        }
+        if let data = res.data, let serverResponse = String(data: data, encoding: .utf8) {
+            log.debug("Server Response", context: serverResponse)
+        }
+    }
+
+}

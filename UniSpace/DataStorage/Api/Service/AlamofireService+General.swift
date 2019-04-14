@@ -58,7 +58,7 @@ extension AlamofireService: GeneralService {
     }
 
     func getCalendarSummaries(year: Int, month: Int, completion: @escaping ([CalendarDataListModel]?, Error?) -> Void) {
-        get(at: .getCalendarSummaries).responseJSON { (res: DataResponse<Any>) in
+        get(at: .getCalendarSummaries(year: year, month: month)).responseJSON { (res: DataResponse<Any>) in
             var result: [CalendarDataListModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([CalendarDataListModel].self, from: data) }
             completion(result, res.result.error)

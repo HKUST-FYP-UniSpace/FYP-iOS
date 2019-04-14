@@ -94,11 +94,11 @@ final class ApartmentTeamSummarySectionController: ListSectionController, ListAd
 
         case .ArrangingTeams:
             let object = object as? OwnerTeamsModel
-            models = object?.arrangingTeams
+            models = object?.teams.filter { $0.groupSize == $0.occupiedCount }
 
         case .FormingTeams:
             let object = object as? OwnerTeamsModel
-            models = object?.formingTeams
+            models = object?.teams.filter { $0.groupSize != $0.occupiedCount }
         }
 
     }

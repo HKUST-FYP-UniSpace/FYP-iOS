@@ -19,6 +19,9 @@ class TestTradeFeaturedModel: TradeFeatured {
     var detail: String
     var isBookmarked: Bool
     var photoURLs: [String]
+    var quantity: Int
+    var tradeCategory: TradeCategory
+    var tradeItemCondition: TradeItemCondition
 
     required init() {
         id = DataStore.shared.randomInt(length: 8)
@@ -33,6 +36,9 @@ class TestTradeFeaturedModel: TradeFeatured {
         for _ in 0...Int.random(in: 2...10) {
             photoURLs.append(Constants.dummyPhotoURL(Constants.cardWidth_M, ratio: 0.75))
         }
+        quantity = Int.random(in: 1..<20)
+        tradeCategory = TradeCategory.allCases.randomElement()!
+        tradeItemCondition = TradeItemCondition.allCases.randomElement()!
     }
 
     func toModel() -> TradeFeaturedModel {

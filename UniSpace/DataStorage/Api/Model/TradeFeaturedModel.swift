@@ -20,6 +20,9 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
     var detail: String = ""
     var isBookmarked: Bool = false
     var photoURLs: [String] = []
+    var quantity: Int = 0
+    var tradeCategory: TradeCategory = .Furnitures
+    var tradeItemCondition: TradeItemCondition = .Perfect
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,6 +34,9 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
         case detail = "description"
         case isBookmarked
         case photoURLs
+        case quantity
+        case tradeCategory
+        case tradeItemCondition
     }
 
     required init(from decoder: Decoder) throws {
@@ -44,6 +50,9 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
         decode(container, &detail, type: String.self, forKey: .detail)
         decode(container, &isBookmarked, type: Bool.self, forKey: .isBookmarked)
         decode(container, &photoURLs, type: [String].self, forKey: .photoURLs)
+        decode(container, &quantity, type: Int.self, forKey: .quantity)
+        decode(container, &tradeCategory, type: TradeCategory.self, forKey: .tradeCategory)
+        decode(container, &tradeItemCondition, type: TradeItemCondition.self, forKey: .tradeItemCondition)
     }
 
     private func decode<T>(_ container: KeyedDecodingContainer<CodingKeys>, _ variable: inout T, type: T.Type, forKey key: CodingKeys) where T: Decodable {
@@ -68,6 +77,7 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
             && !location.isEmpty
             && price != 0
             && !detail.isEmpty
+            && quantity != 0
     }
 
 }

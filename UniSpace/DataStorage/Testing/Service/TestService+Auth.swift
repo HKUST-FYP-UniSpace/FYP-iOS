@@ -19,6 +19,10 @@ extension TestService: AuthService {
         DataStore.shared.user = user
         delay { completion(user, nil) }
     }
+
+    func sendVerificationEmail(completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
+    }
     
     func verify(code: String, completion: @escaping (UserModel?, Error?) -> Void) {
         DataStore.shared.user?.verified = true

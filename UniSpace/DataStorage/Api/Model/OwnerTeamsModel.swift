@@ -12,18 +12,16 @@ import IGListKit
 class OwnerTeamsModel: Decodable, ListDiffable {
 
     var id: Int = DataStore.shared.randomInt(length: 8)
-    var arrangingTeams: [HouseTeamSummaryModel]
-    var formingTeams: [HouseTeamSummaryModel]
+    var teams: [HouseTeamSummaryModel]
     var reviews: [HouseReviewModel]
 
     convenience init() {
-        self.init(arrangingTeams: [], formingTeams: [], reviews: [])
+        self.init(teams: [], reviews: [])
     }
 
-    init(arrangingTeams: [HouseTeamSummaryModel], formingTeams: [HouseTeamSummaryModel], reviews: [HouseReviewModel]) {
+    init(teams: [HouseTeamSummaryModel], reviews: [HouseReviewModel]) {
         id = DataStore.shared.randomInt(length: 8)
-        self.arrangingTeams = arrangingTeams
-        self.formingTeams = formingTeams
+        self.teams = teams
         self.reviews = reviews
     }
 

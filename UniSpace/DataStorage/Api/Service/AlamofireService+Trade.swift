@@ -51,16 +51,51 @@ extension AlamofireService: TradeService {
 
     func createTradeItem(model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
         let params = getItemParams(model)
-        post(at: .updatePreference, params: params).responseJSON { (res: DataResponse<Any>) in
-            var result: ServerMessage? = nil
-            if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
-            completion?(result?.message, res.result.error)
-            // TODO: send image
+        post(at: .createTradeItem, params: params).responseJSON { (res: DataResponse<Any>) in
+            var result: Int? = nil
+            if let data = res.result.value { result = self.transform(from: data, type: Int.self) }
+            guard let itemId = result else {
+                completion?(nil, ServerError.UnknownClassType(object: "Team ID"))
+                return
+            }
+            self.createTradeItemImage(itemId: itemId, images: images, completion: completion)
+        }
+    }
+
+    private func createTradeItemImage(itemId: Int, images: [UIImage], completion: SendRequestResult?) {
+        easyUpload(
+            at: .createTradeItemImage(itemId: itemId),
+            dataFormation: { (multipartFormData) in
+                for (index, image) in images.enumerated() {
+                    guard let imageData = image.jpegData(compressionQuality: 0.1) else {
+                        completion?(nil, ServerError.ImageFormatError(format: "jpeg"))
+                        return
+                    }
+                    multipartFormData.append(imageData, withName: "photo\(index)", fileName: "photo\(index).jpeg", mimeType: "image/jpeg")
+                }
+                multipartFormData.append("\(itemId)".data(using: .utf8)!, withName: "tradeId")
+        }) { (res: DataResponse<Any>) in
+            var result: Bool? = nil
+            if let data = res.result.value { result = self.transform(from: data, type: Bool.self) }
+            guard let _ = result else {
+                completion?(nil, ServerError.UnknownClassType(object: "Result"))
+                return
+            }
+            completion?(nil, res.result.error)
         }
     }
 
     func editTradeItem(model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
-        // TODO
+        let params = getItemParams(model)
+        post(at: .editTradeItem(itemId: model.id), params: params).responseJSON { (res: DataResponse<Any>) in
+            var result: Bool? = nil
+            if let data = res.result.value { result = self.transform(from: data, type: Bool.self) }
+            guard let success = result, success else {
+                completion?("Unsuccess update", nil)
+                return
+            }
+            self.createTradeItemImage(itemId: model.id, images: images, completion: completion)
+        }
     }
 
     func getTradeItemData(itemId: Int, filter: ChartFilterOptions, completion: @escaping (ChartDataListModel?, Error?) -> Void) {
@@ -105,11 +140,10 @@ extension AlamofireService {
         params["name"] = model.title
         params["price"] = model.price
         params["description"] = model.detail
-        // TODO
-        params["quantity"] = 1
-        params["trade_category_id"] = 1
-        params["trade_condition_type_id"] = 1
-        return Parameters()
+        params["quantity"] = model.quantity
+        params["trade_category_id"] = model.tradeCategory.pathExtension
+        params["trade_condition_type_id"] = model.tradeItemCondition.pathExtension
+        return params
     }
 
     private func getContactOwnerParams(_ message: String) -> Parameters {

@@ -13,6 +13,8 @@ protocol AuthService: class {
     func authorize(completion: @escaping (_ user: UserModel?, _ error: Error?) -> Void)
     
     func register(userType: UserType, username: String, name: String, email: String, password: String, completion: @escaping (_ user: UserModel?, _ error: Error?) -> Void)
+
+    func sendVerificationEmail(completion: SendRequestResult?)
     
     func verify(code: String, completion: @escaping (_ user: UserModel?, _ error: Error?) -> Void)
 

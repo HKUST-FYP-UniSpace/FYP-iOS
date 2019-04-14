@@ -34,7 +34,7 @@ enum TradeSearchBy: String, CaseIterable {
     }
 }
 
-enum TradeCategory: String, CaseIterable {
+enum TradeCategory: String, Codable, CaseIterable {
     case Kitchenwares = "Kitchenwares"
     case ElectronicsAndGadgets = "Electronics and Gadgets"
     case Furnitures = "Furnitures"
@@ -44,32 +44,32 @@ enum TradeCategory: String, CaseIterable {
     case Fashion = "Fashion"
     case Sports = "Sports"
 
-    var pathExtension: String {
+    var pathExtension: Int {
         switch self {
-        case .Kitchenwares: return "kitchenwares"
-        case .ElectronicsAndGadgets: return "electronics_and_gadgets"
-        case .Furnitures: return "furnitures"
-        case .HealthAndBeauty: return "health_and_beauty"
-        case .ToysAndGames: return "toys_and_games"
-        case .BooksAndStationeries: return "books_and_stationeries"
-        case .Fashion: return "fashion"
-        case .Sports: return "sports"
+        case .Kitchenwares: return 1
+        case .ElectronicsAndGadgets: return 2
+        case .Furnitures: return 3
+        case .HealthAndBeauty: return 4
+        case .ToysAndGames: return 5
+        case .BooksAndStationeries: return 6
+        case .Fashion: return 7
+        case .Sports: return 8
         }
     }
 }
 
-enum TradeItemCondition: String, CaseIterable {
+enum TradeItemCondition: String, Codable, CaseIterable {
     case Perfect = "Perfect"
     case AlmostPerfect = "Almost Perfect"
     case Okay = "Okay"
     case Worn = "Worn"
 
-    var pathExtension: String {
+    var pathExtension: Int {
         switch self {
-        case .Perfect: return "perfect"
-        case .AlmostPerfect: return "almost_perfect"
-        case .Okay: return "okay"
-        case .Worn: return "worn"
+        case .Perfect: return 1
+        case .AlmostPerfect: return 2
+        case .Okay: return 3
+        case .Worn: return 4
         }
     }
 }

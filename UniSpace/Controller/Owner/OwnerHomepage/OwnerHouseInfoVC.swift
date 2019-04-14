@@ -17,6 +17,7 @@ class OwnerHouseInfoVC: MasterFormPopupVC {
     private var editedHouse: HouseListModel?
     private var images: [UIImage] = []
     private let unit = "$"
+    private let sizeUnit = "sq. ft."
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,8 +129,8 @@ class OwnerHouseInfoVC: MasterFormPopupVC {
         form +++ Section("Information")
             <<< getTextRow(id: "title", title: "Title", defaultValue: house?.title)
             <<< getTextRow(id: "address", title: "Address", defaultValue: house?.address)
-            <<< getPriceRow(id: "price", title: "Price", defaultValue: String(house?.price), unit: unit)
-            <<< getTextRow(id: "size", title: "Size", defaultValue: String(house?.size))
+            <<< getPriceRow(id: "price", title: "Price", defaultValue: String(house?.price), unit: unit, unitIsFront: true)
+            <<< getPriceRow(id: "size", title: "Size", defaultValue: String(house?.size), unit: sizeUnit, unitIsFront: false)
             <<< getTextAreaRow(id: "subtitle", placeholder: "detail", defaultValue: house?.subtitle, disable: false)
 
         form +++ Section("Facilities")
@@ -159,7 +160,9 @@ class OwnerHouseInfoVC: MasterFormPopupVC {
         if let row = form.rowBy(tag: "price") as? TextRow,
             let value = row.value,
             let obtainedPrice = Int(value.deletingPrefix("\(unit) ")) { price = obtainedPrice }
-        if let row = form.rowBy(tag: "size") as? TextRow, let value = row.value { size = Int(value) }
+        if let row = form.rowBy(tag: "size") as? TextRow,
+            let value = row.value,
+            let obtainedSize = Int(value.deletingSuffix(" \(sizeUnit)")) { size = obtainedSize }
         if let row = form.rowBy(tag: "rooms") as? TextRow, let value = row.value { rooms = Int(value) }
         if let row = form.rowBy(tag: "beds") as? TextRow, let value = row.value { beds = Int(value) }
         if let row = form.rowBy(tag: "toilets") as? TextRow, let value = row.value { toilets = Int(value) }

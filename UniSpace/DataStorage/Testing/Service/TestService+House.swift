@@ -57,7 +57,7 @@ extension TestService: HouseService {
         delay { completion?(nil, nil) }
     }
 
-    func addReview(review: HouseReviewModel, completion: SendRequestResult?) {
+    func addReview(houseId: Int, review: HouseReviewModel, completion: SendRequestResult?) {
         delay { completion?(nil, nil) }
     }
 

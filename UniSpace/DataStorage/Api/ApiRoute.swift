@@ -14,20 +14,23 @@ enum ApiRoute { case
     authorize,
     register,
     verify,
+    sendEmail,
     existUsername,
 
     // general
-    getMyUserDetail,
     getUserProfile,
     editUserProfile,
     getMessageSummaries,
     getNotificationSummaries,
-    getCalendarSummaries,
+    getCalendarSummaries(year: Int, month: Int),
     getBlogSummaries,
     getBlogDetail(blogId: Int),
 
     // owner
     getOwnerStatsSummary,
+    getOwnerHouseSummary,
+    getOwnerTeamSummary(houseId: Int),
+    replyReview(reviewId: Int),
 
     // apartment
     getHouseSuggestions,
@@ -42,6 +45,7 @@ enum ApiRoute { case
     createTeam(houseId: Int),
     createTeamImage(teamId: Int),
     joinTeam(teamId: Int),
+    addReview(houseId: Int),
 
     // trade
     getTradeFeatured,
@@ -51,6 +55,7 @@ enum ApiRoute { case
     getTradeHistory,
     createTradeItem,
     createTradeItemImage(itemId: Int),
+    editTradeItem(itemId: Int),
     getTradeDetail(itemId: Int),
     bookmarkItem(itemId: Int),
     contactOwner(itemId: Int),
@@ -70,11 +75,11 @@ enum ApiRoute { case
         case .verify:
             return "users/verify/\(userId)"
 
+        case .sendEmail:
+            return "users/verify/\(userId)/email"
+
         case .existUsername:
             return "users/check/username"
-
-//        case .getMyUserDetail:
-//            return ""
 
         case .getUserProfile:
             return "users/profile/\(userId)"
@@ -87,12 +92,12 @@ enum ApiRoute { case
 //
 //        case .getNotificationSummaries:
 //            return ""
-//
-//        case .getCalendarSummaries:
-//            return ""
+
+        case .getCalendarSummaries(let year, let month):
+            return "users/calendar/\(userId)/\(year)/\(month)"
 
         case .getBlogSummaries:
-             return "blog/summary"
+            return "blog/summary"
 
         case .getBlogDetail(let blogId):
             return "blog/\(blogId)/detail"
@@ -137,6 +142,9 @@ enum ApiRoute { case
         case .joinTeam(let teamId):
             return "housePostGroup/\(teamId)/join"
 
+        case .addReview(let houseId):
+            return "house/\(houseId)/review"
+
 //        case .getTradeFeatured:
 //            return ""
 
@@ -147,8 +155,21 @@ enum ApiRoute { case
             return "trade/\(userId)/bookmarked"
 
         case .getTradeList(let filter):
-            log.info("Trade Filter not handled", context: "\(filter)")
-            return "trade"
+            var queryString = "trade/\(userId)/index?"
+            if let keyword = filter.keyword, let value = filter.searchBy, !value.isEmpty {
+                value.forEach { (search) in queryString += "\(search.pathExtension)=\(keyword)&" }
+            } else {
+                queryString += "\(TradeSearchBy.Title.pathExtension)=\(filter.keyword ?? "")&"
+            }
+            if let value = filter.minPrice { queryString += "minPrice=\(value)&" }
+            if let value = filter.maxPrice { queryString += "maxPrice=\(value)&" }
+            if let value = filter.category, !value.isEmpty {
+                value.forEach { (cat) in queryString += "category[]=\(cat.pathExtension)&" }
+            }
+            if let value = filter.itemCondition, !value.isEmpty {
+                value.forEach { (condition) in queryString += "itemCondition[]=\(condition.pathExtension)&" }
+            }
+            return String(queryString.dropLast())
 
         case .getTradeHistory:
             return "trade/\(userId)/history"
@@ -159,6 +180,9 @@ enum ApiRoute { case
         case .createTradeItemImage( _):
             return "trade/image/upload"
 
+        case .editTradeItem(let itemId):
+            return "trade/\(userId)/update/\(itemId)"
+
         case .getTradeDetail(let itemId):
             return "trade/\(userId)/trade/\(itemId)"
 
@@ -167,7 +191,16 @@ enum ApiRoute { case
 
 //        case .contactOwner(let itemId):
 //            return ""
-//
+
+        case .getOwnerHouseSummary:
+            return "owner/\(userId)/houseSummary"
+
+        case .getOwnerTeamSummary(let houseId):
+            return "owner/\(userId)/teamSummary/\(houseId)"
+
+        case .replyReview(let reviewId):
+            return "owner/\(reviewId)/reply"
+
 //        case .sendLogs:
 //            return ""
 

@@ -17,9 +17,6 @@ extension AlamofireService: AuthService {
             DataStore.shared.user = result
             completion(result, res.result.error)
         }
-// Test
-//        DataStore.shared.user?.id = 1
-//        completion(DataStore.shared.user, nil)
     }
     
     func register(userType: UserType, username: String, name: String, email: String, password: String, completion: @escaping (UserModel?, Error?) -> Void) {
@@ -28,6 +25,20 @@ extension AlamofireService: AuthService {
             var result: UserModel? = nil
             if let data = res.data { result = try? JSONDecoder().decode(UserModel.self, from: data) }
             completion(result, res.result.error)
+
+            self.sendVerificationEmail(completion: nil)
+        }
+    }
+
+    func sendVerificationEmail(completion: SendRequestResult?) {
+        post(at: .sendEmail).responseJSON { (res: DataResponse<Any>) in
+            var result: Bool? = nil
+            if let data = res.result.value { result = self.transform(from: data, type: Bool.self) }
+            guard let _ = result else {
+                completion?(nil, ServerError.UnknownClassType(object: "Send email"))
+                return
+            }
+            completion?(nil, res.result.error)
         }
     }
     

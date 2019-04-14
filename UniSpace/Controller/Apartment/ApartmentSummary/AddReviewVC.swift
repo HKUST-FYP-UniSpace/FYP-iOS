@@ -31,11 +31,12 @@ class AddReviewVC: MasterFormPopupVC {
         form +++ Section("")
             <<< getButtonRow(id: nil, title: "Send", callback: {
                 self.updateModel()
+                guard let houseId = self.houseId else { return }
                 guard let review = self.review else {
                     self.showAlert(title: "Please input all the fields")
                     return
                 }
-                DataStore.shared.addReview(review: review, completion: { (msg, error) in
+                DataStore.shared.addReview(houseId: houseId, review: review, completion: { (msg, error) in
                     guard !self.sendFailed(msg, error: error) else { return }
                     self.dismiss(animated: true, completion: nil)
                 })

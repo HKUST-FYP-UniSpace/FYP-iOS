@@ -19,11 +19,20 @@ extension AlamofireService: OwnerService {
     }
 
     func getOwnerTeamsSummary(houseId: Int, completion: @escaping (OwnerTeamsModel?, Error?) -> Void) {
-        // TODO
+        get(at: .getOwnerTeamSummary(houseId: houseId)).responseJSON { (res: DataResponse<Any>) in
+            var result: OwnerTeamsModel? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(OwnerTeamsModel.self, from: data) }
+            completion(result, res.result.error)
+        }
     }
 
     func replyReivew(reviewId: Int, comment: String, completion: SendRequestResult?) {
-        // TODO
+        var params = Parameters()
+        params["userId"] = DataStore.shared.user?.id
+        params["comment"] = comment
+        post(at: .replyReview(reviewId: reviewId), params: params).responseJSON { (res: DataResponse<Any>) in
+            completion?(nil, res.result.error)
+        }
     }
 
     func getHouseData(houseId: Int, filter: ChartFilterOptions, completion: @escaping (ChartDataListModel?, Error?) -> Void) {

@@ -17,6 +17,10 @@ extension DataStore {
     func register(userType: UserType, username: String, name: String, email: String, password: String, completion: @escaping (UserModel?, Error?) -> ()) {
         Service().register(userType: userType, username: username, name: name, email: email, password: password, completion: completion)
     }
+
+    func sendVerificationEmail(completion: SendRequestResult?) {
+        Service().sendVerificationEmail(completion: completion)
+    }
     
     func verify(code: String, completion: @escaping (UserModel?, Error?) -> ()) {
         Service().verify(code: code, completion: completion)
@@ -79,8 +83,8 @@ extension DataStore {
         Service().bookmarkHouse(houseId: houseId, bookmarked: bookmarked, completion: completion)
     }
 
-    func addReview(review: HouseReviewModel, completion: SendRequestResult?) {
-        Service().addReview(review: review, completion: completion)
+    func addReview(houseId: Int, review: HouseReviewModel, completion: SendRequestResult?) {
+        Service().addReview(houseId: houseId, review: review, completion: completion)
     }
 
     func changePreference(userId: Int? = nil, preference: PreferenceModel, completion: SendRequestResult?) {

@@ -18,14 +18,12 @@ extension TestService: OwnerService {
     }
 
     func getOwnerTeamsSummary(houseId: Int, completion: @escaping (OwnerTeamsModel?, Error?) -> Void) {
-        var arrangingTeams: [HouseTeamSummaryModel] = []
-        var formingTeams: [HouseTeamSummaryModel] = []
+        var teams: [HouseTeamSummaryModel] = []
         var reviews: [HouseReviewModel] = []
-        for _ in 0..<Int.random(in: (1..<5)) { arrangingTeams.append(TestHouseTeamSummaryModel().toModel()) }
-        for _ in 0..<Int.random(in: (1..<5)) { formingTeams.append(TestHouseTeamSummaryModel().toModel()) }
+        for _ in 0..<Int.random(in: (1..<10)) { teams.append(TestHouseTeamSummaryModel().toModel()) }
         for _ in 0..<Int.random(in: (6..<10)) { reviews.append(TestHouseReviewModel().toModel()) }
         reviews.sort(by: { $0.date > $1.date })
-        let model = OwnerTeamsModel(arrangingTeams: arrangingTeams, formingTeams: formingTeams, reviews: reviews)
+        let model = OwnerTeamsModel(teams: teams, reviews: reviews)
         delay { completion(model, nil) }
     }
 

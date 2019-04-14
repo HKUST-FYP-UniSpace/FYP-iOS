@@ -12,6 +12,7 @@ import Eureka
 class OwnerAddHouseVC: MasterFormPopupVC {
 
     private let unit = "$"
+    private let sizeUnit = "sq. ft."
     private var model: HouseListModel?
     private var images: [UIImage] = []
 
@@ -29,7 +30,8 @@ class OwnerAddHouseVC: MasterFormPopupVC {
         form +++ Section("Information")
             <<< getTextRow(id: "title", title: "Title", defaultValue: nil)
             <<< getTextRow(id: "address", title: "Address", defaultValue: nil)
-            <<< getPriceRow(id: "price", title: "Price", defaultValue: nil, unit: unit)
+            <<< getPriceRow(id: "price", title: "Price", defaultValue: nil, unit: unit, unitIsFront: true)
+            <<< getPriceRow(id: "size", title: "Size", defaultValue: nil, unit: sizeUnit, unitIsFront: false)
             <<< getTextRow(id: "size", title: "Size", defaultValue: nil)
             <<< getTextAreaRow(id: "subtitle", placeholder: "detail", defaultValue: nil, disable: false)
 
@@ -74,7 +76,9 @@ class OwnerAddHouseVC: MasterFormPopupVC {
         if let row = form.rowBy(tag: "price") as? TextRow,
             let value = row.value,
             let obtainedPrice = Int(value.deletingPrefix("\(unit) ")) { price = obtainedPrice }
-        if let row = form.rowBy(tag: "size") as? TextRow, let value = row.value { size = Int(value) }
+        if let row = form.rowBy(tag: "size") as? TextRow,
+            let value = row.value,
+            let obtainedSize = Int(value.deletingSuffix(" \(sizeUnit)")) { size = obtainedSize }
         if let row = form.rowBy(tag: "rooms") as? TextRow, let value = row.value { rooms = Int(value) }
         if let row = form.rowBy(tag: "beds") as? TextRow, let value = row.value { beds = Int(value) }
         if let row = form.rowBy(tag: "toilets") as? TextRow, let value = row.value { toilets = Int(value) }

@@ -32,14 +32,14 @@ extension FormViewController {
         }
     }
 
-    func getPriceRow(id: String?, title: String?, defaultValue: String?, unit: String) -> BaseRow {
+    func getPriceRow(id: String?, title: String?, defaultValue: String?, unit: String, unitIsFront: Bool) -> BaseRow {
         return TextRow(id) {
             $0.title = title
             $0.value = defaultValue
             $0.placeholder = "-"
 
             if let defaultValue = defaultValue, !defaultValue.isEmpty {
-                $0.value = unit + " " + defaultValue
+                $0.value = getPriceValue(defaultValue, unit, unitIsFront)
                 $0.placeholder = $0.value
             }
             }
@@ -56,12 +56,12 @@ extension FormViewController {
                     row.value = ""
 
                 } else { // finish editing cell
-                    rowValue = rowValue.isEmpty ? (row.placeholder ?? "-") : (unit + " " + rowValue)
+                    rowValue = rowValue.isEmpty ? (row.placeholder ?? "-") : self.getPriceValue(rowValue, unit, unitIsFront)
                     row.placeholder = unit
 
-                    let currentRowValue: String = rowValue.deletingPrefix("\(unit) ")
+                    let currentRowValue: String = unitIsFront ? rowValue.deletingPrefix("\(unit) ") : rowValue.deletingSuffix(" \(unit)")
                     if currentRowValue.isNumber() {
-                        row.value = unit + " " + currentRowValue
+                        row.value = self.getPriceValue(currentRowValue, unit, unitIsFront)
                     } else {
                         textCell.backgroundColor = .yellow
                         return
@@ -70,6 +70,10 @@ extension FormViewController {
                     row.placeholder = row.value
                 }
             }
+    }
+
+    private func getPriceValue(_ value: String, _ unit: String, _ unitIsFront: Bool) -> String {
+        return unitIsFront ? unit + " " + value : value + " " + unit
     }
 
     func getTextAreaRow(id: String?, placeholder: String?, defaultValue: String?, disable: Condition = false) -> BaseRow {

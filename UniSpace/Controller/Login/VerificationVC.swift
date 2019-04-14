@@ -17,6 +17,7 @@ class VerificationVC: MasterLoginVC {
     lazy private var detailLabel = LoginLabel(labelText: "Please enter the 6 digits verification code sent to your email address", isTitle: false, inverseColor: true)
     lazy private var codeTextField = LoginTextField(text: "e.g. 000000", inverseColor: true)
     lazy private var verifyButton = LoginButton(buttonText: "Verify", inverseColor: true)
+    lazy private var resendButton = LoginButton(buttonText: "Resend", inverseColor: true)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,7 @@ class VerificationVC: MasterLoginVC {
         setupCodeTextField()
         codeTextField.keyboardType = .numberPad
         setupVerifyButton()
+        setupResendButton()
     }
     
     @objc func handleVerify() {
@@ -55,6 +57,13 @@ class VerificationVC: MasterLoginVC {
                 return
             }
             self.login(username: self.username, password: self.password, completion: self.loginCompletion)
+        }
+    }
+
+    @objc func handleResend() {
+        DataStore.shared.sendVerificationEmail { (msg, error) in
+            guard !self.sendFailed(msg, error: error) else { return }
+            self.showAlert(title: "Verification code is sent to your email")
         }
     }
     
@@ -92,6 +101,13 @@ extension VerificationVC {
         verifyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         verifyButton.topAnchor.constraint(equalTo: codeTextField.bottomAnchor, constant: 40).isActive = true
         verifyButton.addTarget(self, action: #selector(handleVerify), for: .touchUpInside)
+    }
+
+    private func setupResendButton() {
+        view.addSubview(resendButton)
+        resendButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        resendButton.topAnchor.constraint(equalTo: verifyButton.bottomAnchor, constant: 20).isActive = true
+        resendButton.addTarget(self, action: #selector(handleResend), for: .touchUpInside)
     }
     
 }

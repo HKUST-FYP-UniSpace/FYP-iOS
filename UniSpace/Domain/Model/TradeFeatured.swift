@@ -20,4 +20,8 @@ protocol TradeFeatured: HavePhotos {
     var isBookmarked: Bool { get set }
     var photoURLs: [String] { get set }
 
+    var quantity: Int { get set }
+    var tradeCategory: TradeCategory { get set }
+    var tradeItemCondition: TradeItemCondition { get set }
+
 }

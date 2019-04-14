@@ -78,6 +78,9 @@ class TradeSellingItemVC: MasterFormPopupVC {
         <<< getLabelRow(id: nil, title: "Location", displayValue: sellingItem?.location)
         <<< getLabelRow(id: nil, title: "Price", displayValue: price)
         <<< getTextAreaRow(id: nil, placeholder: "detail", defaultValue: sellingItem?.detail, disable: true)
+        <<< getLabelRow(id: nil, title: "Quantity", displayValue: String(sellingItem?.quantity))
+        <<< getLabelRow(id: nil, title: "Category", displayValue: sellingItem?.tradeCategory.rawValue)
+        <<< getLabelRow(id: nil, title: "Condition", displayValue: sellingItem?.tradeItemCondition.rawValue)
 
         form +++ Section("")
             <<< getButtonRow(id: nil, title: "Stats", callback: {
@@ -102,8 +105,11 @@ class TradeSellingItemVC: MasterFormPopupVC {
         form +++ Section("Information")
         <<< getTextRow(id: "title", title: "Title", defaultValue: sellingItem?.title)
         <<< getTextRow(id: "location", title: "Location", defaultValue: sellingItem?.location)
-        <<< getPriceRow(id: "price", title: "Price", defaultValue: price, unit: unit)
+        <<< getPriceRow(id: "price", title: "Price", defaultValue: price, unit: unit, unitIsFront: true)
         <<< getTextAreaRow(id: "detail", placeholder: "detail", defaultValue: sellingItem?.detail, disable: false)
+        <<< getTextRow(id: "quantity", title: "Quantity", defaultValue: String(sellingItem?.quantity))
+        <<< getSingleSelectorRow(id: "category", title: "Category", defaultValue: sellingItem?.tradeCategory.rawValue, selectorTitle: nil, options: TradeCategory.allCases.map { $0.rawValue })
+        <<< getSingleSelectorRow(id: "condition", title: "Condition", defaultValue: sellingItem?.tradeItemCondition.rawValue, selectorTitle: nil, options: TradeItemCondition.allCases.map { $0.rawValue })
     }
 
     private func updateModel() {
@@ -117,17 +123,28 @@ class TradeSellingItemVC: MasterFormPopupVC {
         var description: String? = nil
         var location: String? = nil
         var price: Int? = nil
-        if let row = form.rowBy(tag: "title") as? TextRow { name = row.value }
-        if let row = form.rowBy(tag: "detail") as? TextAreaRow { description = row.value }
+        var quantity: Int? = nil
+        var category: TradeCategory? = nil
+        var itemCondition: TradeItemCondition? = nil
+        if let row = form.rowBy(tag: "name") as? TextRow { name = row.value }
+        if let row = form.rowBy(tag: "description") as? TextAreaRow { description = row.value }
         if let row = form.rowBy(tag: "location") as? TextRow { location = row.value }
         if let row = form.rowBy(tag: "price") as? TextRow,
             let value = row.value,
             let obtainedPrice = Int(value.deletingPrefix("\(unit) ")) { price = obtainedPrice }
+        if let row = form.rowBy(tag: "quantity") as? TextRow, let value = row.value { quantity = Int(value) }
+        if let row = form.rowBy(tag: "category") as? ActionSheetRow<String>,
+            let value = row.value, let cat = TradeCategory(rawValue: value) { category = cat }
+        if let row = form.rowBy(tag: "condition") as? ActionSheetRow<String>,
+            let value = row.value, let condition = TradeItemCondition(rawValue: value) { itemCondition = condition }
 
         guard let updateName = name, !updateName.isEmpty,
             let updateDescription = description, !updateDescription.isEmpty,
             let updateLocation = location, !updateLocation.isEmpty,
-            let updatePrice = price else {
+            let updatePrice = price,
+            let updateQuantity = quantity,
+            let updateCategory = category,
+            let updateCondition = itemCondition else {
                 self.editedSellingItem = nil
                 return
         }
@@ -136,6 +153,9 @@ class TradeSellingItemVC: MasterFormPopupVC {
         model.detail = updateDescription
         model.location = updateLocation
         model.price = updatePrice
+        model.quantity = updateQuantity
+        model.tradeCategory = updateCategory
+        model.tradeItemCondition = updateCondition
         self.editedSellingItem = model
     }
 
