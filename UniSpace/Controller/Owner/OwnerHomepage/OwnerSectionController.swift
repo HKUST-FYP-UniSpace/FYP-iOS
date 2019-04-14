@@ -127,7 +127,10 @@ final class OwnerSectionController: ListSectionController {
     override func didSelectItem(at index: Int) {
         switch index {
         case 2:
-            log.debug("OwnerInfoCell")
+            let vc = OwnerHouseInfoVC()
+            vc.houseId = model?.id
+            vc.houseCondition = model?.houseStatus
+            adapter.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
 
         case 4:
             let vc = ChartVC()
@@ -136,7 +139,6 @@ final class OwnerSectionController: ListSectionController {
             adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
 
         case 6:
-            log.debug("OwnerTeamsCell")
             let vc = OwnerTeamVC()
             vc.houseId = model?.id
             adapter.viewController?.navigationController?.pushViewController(vc, animated: true)

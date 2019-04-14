@@ -73,4 +73,15 @@ class HouseListModel: Decodable, ListDiffable, HouseList {
         return self.id == object.id
     }
 
+    func allSet() -> Bool {
+       return !title.isEmpty
+        && !address.isEmpty
+        && !subtitle.isEmpty
+        && price != 0
+        && size != 0
+        && rooms != 0
+        && beds != 0
+        && toilets != 0
+    }
+
 }

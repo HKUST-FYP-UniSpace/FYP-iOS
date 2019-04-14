@@ -37,6 +37,9 @@ class TradeSellingItemVC: MasterFormPopupVC {
             self.showAlert(title: "Please input all cells")
             return
         }
+
+        guard let itemId = itemId else { return }
+        editedSellingItem.id = itemId
         DataStore.shared.editTradeItem(model: editedSellingItem, images: images) { (msg, error) in
             guard !self.sendFailed(msg, error: error) else { return }
             self.dismiss(animated: true, completion: nil)

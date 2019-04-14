@@ -38,6 +38,9 @@ class OwnerHouseInfoVC: MasterFormPopupVC {
             self.showAlert(title: "Please input all cells")
             return
         }
+
+        guard let houseId = houseId else { return }
+        editedHouse.id = houseId
         DataStore.shared.editHouse(model: editedHouse, images: images) { (msg, error) in
             guard !self.sendFailed(msg, error: error) else { return }
             self.dismiss(animated: true, completion: nil)
@@ -73,7 +76,6 @@ class OwnerHouseInfoVC: MasterFormPopupVC {
         let rows = getImageRows(urls: house?.photoURLs, canChange: false)
 
         form +++ Section("")
-            <<< getLabelRow(id: nil, title: "House Condition", displayValue: houseCondition?.text)
             <<< ActionSheetRow<String>(nil) {
                 $0.title = "House Condition"
                 $0.options = HouseStatus.allCases.map { $0.text }
@@ -83,10 +85,16 @@ class OwnerHouseInfoVC: MasterFormPopupVC {
                 .onPresent { from, to in
                     to.popoverPresentationController?.permittedArrowDirections = .up
                 }
-                .cellUpdate { (cell, row) in
+                .onChange { (row) in
                     guard let houseId = self.houseId, let houseCondition = self.houseCondition, let newCondition = HouseStatus(text: row.value), houseCondition != newCondition else { return }
+                    log.debug("show alert")
                     self.showAlert(title: "Do you want to change status to \(newCondition.text)?", completion: { (yes) in
-                        guard yes else { return }
+                        guard yes else {
+                            self.houseCondition = houseCondition
+                            row.value = houseCondition.text
+                            self.tableView.reloadData()
+                            return
+                        }
                         DataStore.shared.changeHouseStatus(houseId: houseId, status: newCondition, completion: { (msg, error) in
                             guard !self.sendFailed(msg, error: error) else { return }
                             self.houseCondition = newCondition
@@ -113,9 +121,6 @@ class OwnerHouseInfoVC: MasterFormPopupVC {
     private func editForm() {
         var rows = getImageRows(urls: house?.photoURLs, canChange: true)
         rows.append(getAddImageRow(title: "Add Image"))
-
-        form +++ Section("")
-            <<< getLabelRow(id: nil, title: "House Condition", displayValue: houseCondition?.text)
 
         form +++ Section("Images")
         for row in rows { form.last! <<< row }

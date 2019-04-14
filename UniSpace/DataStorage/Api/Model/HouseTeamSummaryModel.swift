@@ -68,8 +68,8 @@ class HouseTeamSummaryModel: Decodable, ListDiffable, HouseTeamSummary {
     }
 
     func allSet() -> Bool {
-        return title != ""
-            && description != ""
+        return !title.isEmpty
+            && !description.isEmpty
             && groupSize != 0
     }
 

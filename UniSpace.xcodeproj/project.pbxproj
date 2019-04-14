@@ -124,6 +124,9 @@
 		6D98246321AD272000BAF80D /* DataStore-local.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D98246221AD272000BAF80D /* DataStore-local.swift */; };
 		6D98246521AD274800BAF80D /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D98246421AD274800BAF80D /* KeychainManager.swift */; };
 		6D9CF6562261B46800C520CE /* OwnerHouseInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9CF6552261B46800C520CE /* OwnerHouseInfoVC.swift */; };
+		6D9CF6582262579900C520CE /* OwnerAddHouseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9CF6572262579900C520CE /* OwnerAddHouseVC.swift */; };
+		6D9CF65D2262C94400C520CE /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9CF65C2262C94400C520CE /* RealmService.swift */; };
+		6D9CF65F2262CA0100C520CE /* RealmMessageGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9CF65E2262CA0100C520CE /* RealmMessageGroup.swift */; };
 		6DA035312202C48900258359 /* SingleSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA035302202C48900258359 /* SingleSectionViewController.swift */; };
 		6DA9D46122043DCC009464B6 /* MessageSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9D46022043DCC009464B6 /* MessageSummary.swift */; };
 		6DA9D46322043E51009464B6 /* BlogSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9D46222043E51009464B6 /* BlogSummary.swift */; };
@@ -371,6 +374,9 @@
 		6D98246221AD272000BAF80D /* DataStore-local.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataStore-local.swift"; sourceTree = "<group>"; };
 		6D98246421AD274800BAF80D /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		6D9CF6552261B46800C520CE /* OwnerHouseInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerHouseInfoVC.swift; sourceTree = "<group>"; };
+		6D9CF6572262579900C520CE /* OwnerAddHouseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerAddHouseVC.swift; sourceTree = "<group>"; };
+		6D9CF65C2262C94400C520CE /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		6D9CF65E2262CA0100C520CE /* RealmMessageGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMessageGroup.swift; sourceTree = "<group>"; };
 		6DA035302202C48900258359 /* SingleSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSectionViewController.swift; sourceTree = "<group>"; };
 		6DA9D46022043DCC009464B6 /* MessageSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSummary.swift; sourceTree = "<group>"; };
 		6DA9D46222043E51009464B6 /* BlogSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogSummary.swift; sourceTree = "<group>"; };
@@ -540,6 +546,7 @@
 			isa = PBXGroup;
 			children = (
 				6D9CF6552261B46800C520CE /* OwnerHouseInfoVC.swift */,
+				6D9CF6572262579900C520CE /* OwnerAddHouseVC.swift */,
 				6D06243C22324F5D0046D06B /* OwnerVC.swift */,
 				6D06243E223251F20046D06B /* OwnerSectionController.swift */,
 			);
@@ -707,6 +714,7 @@
 				6D68F6DB21A7F5FF00D31472 /* UserDefaultsManager.swift */,
 				6D68F6D021A7F13E00D31472 /* Testing */,
 				6D68F6CF21A7F13600D31472 /* Api */,
+				6D9CF6592262C91A00C520CE /* LocalDB */,
 				6D68F6FB21A8057E00D31472 /* Util */,
 			);
 			path = DataStorage;
@@ -870,6 +878,31 @@
 				6D8AD42722130BC600EA6643 /* TradeFilterVC.swift */,
 			);
 			path = TradeFilter;
+			sourceTree = "<group>";
+		};
+		6D9CF6592262C91A00C520CE /* LocalDB */ = {
+			isa = PBXGroup;
+			children = (
+				6D9CF65A2262C92400C520CE /* Model */,
+				6D9CF65B2262C92D00C520CE /* Service */,
+			);
+			path = LocalDB;
+			sourceTree = "<group>";
+		};
+		6D9CF65A2262C92400C520CE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6D9CF65E2262CA0100C520CE /* RealmMessageGroup.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6D9CF65B2262C92D00C520CE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6D9CF65C2262C94400C520CE /* RealmService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		6DC0DD7E2227EAC0000BCA36 /* TradeDetail */ = {
@@ -1416,6 +1449,7 @@
 				6DA9D49122057D7C009464B6 /* TestService+Trade.swift in Sources */,
 				6DA9D46522043ECE009464B6 /* HouseSuggestion.swift in Sources */,
 				6DA9D499220587A0009464B6 /* TradeHomepageModel.swift in Sources */,
+				6D9CF65F2262CA0100C520CE /* RealmMessageGroup.swift in Sources */,
 				6D06243A2231738E0046D06B /* Lorem.swift in Sources */,
 				6DFE1D9C2208657C0012E8A2 /* ApartmentDetailVC.swift in Sources */,
 				6D68F6D621A7F25900D31472 /* AuthService.swift in Sources */,
@@ -1477,6 +1511,7 @@
 				6D7EE8F021E904D5008D882F /* LabelCell.swift in Sources */,
 				6DFE1DB3220ADC700012E8A2 /* TestHouseListModel.swift in Sources */,
 				6DA9D49322057D9B009464B6 /* AlamofireService+House.swift in Sources */,
+				6D9CF65D2262C94400C520CE /* RealmService.swift in Sources */,
 				6DFE1DAB22086EA90012E8A2 /* StarRatingsView.swift in Sources */,
 				6D7EE8D821E8C685008D882F /* StandardActivityView.swift in Sources */,
 				6D2BEDAD223168B6005FFEEE /* ChatMessageModel.swift in Sources */,
@@ -1505,6 +1540,7 @@
 				6D891CC3221BF85100DEB9F4 /* PreferenceModel.swift in Sources */,
 				6D06245422325F8A0046D06B /* AlamofireService+Owner.swift in Sources */,
 				6DA9D46322043E51009464B6 /* BlogSummary.swift in Sources */,
+				6D9CF6582262579900C520CE /* OwnerAddHouseVC.swift in Sources */,
 				6DFE1D9A2208656F0012E8A2 /* ApartmentListVC.swift in Sources */,
 				6D28BDBD2241F19800F6E813 /* ReviewVC.swift in Sources */,
 				6DC0DD8C222ACD06000BCA36 /* MessageModel.swift in Sources */,

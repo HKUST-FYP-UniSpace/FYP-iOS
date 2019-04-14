@@ -36,9 +36,9 @@ final class MessageConversationVC: ChatVC {
             .onTypingStatus { [weak self] in
                 self?.setTypingIndicatorHidden(false)
             }.onNewMessage { [weak self] message in
-                self?.setTypingIndicatorHidden(true, performUpdates: {
-                    //                    self?.insertMessage(message)
-                })
+//                self?.setTypingIndicatorHidden(true, performUpdates: {
+//                    self?.insertMessage(message)
+//                })
                 self?.insertMessage(message)
         }
     }

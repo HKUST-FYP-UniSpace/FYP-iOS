@@ -64,10 +64,10 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
     }
 
     func allSet() -> Bool {
-        return title != ""
-            && location != ""
+        return !title.isEmpty
+            && !location.isEmpty
             && price != 0
-            && detail != ""
+            && !detail.isEmpty
     }
 
 }

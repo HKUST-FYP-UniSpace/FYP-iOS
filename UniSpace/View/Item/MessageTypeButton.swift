@@ -13,13 +13,16 @@ enum MessageGroupType: Int, Codable, CaseIterable {
     case Team
     case Trade
     case Request
+    case Admin
 
     var text: String {
+        let role = DataStore.shared.user?.userType ?? .Tenant
         switch self {
-        case .Owner: return "Owner"
+        case .Owner: return role == .Tenant ? "Owner" : "Tenant"
         case .Team: return "Team"
         case .Trade: return "Trade"
         case .Request: return "Request"
+        case .Admin: return "Admin"
         }
     }
 
@@ -29,6 +32,7 @@ enum MessageGroupType: Int, Codable, CaseIterable {
         case .Team: return UIColor(r: 75, g: 177, b: 157)
         case .Trade: return UIColor(r: 224, g: 122, b: 87)
         case .Request: return UIColor(r: 65, g: 146, b: 191)
+        case .Admin: return .darkGray
         }
     }
 }

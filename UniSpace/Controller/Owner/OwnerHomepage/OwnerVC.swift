@@ -36,7 +36,7 @@ final class OwnerVC: MasterVC, ListAdapterDataSource {
     }
 
     @objc func addButton(_ sender: UIButton) {
-        log.debug("Add button clicked")
+        adapter.viewController?.present(UINavigationController(rootViewController: OwnerAddHouseVC()), animated: true, completion: nil)
     }
 
     override func loadData() {
