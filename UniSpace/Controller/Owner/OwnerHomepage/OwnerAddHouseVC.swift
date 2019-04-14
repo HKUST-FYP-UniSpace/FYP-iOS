@@ -32,7 +32,6 @@ class OwnerAddHouseVC: MasterFormPopupVC {
             <<< getTextRow(id: "address", title: "Address", defaultValue: nil)
             <<< getPriceRow(id: "price", title: "Price", defaultValue: nil, unit: unit, unitIsFront: true)
             <<< getPriceRow(id: "size", title: "Size", defaultValue: nil, unit: sizeUnit, unitIsFront: false)
-            <<< getTextRow(id: "size", title: "Size", defaultValue: nil)
             <<< getTextAreaRow(id: "subtitle", placeholder: "detail", defaultValue: nil, disable: false)
 
         form +++ Section("Facilities")
