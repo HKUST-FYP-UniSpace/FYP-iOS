@@ -128,6 +128,7 @@ class SettingsVC: FormViewController {
                     cell.textLabel?.textColor = UIColor(r: 25, g: 133, b: 132)
                 }
                 .onCellSelection { (cell, row) in
+                    UINotificationFeedbackGenerator().notificationOccurred(.success)
                     self.present(UINavigationController(rootViewController: LogsVC()), animated: true, completion: nil)
             }
 
@@ -257,6 +258,7 @@ class SettingsVC: FormViewController {
                     cell.textLabel?.textColor = UIColor(r: 25, g: 133, b: 132)
                 }
                 .onCellSelection { (cell, row) in
+                    UINotificationFeedbackGenerator().notificationOccurred(.success)
                     self.present(UINavigationController(rootViewController: LogsVC()), animated: true, completion: nil)
             }
 

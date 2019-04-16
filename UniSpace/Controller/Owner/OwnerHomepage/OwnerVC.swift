@@ -36,6 +36,7 @@ final class OwnerVC: MasterVC, ListAdapterDataSource {
     }
 
     @objc func addButton(_ sender: UIButton) {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
         adapter.viewController?.present(UINavigationController(rootViewController: OwnerAddHouseVC()), animated: true, completion: nil)
     }
 

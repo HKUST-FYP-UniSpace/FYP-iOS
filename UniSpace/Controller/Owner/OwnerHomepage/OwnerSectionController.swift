@@ -130,6 +130,7 @@ final class OwnerSectionController: ListSectionController {
             let vc = OwnerHouseInfoVC()
             vc.houseId = model?.id
             vc.houseCondition = model?.houseStatus
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
             adapter.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
 
         case 4:

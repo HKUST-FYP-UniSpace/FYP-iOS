@@ -61,6 +61,8 @@ class VerificationVC: MasterLoginVC {
     }
 
     @objc func handleResend() {
+        view.endEditing(true)
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
         DataStore.shared.sendVerificationEmail { (msg, error) in
             guard !self.sendFailed(msg, error: error) else { return }
             self.showAlert(title: "Verification code is sent to your email")
