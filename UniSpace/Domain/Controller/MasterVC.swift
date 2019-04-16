@@ -63,6 +63,7 @@ extension UIViewController {
     func showAlert(title: String?, msg: String? = nil) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        UINotificationFeedbackGenerator().notificationOccurred(.warning)
         present(alert, animated: true, completion: nil)
     }
 
@@ -70,6 +71,7 @@ extension UIViewController {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in completion(true) }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in completion(false) }))
+        UINotificationFeedbackGenerator().notificationOccurred(.warning)
         present(alert, animated: true, completion: nil)
     }
 
@@ -80,7 +82,6 @@ extension UIViewController {
 
     func sendFailed(_ message: String?, error: Error?) -> Bool {
         if message == nil && error == nil { return false }
-        UINotificationFeedbackGenerator().notificationOccurred(.warning)
         if let message = message { showAlert(title: message) }
         else if let error = error { showAlert(title: error.localizedDescription) }
         return true

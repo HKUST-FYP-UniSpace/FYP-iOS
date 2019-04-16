@@ -75,26 +75,16 @@ extension AlamofireService: TradeService {
                 }
                 multipartFormData.append("\(itemId)".data(using: .utf8)!, withName: "tradeId")
         }) { (res: DataResponse<Any>) in
-            var result: Bool? = nil
-            if let data = res.result.value { result = self.transform(from: data, type: Bool.self) }
-            guard let _ = result else {
-                completion?(nil, ServerError.UnknownClassType(object: "Result"))
-                return
-            }
-            completion?(nil, res.result.error)
+            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
         }
     }
 
     func editTradeItem(model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
         let params = getItemParams(model)
         post(at: .editTradeItem(itemId: model.id), params: params).responseJSON { (res: DataResponse<Any>) in
-            var result: Bool? = nil
-            if let data = res.result.value { result = self.transform(from: data, type: Bool.self) }
-            guard let success = result, success else {
-                completion?("Unsuccess update", nil)
-                return
-            }
-            self.createTradeItemImage(itemId: model.id, images: images, completion: completion)
+            self.sendRequestStandardHandling(res: res, followUpAction: {
+                self.createTradeItemImage(itemId: model.id, images: images, completion: completion)
+            }, completion: completion)
         }
     }
 
@@ -116,18 +106,14 @@ extension AlamofireService: TradeService {
         params["tradeId"] = itemId
         params["bookmarked"] = bookmarked
         post(at: .bookmarkItem(itemId: itemId), params: params).responseJSON { (res: DataResponse<Any>) in
-            var result: ServerMessage? = nil
-            if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
-            completion?(result?.message, res.result.error)
+            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
         }
     }
 
     func contactOwner(itemId: Int, message: String, completion: SendRequestResult?) {
         let params = getContactOwnerParams(message)
         post(at: .contactOwner(itemId: itemId), params: params).responseJSON { (res: DataResponse<Any>) in
-            var result: ServerMessage? = nil
-            if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
-            completion?(result?.message, res.result.error)
+            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
         }
     }
 

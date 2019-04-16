@@ -39,11 +39,11 @@ class LoginVC: MasterLoginVC {
     }
 
     @objc func handleLogin() {
-        UINotificationFeedbackGenerator().notificationOccurred(.success)
         guard let username = usernameTextField.text, let password = passwordTextField.text else {
             showAlert(title: "Please input your username and password")
             return
         }
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
         login(username: username, password: password, completion: loginCompletion)
     }
     

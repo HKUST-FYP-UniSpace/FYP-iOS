@@ -32,13 +32,7 @@ extension AlamofireService: AuthService {
 
     func sendVerificationEmail(completion: SendRequestResult?) {
         post(at: .sendEmail).responseJSON { (res: DataResponse<Any>) in
-            var result: Bool? = nil
-            if let data = res.result.value { result = self.transform(from: data, type: Bool.self) }
-            guard let _ = result else {
-                completion?(nil, ServerError.UnknownClassType(object: "Send email"))
-                return
-            }
-            completion?(nil, res.result.error)
+            self.sendRequestStandardHandling(res: res, object: "send email", followUpAction: nil, completion: completion)
         }
     }
     

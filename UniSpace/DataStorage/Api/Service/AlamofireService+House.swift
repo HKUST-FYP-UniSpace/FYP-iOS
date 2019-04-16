@@ -64,9 +64,7 @@ extension AlamofireService: HouseService {
         params["houseId"] = houseId
         params["bookmarked"] = bookmarked
         post(at: .bookmarkHouse(houseId: houseId), params: params).responseJSON { (res: DataResponse<Any>) in
-            var result: ServerMessage? = nil
-            if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
-            completion?(result?.message, res.result.error)
+            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
         }
     }
 
@@ -87,18 +85,14 @@ extension AlamofireService: HouseService {
     func changePreference(preference: PreferenceModel, completion: SendRequestResult?) {
         let params = getPreferenceParams(preference)
         post(at: .updatePreference, params: params).responseJSON { (res: DataResponse<Any>) in
-            var result: ServerMessage? = nil
-            if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
-            completion?(result?.message, res.result.error)
+            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
         }
     }
 
     func changeTeamPreference(teamId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
         let params = getPreferenceParams(preference)
         put(at: .updateTeamPreference(teamId: teamId), params: params).responseJSON { (res: DataResponse<Any>) in
-            var result: ServerMessage? = nil
-            if let data = res.data { result = try? JSONDecoder().decode(ServerMessage.self, from: data) }
-            completion?(result?.message, res.result.error)
+            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
         }
     }
 
@@ -126,13 +120,9 @@ extension AlamofireService: HouseService {
                 multipartFormData.append(imageData, withName: "photoURL", fileName: "photoURL.jpeg", mimeType: "image/jpeg")
                 multipartFormData.append("\(teamId)".data(using: .utf8)!, withName: "teamId")
         }) { (res: DataResponse<Any>) in
-            var result: Bool? = nil
-            if let data = res.result.value { result = self.transform(from: data, type: Bool.self) }
-            guard let _ = result else {
-                completion?(nil, ServerError.UnknownClassType(object: "Result"))
-                return
-            }
-            self.changeTeamPreference(teamId: teamId, preference: preference, completion: completion)
+            self.sendRequestStandardHandling(res: res, followUpAction: {
+                self.changeTeamPreference(teamId: teamId, preference: preference, completion: completion)
+            }, completion: completion)
         }
     }
 
@@ -140,14 +130,7 @@ extension AlamofireService: HouseService {
         var params = Parameters()
         params["userId"] = DataStore.shared.user?.id
         post(at: .joinTeam(teamId: teamId), params: params).responseJSON { (res: DataResponse<Any>) in
-            var result: Bool? = nil
-            if let data = res.result.value { result = self.transform(from: data, type: Bool.self) }
-            guard let isSuccess = result else {
-                completion?(nil, ServerError.UnknownClassType(object: "Result"))
-                return
-            }
-            let msg: String? = (isSuccess ? nil : "Unable to join")
-            completion?(msg, res.result.error)
+            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
         }
     }
 

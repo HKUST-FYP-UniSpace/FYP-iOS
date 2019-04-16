@@ -15,6 +15,7 @@ typealias SendRequestResult = (String?, Error?) -> Void
 enum ServerError: LocalizedError {
     case UnknownClassType(object: String)
     case ImageFormatError(format: String)
+    case UpdateUnsuccess
 
     var errorDescription: String? {
         get {
@@ -23,6 +24,8 @@ enum ServerError: LocalizedError {
                 return "Not appropriate \(object)"
             case .ImageFormatError(let format):
                 return "Can't convert to \(format) format"
+            case .UpdateUnsuccess:
+                return "Unsuccessful update"
             }
         }
     }
@@ -192,6 +195,24 @@ extension AlamofireService {
         guard let lists = from as? Dictionary<String, Any>, !lists.isEmpty else { return nil }
         for list in lists { return list.value as? T }
         return nil
+    }
+
+    func sendRequestStandardHandling(res: DataResponse<Any>, object: String = "Result", followUpAction: (() -> Void)?, completion: SendRequestResult?) {
+        var result: Bool? = nil
+        if let data = res.result.value { result = self.transform(from: data, type: Bool.self) }
+        guard let isSuccess = result else {
+            completion?(nil, ServerError.UnknownClassType(object: "Result"))
+            return
+        }
+        guard isSuccess else {
+            completion?(nil, ServerError.UpdateUnsuccess)
+            return
+        }
+        if let action = followUpAction {
+            action()
+        } else {
+            completion?(nil, res.result.error)
+        }
     }
 
     func sendLogs(_ url: URL, completion: SendRequestResult?) {

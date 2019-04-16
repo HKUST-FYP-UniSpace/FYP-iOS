@@ -40,7 +40,6 @@ class VerificationVC: MasterLoginVC {
     
     @objc func handleVerify() {
         view.endEditing(true)
-        UINotificationFeedbackGenerator().notificationOccurred(.success)
         guard let code = codeTextField.text else {
             showAlert(title: "Please input the code")
             return
@@ -50,7 +49,8 @@ class VerificationVC: MasterLoginVC {
             showAlert(title: "The code has to be a 6 digits number")
             return
         }
-        
+
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
         DataStore.shared.verify(code: code) { (user, error) in
             guard user != nil else {
                 self.showAlert(title: "Wrong code")
