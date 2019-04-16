@@ -31,6 +31,7 @@ class SettingsVC: FormViewController {
     private func createForm(_ user: UserModel?) {
         guard let user = user else { return }
         _ = user.userType == .Owner ? createOwnerForm(user) : createTenantForm(user)
+        createAdvanceForm()
     }
 
     private func createOwnerForm(_ user: UserModel) {
@@ -93,43 +94,6 @@ class SettingsVC: FormViewController {
                 .onCellSelection { (cell, row) in
                     // TODO
                     self.showAlert(title: "Method not implemented")
-            }
-
-            <<< LabelRow() {
-                $0.title = "Show Local Tenant View (for development)"
-                }
-                .cellUpdate { (cell, row) in
-                    cell.textLabel?.textColor = UIColor(r: 25, g: 133, b: 132)
-                }
-                .onCellSelection { (cell, row) in
-                    DataStore.shared.changeService(.Local)
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.addUserCredential(.Local, role: .Tenant)
-                    appDelegate.tryToLogin()
-            }
-
-            <<< LabelRow() {
-                $0.title = "Show Local Owner View (for development)"
-                }
-                .cellUpdate { (cell, row) in
-                    cell.textLabel?.textColor = UIColor(r: 25, g: 133, b: 132)
-                }
-                .onCellSelection { (cell, row) in
-                    DataStore.shared.changeService(.Local)
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.addUserCredential(.Local, role: .Owner)
-                    appDelegate.tryToLogin()
-            }
-            
-            <<< LabelRow() {
-                $0.title = "Show Logs (for development)"
-                }
-                .cellUpdate { (cell, row) in
-                    cell.textLabel?.textColor = UIColor(r: 25, g: 133, b: 132)
-                }
-                .onCellSelection { (cell, row) in
-                    UINotificationFeedbackGenerator().notificationOccurred(.success)
-                    self.present(UINavigationController(rootViewController: LogsVC()), animated: true, completion: nil)
             }
 
             <<< LabelRow() {
@@ -226,10 +190,25 @@ class SettingsVC: FormViewController {
             }
 
             <<< LabelRow() {
-                $0.title = "Show Local Tenant View (for development)"
+                $0.title = "Sign Out"
                 }
                 .cellUpdate { (cell, row) in
-                    cell.textLabel?.textColor = UIColor(r: 25, g: 133, b: 132)
+                    cell.textLabel?.textColor = .red
+                }
+                .onCellSelection { (cell, row) in
+                    super.logout()
+        }
+    }
+
+    private func createAdvanceForm() {
+        let textColor = UIColor(r: 25, g: 133, b: 132)
+
+        form +++ Section("Advance (for development only)")
+            <<< LabelRow() {
+                $0.title = "Show Local Tenant View"
+                }
+                .cellUpdate { (cell, row) in
+                    cell.textLabel?.textColor = textColor
                 }
                 .onCellSelection { (cell, row) in
                     DataStore.shared.changeService(.Local)
@@ -239,10 +218,10 @@ class SettingsVC: FormViewController {
             }
 
             <<< LabelRow() {
-                $0.title = "Show Local Owner View (for development)"
+                $0.title = "Show Local Owner View"
                 }
                 .cellUpdate { (cell, row) in
-                    cell.textLabel?.textColor = UIColor(r: 25, g: 133, b: 132)
+                    cell.textLabel?.textColor = textColor
                 }
                 .onCellSelection { (cell, row) in
                     DataStore.shared.changeService(.Local)
@@ -252,24 +231,14 @@ class SettingsVC: FormViewController {
             }
 
             <<< LabelRow() {
-                $0.title = "Show Logs (for development)"
+                $0.title = "Show Logs"
                 }
                 .cellUpdate { (cell, row) in
-                    cell.textLabel?.textColor = UIColor(r: 25, g: 133, b: 132)
+                    cell.textLabel?.textColor = textColor
                 }
                 .onCellSelection { (cell, row) in
                     UINotificationFeedbackGenerator().notificationOccurred(.success)
                     self.present(UINavigationController(rootViewController: LogsVC()), animated: true, completion: nil)
-            }
-
-            <<< LabelRow() {
-                $0.title = "Sign Out"
-                }
-                .cellUpdate { (cell, row) in
-                    cell.textLabel?.textColor = .red
-                }
-                .onCellSelection { (cell, row) in
-                    super.logout()
         }
     }
     
