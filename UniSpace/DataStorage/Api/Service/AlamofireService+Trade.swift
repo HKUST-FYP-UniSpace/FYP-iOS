@@ -113,7 +113,7 @@ extension AlamofireService: TradeService {
     func bookmarkItem(itemId: Int, bookmarked: Bool, completion: SendRequestResult?) {
         var params = Parameters()
         params["userId"] = DataStore.shared.user?.id
-        params["itemId"] = itemId
+        params["tradeId"] = itemId
         params["bookmarked"] = bookmarked
         post(at: .bookmarkItem(itemId: itemId), params: params).responseJSON { (res: DataResponse<Any>) in
             var result: ServerMessage? = nil

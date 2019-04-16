@@ -145,8 +145,8 @@ enum ApiRoute { case
         case .addReview(let houseId):
             return "house/\(houseId)/review"
 
-//        case .getTradeFeatured:
-//            return ""
+        case .getTradeFeatured:
+            return "trade/\(userId)/featured"
 
         case .getTradeSellingItems:
             return "trade/\(userId)/selling"
@@ -184,7 +184,7 @@ enum ApiRoute { case
             return "trade/\(userId)/update/\(itemId)"
 
         case .getTradeDetail(let itemId):
-            return "trade/\(userId)/trade/\(itemId)"
+            return "trade/\(userId)/detail/\(itemId)"
 
         case .bookmarkItem( _):
             return "tradeBookmark"
