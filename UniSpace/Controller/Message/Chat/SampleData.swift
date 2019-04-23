@@ -192,7 +192,7 @@ final internal class SampleData {
 
     func getAvatarFor(sender: Sender) -> Avatar {
         let firstName = sender.displayName.components(separatedBy: " ").first
-        let lastName = sender.displayName.components(separatedBy: " ").first
+        let lastName = sender.displayName.components(separatedBy: " ").last
         let initials = "\(firstName?.first ?? "A")\(lastName?.first ?? "A")"
         switch sender {
         case nathan:

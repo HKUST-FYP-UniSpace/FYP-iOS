@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageKit
 
 extension DataStore {
     
@@ -41,6 +42,10 @@ extension DataStore {
 
     func getMessageSummaries(completion: @escaping ([MessageSummaryModel]?, Error?) -> ()) {
         Service().getMessageSummaries(completion: completion)
+    }
+
+    func getMessageDetails(messageId: Int, allowedUsers: [UserModel], completion: @escaping ([MockMessage]?, Error?) -> Void) {
+        Service().getMessageDetails(messageId: messageId, allowedUsers: allowedUsers, completion: completion)
     }
 
     func getNotificationSummaries(completion: @escaping ([NotificationSummaryModel]?, Error?) -> Void) {

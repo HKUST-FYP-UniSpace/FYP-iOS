@@ -38,9 +38,11 @@ class ChatVC: MessagesViewController, MessagesDataSource {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        MockSocket.shared.connect(with: [SampleData.shared.steven, SampleData.shared.wu])
-            .onNewMessage { [weak self] message in
-                self?.insertMessage(message)
+        MockSocket.shared.connect(messageId: -1, with: [])
+            .onNewMessages { [weak self] messages in
+                for message in messages {
+                    self?.insertMessage(message)
+                }
         }
     }
 

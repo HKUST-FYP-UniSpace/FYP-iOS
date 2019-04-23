@@ -15,19 +15,22 @@ final class MockSocket {
 
     private var timer: Timer?
 
-    private var queuedMessage: MockMessage?
+    private var queuedMessages: [MockMessage]?
 
-    private var onNewMessageCode: ((MockMessage) -> Void)?
+    private var onNewMessageCode: (([MockMessage]) -> Void)?
 
     private var onTypingStatusCode: (() -> Void)?
 
-    private var connectedUsers: [Sender] = []
+    private var messageId: Int?
+
+    private var connectedUsers: [UserModel] = []
 
     private init() {}
 
     @discardableResult
-    func connect(with senders: [Sender]) -> Self {
+    func connect(messageId: Int, with senders: [UserModel]) -> Self {
         disconnect()
+        self.messageId = messageId
         connectedUsers = senders
         timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(handleTimer), userInfo: nil, repeats: true)
         return self
@@ -43,7 +46,7 @@ final class MockSocket {
     }
 
     @discardableResult
-    func onNewMessage(code: @escaping (MockMessage) -> Void) -> Self {
+    func onNewMessages(code: @escaping ([MockMessage]) -> Void) -> Self {
         onNewMessageCode = code
         return self
     }
@@ -56,13 +59,13 @@ final class MockSocket {
 
     @objc
     private func handleTimer() {
-        if let message = queuedMessage {
+        if let message = queuedMessages {
             onNewMessageCode?(message)
-            queuedMessage = nil
+            queuedMessages = nil
         } else {
-            let sender = arc4random_uniform(1) % 2 == 0 ? connectedUsers.first! : connectedUsers.last!
-            SampleData.shared.getMessages(count: 1, allowedSenders: [sender]) { (message) in
-                queuedMessage = message.first
+            guard let messageId = messageId else { return }
+            DataStore.shared.getMessageDetails(messageId: messageId, allowedUsers: connectedUsers) { (messages, error) in
+                self.queuedMessages = messages
             }
             onTypingStatusCode?()
         }

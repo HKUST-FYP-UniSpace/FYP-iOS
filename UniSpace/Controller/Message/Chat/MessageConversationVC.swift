@@ -13,8 +13,10 @@ import MessageInputBar
 
 final class MessageConversationVC: ChatVC {
 
+    var chatInfo: MessageSummaryModel?
     let outgoingAvatarOverlap: CGFloat = 17.5
-    private let titleText = "Demo Message Group"
+    private var titleText = ""
+    private var onlineText = ""
 
     override func viewDidLoad() {
         messagesCollectionView = MessagesCollectionView(frame: .zero, collectionViewLayout: CustomMessagesFlowLayout())
@@ -22,7 +24,12 @@ final class MessageConversationVC: ChatVC {
         super.viewDidLoad()
 
         title = ""
-        updateTitleView(title: titleText, subtitle: "2 Online")
+        guard let chatInfo = chatInfo else { return }
+        let subtitle: String = chatInfo.users.count < 2 ? chatInfo.users.first!.name : "\(chatInfo.users.count)"
+
+        self.titleText = chatInfo.title
+        self.onlineText = "\(subtitle) Online"
+        updateTitleView(title: titleText, subtitle: onlineText)
 
         // Customize the typing bubble! These are the default values
         //        typingBubbleBackgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
@@ -32,40 +39,41 @@ final class MessageConversationVC: ChatVC {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        MockSocket.shared.connect(with: [SampleData.shared.steven, SampleData.shared.wu])
+        guard let chatInfo = chatInfo else { return }
+        MockSocket.shared.connect(messageId: chatInfo.id, with: chatInfo.users)
             .onTypingStatus { [weak self] in
                 self?.setTypingIndicatorHidden(false)
-            }.onNewMessage { [weak self] message in
-//                self?.setTypingIndicatorHidden(true, performUpdates: {
-//                    self?.insertMessage(message)
-//                })
-                self?.insertMessage(message)
+            }.onNewMessages { [weak self] messages in
+                let index = messages.lastIndex(where: { $0.messageId == self?.messageList.last?.messageId }) ?? 0
+                for message in messages[index...] {
+                    self?.insertMessage(message)
+                }
         }
     }
 
     override func loadFirstMessages() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            let count = 20
-            SampleData.shared.getAdvancedMessages(count: count) { messages in
-                DispatchQueue.main.async {
-                    self.messageList = messages
-                    self.messagesCollectionView.reloadData()
-                    self.messagesCollectionView.scrollToBottom()
-                }
+        guard let chatInfo = chatInfo else { return }
+        DataStore.shared.getMessageDetails(messageId: chatInfo.id, allowedUsers: chatInfo.users) { (messages, error) in
+            guard let messages = messages else {
+                self.showAlert(title: error?.localizedDescription)
+                return
             }
+            self.messageList = messages
+            self.messagesCollectionView.reloadData()
+            self.messagesCollectionView.scrollToBottom()
         }
     }
 
     override func loadMoreMessages() {
-        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
-            SampleData.shared.getAdvancedMessages(count: 20) { messages in
-                DispatchQueue.main.async {
-                    self.messageList.insert(contentsOf: messages, at: 0)
-                    self.messagesCollectionView.reloadDataAndKeepOffset()
-                    self.refreshControl.endRefreshing()
-                }
-            }
-        }
+//        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
+//            SampleData.shared.getAdvancedMessages(count: 20) { messages in
+//                DispatchQueue.main.async {
+//                    self.messageList.insert(contentsOf: messages, at: 0)
+//                    self.messagesCollectionView.reloadDataAndKeepOffset()
+//                    self.refreshControl.endRefreshing()
+//                }
+//            }
+//        }
     }
 
     override func configureMessageCollectionView() {
@@ -171,7 +179,7 @@ final class MessageConversationVC: ChatVC {
     }
 
     func setTypingIndicatorHidden(_ isHidden: Bool, performUpdates updates: (() -> Void)? = nil) {
-        updateTitleView(title: titleText, subtitle: isHidden ? "2 Online" : "Typing...")
+        updateTitleView(title: titleText, subtitle: isHidden ? onlineText : "Typing...")
         //        setTypingBubbleHidden(isHidden, animated: true, whilePerforming: updates) { [weak self] (_) in
         //            if self?.isLastSectionVisible() == true {
         //                self?.messagesCollectionView.scrollToBottom(animated: true)
@@ -302,11 +310,18 @@ extension MessageConversationVC: MessagesDisplayDelegate {
     }
 
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        let avatar = SampleData.shared.getAvatarFor(sender: message.sender)
+        let avatar = getAvatarFor(sender: message.sender)
         avatarView.set(avatar: avatar)
         avatarView.isHidden = isNextMessageSameSender(at: indexPath)
         avatarView.layer.borderWidth = 2
         avatarView.layer.borderColor = Color.theme.cgColor
+    }
+
+    private func getAvatarFor(sender: Sender) -> Avatar {
+        let firstName = sender.displayName.components(separatedBy: " ").first
+        let lastName = sender.displayName.components(separatedBy: " ").last
+        let initials = "\(firstName?.first ?? "A")\(lastName?.first ?? "A")"
+        return Avatar(image: nil, initials: initials)
     }
 
     /** Seems better without AccessoryView

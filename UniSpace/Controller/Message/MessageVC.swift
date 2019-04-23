@@ -33,8 +33,8 @@ final class MessageVC: SingleSectionViewController {
 
     override func didSelect(_ sectionController: ListSingleSectionController, with object: Any) {
         if let data = object as? MessageSummaryModel {
-            log.debug("Message", context: data.id)
             let vc = MessageConversationVC()
+            vc.chatInfo = data
             adapter.viewController?.navigationController?.pushViewController(vc, animated: true)
             return
         }
@@ -70,7 +70,9 @@ final class MessageVC: SingleSectionViewController {
             cell.subtitleLabel.text = object.subtitle
             cell.timeLabel.text = object.readableTime()
 
-            AlamofireService.shared.downloadImage(at: object.photoURL, downloadProgress: nil) { (image, error) in
+            let url = object.messageType == .Team ? object.photoURL : object.users.first?.photoURL
+            guard let photoURL = url else { return }
+            AlamofireService.shared.downloadImage(at: photoURL, downloadProgress: nil) { (image, error) in
                 cell.setImage(image)
             }
         }

@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import MessageKit
 
 extension AlamofireService: GeneralService {
     
@@ -46,6 +47,25 @@ extension AlamofireService: GeneralService {
             var result: [MessageSummaryModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([MessageSummaryModel].self, from: data) }
             completion(result, res.result.error)
+        }
+    }
+
+    func getMessageDetails(messageId: Int, allowedUsers: [UserModel], completion: @escaping ([MockMessage]?, Error?) -> Void) {
+        get(at: .getMessageDetails(messageId: messageId)).responseJSON { (res: DataResponse<Any>) in
+            var result: [MessageModel]? = nil
+            if let data = res.data { result = try? JSONDecoder().decode([MessageModel].self, from: data) }
+            guard let originalResult = result else {
+                completion(nil, res.result.error)
+                return
+            }
+
+            let messages = originalResult.map({ m -> MockMessage in
+                let dummyUser = Sender(id: DataStore.shared.randomString(length: 8), displayName: "Unknown Unknown")
+                let user = allowedUsers.first(where: { $0.id == m.senderId })?.toSender() ?? dummyUser
+                let date = Date(timeIntervalSince1970: m.time)
+                return MockMessage(text: m.message, sender: user, messageId: "\(m.id)", date: date)
+            })
+            completion(messages, res.result.error)
         }
     }
 

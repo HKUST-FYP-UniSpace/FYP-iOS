@@ -17,5 +17,6 @@ protocol MessageSummary: HavePhoto {
     var unreadMessagesCount: Int { get set }
     var photoURL: String { get set }
     var messageType: MessageGroupType { get set }
+    var users: [UserModel] { get set }
 
 }

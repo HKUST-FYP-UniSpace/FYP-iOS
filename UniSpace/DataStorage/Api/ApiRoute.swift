@@ -21,6 +21,7 @@ enum ApiRoute { case
     getUserProfile,
     editUserProfile,
     getMessageSummaries,
+    getMessageDetails(messageId: Int),
     getNotificationSummaries,
     getCalendarSummaries(year: Int, month: Int),
     getBlogSummaries,
@@ -88,6 +89,9 @@ enum ApiRoute { case
             return "users/profile/\(userId)/edit"
 
 //        case .getMessageSummaries:
+//            return ""
+//
+//        case .getMessageDetails(let messageId):
 //            return ""
 //
 //        case .getNotificationSummaries:

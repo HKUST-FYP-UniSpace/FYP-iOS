@@ -71,7 +71,7 @@ extension AlamofireService: TradeService {
                         completion?(nil, ServerError.ImageFormatError(format: "jpeg"))
                         return
                     }
-                    multipartFormData.append(imageData, withName: "photo\(index)", fileName: "photo\(index).jpeg", mimeType: "image/jpeg")
+                    multipartFormData.append(imageData, withName: "photo[\(index)]", fileName: "photoURL.jpeg", mimeType: "image/jpeg")
                 }
                 multipartFormData.append("\(itemId)".data(using: .utf8)!, withName: "tradeId")
         }) { (res: DataResponse<Any>) in

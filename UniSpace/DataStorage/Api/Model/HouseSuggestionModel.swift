@@ -27,7 +27,7 @@ class HouseSuggestionModel: Decodable, ListDiffable, HouseSuggestion {
         case preference
         case groupSize
         case occupiedCount
-        case photoURL = "photoURLs"
+        case photoURL
         case duration
     }
 
@@ -39,9 +39,7 @@ class HouseSuggestionModel: Decodable, ListDiffable, HouseSuggestion {
         decode(container, &preference, type: PreferenceModel.self, forKey: .preference)
         decode(container, &groupSize, type: Int.self, forKey: .groupSize)
         decode(container, &occupiedCount, type: Int.self, forKey: .occupiedCount)
-        var photoURLs: [String] = []
-        decode(container, &photoURLs, type: [String].self, forKey: .photoURL)
-        photoURL = photoURLs.first ?? ""
+        decode(container, &photoURL, type: String.self, forKey: .photoURL)
         var durationInt: Int = 0
         decode(container, &durationInt, type: Int.self, forKey: .duration)
         duration = durationInt <= 1 ? "\(durationInt) year" : "\(durationInt) years"

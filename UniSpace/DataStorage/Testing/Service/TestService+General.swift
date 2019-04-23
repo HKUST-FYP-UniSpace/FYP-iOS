@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageKit
 
 extension TestService: GeneralService {
     
@@ -27,6 +28,13 @@ extension TestService: GeneralService {
         for _ in 0..<Int.random(in: (5..<30)) { summaries?.append(TestMessageSummaryModel().toModel()) }
         summaries?.sort(by: { $0.time > $1.time })
         delay { completion(summaries, nil) }
+    }
+
+    func getMessageDetails(messageId: Int, allowedUsers: [UserModel], completion: @escaping ([MockMessage]?, Error?) -> Void) {
+        let users = allowedUsers.map { $0.toSender() }
+        SampleData.shared.getMessages(count: Int.random(in: (1..<8)), allowedSenders: users) { (messages) in
+            completion(messages, nil)
+        }
     }
 
     func getNotificationSummaries(completion: @escaping ([NotificationSummaryModel]?, Error?) -> Void) {

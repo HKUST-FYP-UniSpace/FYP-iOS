@@ -6,6 +6,9 @@
 //  Copyright © 2018 KiKan Ng. All rights reserved.
 //
 
+import Foundation
+import MessageKit
+
 class UserModel: Decodable, Equatable, User {
 
     var id: Int = 0
@@ -76,6 +79,10 @@ class UserModel: Decodable, Equatable, User {
             return "\(name) (\(username))"
         }
         return name.isEmpty ? username : name
+    }
+
+    func toSender() -> Sender {
+        return Sender(id: "\(id)", displayName: name)
     }
 
 }
