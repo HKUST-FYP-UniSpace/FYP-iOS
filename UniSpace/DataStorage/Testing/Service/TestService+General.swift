@@ -24,6 +24,8 @@ extension TestService: GeneralService {
     }
 
     func getMessageSummaries(completion: @escaping ([MessageSummaryModel]?, Error?) -> Void) {
+        dump(RealmService.shared.getMessageGroups()) // Request body
+
         var summaries: [MessageSummaryModel]? = []
         for _ in 0..<Int.random(in: (5..<30)) { summaries?.append(TestMessageSummaryModel().toModel()) }
         summaries?.sort(by: { $0.time > $1.time })
@@ -35,6 +37,14 @@ extension TestService: GeneralService {
         SampleData.shared.getMessages(count: Int.random(in: (1..<8)), allowedSenders: users) { (messages) in
             completion(messages, nil)
         }
+    }
+
+    func createNewMessageGroup(type: MessageGroupType, message: MockMessage, teamId: Int?, itemId: Int?, completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
+    }
+
+    func addNewMessage(messageId: Int, message: String, completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
     }
 
     func getNotificationSummaries(completion: @escaping ([NotificationSummaryModel]?, Error?) -> Void) {

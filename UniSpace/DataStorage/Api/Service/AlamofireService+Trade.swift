@@ -110,13 +110,6 @@ extension AlamofireService: TradeService {
         }
     }
 
-    func contactOwner(itemId: Int, message: String, completion: SendRequestResult?) {
-        let params = getContactOwnerParams(message)
-        post(at: .contactOwner(itemId: itemId), params: params).responseJSON { (res: DataResponse<Any>) in
-            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
-        }
-    }
-
 }
 
 extension AlamofireService {
@@ -129,13 +122,6 @@ extension AlamofireService {
         params["quantity"] = model.quantity
         params["trade_category_id"] = model.tradeCategory.pathExtension
         params["trade_condition_type_id"] = model.tradeItemCondition.pathExtension
-        return params
-    }
-
-    private func getContactOwnerParams(_ message: String) -> Parameters {
-        var params = Parameters()
-        params["senderId"] = DataStore.shared.user?.id ?? -1
-        params["time"] = DateManager.shared.getCurrentDate().timeIntervalSince1970
         return params
     }
 }

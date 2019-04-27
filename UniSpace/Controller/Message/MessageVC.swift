@@ -18,12 +18,23 @@ final class MessageVC: SingleSectionViewController {
         self.title = "Message"
         tabBarItem = UITabBarItem(title: "Message", image: UIImage(named: "Message"), tag: 3)
         setupSegControl()
+
+        let item = UIBarButtonItem(image: UIImage(named: "Assist"), style: .plain, target: self, action: #selector(handleAssist))
+        navigationItem.rightBarButtonItem = item
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupLargeTitle()
         loadData()
+    }
+
+    @objc func handleAssist(sender: UIButton) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
+        generator.notificationOccurred(.success)
+        let vc = CreateMessageGroupVC(.Admin)
+        adapter.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
     }
 
     override func loadData() {
@@ -33,6 +44,8 @@ final class MessageVC: SingleSectionViewController {
 
     override func didSelect(_ sectionController: ListSingleSectionController, with object: Any) {
         if let data = object as? MessageSummaryModel {
+            let messageGroup = RealmMessageGroup(id: data.id, name: data.title, timestamp: data.time)
+            RealmService.shared.persist(messageGroup)
             let vc = MessageConversationVC()
             vc.chatInfo = data
             adapter.viewController?.navigationController?.pushViewController(vc, animated: true)

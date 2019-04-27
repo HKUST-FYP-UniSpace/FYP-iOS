@@ -215,7 +215,7 @@ extension ChatVC: MessageLabelDelegate {
 
 extension ChatVC: MessageInputBarDelegate {
 
-    func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+    @objc func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
 
         for component in inputBar.inputTextView.components {
 

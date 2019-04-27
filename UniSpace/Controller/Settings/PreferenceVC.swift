@@ -9,16 +9,31 @@
 import UIKit
 import Eureka
 
+fileprivate enum PreferenceType {
+    case userPreference
+    case teamPreference
+    case creatingTeam
+}
+
 class PreferenceVC: MasterFormPopupVC {
 
+    private var type: PreferenceType
+    private var teamId: Int?
+    private var originalModel: PreferenceModel?
     private var houseId: Int?
     private var image: UIImage?
     private var houseTeamSummaryModel: HouseTeamSummaryModel?
     private var model: PreferenceModel?
-    private var isCreatingTeam: Bool
 
     init() {
-        self.isCreatingTeam = false
+        self.type = .userPreference
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    init(teamId: Int, preferenceModel: PreferenceModel) {
+        self.teamId = teamId
+        self.originalModel = preferenceModel
+        self.type = .teamPreference
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -26,7 +41,7 @@ class PreferenceVC: MasterFormPopupVC {
         self.houseId = houseId
         self.houseTeamSummaryModel = houseTeamSummaryModel
         self.image = image
-        self.isCreatingTeam = true
+        self.type = .creatingTeam
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -41,13 +56,17 @@ class PreferenceVC: MasterFormPopupVC {
     }
 
     private func loadData() {
-        guard !isCreatingTeam else {
+        switch type {
+        case .creatingTeam:
             loadForm()
-            return
-        }
 
-        DataStore.shared.getUserProfile { (user, error) in
-            self.loadForm(user?.preference)
+        case .userPreference:
+            DataStore.shared.getUserProfile { (user, error) in
+                self.loadForm(user?.preference)
+            }
+
+        case .teamPreference:
+            loadForm(originalModel)
         }
     }
 
@@ -74,26 +93,32 @@ class PreferenceVC: MasterFormPopupVC {
                     return
                 }
 
-                if self.isCreatingTeam { self.createTeam(model) }
-                else { self.changePreference(model) }
+                switch self.type {
+                case .creatingTeam: self.createTeam(model)
+                case .userPreference: self.changePreference(model)
+                case .teamPreference: self.changeTeamPreference(model)
+                }
             })
     }
 
     private func changePreference(_ preferenceModel: PreferenceModel) {
-        DataStore.shared.changePreference(preference: preferenceModel, completion: { (msg, error) in
-            guard !self.sendFailed(msg, error: error) else { return }
-            self.dismiss(animated: true, completion: nil)
-        })
+        DataStore.shared.changePreference(preference: preferenceModel, completion: completion)
+    }
+
+    private func changeTeamPreference(_ preferenceModel: PreferenceModel) {
+        guard let teamId = teamId else { return }
+        DataStore.shared.changeTeamPreference(teamId: teamId, preference: preferenceModel, completion: completion)
     }
 
     private func createTeam(_ preferenceModel: PreferenceModel) {
         guard let houseId = houseId, let houseTeamSummaryModel = houseTeamSummaryModel, let image = image else { return }
         houseTeamSummaryModel.preference = preferenceModel
+        DataStore.shared.createTeam(houseId: houseId, model: houseTeamSummaryModel, image: image, completion: completion)
+    }
 
-        DataStore.shared.createTeam(houseId: houseId, model: houseTeamSummaryModel, image: image) { (msg, error) in
-            guard !self.sendFailed(msg, error: error) else { return }
-            self.dismiss(animated: true, completion: nil)
-        }
+    private func completion(msg: String?, error: Error?) {
+        guard !self.sendFailed(msg, error: error) else { return }
+        self.dismiss(animated: true, completion: nil)
     }
 
     private func updateModel() {

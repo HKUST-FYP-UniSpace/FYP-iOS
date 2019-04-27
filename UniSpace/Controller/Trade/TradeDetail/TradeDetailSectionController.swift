@@ -61,6 +61,7 @@ extension TradeDetailSectionController: ButtonCellDelegate {
         generator.prepare()
         guard let tradeItemId = tradeItemId else { return }
         generator.notificationOccurred(.success)
-        adapter.viewController?.present(UINavigationController(rootViewController: TradeSendMessageVC(tradeItemId: tradeItemId)), animated: true, completion: nil)
+        let vc = CreateMessageGroupVC(.Trade, tradeItemId: tradeItemId)
+        adapter.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
     }
 }

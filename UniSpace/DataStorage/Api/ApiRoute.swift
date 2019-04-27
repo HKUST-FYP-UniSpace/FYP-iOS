@@ -22,6 +22,12 @@ enum ApiRoute { case
     editUserProfile,
     getMessageSummaries,
     getMessageDetails(messageId: Int),
+    createOwnerChatroom,
+    createTeamChatroom,
+    createTradeChatroom,
+    createRequestChatroom,
+    createAdminChatroom,
+    sendMessage,
     getNotificationSummaries,
     getCalendarSummaries(year: Int, month: Int),
     getBlogSummaries,
@@ -59,7 +65,6 @@ enum ApiRoute { case
     editTradeItem(itemId: Int),
     getTradeDetail(itemId: Int),
     bookmarkItem(itemId: Int),
-    contactOwner(itemId: Int),
 
     // log
     sendLogs
@@ -92,6 +97,24 @@ enum ApiRoute { case
 //            return ""
 //
 //        case .getMessageDetails(let messageId):
+//            return ""
+//
+//        case .createOwnerChatroom:
+//            return ""
+//
+//        case .createTeamChatroom:
+//            return ""
+//
+//        case .createTradeChatroom:
+//            return ""
+//
+//        case .createRequestChatroom:
+//            return ""
+//
+//        case .createAdminChatroom:
+//            return ""
+//
+//        case .sendMessage:
 //            return ""
 //
 //        case .getNotificationSummaries:
@@ -192,9 +215,6 @@ enum ApiRoute { case
 
         case .bookmarkItem( _):
             return "tradeBookmark"
-
-//        case .contactOwner(let itemId):
-//            return ""
 
         case .getOwnerHouseSummary:
             return "owner/\(userId)/houseSummary"

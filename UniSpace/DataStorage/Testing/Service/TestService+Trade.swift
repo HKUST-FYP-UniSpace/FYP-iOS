@@ -72,8 +72,4 @@ extension TestService: TradeService {
         delay { completion?(nil, nil) }
     }
 
-    func contactOwner(itemId: Int, message: String, completion: SendRequestResult?) {
-        delay { completion?(nil, nil) }
-    }
-
 }

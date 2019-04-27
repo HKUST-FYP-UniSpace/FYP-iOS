@@ -31,9 +31,19 @@ final class MessageConversationVC: ChatVC {
         self.onlineText = "\(subtitle) Online"
         updateTitleView(title: titleText, subtitle: onlineText)
 
+        let item = UIBarButtonItem(image: UIImage(named: "Info"), style: .plain, target: self, action: #selector(infoButton))
+        navigationItem.rightBarButtonItem = item
+
         // Customize the typing bubble! These are the default values
         //        typingBubbleBackgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
         //        typingBubbleDotColor = .lightGray
+    }
+
+    @objc func infoButton(_ sender: UIButton) {
+        let vc = MessageInfoVC()
+        vc.info = chatInfo
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -74,6 +84,29 @@ final class MessageConversationVC: ChatVC {
 //                }
 //            }
 //        }
+    }
+
+    override func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        for component in inputBar.inputTextView.components {
+            if let str = component as? String {
+                let message = MockMessage(text: str, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+                insertMessage(message)
+                sendMessage(str)
+            } else if let img = component as? UIImage {
+                let message = MockMessage(image: img, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+                insertMessage(message)
+            }
+
+        }
+        inputBar.inputTextView.text = String()
+        messagesCollectionView.scrollToBottom(animated: true)
+    }
+
+    private func sendMessage(_ msg: String) {
+        guard let info = chatInfo else { return }
+        DataStore.shared.addNewMessage(messageId: info.id, message: msg) { (msg, error) in
+            guard !self.sendFailed(msg, error: error) else { return }
+        }
     }
 
     override func configureMessageCollectionView() {

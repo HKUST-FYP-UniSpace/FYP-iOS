@@ -29,6 +29,14 @@ extension RealmService {
         }
     }
 
+    func getMessageGroups() -> [RealmMessageGroup] {
+        return Array(database.objects(RealmMessageGroup.self))
+    }
+
+    func getMessageGroup(_ id: Int) -> RealmMessageGroup? {
+        return database.object(ofType: RealmMessageGroup.self, forPrimaryKey: id)
+    }
+
     func deleteMessageGroups() {
         let objs = database.objects(RealmMessageGroup.self)
         for obj in objs { delete(obj) }

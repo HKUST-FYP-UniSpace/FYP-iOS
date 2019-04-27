@@ -26,9 +26,7 @@ class Constants {
     static let host = "http://pentagon.connectie-t.com:8080/api-mobile/v1"
 
     static func dummyPhotoURL(_ width: CGFloat, ratio: CGFloat = 0.75) -> String {
-//        return "https://unsplash.it/" + width.description + "/" + (width * ratio).description
-//        return "https://unsplash.it/" + width.description + "/" + (width * ratio).description + "/?random"
-        return "https://unsplash.it/" + width.description + "/" + (width * ratio).description + "/?image=\(Int.random(in: 0...1084))"
+        return "https://picsum.photos/id/\(Int.random(in: 0...1084))/" + Int(width).description + "/" + Int(width * ratio).description
     }
 
 }

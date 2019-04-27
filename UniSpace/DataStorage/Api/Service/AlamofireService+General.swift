@@ -69,6 +69,22 @@ extension AlamofireService: GeneralService {
         }
     }
 
+    func createNewMessageGroup(type: MessageGroupType, message: MockMessage, teamId: Int?, itemId: Int?, completion: SendRequestResult?) {
+        let payload = getChatroomRoute(type, message, teamId, itemId)
+        post(at: payload.0, params: payload.1).responseJSON { (res: DataResponse<Any>) in
+            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
+        }
+    }
+
+    func addNewMessage(messageId: Int, message: String, completion: SendRequestResult?) {
+        var params = Parameters()
+        params["messageId"] = messageId
+        params["message"] = message
+        post(at: .sendMessage, params: params).responseJSON { (res: DataResponse<Any>) in
+            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
+        }
+    }
+
     func getNotificationSummaries(completion: @escaping ([NotificationSummaryModel]?, Error?) -> Void) {
         get(at: .getNotificationSummaries).responseJSON { (res: DataResponse<Any>) in
             var result: [NotificationSummaryModel]? = nil
@@ -101,4 +117,37 @@ extension AlamofireService: GeneralService {
         }
     }
     
+}
+
+extension AlamofireService {
+    private func getChatroomRoute(_ type: MessageGroupType, _ message: MockMessage, _ teamId: Int?, _ itemId: Int?) -> (ApiRoute, Parameters) {
+        var params = Parameters()
+        switch message.kind {
+        case .text(let message):
+            params["message"] = message
+        default:
+            fatalError()
+        }
+
+        switch type {
+        case .Admin:
+            return (.createAdminChatroom, params)
+
+        case .Owner:
+            params["houseId"] = teamId
+            return (.createOwnerChatroom, params)
+
+        case .Team:
+            params["houseId"] = teamId
+            return (.createTeamChatroom, params)
+
+        case .Trade:
+            params["itemId"] = itemId
+            return (.createTradeChatroom, params)
+
+        case .Request:
+            params["houseId"] = teamId
+            return (.createRequestChatroom, params)
+        }
+    }
 }

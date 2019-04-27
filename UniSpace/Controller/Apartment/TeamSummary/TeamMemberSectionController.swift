@@ -101,10 +101,11 @@ extension TeamMemberSectionController: ButtonCellDelegate {
             return
         }
 
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         guard let teamId = teamId else { return }
-        DataStore.shared.joinTeam(teamId: teamId) { (msg, error) in
-            guard let vc = self.adapter.viewController, !vc.sendFailed(msg, error: error) else { return }
-            vc.showAlert(title: "Request Sent")
-        }
+        generator.notificationOccurred(.success)
+        let vc = CreateMessageGroupVC(.Request, teamId: teamId)
+        adapter.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
     }
 }

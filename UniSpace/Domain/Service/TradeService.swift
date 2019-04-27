@@ -20,5 +20,4 @@ protocol TradeService: class {
     func getTradeItemData(itemId: Int, filter: ChartFilterOptions, completion: @escaping (_ data: ChartDataListModel?, _ error: Error?) -> Void)
     func getTradeDetail(itemId: Int, completion: @escaping (_ model: TradeFeaturedModel?, _ error: Error?) -> Void)
     func bookmarkItem(itemId: Int, bookmarked: Bool, completion: SendRequestResult?)
-    func contactOwner(itemId: Int, message: String, completion: SendRequestResult?)
 }

@@ -48,6 +48,14 @@ extension DataStore {
         Service().getMessageDetails(messageId: messageId, allowedUsers: allowedUsers, completion: completion)
     }
 
+    func createNewMessageGroup(type: MessageGroupType, message: MockMessage, teamId: Int? = nil, itemId: Int? = nil, completion: SendRequestResult?) {
+        Service().createNewMessageGroup(type: type, message: message, teamId: teamId, itemId: itemId, completion: completion)
+    }
+
+    func addNewMessage(messageId: Int, message: String, completion: SendRequestResult?) {
+        Service().addNewMessage(messageId: messageId, message: message, completion: completion)
+    }
+
     func getNotificationSummaries(completion: @escaping ([NotificationSummaryModel]?, Error?) -> Void) {
         Service().getNotificationSummaries(completion: completion)
     }
@@ -94,6 +102,10 @@ extension DataStore {
 
     func changePreference(userId: Int? = nil, preference: PreferenceModel, completion: SendRequestResult?) {
         Service().changePreference(preference: preference, completion: completion)
+    }
+
+    func changeTeamPreference(teamId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
+        Service().changeTeamPreference(teamId: teamId, preference: preference, completion: completion)
     }
 
     func createTeam(houseId: Int, model: HouseTeamSummaryModel, image: UIImage, completion: SendRequestResult?) {
@@ -146,10 +158,6 @@ extension DataStore {
 
     func bookmarkItem(itemId: Int, bookmarked: Bool, completion: SendRequestResult?) {
         Service().bookmarkItem(itemId: itemId, bookmarked: bookmarked, completion: completion)
-    }
-
-    func contactOwner(itemId: Int, message: String, completion: SendRequestResult?) {
-        Service().contactOwner(itemId: itemId, message: message, completion: completion)
     }
 
     func getOwnerHouseSummary(completion: @escaping ([OwnerHouseSummaryModel]?, Error?) -> Void) {

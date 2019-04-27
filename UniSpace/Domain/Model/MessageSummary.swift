@@ -18,5 +18,6 @@ protocol MessageSummary: HavePhoto {
     var photoURL: String { get set }
     var messageType: MessageGroupType { get set }
     var users: [UserModel] { get set }
+    var teamId: Int { get set }
 
 }

@@ -155,6 +155,7 @@
 		6DA9D49522057DB1009464B6 /* AlamofireService+Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9D49422057DB1009464B6 /* AlamofireService+Trade.swift */; };
 		6DA9D49722058793009464B6 /* HouseHomepageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9D49622058793009464B6 /* HouseHomepageModel.swift */; };
 		6DA9D499220587A0009464B6 /* TradeHomepageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9D498220587A0009464B6 /* TradeHomepageModel.swift */; };
+		6DAA9A48226F2F8700CE0F1A /* MessageInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAA9A47226F2F8700CE0F1A /* MessageInfoVC.swift */; };
 		6DAAC20821EC36120052748D /* ImageSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAAC20721EC36120052748D /* ImageSettable.swift */; };
 		6DB4055E224F334A006FC7B3 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4055D224F334A006FC7B3 /* ChartData.swift */; };
 		6DB40560224F3465006FC7B3 /* ChartDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4055F224F3465006FC7B3 /* ChartDataModel.swift */; };
@@ -281,7 +282,7 @@
 		6D2B8091223FFF6F006708FE /* OwnerTeamsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerTeamsModel.swift; sourceTree = "<group>"; };
 		6D2B8093224000FE006708FE /* TestOwnerHouseSummaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestOwnerHouseSummaryModel.swift; sourceTree = "<group>"; };
 		6D2B80952240B7C1006708FE /* UserDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailVC.swift; sourceTree = "<group>"; };
-		6D2BEDA7223167E4005FFEEE /* MessageConversationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConversationVC.swift; sourceTree = "<group>"; };
+		6D2BEDA7223167E4005FFEEE /* MessageConversationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MessageConversationVC.swift; path = Chat/MessageConversationVC.swift; sourceTree = "<group>"; };
 		6D2BEDA922316831005FFEEE /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		6D2BEDAC223168B6005FFEEE /* ChatMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageModel.swift; sourceTree = "<group>"; };
 		6D2BEDAE22316990005FFEEE /* CustomMessagesFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessagesFlowLayout.swift; sourceTree = "<group>"; };
@@ -405,6 +406,7 @@
 		6DA9D49422057DB1009464B6 /* AlamofireService+Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AlamofireService+Trade.swift"; path = "/Users/Kan_Ng/Desktop/FYP/FYP-iOS/UniSpace/DataStorage/Api/Service/AlamofireService+Trade.swift"; sourceTree = "<absolute>"; };
 		6DA9D49622058793009464B6 /* HouseHomepageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseHomepageModel.swift; sourceTree = "<group>"; };
 		6DA9D498220587A0009464B6 /* TradeHomepageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeHomepageModel.swift; sourceTree = "<group>"; };
+		6DAA9A47226F2F8700CE0F1A /* MessageInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfoVC.swift; sourceTree = "<group>"; };
 		6DAAC20721EC36120052748D /* ImageSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSettable.swift; sourceTree = "<group>"; };
 		6DB4055D224F334A006FC7B3 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		6DB4055F224F3465006FC7B3 /* ChartDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataModel.swift; sourceTree = "<group>"; };
@@ -592,7 +594,6 @@
 		6D2BEDAB22316890005FFEEE /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				6D2BEDA7223167E4005FFEEE /* MessageConversationVC.swift */,
 				6D2BEDA922316831005FFEEE /* ChatVC.swift */,
 				6D2BEDAC223168B6005FFEEE /* ChatMessageModel.swift */,
 				6D2BEDAE22316990005FFEEE /* CustomMessagesFlowLayout.swift */,
@@ -1060,6 +1061,8 @@
 			isa = PBXGroup;
 			children = (
 				6DE5562A21A3E82B00B23398 /* MessageVC.swift */,
+				6D2BEDA7223167E4005FFEEE /* MessageConversationVC.swift */,
+				6DAA9A47226F2F8700CE0F1A /* MessageInfoVC.swift */,
 				6D2BEDAB22316890005FFEEE /* Chat */,
 				6DFE1D8A2206F03B0012E8A2 /* Calendar */,
 				6DFE1D802206EDC80012E8A2 /* NotificationVC.swift */,
@@ -1565,6 +1568,7 @@
 				6D486DF62230F63B005D2946 /* HouseReviewCell.swift in Sources */,
 				6DFE1DC3220C31A60012E8A2 /* SectionHeaderCell.swift in Sources */,
 				6D52818521EF1368007A4508 /* MessageCell.swift in Sources */,
+				6DAA9A48226F2F8700CE0F1A /* MessageInfoVC.swift in Sources */,
 				6DFE1D892206F00B0012E8A2 /* DayViewModel.swift in Sources */,
 				6D7EE8CC21E89B56008D882F /* VerticalExpandCollectionViewCell.swift in Sources */,
 				6D891CBD221BCE6B00DEB9F4 /* FormVC+EasyRowInit.swift in Sources */,

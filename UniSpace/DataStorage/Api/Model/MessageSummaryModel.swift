@@ -19,6 +19,7 @@ class MessageSummaryModel: Decodable, ListDiffable, MessageSummary {
     var photoURL: String = ""
     var messageType: MessageGroupType = .Request
     var users: [UserModel] = []
+    var teamId: Int = 0
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -29,6 +30,7 @@ class MessageSummaryModel: Decodable, ListDiffable, MessageSummary {
         case photoURL
         case messageType
         case users
+        case teamId
     }
 
     required init(from decoder: Decoder) throws {
@@ -41,6 +43,7 @@ class MessageSummaryModel: Decodable, ListDiffable, MessageSummary {
         decode(container, &photoURL, type: String.self, forKey: .photoURL)
         decode(container, &messageType, type: MessageGroupType.self, forKey: .messageType)
         decode(container, &users, type: [UserModel].self, forKey: .users)
+        decode(container, &teamId, type: Int.self, forKey: .teamId)
     }
 
     private func decode<T>(_ container: KeyedDecodingContainer<CodingKeys>, _ variable: inout T, type: T.Type, forKey key: CodingKeys) where T: Decodable {

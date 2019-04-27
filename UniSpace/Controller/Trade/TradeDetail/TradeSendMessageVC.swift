@@ -1,5 +1,5 @@
 //
-//  TradeSendMessageVC.swift
+//  CreateMessageGroupVC.swift
 //  UniSpace
 //
 //  Created by KiKan Ng on 28/2/2019.
@@ -8,13 +8,18 @@
 
 import UIKit
 import Eureka
+import MessageKit
 
-class TradeSendMessageVC: MasterFormPopupVC {
+class CreateMessageGroupVC: MasterFormPopupVC {
 
-    private var tradeItemId: Int
+    private var messageGroupType: MessageGroupType
+    private var tradeItemId: Int?
+    private var teamId: Int?
     private var message: String?
 
-    init(tradeItemId: Int) {
+    init(_ messageGroupType: MessageGroupType, teamId: Int? = nil, tradeItemId: Int? = nil) {
+        self.messageGroupType = messageGroupType
+        self.teamId = teamId
         self.tradeItemId = tradeItemId
         super.init(nibName: nil, bundle: nil)
     }
@@ -36,17 +41,24 @@ class TradeSendMessageVC: MasterFormPopupVC {
         form +++ Section("")
             <<< getButtonRow(id: nil, title: "Send", callback: {
                 self.updateModel()
-                
-                guard let message = self.message else {
-                    self.showAlert(title: "Please finish the form")
-                    return
-                }
-
-                DataStore.shared.contactOwner(itemId: self.tradeItemId, message: message, completion: { (msg, error) in
-                    guard !self.sendFailed(msg, error: error) else { return }
-                    self.dismiss(animated: true, completion: nil)
-                })
+                self.sendMessage()
             })
+    }
+
+    private func sendMessage() {
+        guard let message = self.message else {
+            self.showAlert(title: "Please finish the form")
+            return
+        }
+
+        let sender = Sender(id: "", displayName: "")
+        let mockMessage = MockMessage(text: message, sender: sender, messageId: "", date: Date())
+        DataStore.shared.createNewMessageGroup(type: messageGroupType, message: mockMessage, teamId: teamId, itemId: tradeItemId, completion: completion)
+    }
+
+    private func completion(msg: String?, error: Error?) {
+        guard !self.sendFailed(msg, error: error) else { return }
+        self.dismiss(animated: true, completion: nil)
     }
 
     private func updateModel() {
