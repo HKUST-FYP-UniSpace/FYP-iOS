@@ -43,7 +43,11 @@ extension AlamofireService: GeneralService {
     }
 
     func getMessageSummaries(completion: @escaping ([MessageSummaryModel]?, Error?) -> Void) {
-        get(at: .getMessageSummaries).responseJSON { (res: DataResponse<Any>) in
+        var params = Parameters()
+        for time in RealmService.shared.getMessageGroups() {
+            params["\(time.id)"] = time.timestamp
+        }
+        post(at: .getMessageSummaries, params: params).responseJSON { (res: DataResponse<Any>) in
             var result: [MessageSummaryModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([MessageSummaryModel].self, from: data) }
             completion(result, res.result.error)
@@ -72,16 +76,31 @@ extension AlamofireService: GeneralService {
     func createNewMessageGroup(type: MessageGroupType, message: MockMessage, teamId: Int?, itemId: Int?, completion: SendRequestResult?) {
         let payload = getChatroomRoute(type, message, teamId, itemId)
         post(at: payload.0, params: payload.1).responseJSON { (res: DataResponse<Any>) in
-            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
+            completion?(nil, res.result.error)
         }
     }
 
     func addNewMessage(messageId: Int, message: String, completion: SendRequestResult?) {
         var params = Parameters()
-        params["messageId"] = messageId
         params["message"] = message
-        post(at: .sendMessage, params: params).responseJSON { (res: DataResponse<Any>) in
+        post(at: .sendMessage(messageId: messageId), params: params).responseJSON { (res: DataResponse<Any>) in
             self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
+        }
+    }
+
+    func getRequestStatus(messageId: Int, completion: @escaping (MessageRequestModel?, Error?) -> Void) {
+        get(at: .getRequestStatus(messageId: messageId)).responseJSON { (res: DataResponse<Any>) in
+            var result: MessageRequestModel? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(MessageRequestModel.self, from: data) }
+            completion(result, res.result.error)
+        }
+    }
+
+    func changeRequestStatus(messageId: Int, status: RequestStatus, completion: SendRequestResult?) {
+        var params = Parameters()
+        params["status"] = status.rawValue
+        post(at: .changeRequestStatus(messageId: messageId), params: params).responseJSON { (res: DataResponse<Any>) in
+            completion?(nil, res.result.error)
         }
     }
 

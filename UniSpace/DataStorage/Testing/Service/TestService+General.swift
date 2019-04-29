@@ -47,6 +47,14 @@ extension TestService: GeneralService {
         delay { completion?(nil, nil) }
     }
 
+    func getRequestStatus(messageId: Int, completion: @escaping (MessageRequestModel?, Error?) -> Void) {
+        delay { completion(TestMessageRequestModel().toModel(), nil) }
+    }
+
+    func changeRequestStatus(messageId: Int, status: RequestStatus, completion: SendRequestResult?) {
+        delay { completion?(nil, nil) }
+    }
+
     func getNotificationSummaries(completion: @escaping ([NotificationSummaryModel]?, Error?) -> Void) {
         var summaries: [NotificationSummaryModel]? = []
         summaries?.append(TestNotificationSummaryModel(title: "Derek K. responds to your team request", subtitle: "Welcome buddy!").toModel())

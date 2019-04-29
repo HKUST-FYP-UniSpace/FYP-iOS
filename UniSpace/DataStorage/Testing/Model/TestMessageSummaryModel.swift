@@ -18,7 +18,9 @@ class TestMessageSummaryModel: MessageSummary {
     var photoURL: String = ""
     var messageType: MessageGroupType = .Request
     var users: [UserModel] = []
+    var tradeId: Int = 0
     var teamId: Int = 0
+    var houseId: Int = 0
 
     required init() {
         id = DataStore.shared.randomInt(length: 8)
@@ -30,7 +32,9 @@ class TestMessageSummaryModel: MessageSummary {
         subtitle = Lorem.words().capitalizingFirstLetter()
         time = DateManager.shared.randomTime(30)
         photoURL = Constants.dummyPhotoURL(Constants.cardWidth_S, ratio: 1)
+        tradeId = 0
         teamId = 0
+        houseId = 0
 
         let superman = TestUserModel(email: "", username: "man_of_steel", name: "Clark Kent", role: .Tenant, verified: true, hasPreference: true).toUserModel()
         superman.photoURL = "https://timedotcom.files.wordpress.com/2016/03/batman-vs-superman.jpg"
@@ -61,7 +65,9 @@ class TestMessageSummaryModel: MessageSummary {
         model.photoURL = photoURL
         model.messageType = messageType
         model.users = users
+        model.tradeId = tradeId
         model.teamId = teamId
+        model.houseId = houseId
         return model
     }
 }

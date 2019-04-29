@@ -15,5 +15,4 @@ protocol Message {
     var message: String { get set }
     var time: Double { get set }
 
-
 }

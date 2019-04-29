@@ -17,6 +17,8 @@ protocol GeneralService: class {
     func getMessageDetails(messageId: Int, allowedUsers: [UserModel], completion: @escaping ([MockMessage]?, Error?) -> Void)
     func createNewMessageGroup(type: MessageGroupType, message: MockMessage, teamId: Int?, itemId: Int?, completion: SendRequestResult?)
     func addNewMessage(messageId: Int, message: String, completion: SendRequestResult?)
+    func getRequestStatus(messageId: Int, completion: @escaping (_ request: MessageRequestModel?, _ error: Error?) -> Void)
+    func changeRequestStatus(messageId: Int, status: RequestStatus, completion: SendRequestResult?)
     func getNotificationSummaries(completion: @escaping (_ summaries: [NotificationSummaryModel]?, _ error: Error?) -> Void)
     func getCalendarSummaries(year: Int, month: Int, completion: @escaping (_ summaries: [CalendarDataListModel]?, _ error: Error?) -> Void)
     func getBlogSummaries(completion: @escaping (_ summaries: [BlogSummaryModel]?, _ error: Error?) -> Void)

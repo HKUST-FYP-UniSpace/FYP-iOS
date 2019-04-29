@@ -55,7 +55,7 @@ final class MessageConversationVC: ChatVC {
                 self?.setTypingIndicatorHidden(false)
             }.onNewMessages { [weak self] messages in
                 let index = messages.lastIndex(where: { $0.messageId == self?.messageList.last?.messageId }) ?? 0
-                for message in messages[index...] {
+                for message in messages[index...] where index != messages.count - 1 {
                     self?.insertMessage(message)
                 }
         }
@@ -212,7 +212,7 @@ final class MessageConversationVC: ChatVC {
     }
 
     func setTypingIndicatorHidden(_ isHidden: Bool, performUpdates updates: (() -> Void)? = nil) {
-        updateTitleView(title: titleText, subtitle: isHidden ? onlineText : "Typing...")
+        //        updateTitleView(title: titleText, subtitle: isHidden ? onlineText : "Typing...")
         //        setTypingBubbleHidden(isHidden, animated: true, whilePerforming: updates) { [weak self] (_) in
         //            if self?.isLastSectionVisible() == true {
         //                self?.messagesCollectionView.scrollToBottom(animated: true)

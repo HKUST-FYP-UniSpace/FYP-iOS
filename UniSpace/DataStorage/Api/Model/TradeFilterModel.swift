@@ -87,3 +87,49 @@ enum TradeSortBy: String, CaseIterable {
         }
     }
 }
+
+enum District: String, Codable, CaseIterable {
+    case Island = "Island"
+    case KwaiTsing = "Kwai Tsing"
+    case North = "North"
+    case SaiKung = "Sai Kung"
+    case Shatin = "Shatin"
+    case TaiPo = "Tai Po"
+    case TsuenWan = "Tsuen Wan"
+    case TuenMun = "Tuen Mun"
+    case YuenLong = "Yuen Long"
+    case KowloonCity = "Kowloon City"
+    case KwunTong = "Kwun Tong"
+    case ShamShuiPo = "Sham Shui Po"
+    case WongTaiSin = "Wong Tai Sin"
+    case YauTsimMong = "Yau Tsim Mong"
+    case CentralWestern = "Central & Western"
+    case Eastern = "Eastern"
+    case Southern = "Southern"
+    case WanChai = "Wan Chai"
+    case SheungShui = "Sheung Shui"
+
+    var pathExtension: Int {
+        switch self {
+        case .Island: return 1
+        case .KwaiTsing: return 2
+        case .North: return 3
+        case .SaiKung: return 4
+        case .Shatin: return 5
+        case .TaiPo: return 6
+        case .TsuenWan: return 7
+        case .TuenMun: return 8
+        case .YuenLong: return 9
+        case .KowloonCity: return 10
+        case .KwunTong: return 11
+        case .ShamShuiPo: return 12
+        case .WongTaiSin: return 13
+        case .YauTsimMong: return 14
+        case .CentralWestern: return 15
+        case .Eastern: return 16
+        case .Southern: return 17
+        case .WanChai: return 18
+        case .SheungShui: return 19
+        }
+    }
+}

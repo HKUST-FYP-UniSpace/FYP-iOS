@@ -56,6 +56,14 @@ extension DataStore {
         Service().addNewMessage(messageId: messageId, message: message, completion: completion)
     }
 
+    func getRequestStatus(messageId: Int, completion: @escaping (MessageRequestModel?, Error?) -> Void) {
+        Service().getRequestStatus(messageId: messageId, completion: completion)
+    }
+
+    func changeRequestStatus(messageId: Int, status: RequestStatus, completion: SendRequestResult?) {
+        Service().changeRequestStatus(messageId: messageId, status: status, completion: completion)
+    }
+
     func getNotificationSummaries(completion: @escaping ([NotificationSummaryModel]?, Error?) -> Void) {
         Service().getNotificationSummaries(completion: completion)
     }

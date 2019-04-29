@@ -27,7 +27,9 @@ enum ApiRoute { case
     createTradeChatroom,
     createRequestChatroom,
     createAdminChatroom,
-    sendMessage,
+    sendMessage(messageId: Int),
+    getRequestStatus(messageId: Int),
+    changeRequestStatus(messageId: Int),
     getNotificationSummaries,
     getCalendarSummaries(year: Int, month: Int),
     getBlogSummaries,
@@ -38,6 +40,11 @@ enum ApiRoute { case
     getOwnerHouseSummary,
     getOwnerTeamSummary(houseId: Int),
     replyReview(reviewId: Int),
+    getHouseData(houseId: Int, filter: ChartFilterOptions),
+    createHouse,
+    createHouseImage(houseId: Int),
+    editHouse(houseId: Int),
+    changeHouseStatus(houseId: Int),
 
     // apartment
     getHouseSuggestions,
@@ -93,32 +100,38 @@ enum ApiRoute { case
         case .editUserProfile:
             return "users/profile/\(userId)/edit"
 
-//        case .getMessageSummaries:
-//            return ""
-//
-//        case .getMessageDetails(let messageId):
-//            return ""
-//
-//        case .createOwnerChatroom:
-//            return ""
-//
-//        case .createTeamChatroom:
-//            return ""
-//
-//        case .createTradeChatroom:
-//            return ""
-//
-//        case .createRequestChatroom:
-//            return ""
-//
-//        case .createAdminChatroom:
-//            return ""
-//
-//        case .sendMessage:
-//            return ""
-//
-//        case .getNotificationSummaries:
-//            return ""
+        case .getMessageSummaries:
+            return "message/\(userId)"
+
+        case .getMessageDetails(let messageId):
+            return "message/\(userId)/\(messageId)"
+
+        case .createOwnerChatroom:
+            return "message/\(userId)/owner"
+
+        case .createTeamChatroom:
+            return ""
+
+        case .createTradeChatroom:
+            return "message/\(userId)/trade"
+
+        case .createRequestChatroom:
+            return ""
+
+        case .createAdminChatroom:
+            return "message/\(userId)/admin"
+
+        case .sendMessage(let messageId):
+            return "message/\(userId)/\(messageId)"
+
+        case .getRequestStatus(let messageId):
+            return ""
+
+        case .changeRequestStatus(let messageId):
+            return ""
+
+        case .getNotificationSummaries:
+            return ""
 
         case .getCalendarSummaries(let year, let month):
             return "users/calendar/\(userId)/\(year)/\(month)"
@@ -129,8 +142,8 @@ enum ApiRoute { case
         case .getBlogDetail(let blogId):
             return "blog/\(blogId)/detail"
 
-//        case .getOwnerStatsSummary:
-//            return ""
+        case .getOwnerStatsSummary:
+            return ""
 
         case .getHouseSuggestions:
             return "house/\(userId)/suggestion"
@@ -225,11 +238,24 @@ enum ApiRoute { case
         case .replyReview(let reviewId):
             return "owner/\(reviewId)/reply"
 
-//        case .sendLogs:
-//            return ""
-
-        default:
+        case .getHouseData(let houseId, let filter):
             return ""
+
+        case .createHouse:
+            return "owner/house/add"
+
+        case .createHouseImage(_):
+            return "owner/house/img"
+
+        case .editHouse(_):
+            return "owner/house/update"
+
+        case .changeHouseStatus(let houseId):
+            return "owner/\(houseId)/houseStatus"
+
+        case .sendLogs:
+            return ""
+
         }
         
     }

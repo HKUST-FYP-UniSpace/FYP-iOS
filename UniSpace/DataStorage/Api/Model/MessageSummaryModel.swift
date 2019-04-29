@@ -19,7 +19,9 @@ class MessageSummaryModel: Decodable, ListDiffable, MessageSummary {
     var photoURL: String = ""
     var messageType: MessageGroupType = .Request
     var users: [UserModel] = []
+    var tradeId: Int = 0
     var teamId: Int = 0
+    var houseId: Int = 0
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -28,14 +30,16 @@ class MessageSummaryModel: Decodable, ListDiffable, MessageSummary {
         case time
         case unreadMessagesCount
         case photoURL
-        case messageType
+        case messageType = "MessageGroupType"
         case users
+        case tradeId
         case teamId
+        case houseId
     }
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = DataStore.shared.randomInt(length: 8)
+        decode(container, &id, type: Int.self, forKey: .id)
         decode(container, &title, type: String.self, forKey: .title)
         decode(container, &subtitle, type: String.self, forKey: .subtitle)
         decode(container, &time, type: Double.self, forKey: .time)
@@ -43,7 +47,9 @@ class MessageSummaryModel: Decodable, ListDiffable, MessageSummary {
         decode(container, &photoURL, type: String.self, forKey: .photoURL)
         decode(container, &messageType, type: MessageGroupType.self, forKey: .messageType)
         decode(container, &users, type: [UserModel].self, forKey: .users)
+        decode(container, &tradeId, type: Int.self, forKey: .tradeId)
         decode(container, &teamId, type: Int.self, forKey: .teamId)
+        decode(container, &houseId, type: Int.self, forKey: .houseId)
     }
 
     private func decode<T>(_ container: KeyedDecodingContainer<CodingKeys>, _ variable: inout T, type: T.Type, forKey key: CodingKeys) where T: Decodable {
