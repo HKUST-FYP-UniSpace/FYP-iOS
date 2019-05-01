@@ -13,6 +13,7 @@ extension AlamofireService: TradeService {
         get(at: .getTradeFeatured).responseJSON { (res: DataResponse<Any>) in
             var result: [TradeFeaturedModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([TradeFeaturedModel].self, from: data) }
+            result?.sort(by: { $0.id < $1.id })
             completion(result, res.result.error)
         }
     }
@@ -21,6 +22,7 @@ extension AlamofireService: TradeService {
         get(at: .getTradeSellingItems).responseJSON { (res: DataResponse<Any>) in
             var result: [TradeSellingItemModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([TradeSellingItemModel].self, from: data) }
+            result?.sort(by: { $0.id < $1.id })
             completion(result, res.result.error)
         }
     }
@@ -29,6 +31,7 @@ extension AlamofireService: TradeService {
         get(at: .getTradeSaved).responseJSON { (res: DataResponse<Any>) in
             var result: [TradeFeaturedModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([TradeFeaturedModel].self, from: data) }
+            result?.sort(by: { $0.id < $1.id })
             completion(result, res.result.error)
         }
     }
@@ -37,6 +40,7 @@ extension AlamofireService: TradeService {
         get(at: .getTradeHistory).responseJSON { (res: DataResponse<Any>) in
             var result: [TradeFeaturedModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([TradeFeaturedModel].self, from: data) }
+            result?.sort(by: { $0.id < $1.id })
             completion(result, res.result.error)
         }
     }
@@ -45,6 +49,7 @@ extension AlamofireService: TradeService {
         get(at: .getTradeList(filter: filter)).responseJSON { (res: DataResponse<Any>) in
             var result: [TradeFeaturedModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([TradeFeaturedModel].self, from: data) }
+            result?.sort(by: { $0.id < $1.id })
             completion(result, res.result.error)
         }
     }

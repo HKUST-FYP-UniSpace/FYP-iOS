@@ -14,6 +14,7 @@ extension AlamofireService: HouseService {
         get(at: .getHouseSuggestions).responseJSON { (res: DataResponse<Any>) in
             var result: [HouseSuggestionModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([HouseSuggestionModel].self, from: data) }
+            result?.sort(by: { $0.teamId < $1.teamId })
             completion(result, res.result.error)
         }
     }
@@ -22,6 +23,7 @@ extension AlamofireService: HouseService {
         get(at: .getHouseSaved).responseJSON { (res: DataResponse<Any>) in
             var result: [HouseListModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([HouseListModel].self, from: data) }
+            result?.sort(by: { $0.id < $1.id })
             completion(result, res.result.error)
         }
     }
@@ -30,6 +32,7 @@ extension AlamofireService: HouseService {
         get(at: .getHouseHistory).responseJSON { (res: DataResponse<Any>) in
             var result: [HouseListModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([HouseListModel].self, from: data) }
+            result?.sort(by: { $0.id < $1.id })
             completion(result, res.result.error)
         }
     }
@@ -38,6 +41,7 @@ extension AlamofireService: HouseService {
         get(at: .getHouseList(filter: filter)).responseJSON { (res: DataResponse<Any>) in
             var result: [HouseListModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([HouseListModel].self, from: data) }
+            result?.sort(by: { $0.id < $1.id })
             completion(result, res.result.error)
         }
     }
@@ -46,6 +50,8 @@ extension AlamofireService: HouseService {
         get(at: .getHouseView(houseId: houseId)).responseJSON { (res: DataResponse<Any>) in
             var result: HouseViewModel? = nil
             if let data = res.data { result = try? JSONDecoder().decode(HouseViewModel.self, from: data) }
+            result?.teams.sort(by: { $0.id < $1.id })
+            result?.reviews.sort(by: { $0.date > $1.date })
             completion(result, res.result.error)
         }
     }

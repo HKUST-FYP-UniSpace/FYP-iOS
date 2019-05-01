@@ -42,6 +42,7 @@ final class MockSocket {
         timer = nil
         onTypingStatusCode = nil
         onNewMessageCode = nil
+        queuedMessages = nil
         return self
     }
 

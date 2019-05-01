@@ -50,6 +50,7 @@ extension AlamofireService: GeneralService {
         post(at: .getMessageSummaries, params: params).responseJSON { (res: DataResponse<Any>) in
             var result: [MessageSummaryModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([MessageSummaryModel].self, from: data) }
+            result?.sort(by: { $0.time > $1.time })
             completion(result, res.result.error)
         }
     }
@@ -63,7 +64,7 @@ extension AlamofireService: GeneralService {
                 return
             }
 
-            let messages = originalResult.map({ m -> MockMessage in
+            let messages = originalResult.sorted(by: { $0.id < $1.id }).map({ m -> MockMessage in
                 let dummyUser = Sender(id: DataStore.shared.randomString(length: 8), displayName: "Unknown Unknown")
                 let user = allowedUsers.first(where: { $0.id == m.senderId })?.toSender() ?? dummyUser
                 let date = Date(timeIntervalSince1970: m.time)
@@ -108,6 +109,7 @@ extension AlamofireService: GeneralService {
         get(at: .getNotificationSummaries).responseJSON { (res: DataResponse<Any>) in
             var result: [NotificationSummaryModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([NotificationSummaryModel].self, from: data) }
+            result?.sort(by: { $0.time > $1.time })
             completion(result, res.result.error)
         }
     }
@@ -116,6 +118,7 @@ extension AlamofireService: GeneralService {
         get(at: .getCalendarSummaries(year: year, month: month)).responseJSON { (res: DataResponse<Any>) in
             var result: [CalendarDataListModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([CalendarDataListModel].self, from: data) }
+            result?.sort(by: { $0.date < $1.date })
             completion(result, res.result.error)
         }
     }
@@ -124,6 +127,7 @@ extension AlamofireService: GeneralService {
         get(at: .getBlogSummaries).responseJSON { (res: DataResponse<Any>) in
             var result: [BlogSummaryModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([BlogSummaryModel].self, from: data) }
+            result?.sort(by: { $0.time > $1.time })
             completion(result, res.result.error)
         }
     }

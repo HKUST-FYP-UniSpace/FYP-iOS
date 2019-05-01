@@ -14,6 +14,7 @@ extension AlamofireService: OwnerService {
         get(at: .getOwnerStatsSummary).responseJSON { (res: DataResponse<Any>) in
             var result: [OwnerHouseSummaryModel]? = nil
             if let data = res.data { result = try? JSONDecoder().decode([OwnerHouseSummaryModel].self, from: data) }
+            result?.sort(by: { $0.createTime > $1.createTime })
             completion(result, res.result.error)
         }
     }
@@ -22,6 +23,8 @@ extension AlamofireService: OwnerService {
         get(at: .getOwnerTeamSummary(houseId: houseId)).responseJSON { (res: DataResponse<Any>) in
             var result: OwnerTeamsModel? = nil
             if let data = res.data { result = try? JSONDecoder().decode(OwnerTeamsModel.self, from: data) }
+            result?.teams.sort(by: { $0.id < $1.id })
+            result?.reviews.sort(by: { $0.date > $1.date })
             completion(result, res.result.error)
         }
     }
