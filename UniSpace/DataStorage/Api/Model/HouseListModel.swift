@@ -23,7 +23,7 @@ class HouseListModel: Decodable, ListDiffable, HouseList {
     var rooms: Int = 0
     var beds: Int = 0
     var toilets: Int = 0
-
+    var district_id: String = ""
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -38,6 +38,7 @@ class HouseListModel: Decodable, ListDiffable, HouseList {
         case rooms
         case beds
         case toilets
+        case district_id
     }
 
     required init(from decoder: Decoder) throws {
@@ -51,9 +52,10 @@ class HouseListModel: Decodable, ListDiffable, HouseList {
         decode(container, &address, type: String.self, forKey: .address)
         decode(container, &isBookmarked, type: Bool.self, forKey: .isBookmarked)
         decode(container, &photoURLs, type: [String].self, forKey: .photoURLs)
-        decode(container, &rooms, type: Int.self, forKey: .rooms); rooms = Int.random(in: 1...6)
-        decode(container, &beds, type: Int.self, forKey: .beds); beds = Int.random(in: 1...6)
-        decode(container, &toilets, type: Int.self, forKey: .toilets); toilets = Int.random(in: 1...6)
+        decode(container, &rooms, type: Int.self, forKey: .rooms)
+        decode(container, &beds, type: Int.self, forKey: .beds)
+        decode(container, &toilets, type: Int.self, forKey: .toilets)
+        decode(container, &district_id, type: String.self, forKey: .district_id)
     }
 
     private func decode<T>(_ container: KeyedDecodingContainer<CodingKeys>, _ variable: inout T, type: T.Type, forKey key: CodingKeys) where T: Decodable {

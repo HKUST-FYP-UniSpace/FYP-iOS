@@ -34,7 +34,8 @@ class TradeAddItemVC: MasterFormPopupVC {
         form +++ Section("Item Information")
             <<< getTextRow(id: "name", title: "Name", defaultValue: nil)
             <<< getTextAreaRow(id: "description", placeholder: "Enter item's description here", defaultValue: nil)
-            <<< getTextRow(id: "location", title: "Location", defaultValue: nil)
+            <<< getSingleSelectorRow(id: "location", title: "Location", defaultValue: nil, selectorTitle: nil, options: District.allCases.map { $0.rawValue })
+//            <<< getTextRow(id: "location", title: "Location", defaultValue: nil)
             <<< getPriceRow(id: "price", title: "Price", defaultValue: nil, unit: unit, unitIsFront: true)
             <<< getTextRow(id: "quantity", title: "Quantity", defaultValue: nil)
             <<< getSingleSelectorRow(id: "category", title: "Category", defaultValue: nil, selectorTitle: nil, options: TradeCategory.allCases.map { $0.rawValue })
@@ -71,7 +72,8 @@ class TradeAddItemVC: MasterFormPopupVC {
         var itemCondition: TradeItemCondition? = nil
         if let row = form.rowBy(tag: "name") as? TextRow { name = row.value }
         if let row = form.rowBy(tag: "description") as? TextAreaRow { description = row.value }
-        if let row = form.rowBy(tag: "location") as? TextRow { location = row.value }
+//        if let row = form.rowBy(tag: "location") as? TextRow { location = row.value }
+        if let row = form.rowBy(tag: "location") as? ActionSheetRow<String> { location = row.value }
         if let row = form.rowBy(tag: "price") as? TextRow,
             let value = row.value,
             let obtainedPrice = Int(value.deletingPrefix("\(unit) ")) { price = obtainedPrice }

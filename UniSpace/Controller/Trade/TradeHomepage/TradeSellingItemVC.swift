@@ -104,7 +104,8 @@ class TradeSellingItemVC: MasterFormPopupVC {
 
         form +++ Section("Information")
         <<< getTextRow(id: "title", title: "Title", defaultValue: sellingItem?.title)
-        <<< getTextRow(id: "location", title: "Location", defaultValue: sellingItem?.location)
+//        <<< getTextRow(id: "location", title: "Location", defaultValue: sellingItem?.location)
+        <<< getSingleSelectorRow(id: "location", title: "Location", defaultValue: sellingItem?.location, selectorTitle: nil, options: District.allCases.map { $0.rawValue })
         <<< getPriceRow(id: "price", title: "Price", defaultValue: price, unit: unit, unitIsFront: true)
         <<< getTextAreaRow(id: "detail", placeholder: "detail", defaultValue: sellingItem?.detail, disable: false)
         <<< getTextRow(id: "quantity", title: "Quantity", defaultValue: String(sellingItem?.quantity))
@@ -128,7 +129,8 @@ class TradeSellingItemVC: MasterFormPopupVC {
         var itemCondition: TradeItemCondition? = nil
         if let row = form.rowBy(tag: "name") as? TextRow { name = row.value }
         if let row = form.rowBy(tag: "description") as? TextAreaRow { description = row.value }
-        if let row = form.rowBy(tag: "location") as? TextRow { location = row.value }
+//        if let row = form.rowBy(tag: "location") as? TextRow { location = row.value }
+        if let row = form.rowBy(tag: "location") as? ActionSheetRow<String> { location = row.value }
         if let row = form.rowBy(tag: "price") as? TextRow,
             let value = row.value,
             let obtainedPrice = Int(value.deletingPrefix("\(unit) ")) { price = obtainedPrice }

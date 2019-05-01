@@ -94,7 +94,11 @@ extension AlamofireService: TradeService {
     }
 
     func getTradeItemData(itemId: Int, filter: ChartFilterOptions, completion: @escaping (ChartDataListModel?, Error?) -> Void) {
-        // TODO
+        get(at: .getTradeItemData(itemId: itemId, filter: filter)).responseJSON { (res: DataResponse<Any>) in
+            var result: ChartDataListModel? = nil
+            if let data = res.data { result = try? JSONDecoder().decode(ChartDataListModel.self, from: data) }
+            completion(result, res.result.error)
+        }
     }
 
     func getTradeDetail(itemId: Int, completion: @escaping (TradeFeaturedModel?, Error?) -> Void) {
@@ -127,6 +131,7 @@ extension AlamofireService {
         params["quantity"] = model.quantity
         params["trade_category_id"] = model.tradeCategory.pathExtension
         params["trade_condition_type_id"] = model.tradeItemCondition.pathExtension
+        params["district_id"] = model.location
         return params
     }
 }

@@ -22,6 +22,7 @@ class TestHouseListModel: HouseList {
     var rooms: Int
     var beds: Int
     var toilets: Int
+    var district_id: String
 
     required init() {
         id = DataStore.shared.randomInt(length: 8)
@@ -39,6 +40,7 @@ class TestHouseListModel: HouseList {
         rooms = Int.random(in: 1..<6)
         beds = Int.random(in: 1..<6)
         toilets = Int.random(in: 1..<6)
+        district_id = District.allCases.randomElement()!.rawValue
     }
 
     func toModel() -> HouseListModel {

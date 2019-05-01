@@ -108,10 +108,10 @@ extension AlamofireService {
         if model.id != 0 {
             params["houseId"] = model.id
             params["type"] = HouseType.Flat.rawValue
-            params["district_id"] = District.Island.rawValue
+            params["district_id"] = model.district_id
             params["description"] = ""
             params["max_ppl"] = 10
-            params["ownerId"] = 0
+            params["ownerId"] = DataStore.shared.user?.id
         }
         return params
     }

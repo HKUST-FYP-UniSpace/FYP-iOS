@@ -27,7 +27,7 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
     enum CodingKeys: String, CodingKey {
         case id
         case title
-        case location
+        case location = "district_id"
         case transactionType
         case price
         case status
@@ -43,7 +43,7 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         decode(container, &id, type: Int.self, forKey: .id)
         decode(container, &title, type: String.self, forKey: .title)
-        decode(container, &location, type: String.self, forKey: .location); location = "Discovery Park, Tsuen Wan"
+        decode(container, &location, type: String.self, forKey: .location)
         decode(container, &transactionType, type: String.self, forKey: .transactionType)
         decode(container, &price, type: Int.self, forKey: .price)
         decode(container, &status, type: String.self, forKey: .status)

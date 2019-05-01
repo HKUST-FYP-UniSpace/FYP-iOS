@@ -30,6 +30,7 @@ class OwnerAddHouseVC: MasterFormPopupVC {
         form +++ Section("Information")
             <<< getTextRow(id: "title", title: "Title", defaultValue: nil)
             <<< getTextRow(id: "address", title: "Address", defaultValue: nil)
+            <<< getSingleSelectorRow(id: "location", title: "Location", defaultValue: nil, selectorTitle: nil, options: District.allCases.map { $0.rawValue })
             <<< getPriceRow(id: "price", title: "Price", defaultValue: nil, unit: unit, unitIsFront: true)
             <<< getPriceRow(id: "size", title: "Size", defaultValue: nil, unit: sizeUnit, unitIsFront: false)
             <<< getTextAreaRow(id: "subtitle", placeholder: "detail", defaultValue: nil, disable: false)
@@ -63,6 +64,7 @@ class OwnerAddHouseVC: MasterFormPopupVC {
 
         var title: String? = nil
         var address: String? = nil
+        var location: String? = nil
         var price: Int? = nil
         var size: Int? = nil
         var subtitle: String? = nil
@@ -71,6 +73,7 @@ class OwnerAddHouseVC: MasterFormPopupVC {
         var toilets: Int? = nil
         if let row = form.rowBy(tag: "title") as? TextRow { title = row.value }
         if let row = form.rowBy(tag: "address") as? TextRow { address = row.value }
+        if let row = form.rowBy(tag: "location") as? ActionSheetRow<String> { location = row.value }
         if let row = form.rowBy(tag: "subtitle") as? TextAreaRow { subtitle = row.value }
         if let row = form.rowBy(tag: "price") as? TextRow,
             let value = row.value,
@@ -87,7 +90,7 @@ class OwnerAddHouseVC: MasterFormPopupVC {
             let updateSubtitle = subtitle, !updateSubtitle.isEmpty,
             let updatePrice = price, let updateSize = size,
             let updateRooms = rooms, let updateBeds = beds,
-            let updateToilets = toilets else {
+            let updateToilets = toilets, let updateLocation = location else {
                 self.model = nil
                 return
         }
@@ -95,6 +98,7 @@ class OwnerAddHouseVC: MasterFormPopupVC {
         let model = HouseListModel()
         model.title = updateTitle
         model.address = updateAddress
+        model.district_id = updateLocation
         model.subtitle = updateSubtitle
         model.price = updatePrice
         model.size = updateSize

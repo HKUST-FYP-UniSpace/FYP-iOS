@@ -32,11 +32,11 @@ enum University: String, CaseIterable {
 
     var pathExtension: String {
         switch self {
-        case .HKU: return "hku"
-        case .CU: return "cu"
-        case .UST: return "ust"
-        case .PolyU: return "poly_u"
-        case .CityU: return "city_u"
+        case .HKU: return "The University of Hong Kong"
+        case .CU: return "Chinese University of Hong Kong"
+        case .UST: return "Hong Kong University of Science and Technology"
+        case .PolyU: return "The Hong Kong Polytechnic University"
+        case .CityU: return "City University of Hong Kong"
         }
     }
 }

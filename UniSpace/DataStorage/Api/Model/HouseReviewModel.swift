@@ -38,7 +38,7 @@ class HouseReviewModel: Decodable, ListDiffable, HouseReview {
         decode(container, &id, type: Int.self, forKey: .id)
         decode(container, &username, type: String.self, forKey: .username)
         decode(container, &title, type: String.self, forKey: .title)
-        decode(container, &date, type: Double.self, forKey: .date); date = DateManager.shared.randomTime(30)
+        decode(container, &date, type: Double.self, forKey: .date)
         decode(container, &detail, type: String.self, forKey: .detail)
         decode(container, &starRating, type: Double.self, forKey: .starRating)
         decode(container, &ownerId, type: Int.self, forKey: .ownerId)

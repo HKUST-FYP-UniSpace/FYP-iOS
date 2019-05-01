@@ -70,6 +70,7 @@ enum ApiRoute { case
     createTradeItem,
     createTradeItemImage(itemId: Int),
     editTradeItem(itemId: Int),
+    getTradeItemData(itemId: Int, filter: ChartFilterOptions),
     getTradeDetail(itemId: Int),
     bookmarkItem(itemId: Int),
 
@@ -143,7 +144,7 @@ enum ApiRoute { case
             return "blog/\(blogId)/detail"
 
         case .getOwnerStatsSummary:
-            return ""
+            return "owner/\(userId)/houseSummary"
 
         case .getHouseSuggestions:
             return "house/\(userId)/suggestion"
@@ -152,8 +153,17 @@ enum ApiRoute { case
             return "house/\(userId)/saved"
 
         case .getHouseList(let filter):
-            log.info("House Filter not handled", context: "\(filter)")
-            return "house/\(userId)/index"
+            var queryString = "house/\(userId)/index?"
+            if let value = filter.keyword { queryString += "keyword=\(value)&" }
+            if let travelTime = filter.maxTravelTime, let origin = filter.university {
+                queryString += "travelTime=\(travelTime)&"
+                queryString += "origin=\(origin.pathExtension)&"
+            }
+            if let value = filter.minPrice { queryString += "minPrice=\(value)&" }
+            if let value = filter.maxPrice { queryString += "maxPrice=\(value)&" }
+            if let value = filter.minSize { queryString += "minSize=\(value)&" }
+            if let value = filter.maxSize { queryString += "maxSize=\(value)&" }
+            return String(queryString.dropLast())
 
         case .getHouseView(let houseId):
             return "house/\(userId)/houseView/\(houseId)"
@@ -223,6 +233,9 @@ enum ApiRoute { case
         case .editTradeItem(let itemId):
             return "trade/\(userId)/update/\(itemId)"
 
+        case .getTradeItemData(let itemId, let filter):
+            return "trade/\(userId)/tradeData/\(itemId)/view/\(filter.rawValue)"
+
         case .getTradeDetail(let itemId):
             return "trade/\(userId)/detail/\(itemId)"
 
@@ -239,7 +252,7 @@ enum ApiRoute { case
             return "owner/\(reviewId)/reply"
 
         case .getHouseData(let houseId, let filter):
-            return ""
+            return "owner/\(userId)/houseData/\(houseId)/view/\(filter.rawValue)"
 
         case .createHouse:
             return "owner/house/add"

@@ -89,7 +89,7 @@ enum TradeSortBy: String, CaseIterable {
 }
 
 enum District: String, Codable, CaseIterable {
-    case Island = "Island"
+    case ClearWaterBay = "Clear Water Bay"
     case KwaiTsing = "Kwai Tsing"
     case North = "North"
     case SaiKung = "Sai Kung"
@@ -111,7 +111,7 @@ enum District: String, Codable, CaseIterable {
 
     var pathExtension: Int {
         switch self {
-        case .Island: return 1
+        case .ClearWaterBay: return 1
         case .KwaiTsing: return 2
         case .North: return 3
         case .SaiKung: return 4

@@ -22,5 +22,6 @@ protocol HouseList: HavePhotos {
     var rooms: Int { get set }
     var beds: Int { get set }
     var toilets: Int { get set }
+    var district_id: String { get set }
 
 }
