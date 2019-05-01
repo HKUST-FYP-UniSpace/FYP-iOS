@@ -60,7 +60,7 @@ extension AlamofireService: TradeService {
             var result: Int? = nil
             if let data = res.result.value { result = self.transform(from: data, type: Int.self) }
             guard let itemId = result else {
-                completion?(nil, ServerError.UnknownClassType(object: "Team ID"))
+                completion?(nil, ServerError.UnknownClassType(object: "Trade ID"))
                 return
             }
             self.createTradeItemImage(itemId: itemId, images: images, completion: completion)
@@ -76,7 +76,7 @@ extension AlamofireService: TradeService {
                         completion?(nil, ServerError.ImageFormatError(format: "jpeg"))
                         return
                     }
-                    multipartFormData.append(imageData, withName: "photo[\(index)]", fileName: "photoURL.jpeg", mimeType: "image/jpeg")
+                    multipartFormData.append(imageData, withName: "photoURLs[]", fileName: "photo\(index).jpeg", mimeType: "image/jpeg")
                 }
                 multipartFormData.append("\(itemId)".data(using: .utf8)!, withName: "tradeId")
         }) { (res: DataResponse<Any>) in
@@ -125,7 +125,7 @@ extension AlamofireService {
     private func getItemParams(_ model: TradeFeaturedModel) -> Parameters {
         var params = Parameters()
         params["userId"] = DataStore.shared.user?.id
-        params["name"] = model.title
+        params["title"] = model.title
         params["price"] = model.price
         params["description"] = model.detail
         params["quantity"] = model.quantity

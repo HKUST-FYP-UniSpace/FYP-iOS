@@ -73,7 +73,7 @@ extension AlamofireService: OwnerService {
                         completion?(nil, ServerError.ImageFormatError(format: "jpeg"))
                         return
                     }
-                    multipartFormData.append(imageData, withName: "photo[\(index)]", fileName: "photoURL.jpeg", mimeType: "image/jpeg")
+                    multipartFormData.append(imageData, withName: "photoURLs[]", fileName: "photo\(index).jpeg", mimeType: "image/jpeg")
                 }
                 multipartFormData.append("\(houseId)".data(using: .utf8)!, withName: "houseId")
         }) { (res: DataResponse<Any>) in

@@ -91,14 +91,16 @@ extension AlamofireService: HouseService {
     func changePreference(preference: PreferenceModel, completion: SendRequestResult?) {
         let params = getPreferenceParams(preference)
         post(at: .updatePreference, params: params).responseJSON { (res: DataResponse<Any>) in
-            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
+            completion?(nil, nil)
+//            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
         }
     }
 
     func changeTeamPreference(teamId: Int, preference: PreferenceModel, completion: SendRequestResult?) {
         let params = getPreferenceParams(preference)
         put(at: .updateTeamPreference(teamId: teamId), params: params).responseJSON { (res: DataResponse<Any>) in
-            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
+            completion?(nil, nil)
+//            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
         }
     }
 

@@ -126,7 +126,7 @@ enum ApiRoute { case
             return "message/\(userId)/\(messageId)"
 
         case .getRequestStatus(let messageId):
-            return ""
+            return "message/\(userId)/\(messageId)/role"
 
         case .changeRequestStatus(let messageId):
             return ""
@@ -163,7 +163,7 @@ enum ApiRoute { case
             if let value = filter.maxPrice { queryString += "maxPrice=\(value)&" }
             if let value = filter.minSize { queryString += "minSize=\(value)&" }
             if let value = filter.maxSize { queryString += "maxSize=\(value)&" }
-            return String(queryString.dropLast())
+            return String(queryString.dropLast()).replacingOccurrences(of: " ", with: "%20")
 
         case .getHouseView(let houseId):
             return "house/\(userId)/houseView/\(houseId)"
@@ -219,7 +219,7 @@ enum ApiRoute { case
             if let value = filter.itemCondition, !value.isEmpty {
                 value.forEach { (condition) in queryString += "itemCondition[]=\(condition.pathExtension)&" }
             }
-            return String(queryString.dropLast())
+            return String(queryString.dropLast()).replacingOccurrences(of: " ", with: "%20")
 
         case .getTradeHistory:
             return "trade/\(userId)/history"
