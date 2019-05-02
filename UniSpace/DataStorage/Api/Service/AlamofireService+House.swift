@@ -138,7 +138,8 @@ extension AlamofireService: HouseService {
         var params = Parameters()
         params["userId"] = DataStore.shared.user?.id
         post(at: .joinTeam(teamId: teamId), params: params).responseJSON { (res: DataResponse<Any>) in
-            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
+            completion?(nil, res.result.error)
+//            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
         }
     }
 

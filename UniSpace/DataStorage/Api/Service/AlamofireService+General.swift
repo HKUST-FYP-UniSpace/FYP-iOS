@@ -75,6 +75,15 @@ extension AlamofireService: GeneralService {
     }
 
     func createNewMessageGroup(type: MessageGroupType, message: MockMessage, teamId: Int?, itemId: Int?, completion: SendRequestResult?) {
+        if type == .Request {
+            guard let teamId = teamId else {
+                completion?(nil, ServerError.UnknownClassType(object: "Team ID"))
+                return
+            }
+            joinTeam(teamId: teamId, completion: completion)
+            return
+        }
+        
         let payload = getChatroomRoute(type, message, teamId, itemId)
         post(at: payload.0, params: payload.1).responseJSON { (res: DataResponse<Any>) in
             completion?(nil, res.result.error)

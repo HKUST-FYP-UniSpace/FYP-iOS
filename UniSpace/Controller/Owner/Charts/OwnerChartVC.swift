@@ -104,6 +104,7 @@ class ChartVC: MasterVC {
 
     private func completion(data: ChartDataListModel?, error: Error?) {
         self.data = data
+        dump(data)
         updateChart()
     }
     

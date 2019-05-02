@@ -51,6 +51,27 @@ class ChartDataListModel: Decodable {
     var targetBookmarks: [ChartDataModel] = []
     var othersBookmarks: [ChartDataModel] = []
 
+    enum CodingKeys: String, CodingKey {
+        case targetViews
+        case othersViews
+        case targetBookmarks = "targetBookmark"
+        case othersBookmarks = "othersBookmark"
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        decode(container, &targetViews, type: [ChartDataModel].self, forKey: .targetViews)
+        decode(container, &othersViews, type: [ChartDataModel].self, forKey: .othersViews)
+        decode(container, &targetBookmarks, type: [ChartDataModel].self, forKey: .targetBookmarks)
+        decode(container, &othersBookmarks, type: [ChartDataModel].self, forKey: .othersBookmarks)
+    }
+
+    private func decode<T>(_ container: KeyedDecodingContainer<CodingKeys>, _ variable: inout T, type: T.Type, forKey key: CodingKeys) where T: Decodable {
+        if let _variable = try? container.decode(type, forKey: key) {
+            variable = _variable
+        }
+    }
+
     init() {}
 
 }

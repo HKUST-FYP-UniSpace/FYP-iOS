@@ -35,7 +35,7 @@ class UserModel: Decodable, Equatable, User {
         case name
         case email
         case gender
-        case role
+        case role = "userType"
         case isActive
         case createTime
         case verified
