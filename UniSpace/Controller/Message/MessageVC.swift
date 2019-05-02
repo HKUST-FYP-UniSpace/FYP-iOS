@@ -83,9 +83,8 @@ final class MessageVC: SingleSectionViewController {
             cell.subtitleLabel.text = object.subtitle
             cell.timeLabel.text = object.readableTime()
 
-            let url = object.messageType == .Team ? object.photoURL : object.users.first?.photoURL
-            guard let photoURL = url else { return }
-            AlamofireService.shared.downloadImage(at: photoURL, downloadProgress: nil) { (image, error) in
+            let url = object.messageType != .Admin ? object.photoURL : "http://facebookfplus.com/upload/images/600_97d118b7a6f8f87d18f7b1385ea7665e.png"
+            AlamofireService.shared.downloadImage(at: url, downloadProgress: nil) { (image, error) in
                 cell.setImage(image)
             }
         }
