@@ -36,6 +36,7 @@ class TeamCreationVC: MasterFormPopupVC {
             <<< getTextRow(id: "name", title: "Group Name", defaultValue: nil)
             <<< getTextAreaRow(id: "description", placeholder: "Enter team's description here", defaultValue: nil)
             <<< getStepperRow(id: "size", title: "Group Size", defaultValue: 1, max: 8, min: 1, step: 1, displayWithText: "")
+            <<< getStepperRow(id: "duration", title: "Duration (years)", defaultValue: 1, max: 8, min: 1, step: 1, displayWithText: "")
 
         form +++ Section("")
             <<< getButtonRow(id: nil, title: "Next", callback: {
@@ -60,13 +61,15 @@ class TeamCreationVC: MasterFormPopupVC {
         var name: String? = nil
         var description: String? = nil
         var size: Int? = nil
+        var duration: Int? = nil
         if let row = form.rowBy(tag: "name") as? TextRow { name = row.value }
         if let row = form.rowBy(tag: "description") as? TextAreaRow { description = row.value }
         if let row = form.rowBy(tag: "size") as? StepperRow, let value = row.value { size = Int(value) }
+        if let row = form.rowBy(tag: "duration") as? StepperRow, let value = row.value { duration = Int(value) }
 
         guard let updateName = name, !updateName.isEmpty,
             let updateDescription = description, !updateDescription.isEmpty,
-            let updateSize = size else {
+            let updateSize = size, let updateDuration = duration else {
                 self.model = nil
                 return
         }
@@ -74,6 +77,7 @@ class TeamCreationVC: MasterFormPopupVC {
         model.title = updateName
         model.description = updateDescription
         model.groupSize = updateSize
+        model.duration = "\(updateDuration)"
         self.model = model
     }
 

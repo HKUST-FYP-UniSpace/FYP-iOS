@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         DataStore.shared.changeService(.Alamofire)
-//        addUserCredential(.Alamofire, role: .Tenant)
+        addUserCredential(.Alamofire, role: .Tenant)
         Connectivity.shared.startNetworkReachabilityObserver()
         
         window = UIWindow(frame: UIScreen.main.bounds)

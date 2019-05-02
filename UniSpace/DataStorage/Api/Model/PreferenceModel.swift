@@ -30,7 +30,14 @@ class PreferenceModel: Codable, ListDiffable, Preference {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         decode(container, &gender, type: Gender?.self, forKey: .gender)
-        decode(container, &petFree, type: Bool?.self, forKey: .petFree)
+        var petFreeString: String? = nil
+        decode(container, &petFreeString, type: String?.self, forKey: .petFree)
+        switch petFreeString {
+        case "true": petFree = true
+        case "false": petFree = false
+        default: petFree = nil
+        }
+
         decode(container, &timeInHouse, type: String?.self, forKey: .timeInHouse)
         decode(container, &personalities, type: [String]?.self, forKey: .personalities)
         decode(container, &interests, type: [String]?.self, forKey: .interests)

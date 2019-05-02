@@ -162,7 +162,7 @@ extension AlamofireService {
         params["title"] = model.title
         params["description"] = model.description
         params["groupSize"] = model.groupSize
-        params["duration"] = 1
+        params["duration"] = model.duration
         params["image_url"] = "www.google.com"
         return params
     }

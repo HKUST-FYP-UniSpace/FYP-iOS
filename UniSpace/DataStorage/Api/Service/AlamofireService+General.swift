@@ -157,19 +157,19 @@ extension AlamofireService {
             return (.createAdminChatroom, params)
 
         case .Owner:
-            params["houseId"] = teamId
+            params["teamId"] = teamId
             return (.createOwnerChatroom, params)
 
         case .Team:
-            params["houseId"] = teamId
+            params["teamId"] = teamId
             return (.createTeamChatroom, params)
 
         case .Trade:
-            params["itemId"] = itemId
+            params["tradeId"] = itemId
             return (.createTradeChatroom, params)
 
         case .Request:
-            params["houseId"] = teamId
+            params["teamId"] = teamId
             return (.createRequestChatroom, params)
         }
     }

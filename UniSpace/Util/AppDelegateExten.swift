@@ -44,7 +44,7 @@ extension AppDelegate {
     func addUserCredential(_ service: Service, role: UserType) {
         switch service {
         case .Alamofire:
-            DataStore.shared.savePref(.username, value: "server")
+            DataStore.shared.savePref(.username, value: "Earnestine")
             DataStore.shared.savePref(.password, value: "12345678aa")
         case .Local:
             let user = TestUserModel(email: "123@test.com",

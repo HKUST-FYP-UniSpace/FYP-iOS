@@ -36,7 +36,7 @@ class MasterVC: UIViewController {
     
     func loginCompletion(user: UserModel?, error: Error?) {
         if user == nil {
-            showAlert(title: error?.localizedDescription)
+            showAlert(title: "Login Failed")
         }
     }
 
