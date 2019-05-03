@@ -75,7 +75,7 @@ final class TeamMemberSectionController: ListSectionController, ListAdapterDataS
 
     override func didUpdate(to object: Any) {
         let object = object as? TeamSummaryViewModel
-        teamId = object?.id
+        teamId = object?.teamView?.id
         models = object?.teamMembers
     }
 

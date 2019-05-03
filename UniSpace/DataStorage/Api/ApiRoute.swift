@@ -129,7 +129,7 @@ enum ApiRoute { case
             return "message/\(userId)/\(messageId)/role"
 
         case .changeRequestStatus(let messageId):
-            return ""
+            return "housePostGroup/\(messageId)/approve"
 
         case .getNotificationSummaries:
             return ""

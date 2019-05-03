@@ -54,8 +54,24 @@ final class MessageConversationVC: ChatVC {
             .onTypingStatus { [weak self] in
                 self?.setTypingIndicatorHidden(false)
             }.onNewMessages { [weak self] messages in
-                let index = messages.lastIndex(where: { $0.messageId == self?.messageList.last?.messageId }) ?? 0
-                for message in messages[index...] where index != messages.count - 1 {
+//                let index = messages.lastIndex(where: { $0.messageId == self?.messageList.last?.messageId }) ?? 0
+                let index = messages.lastIndex(where: { (message) -> Bool in
+                    switch message.kind {
+                    case .text(let message):
+                        if let myLastMessage = self?.messageList.last?.kind {
+                            switch myLastMessage {
+                            case .text(let myMessage):
+                                return message == myMessage
+                            default:
+                                return false
+                            }
+                        }
+                        return false
+                    default:
+                        return false
+                    }
+                })
+                for message in messages[(index ?? 0)...] where index != messages.count - 1 {
                     self?.insertMessage(message)
                 }
         }

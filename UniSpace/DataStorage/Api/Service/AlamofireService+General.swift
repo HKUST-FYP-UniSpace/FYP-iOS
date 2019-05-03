@@ -75,15 +75,6 @@ extension AlamofireService: GeneralService {
     }
 
     func createNewMessageGroup(type: MessageGroupType, message: MockMessage, teamId: Int?, itemId: Int?, completion: SendRequestResult?) {
-        if type == .Request {
-            guard let teamId = teamId else {
-                completion?(nil, ServerError.UnknownClassType(object: "Team ID"))
-                return
-            }
-            joinTeam(teamId: teamId, completion: completion)
-            return
-        }
-
         let payload = getChatroomRoute(type, message, teamId, itemId)
         post(at: payload.0, params: payload.1).responseJSON { (res: DataResponse<Any>) in
             completion?(nil, res.result.error)
@@ -109,7 +100,8 @@ extension AlamofireService: GeneralService {
 
     func changeRequestStatus(messageId: Int, status: RequestStatus, completion: SendRequestResult?) {
         var params = Parameters()
-        params["status"] = status.rawValue
+        params["leaderId"] = DataStore.shared.user?.id
+        params["acceptance"] = status == .Accepted ? true : false
         post(at: .changeRequestStatus(messageId: messageId), params: params).responseJSON { (res: DataResponse<Any>) in
             completion?(nil, res.result.error)
         }
@@ -179,8 +171,8 @@ extension AlamofireService {
             return (.createTradeChatroom, params)
 
         case .Request:
-            params["teamId"] = teamId
-            return (.createRequestChatroom, params)
+            params["userId"] = DataStore.shared.user?.id
+            return (.joinTeam(teamId: teamId ?? -1), params)
         }
     }
 }
