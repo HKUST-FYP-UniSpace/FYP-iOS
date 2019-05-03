@@ -159,10 +159,10 @@ enum ApiRoute { case
                 queryString += "travelTime=\(travelTime)&"
                 queryString += "origin=\(origin.pathExtension)&"
             }
-            if let value = filter.minPrice { queryString += "minPrice=\(value)&" }
-            if let value = filter.maxPrice { queryString += "maxPrice=\(value)&" }
-            if let value = filter.minSize { queryString += "minSize=\(value)&" }
-            if let value = filter.maxSize { queryString += "maxSize=\(value)&" }
+            if let value = filter.minPrice { queryString += "minPrice=\(Int(value))&" }
+            if let value = filter.maxPrice { queryString += "maxPrice=\(Int(value))&" }
+            if let value = filter.minSize { queryString += "minSize=\(Int(value))&" }
+            if let value = filter.maxSize { queryString += "maxSize=\(Int(value))&" }
             return String(queryString.dropLast()).replacingOccurrences(of: " ", with: "%20")
 
         case .getHouseView(let houseId):
@@ -211,8 +211,8 @@ enum ApiRoute { case
             } else {
                 queryString += "\(TradeSearchBy.Title.pathExtension)=\(filter.keyword ?? "")&"
             }
-            if let value = filter.minPrice { queryString += "minPrice=\(value)&" }
-            if let value = filter.maxPrice { queryString += "maxPrice=\(value)&" }
+            if let value = filter.minPrice { queryString += "minPrice=\(Int(value))&" }
+            if let value = filter.maxPrice { queryString += "maxPrice=\(Int(value))&" }
             if let value = filter.category, !value.isEmpty {
                 value.forEach { (cat) in queryString += "category[]=\(cat.pathExtension)&" }
             }

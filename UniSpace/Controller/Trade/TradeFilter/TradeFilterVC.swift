@@ -32,7 +32,7 @@ class TradeFilterVC: MasterFilterVC {
             <<< getMultipleSelectorRow(id: "itemCondition", title: "Item condition", defaultValue: itemConditionDefault, selectorTitle: nil, options: TradeItemCondition.allCases.map { $0.rawValue })
 
         form +++ Section("Price (HK$)")
-            <<< getSliderRow(id: "priceMax", title: "Max", defaultValue: filter?.maxPrice, max: 1000, min: 300, startFromSmallest: false)
+            <<< getSliderRow(id: "priceMax", title: "Max", defaultValue: filter?.maxPrice, max: 3000, min: 300, startFromSmallest: false)
             <<< getSliderRow(id: "priceMin", title: "Min", defaultValue: filter?.minPrice, max: 500, min: 0)
 
         form +++ Section("")

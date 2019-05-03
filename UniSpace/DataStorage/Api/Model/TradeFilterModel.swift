@@ -35,22 +35,22 @@ enum TradeSearchBy: String, CaseIterable {
 }
 
 enum TradeCategory: String, Codable, CaseIterable {
-    case Kitchenwares = "Kitchenwares"
-    case ElectronicsAndGadgets = "Electronics and Gadgets"
+    case ElectronicsAndGadgets = "Electronics"
     case Furnitures = "Furnitures"
     case HealthAndBeauty = "Health and Beauty"
     case ToysAndGames = "Toys and Games"
+    case Kitchenwares = "Kitchenwares"
     case BooksAndStationeries = "Books and Stationeries"
     case Fashion = "Fashion"
     case Sports = "Sports"
 
     var pathExtension: Int {
         switch self {
-        case .Kitchenwares: return 1
-        case .ElectronicsAndGadgets: return 2
-        case .Furnitures: return 3
-        case .HealthAndBeauty: return 4
-        case .ToysAndGames: return 5
+        case .ElectronicsAndGadgets: return 1
+        case .Furnitures: return 2
+        case .HealthAndBeauty: return 3
+        case .ToysAndGames: return 4
+        case .Kitchenwares: return 5
         case .BooksAndStationeries: return 6
         case .Fashion: return 7
         case .Sports: return 8
