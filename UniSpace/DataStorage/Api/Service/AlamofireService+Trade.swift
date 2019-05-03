@@ -86,7 +86,7 @@ extension AlamofireService: TradeService {
 
     func editTradeItem(model: TradeFeaturedModel, images: [UIImage], completion: SendRequestResult?) {
         let params = getItemParams(model)
-        post(at: .editTradeItem(itemId: model.id), params: params).responseJSON { (res: DataResponse<Any>) in
+        put(at: .editTradeItem(itemId: model.id), params: params).responseJSON { (res: DataResponse<Any>) in
             self.sendRequestStandardHandling(res: res, followUpAction: {
                 self.createTradeItemImage(itemId: model.id, images: images, completion: completion)
             }, completion: completion)

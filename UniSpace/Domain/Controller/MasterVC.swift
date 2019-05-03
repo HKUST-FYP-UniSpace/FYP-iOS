@@ -89,6 +89,7 @@ extension UIViewController {
 
     func logout() {
         DataStore.shared.user = nil
+        RealmService.shared.deleteMessageGroups()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.redirecting(nil)
     }

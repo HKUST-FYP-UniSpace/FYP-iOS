@@ -85,7 +85,7 @@ extension AlamofireService: OwnerService {
         var params = Parameters()
         params["userId"] = DataStore.shared.user?.id
         params["status"] = status.rawValue
-        post(at: .changeHouseStatus(houseId: houseId), params: params).responseJSON { (res: DataResponse<Any>) in
+        put(at: .changeHouseStatus(houseId: houseId), params: params).responseJSON { (res: DataResponse<Any>) in
             completion?(nil, res.result.error)
         }
     }

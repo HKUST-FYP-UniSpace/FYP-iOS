@@ -83,7 +83,7 @@ extension AlamofireService: GeneralService {
             joinTeam(teamId: teamId, completion: completion)
             return
         }
-        
+
         let payload = getChatroomRoute(type, message, teamId, itemId)
         post(at: payload.0, params: payload.1).responseJSON { (res: DataResponse<Any>) in
             completion?(nil, res.result.error)
@@ -94,7 +94,8 @@ extension AlamofireService: GeneralService {
         var params = Parameters()
         params["message"] = message
         post(at: .sendMessage(messageId: messageId), params: params).responseJSON { (res: DataResponse<Any>) in
-            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
+            completion?(nil, res.result.error)
+//            self.sendRequestStandardHandling(res: res, followUpAction: nil, completion: completion)
         }
     }
 
