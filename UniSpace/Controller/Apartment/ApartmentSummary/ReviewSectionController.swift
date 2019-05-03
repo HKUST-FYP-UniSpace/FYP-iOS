@@ -12,6 +12,7 @@ import UIKit
 final class ReviewSectionController: ListSectionController, ListAdapterDataSource {
 
     var contentOffset: CGFloat = 0
+    private var houseId: Int?
     private var reviews: [HouseReviewModel] = []
     private var isOwner: Bool = false
     private var cellSpacing: CGFloat = 10
@@ -61,6 +62,7 @@ final class ReviewSectionController: ListSectionController, ListAdapterDataSourc
 
     override func didUpdate(to object: Any) {
         if let model = object as? HouseViewModel {
+            houseId = model.titleView?.id
             reviews = model.reviews
             isOwner = false
         }
@@ -76,7 +78,9 @@ final class ReviewSectionController: ListSectionController, ListAdapterDataSourc
         generator.prepare()
         guard index == 0, !isOwner else { return }
         generator.notificationOccurred(.success)
-        adapter.viewController?.present(UINavigationController(rootViewController: AddReviewVC()), animated: true, completion: nil)
+        let vc = AddReviewVC()
+        vc.houseId = houseId
+        adapter.viewController?.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
     }
 
     // MARK: ListAdapterDataSource

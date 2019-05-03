@@ -79,10 +79,10 @@ extension AlamofireService: HouseService {
         params["userId"] = DataStore.shared.user?.id
         params["title"] = review.title
         params["detail"] = review.detail
-        params["value"] = review.starRating
-        params["cleanliness"] = review.starRating
-        params["accuracy"] = review.starRating
-        params["communication"] = review.starRating
+        params["value"] = review.value
+        params["cleanliness"] = review.cleanliness
+        params["accuracy"] = review.accuracy
+        params["communication"] = review.communication
         post(at: .addReview(houseId: houseId), params: params).responseJSON { (res: DataResponse<Any>) in
             completion?(nil, res.result.error)
         }
@@ -111,6 +111,10 @@ extension AlamofireService: HouseService {
             if let data = res.result.value { result = self.transform(from: data, type: Int.self) }
             guard let teamId = result else {
                 completion?(nil, ServerError.UnknownClassType(object: "Team ID"))
+                return
+            }
+            guard teamId != 0 else {
+                completion?(nil, ServerError.AlreadyExist)
                 return
             }
             self.createTeamImage(teamId: teamId, preference: model.preference, image: image, completion: completion)

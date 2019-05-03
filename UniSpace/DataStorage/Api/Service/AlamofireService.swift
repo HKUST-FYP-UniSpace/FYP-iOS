@@ -16,6 +16,7 @@ enum ServerError: LocalizedError {
     case UnknownClassType(object: String)
     case ImageFormatError(format: String)
     case UpdateUnsuccess
+    case AlreadyExist
 
     var errorDescription: String? {
         get {
@@ -26,6 +27,8 @@ enum ServerError: LocalizedError {
                 return "Can't convert to \(format) format"
             case .UpdateUnsuccess:
                 return "Unsuccessful update"
+            case .AlreadyExist:
+                return "Already exist"
             }
         }
     }

@@ -24,7 +24,10 @@ class AddReviewVC: MasterFormPopupVC {
         let date = DateManager.shared.getCurrentDate()
         form +++ Section("")
             <<< getLabelRow(id: nil, title: "Date", displayValue: DateManager.shared.convertToDateFormat(date: date))
-            <<< getStepperRow(id: "ratings", title: "Ratings", defaultValue: 5, max: 5, min: 0, step: 1, displayWithText: "")
+            <<< getStepperRow(id: "value", title: "Value Ratings", defaultValue: 5, max: 5, min: 0, step: 1, displayWithText: "")
+            <<< getStepperRow(id: "cleanliness", title: "Cleanliness Ratings", defaultValue: 5, max: 5, min: 0, step: 1, displayWithText: "")
+            <<< getStepperRow(id: "accuracy", title: "Accuracy Ratings", defaultValue: 5, max: 5, min: 0, step: 1, displayWithText: "")
+            <<< getStepperRow(id: "communication", title: "Communication Ratings", defaultValue: 5, max: 5, min: 0, step: 1, displayWithText: "")
             <<< getTextAreaRow(id: "title", placeholder: "feedback title", defaultValue: nil)
             <<< getTextAreaRow(id: "detail", placeholder: "feedback detail", defaultValue: nil)
 
@@ -44,23 +47,32 @@ class AddReviewVC: MasterFormPopupVC {
     }
 
     private func updateModel() {
-        var ratings: Double? = nil
+        var value: Double? = nil
+        var cleanliness: Double? = nil
+        var accuracy: Double? = nil
+        var communication: Double? = nil
         var title: String? = nil
         var detail: String? = nil
-        if let row = form.rowBy(tag: "ratings") as? StepperRow, let rowValue = row.value { ratings = rowValue }
+        if let row = form.rowBy(tag: "value") as? StepperRow, let rowValue = row.value { value = rowValue }
+        if let row = form.rowBy(tag: "cleanliness") as? StepperRow, let rowValue = row.value { cleanliness = rowValue }
+        if let row = form.rowBy(tag: "accuracy") as? StepperRow, let rowValue = row.value { accuracy = rowValue }
+        if let row = form.rowBy(tag: "communication") as? StepperRow, let rowValue = row.value { communication = rowValue }
         if let row = form.rowBy(tag: "title") as? TextAreaRow { title = row.value }
         if let row = form.rowBy(tag: "detail") as? TextAreaRow { detail = row.value }
 
         guard let updateTitle = title, !updateTitle.isEmpty,
             let updateDetail = detail, !updateDetail.isEmpty,
-            let updateRatings = ratings else {
+            let updateV = value, let updateC = cleanliness, let updateA = accuracy, let updateCom = communication else {
                 self.review = nil
                 return
         }
         let model = HouseReviewModel()
         model.title = updateTitle
         model.detail = updateDetail
-        model.starRating = updateRatings
+        model.value = updateV
+        model.cleanliness = updateC
+        model.accuracy = updateA
+        model.communication = updateCom
         model.date = DateManager.shared.getCurrentDate().timeIntervalSince1970
         self.review = model
     }

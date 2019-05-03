@@ -21,6 +21,12 @@ class HouseReviewModel: Decodable, ListDiffable, HouseReview {
     var ownerComment: String = ""
     var photoURL: String = ""
 
+    // disset star rating
+    var value: Double = 0
+    var cleanliness: Double = 0
+    var accuracy: Double = 0
+    var communication: Double = 0
+
     enum CodingKeys: String, CodingKey {
         case id
         case username
