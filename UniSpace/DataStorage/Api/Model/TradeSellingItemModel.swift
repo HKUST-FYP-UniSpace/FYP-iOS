@@ -22,7 +22,7 @@ class TradeSellingItemModel: Decodable, ListDiffable, TradeSellingItem {
         case title
         case price
         case views
-        case photoURL
+        case photoURL = "photoURLs"
     }
 
     required init(from decoder: Decoder) throws {

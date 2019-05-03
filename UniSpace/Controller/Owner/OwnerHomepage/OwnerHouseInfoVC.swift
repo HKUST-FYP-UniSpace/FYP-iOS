@@ -88,7 +88,6 @@ class OwnerHouseInfoVC: MasterFormPopupVC {
                 }
                 .onChange { (row) in
                     guard let houseId = self.houseId, let houseCondition = self.houseCondition, let newCondition = HouseStatus(text: row.value), houseCondition != newCondition else { return }
-                    log.debug("show alert")
                     self.showAlert(title: "Do you want to change status to \(newCondition.text)?", completion: { (yes) in
                         guard yes else {
                             self.houseCondition = houseCondition

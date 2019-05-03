@@ -21,7 +21,6 @@ extension AppDelegate {
             return
         }
 
-        log.debug("\(user.name) is \(user.userType.text)")
         let rootController: UIViewController = MainTabBarController(user.userType)
         window?.rootViewController?.loadViewIfNeeded()
         window?.rootViewController = rootController
