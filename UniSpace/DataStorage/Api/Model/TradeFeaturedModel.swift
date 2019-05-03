@@ -35,8 +35,8 @@ class TradeFeaturedModel: Decodable, ListDiffable, TradeFeatured {
         case isBookmarked
         case photoURLs
         case quantity
-        case tradeCategory
-        case tradeItemCondition
+        case tradeCategory = "trade_category_id"
+        case tradeItemCondition = "trade_condition_type_id"
     }
 
     required init(from decoder: Decoder) throws {

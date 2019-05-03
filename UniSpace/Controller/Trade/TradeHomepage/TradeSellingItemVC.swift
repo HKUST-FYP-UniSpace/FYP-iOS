@@ -127,8 +127,8 @@ class TradeSellingItemVC: MasterFormPopupVC {
         var quantity: Int? = nil
         var category: TradeCategory? = nil
         var itemCondition: TradeItemCondition? = nil
-        if let row = form.rowBy(tag: "name") as? TextRow { name = row.value }
-        if let row = form.rowBy(tag: "description") as? TextAreaRow { description = row.value }
+        if let row = form.rowBy(tag: "title") as? TextRow { name = row.value }
+        if let row = form.rowBy(tag: "detail") as? TextAreaRow { description = row.value }
 //        if let row = form.rowBy(tag: "location") as? TextRow { location = row.value }
         if let row = form.rowBy(tag: "location") as? ActionSheetRow<String> { location = row.value }
         if let row = form.rowBy(tag: "price") as? TextRow,
