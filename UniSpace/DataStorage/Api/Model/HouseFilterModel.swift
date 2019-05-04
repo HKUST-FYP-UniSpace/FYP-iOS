@@ -47,12 +47,12 @@ enum HouseType: String, CaseIterable {
     case Detached = "Detached"
     case SubDivided = "Sub-divided"
 
-    var pathExtension: String {
+    var pathExtension: Int {
         switch self {
-        case .Flat: return "flat"
-        case .Cottage: return "cottage"
-        case .Detached: return "detached"
-        case .SubDivided: return "sub-divided"
+        case .Flat: return 0
+        case .Cottage: return 1
+        case .Detached: return 2
+        case .SubDivided: return 3
         }
     }
 }

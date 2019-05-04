@@ -72,4 +72,8 @@ final class MockSocket {
         }
     }
 
+    func cleanQueuedMessages() {
+        queuedMessages = nil
+    }
+
 }

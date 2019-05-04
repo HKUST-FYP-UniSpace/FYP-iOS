@@ -100,6 +100,11 @@ final class MessageConversationVC: ChatVC {
 //                }
 //            }
 //        }
+        self.refreshControl.endRefreshing()
+    }
+
+    override func currentSender() -> Sender {
+        return DataStore.shared.user!.toSender()
     }
 
     override func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
@@ -120,6 +125,7 @@ final class MessageConversationVC: ChatVC {
 
     private func sendMessage(_ msg: String) {
         guard let info = chatInfo else { return }
+        MockSocket.shared.cleanQueuedMessages()
         DataStore.shared.addNewMessage(messageId: info.id, message: msg) { (msg, error) in
             guard !self.sendFailed(msg, error: error) else { return }
         }

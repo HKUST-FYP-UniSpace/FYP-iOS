@@ -105,9 +105,9 @@ extension AlamofireService {
         params["beds"] = model.beds
         params["toilets"] = model.toilets
 
-        if model.id != 0 {
+        if model.id == 0 {
             params["houseId"] = model.id
-            params["type"] = HouseType.Flat.rawValue
+            params["type"] = HouseType.Flat.pathExtension
             params["district_id"] = model.district_id
             params["description"] = ""
             params["max_ppl"] = 10
