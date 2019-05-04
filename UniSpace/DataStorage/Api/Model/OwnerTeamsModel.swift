@@ -12,8 +12,8 @@ import IGListKit
 class OwnerTeamsModel: Decodable, ListDiffable {
 
     var id: Int = DataStore.shared.randomInt(length: 8)
-    var teams: [HouseTeamSummaryModel]
-    var reviews: [HouseReviewModel]
+    var teams: [HouseTeamSummaryModel] = []
+    var reviews: [HouseReviewModel] = []
 
     convenience init() {
         self.init(teams: [], reviews: [])
@@ -24,6 +24,27 @@ class OwnerTeamsModel: Decodable, ListDiffable {
         self.teams = teams
         self.reviews = reviews
     }
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case teams
+        case reviews
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        decode(container, &id, type: Int.self, forKey: .id)
+        decode(container, &teams, type: [HouseTeamSummaryModel].self, forKey: .teams)
+        decode(container, &reviews, type: [HouseReviewModel].self, forKey: .reviews)
+    }
+
+    private func decode<T>(_ container: KeyedDecodingContainer<CodingKeys>, _ variable: inout T, type: T.Type, forKey key: CodingKeys) where T: Decodable {
+        if let _variable = try? container.decode(type, forKey: key) {
+            variable = _variable
+        }
+    }
+
+
 
     func diffIdentifier() -> NSObjectProtocol {
         return id as NSObjectProtocol
