@@ -28,8 +28,8 @@ class ApartmentFilterVC: MasterFilterVC {
             <<< getSliderRow(id: "priceMin", title: "Min", defaultValue: filter?.minPrice, max: 20000, min: 5000)
 
         form +++ Section("Size (sq. ft.)")
-            <<< getSliderRow(id: "sizeMax", title: "Max", defaultValue: filter?.maxSize, max: 2000, min: 800, startFromSmallest: false)
-            <<< getSliderRow(id: "sizeMin", title: "Min", defaultValue: filter?.minSize, max: 1000, min: 500)
+            <<< getSliderRow(id: "sizeMax", title: "Max", defaultValue: filter?.maxSize, max: 1600, min: 700, startFromSmallest: false)
+            <<< getSliderRow(id: "sizeMin", title: "Min", defaultValue: filter?.minSize, max: 1000, min: 100)
 
         form +++ Section("")
             <<< getStepperRow(id: "travelTime", title: "Travelling Time (mins.)", defaultValue: filter?.maxTravelTime, max: 90, min: 10, step: 10)

@@ -163,6 +163,7 @@ enum ApiRoute { case
             if let value = filter.maxPrice { queryString += "maxPrice=\(Int(value))&" }
             if let value = filter.minSize { queryString += "minSize=\(Int(value))&" }
             if let value = filter.maxSize { queryString += "maxSize=\(Int(value))&" }
+            if let value = filter.teamFormed { queryString += "teamFormed=\(value ? 1 : 0)&" }
             return String(queryString.dropLast()).replacingOccurrences(of: " ", with: "%20")
 
         case .getHouseView(let houseId):
