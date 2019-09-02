@@ -83,6 +83,7 @@
 		6D68F6FD21A8059D00D31472 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D68F6FC21A8059D00D31472 /* DateManager.swift */; };
 		6D68F6FF21A805BA00D31472 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D68F6FE21A805BA00D31472 /* Connectivity.swift */; };
 		6D68F70121A8085800D31472 /* DataStore-remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D68F70021A8085800D31472 /* DataStore-remote.swift */; };
+		6D728F4D22CC509E00E8D7EB /* AlamofireService+Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D728F4C22CC509D00E8D7EB /* AlamofireService+Trade.swift */; };
 		6D751A3F21AFB49700F1D8EE /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D751A3E21AFB49700F1D8EE /* StringTests.swift */; };
 		6D7EE8C821E88CB3008D882F /* GridSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7EE8C721E88CB3008D882F /* GridSectionController.swift */; };
 		6D7EE8CA21E899AA008D882F /* SavedSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7EE8C921E899AA008D882F /* SavedSectionController.swift */; };
@@ -155,7 +156,6 @@
 		6DA9D48F22057D4B009464B6 /* TestService+House.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9D48E22057D4B009464B6 /* TestService+House.swift */; };
 		6DA9D49122057D7C009464B6 /* TestService+Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9D49022057D7C009464B6 /* TestService+Trade.swift */; };
 		6DA9D49322057D9B009464B6 /* AlamofireService+House.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9D49222057D9B009464B6 /* AlamofireService+House.swift */; };
-		6DA9D49522057DB1009464B6 /* AlamofireService+Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9D49422057DB1009464B6 /* AlamofireService+Trade.swift */; };
 		6DA9D49722058793009464B6 /* HouseHomepageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9D49622058793009464B6 /* HouseHomepageModel.swift */; };
 		6DA9D499220587A0009464B6 /* TradeHomepageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9D498220587A0009464B6 /* TradeHomepageModel.swift */; };
 		6DAA9A48226F2F8700CE0F1A /* MessageInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAA9A47226F2F8700CE0F1A /* MessageInfoVC.swift */; };
@@ -337,6 +337,7 @@
 		6D68F6FC21A8059D00D31472 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		6D68F6FE21A805BA00D31472 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		6D68F70021A8085800D31472 /* DataStore-remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataStore-remote.swift"; sourceTree = "<group>"; };
+		6D728F4C22CC509D00E8D7EB /* AlamofireService+Trade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlamofireService+Trade.swift"; sourceTree = "<group>"; };
 		6D751A3E21AFB49700F1D8EE /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		6D7EE8C721E88CB3008D882F /* GridSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridSectionController.swift; sourceTree = "<group>"; };
 		6D7EE8C921E899AA008D882F /* SavedSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSectionController.swift; sourceTree = "<group>"; };
@@ -409,7 +410,6 @@
 		6DA9D48E22057D4B009464B6 /* TestService+House.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TestService+House.swift"; sourceTree = "<group>"; };
 		6DA9D49022057D7C009464B6 /* TestService+Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TestService+Trade.swift"; sourceTree = "<group>"; };
 		6DA9D49222057D9B009464B6 /* AlamofireService+House.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlamofireService+House.swift"; sourceTree = "<group>"; };
-		6DA9D49422057DB1009464B6 /* AlamofireService+Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AlamofireService+Trade.swift"; path = "/Users/Kan_Ng/Desktop/FYP/FYP-iOS/UniSpace/DataStorage/Api/Service/AlamofireService+Trade.swift"; sourceTree = "<absolute>"; };
 		6DA9D49622058793009464B6 /* HouseHomepageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseHomepageModel.swift; sourceTree = "<group>"; };
 		6DA9D498220587A0009464B6 /* TradeHomepageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeHomepageModel.swift; sourceTree = "<group>"; };
 		6DAA9A47226F2F8700CE0F1A /* MessageInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfoVC.swift; sourceTree = "<group>"; };
@@ -793,7 +793,7 @@
 				6D68F6EF21A7FA2F00D31472 /* AlamofireService+General.swift */,
 				6D06245322325F8A0046D06B /* AlamofireService+Owner.swift */,
 				6DA9D49222057D9B009464B6 /* AlamofireService+House.swift */,
-				6DA9D49422057DB1009464B6 /* AlamofireService+Trade.swift */,
+				6D728F4C22CC509D00E8D7EB /* AlamofireService+Trade.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1465,7 +1465,6 @@
 				6DE5562F21A3F0AB00B23398 /* StringExten.swift in Sources */,
 				6D2BEDAF22316990005FFEEE /* CustomMessagesFlowLayout.swift in Sources */,
 				6D2BEDB722316B41005FFEEE /* MockSocket.swift in Sources */,
-				6DA9D49522057DB1009464B6 /* AlamofireService+Trade.swift in Sources */,
 				6D30716D21B27C7A008D0FA3 /* MasterVC.swift in Sources */,
 				6DE5562521A3BCA400B23398 /* LoginButton.swift in Sources */,
 				6D68F6D421A7F22200D31472 /* GeneralService.swift in Sources */,
@@ -1648,6 +1647,7 @@
 				6DFE1DCE220C9CC30012E8A2 /* TeamMember.swift in Sources */,
 				6DFE1DA7220869FF0012E8A2 /* HouseTeamSummaryCell.swift in Sources */,
 				6D7EE8DE21E8E61A008D882F /* TradeFeaturedSectionController.swift in Sources */,
+				6D728F4D22CC509E00E8D7EB /* AlamofireService+Trade.swift in Sources */,
 				6DFE1DAF220ADAEA0012E8A2 /* ApartmentSummaryVC.swift in Sources */,
 				6DFE1DC9220C8EEF0012E8A2 /* TeamMemberCell.swift in Sources */,
 				6DFE1DD4220C9EE40012E8A2 /* TeamSummaryViewModel.swift in Sources */,

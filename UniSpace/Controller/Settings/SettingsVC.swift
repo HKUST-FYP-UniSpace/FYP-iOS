@@ -31,7 +31,7 @@ class SettingsVC: FormViewController {
     private func createForm(_ user: UserModel?) {
         guard let user = user else { return }
         _ = user.userType == .Owner ? createOwnerForm(user) : createTenantForm(user)
-//        createAdvanceForm()
+        createAdvanceForm()
     }
 
     private func createOwnerForm(_ user: UserModel) {
