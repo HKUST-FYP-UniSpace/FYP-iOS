@@ -39,7 +39,7 @@ Similar UI elements are recurring in the whole application in order to reduce us
 
 Colour usage is aesthetically-pleasing yet not overdone. It allows the app to be straightforward, as the theme colour indicates which elements are pressable. By embracing the current iOS design principle, title font size choice is bolder, which help users differentiate between sections.
 
-Below are some selected user interface, which illiterates our design principle. More can be found in [screenshot folder](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screentshots/).
+Below are some selected user interface, which illiterates our design principle. More can be found in [screenshot folder](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screenshots/).
 
 
 
@@ -49,11 +49,11 @@ Since it is the main feature of our project, the UI design is crucial to attract
 
 Apartment Home Page             | Apartment Filter Page 
 :-------------------------:|:-------------------------:
-![house landing page](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screentshots/01-house-01-landing-01.PNG)  | ![house search filter](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screentshots/01-house-06-house%20search%20filter-01.PNG) 
+![house landing page](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screenshots/01-house-01-landing-01.PNG)  | ![house search filter](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screenshots/01-house-06-house%20search%20filter-01.PNG) 
 
 |                    Apartment Detail Page                     |                Apartment Detail Page (Cont.)                 |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![house detail](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screentshots/01-house-02-house%20detail-01.PNG) | ![house detail cont.](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screentshots/01-house-02-house%20detail-03.PNG) |
+| ![house detail](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screenshots/01-house-02-house%20detail-01.PNG) | ![house detail cont.](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screenshots/01-house-02-house%20detail-03.PNG) |
 
 
 
@@ -63,7 +63,7 @@ The landing page for Trade tab would be the page users use most frequently after
 
 |                      Trade Landing Page                      |                  Trade Landing Page (Cont.)                  |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![house landing page](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screentshots/02-trade-01-landing-01.PNG) | ![house search filter](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screentshots/02-trade-01-landing-03.PNG) |
+| ![house landing page](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screenshots/02-trade-01-landing-01.PNG) | ![house search filter](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screenshots/02-trade-01-landing-03.PNG) |
 
 
 
@@ -75,7 +75,7 @@ We also have a calendar for users to mark down important events. The calendar sh
 
 |                     Message Landing Page                     |                    Calendar Landing Page                     |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![house landing page](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screentshots/04-message-01-message-01.PNG) | ![house search filter](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screentshots/04-message-02-calendar-01.PNG) |
+| ![house landing page](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screenshots/04-message-01-message-01.PNG) | ![house search filter](https://github.com/HKUST-FYP-UniSpace/FYP-iOS/blob/master/screenshots/04-message-02-calendar-01.PNG) |
 
 
 
